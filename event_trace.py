@@ -1,9 +1,7 @@
-import warnings
 from datetime import timedelta
 import simpy
 import pm4py
 import random
-import warnings
 from checking_process import SimulationProcess
 from pm4py.objects.petri_net import semantics
 from event_parallel import Token_parallel
