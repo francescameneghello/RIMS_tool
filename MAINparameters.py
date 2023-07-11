@@ -24,6 +24,7 @@ class Parameters(object):
                 data = json.load(file)
                 roles_table = data['roles_table']
                 self.ACTIVITIES = data['activities']
+                self.PROBABILITY = data['probability']
                 self.ROLE_ACTIVITY = dict()
                 for elem in roles_table:
                     self.ROLE_ACTIVITY[elem['task']] = elem['role']

@@ -1,8 +1,9 @@
+import warnings
 from datetime import timedelta
 import simpy
 import pm4py
 import random
-
+import warnings
 from checking_process import SimulationProcess
 from pm4py.objects.petri_net import semantics
 from event_parallel import Token_parallel
@@ -77,7 +78,7 @@ class Token(object):
                 yield request_resource
 
                 ### register event in process ###
-                resource_task = self.process.get_resource_event(trans.label)
+                resource_task = self.process.get_resource_event(trans.name)
                 resource_task_request = resource_task.request()
                 yield resource_task_request
 
@@ -114,6 +115,31 @@ class Token(object):
         self.am = semantics.execute(trans, self.net, self.am)
 
 
+    def check_probability(self, prob):
+        """Check if the sum of probabilities is 1
+        """
+        if sum(prob) != 1:
+            print('WARNING: The sum of the probabilities associated with the paths is not 1, to run the simulation we define equal probability')
+            return False
+        else:
+            return True
+
+    def define_xor_next_activity(self, all_enabled_trans):
+        list_trans = [trans.name for trans in all_enabled_trans]
+        if set(self.params.PROBABILITY.keys()).intersection(list_trans) != set():
+            try:
+                prob = [self.params.PROBABILITY[key] for key in list_trans]
+            except:
+                print('ERROR: Not all path probabilities are defined. Define all paths: ', list_trans)
+            if not self.check_probability(prob):
+                next = random.choices(list(range(0, len(all_enabled_trans), 1)))[0]
+            else:
+                value = [*range(0, len(prob), 1)]
+                next = int(random.choices(value, prob)[0])
+        else:
+            next = random.choices(list(range(0, len(all_enabled_trans), 1)))[0]
+        return all_enabled_trans[next]
+
     def next_transition(self,  env, writer):
         all_enabled_trans = semantics.enabled_transitions(self.net, self.am)
         all_enabled_trans = list(all_enabled_trans)
@@ -123,8 +149,7 @@ class Token(object):
             return None
         elif len(self.am) == 1: ### caso di un singolo token processato dentro petrinet
             if len(all_enabled_trans) > 1:
-                next = random.choices(list(range(0, len(all_enabled_trans), 1)))[0]
-                return all_enabled_trans[next]
+                return self.define_xor_next_activity(all_enabled_trans)
             else:
                 return all_enabled_trans[0]
         else:
