@@ -25,6 +25,7 @@ class Parameters(object):
                 roles_table = data['roles_table']
                 self.ACTIVITIES = data['activities']
                 self.PROBABILITY = data['probability']
+                self.INTER_TRIGGER = data["interTriggerTimer"]
                 self.ROLE_ACTIVITY = dict()
                 for elem in roles_table:
                     self.ROLE_ACTIVITY[elem['task']] = elem['role']

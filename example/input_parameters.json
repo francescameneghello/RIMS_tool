@@ -1,5 +1,6 @@
 {
     "start_timestamp": "16/03/2023 10:32:12",
+    "interTriggerTimer": {"type":"distribution", "name":"exponential", "scale":5},
     "probability": {
         "Activity_17lxqwm": 0.70,
         "sfl_Flow_094gnax": 0.30
