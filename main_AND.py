@@ -6,6 +6,7 @@ from MAINparameters import Parameters
 import sys, getopt
 import warnings
 import random
+import pm4py
 from inter_trigger_timer import InterTriggerTimer
 
 
@@ -14,11 +15,12 @@ def setup(env: simpy.Environment, PATH_PETRINET, params, i):
     f = open('event_log.csv', 'w')
     writer = csv.writer(f)
     writer.writerow(['caseid', 'task', 'start:timestamp', 'time:timestamp', 'role', 'st_wip', 'st_tsk_wip', 'queue'])
+    net, im, fm = pm4py.read_pnml(PATH_PETRINET)
     interval = InterTriggerTimer(params.INTER_TRIGGER)
     for i in range(0, params.TRACES):
         itime = interval.get_next_arrival()
         yield env.timeout(itime)
-        env.process(Token(i, PATH_PETRINET, params, simulation_process).simulation(env, writer))
+        env.process(Token(i, net, im, params, simulation_process, [], 'sequential').simulation(env, writer))
 
 
 def run_simulation(PATH_PETRINET, PATH_PARAMETERS, N_SIMULATION, N_TRACES):

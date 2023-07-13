@@ -12,7 +12,7 @@ import copy
 
 class Token(object):
 
-    def __init__(self, id, PATH_PETRINET, params, process: SimulationProcess):
+    '''def __init__(self, id, PATH_PETRINET, params, process: SimulationProcess):
         self.id = id
         self.net, self.am, self.fm = pm4py.read_pnml(PATH_PETRINET)
         self.PATH_PETRINET = PATH_PETRINET
@@ -21,7 +21,22 @@ class Token(object):
         self.params = params
         self.pos = 0
         self.prefix = []
-        self.see_activity = False
+        self.see_activity = False'''
+
+    def __init__(self, id, net, am, params, process: SimulationProcess, prefix, type):
+        self.id = id
+        self.process = process
+        self.start_time = params.START_SIMULATION
+        self.params = params
+        self.pos = 0
+        self.net = net
+        self.am = am
+        self.prefix = prefix
+        self.type = type
+        if type == 'sequential':
+            self.see_activity = False
+        else:
+            self.see_activity = True
 
     def delete_places(self, places):
         delete = []
@@ -108,6 +123,7 @@ class Token(object):
             self.update_marking(trans)
             trans = self.next_transition(env, writer)
 
+        self.process.set_last_events(self.am)
         resource_trace.release(resource_trace_request)
 
     def update_marking(self, trans):
@@ -139,35 +155,6 @@ class Token(object):
             next = random.choices(list(range(0, len(all_enabled_trans), 1)))[0]
         return all_enabled_trans[next]
 
-    '''def next_transition(self,  env, writer):
-        all_enabled_trans = semantics.enabled_transitions(self.net, self.am)
-        all_enabled_trans = list(all_enabled_trans)
-        all_enabled_trans.sort(key=lambda x: x.name)
-        label_element = str(list(self.am)[0])
-        if len(all_enabled_trans) == 0:
-            return None
-        elif len(self.am) == 1: ### caso di un singolo token processato dentro petrinet
-            if len(all_enabled_trans) > 1:
-                return self.define_xor_next_activity(all_enabled_trans)
-            else:
-                return all_enabled_trans[0]
-        else:
-            am_sort = []
-            for token in self.am:
-                token = str(token)
-                if 'ent' in token:
-                    key = token[token.find('_') + 1:]
-                    am_sort.append(key)
-            am_sort.sort()
-            key = am_sort[0]
-            events = []
-            for i in range(0, len(self.process.parallel_dict[key])):
-                print(self.process.parallel_dict[key][i])
-                path = env.process(Token_parallel(self.id, self.net, self.am, self.params, self.process, self.prefix, self.process.parallel_dict[key][i]).simulation(env, writer))
-                events.append(path)
-
-            return events'''
-
     def delete_tokens(self, name):
         to_delete = []
         for p in self.am:
@@ -195,7 +182,7 @@ class Token(object):
                 tokens_to_delete = self.delete_tokens(name)
                 for p in tokens_to_delete:
                     del new_am[p]
-                path = env.process(Token_parallel(self.id, self.net, new_am, self.params, self.process, self.prefix).simulation(env, writer))
+                path = env.process(Token(self.id, self.net, new_am, self.params, self.process, self.prefix, "parallel").simulation(env, writer))
                 events.append(path)
 
             return events
