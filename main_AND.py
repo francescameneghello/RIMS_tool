@@ -50,8 +50,6 @@ def main(argv):
     run_simulation(PATH_PETRINET, PATH_PARAMETERS, N_SIMULATION, N_TRACES)
 
 
-
-
 if __name__ == "__main__":
     warnings.filterwarnings("ignore")
     main(sys.argv[1:])

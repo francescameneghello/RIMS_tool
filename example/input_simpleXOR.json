@@ -1,0 +1,62 @@
+{
+    "start_timestamp": "16/03/2023 10:32:12",
+    "interTriggerTimer": {"type":"distribution", "name":"exponential", "scale": 5},
+    "probability": {
+        "Activity_17lxqwm": 0.70,
+        "sfl_Flow_094gnax": 0.30
+    },
+    "activities": {
+        "Activity_0d1gq3n":  "A",
+        "Activity_17lxqwm":  "B",
+        "Activity_1egjnr0":  "C",
+        "Activity_1jwn1ap":  "D",
+        "Activity_16kzkuk":  "E",
+        "Activity_1kjjqe1":  "F",
+        "Activity_0b1zvpn":  "G",
+        "Activity_0suyy7p":  "H"
+    },
+    "roles": {
+        "Role 1": [
+            "MNO-000002",
+            "MNO-000001"
+        ],
+        "Role 2": [
+            "DEF-000001",
+            "DEF-000001"
+        ]
+    },
+    "roles_table": [
+        {
+            "role": "Role 1",
+            "task": "A"
+        },
+        {
+            "role": "Role 2",
+            "task": "B"
+        },
+        {
+            "role": "Role 2",
+            "task": "C"
+        },
+        {
+            "role": "Role 1",
+            "task": "D"
+        },
+        {
+            "role": "Role 2",
+            "task": "E"
+        },
+        {
+            "role": "Role 2",
+            "task": "F"
+        },
+        {
+            "role": "Role 2",
+            "task": "G"
+        },
+        {
+            "role": "Role 2",
+            "task": "H"
+        }
+    ]
+}

@@ -9,7 +9,7 @@ from pm4py.objects.petri_net import semantics
 
 class Token_parallel(object):
 
-    def __init__(self, id, net, am, params, process: SimulationProcess, prefix, transitions):
+    def __init__(self, id, net, am, params, process: SimulationProcess, prefix):
         self.id = id
         #self.net, self.am, self.fm = pm4py.read_pnml(PATH_PETRINET)
         self.net = net
@@ -20,13 +20,11 @@ class Token_parallel(object):
         self.pos = 0
         self.prefix = prefix
         self.see_activity = False
-        self.transitions = transitions
         #self.resource_trace = resource_trace
 
     def simulation(self, env: simpy.Environment, writer):
         trans = self.next_transition()
         while trans is not None:
-
             if trans.label is not None:
                 buffer = [self.id, trans.label]
                 self.prefix.append(trans.label)
@@ -52,7 +50,7 @@ class Token_parallel(object):
                 yield request_resource
 
                 ### register event in process ###
-                resource_task = self.process.get_resource_event(trans.label)
+                resource_task = self.process.get_resource_event(trans.name)
                 resource_task_request = resource_task.request()
                 yield resource_task_request
 
@@ -100,7 +98,7 @@ class Token_parallel(object):
         if len(all_enabled_trans) == 0:
             return None
         else:
-            all_enabled_trans = self.extract_valid_transition(list(all_enabled_trans))
+            all_enabled_trans = list(all_enabled_trans)
             all_enabled_trans.sort(key=lambda x: x.name)
             #print(label_element, all_enabled_trans)
             if len(all_enabled_trans) == 0:

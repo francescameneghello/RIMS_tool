@@ -7,6 +7,7 @@ from pm4py.objects.petri_net import semantics
 from event_parallel import Token_parallel
 from simpy.events import AnyOf, AllOf, Event
 import numpy as np
+import copy
 
 
 class Token(object):
@@ -138,7 +139,7 @@ class Token(object):
             next = random.choices(list(range(0, len(all_enabled_trans), 1)))[0]
         return all_enabled_trans[next]
 
-    def next_transition(self,  env, writer):
+    '''def next_transition(self,  env, writer):
         all_enabled_trans = semantics.enabled_transitions(self.net, self.am)
         all_enabled_trans = list(all_enabled_trans)
         all_enabled_trans.sort(key=lambda x: x.name)
@@ -163,6 +164,38 @@ class Token(object):
             for i in range(0, len(self.process.parallel_dict[key])):
                 print(self.process.parallel_dict[key][i])
                 path = env.process(Token_parallel(self.id, self.net, self.am, self.params, self.process, self.prefix, self.process.parallel_dict[key][i]).simulation(env, writer))
+                events.append(path)
+
+            return events'''
+
+    def delete_tokens(self, name):
+        to_delete = []
+        for p in self.am:
+            if p.name != name:
+                to_delete.append(p)
+        return to_delete
+
+    def next_transition(self, env, writer):
+        all_enabled_trans = semantics.enabled_transitions(self.net, self.am)
+        all_enabled_trans = list(all_enabled_trans)
+        all_enabled_trans.sort(key=lambda x: x.name)
+        label_element = str(list(self.am)[0])
+        if len(all_enabled_trans) == 0:
+            return None
+        elif len(self.am) == 1:  ### caso di un singolo token processato dentro petrinet
+            if len(all_enabled_trans) > 1:
+                return self.define_xor_next_activity(all_enabled_trans)
+            else:
+                return all_enabled_trans[0]
+        else:
+            events = []
+            for token in self.am:
+                name = token.name
+                new_am = copy.copy(self.am)
+                tokens_to_delete = self.delete_tokens(name)
+                for p in tokens_to_delete:
+                    del new_am[p]
+                path = env.process(Token_parallel(self.id, self.net, new_am, self.params, self.process, self.prefix).simulation(env, writer))
                 events.append(path)
 
             return events
