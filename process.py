@@ -20,10 +20,8 @@ class SimulationProcess(object):
         self.resource_trace = simpy.Resource(env, math.inf)
         self.buffer_traces = []
         self.path_petrinet = PATH_PETRINET
-        self.parallel_dict = self.define_parallels_path()
         self.last_event = params.START_SIMULATION
         self.am_parallel = []
-        #self.predictor.predict()
 
     def define_single_resource(self):
         set_resource = list(self.params.ROLE_CAPACITY.keys())
@@ -64,44 +62,11 @@ class SimulationProcess(object):
         else:
             return self.predictor.predict_waiting_queue(cid, pr_wip, transition, rp_oc, time, queue)
 
-
     def get_name_first_transition(self, element):
         if type(element)!= str and element.children:
             return self.get_name_first_transition(element.children[0])
         else:
             return str(element)
-
-    ### MANCANO AND INNESTATI
-    def define_parallels_path(self):
-        net, im, fm = pm4py.read_pnml(self.path_petrinet)
-        for trans in net.transitions:
-            trans.label = trans.name
-        tree = pm4py.convert_to_process_tree(net, im, fm)
-        parallel_dict = dict()
-        for idx, child in enumerate(tree.children):
-            if child.operator and child.operator is pt_opt.Operator.PARALLEL:
-                for c in child.children:
-                    activities = self.aux(c)
-                    activities = re.findall(r"'(.*?)'", str(activities))
-                    activities.sort()
-                    key = activities[0]
-                    parallel_dict[key] = activities
-            #if child.operator and child.operator is pt_opt.Operator.PARALLEL:
-                #key = self.get_name_first_transition(child.children[0])
-                #key = str(child._get_children())
-            #   for c in child.children:
-            #        activities = self.aux(c)
-            #        activities = re.findall(r"'(.*?)'", str(activities))
-            #    activities.sort()
-            #    key = activities[0]
-            #    parallel_dict[key] = []
-            #    for c in child.children:
-            #        if c.children:
-            #            parallel_dict[key].append(activities)
-            #        else:
-            #            parallel_dict[key].append(activities)
-        print('PARALLEL DICT', parallel_dict)
-        return parallel_dict
 
     def set_last_events(self, am):
         for token in am:
@@ -109,12 +74,3 @@ class SimulationProcess(object):
 
     def get_last_events(self):
         return set(self.am_parallel)
-
-    def aux(self, element):
-        if element.children:
-            children = []
-            for child in element.children:
-                children.append(self.aux(child))
-            return children
-        else:
-            return [str(element)]

@@ -1,6 +1,6 @@
 import csv
 import simpy
-from checking_process import SimulationProcess
+from process import SimulationProcess
 from event_trace import Token
 from MAINparameters import Parameters
 import sys, getopt

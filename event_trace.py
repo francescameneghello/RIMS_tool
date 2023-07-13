@@ -2,9 +2,8 @@ from datetime import timedelta
 import simpy
 import pm4py
 import random
-from checking_process import SimulationProcess
+from process import SimulationProcess
 from pm4py.objects.petri_net import semantics
-from event_parallel import Token_parallel
 from simpy.events import AnyOf, AllOf, Event
 import numpy as np
 import copy
