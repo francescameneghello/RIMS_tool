@@ -29,7 +29,6 @@ def run_simulation(PATH_PETRINET, PATH_PARAMETERS, N_SIMULATION, N_TRACES):
         params = Parameters(PATH_PARAMETERS, N_TRACES)
         env = simpy.Environment()
         env.process(setup(env, PATH_PETRINET, params, i))
-
         env.run(until=params.SIM_TIME)
 
 

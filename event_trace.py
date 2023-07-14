@@ -11,17 +11,6 @@ import copy
 
 class Token(object):
 
-    '''def __init__(self, id, PATH_PETRINET, params, process: SimulationProcess):
-        self.id = id
-        self.net, self.am, self.fm = pm4py.read_pnml(PATH_PETRINET)
-        self.PATH_PETRINET = PATH_PETRINET
-        self.process = process
-        self.start_time = params.START_SIMULATION
-        self.params = params
-        self.pos = 0
-        self.prefix = []
-        self.see_activity = False'''
-
     def __init__(self, id, net, am, params, process: SimulationProcess, prefix, type):
         self.id = id
         self.process = process

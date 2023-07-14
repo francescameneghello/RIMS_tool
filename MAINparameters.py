@@ -11,8 +11,14 @@ from datetime import datetime
 
 class Parameters(object):
 
+    '''
+    Define the main parameters of simulation:
+        -SIM_TIME: total simulation duration in seconds (at the end of time the simulation will be stopped even if the execution of traces has not been completed)
+        -TRACES: number of traces to generate
+        -PATH_PARAMTERS: path of json file for others parameters
+    '''
     def __init__(self, path_parameters, traces):
-        self.SIM_TIME = 1460*36000000000000000  # 10 day
+        self.SIM_TIME = 86400
         self.TRACES = traces
         self.PATH_PARAMTERS = path_parameters
         self.read_metadata_file()
