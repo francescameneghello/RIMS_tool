@@ -13,7 +13,6 @@ class Parameters(object):
 
     def __init__(self, path_parameters, traces):
         self.SIM_TIME = 1460*36000000000000000  # 10 day
-        #self.ARRIVALS = pd.read_csv(self.NAME_EXP + '/arrivals/iarr' + str(iterations) + '.csv', sep=',')
         self.TRACES = traces
         self.PATH_PARAMTERS = path_parameters
         self.read_metadata_file()

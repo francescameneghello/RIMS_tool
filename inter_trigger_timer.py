@@ -30,7 +30,3 @@ class InterTriggerTimer(object):
             return stop + arrival
         else:
             return arrival
-
-    def define_calendar(self, params):
-        print(params['calendar'])
-        #Resource(env: simpy.Environment, name: str, capacity: int, calendar: dict, start: datetime)

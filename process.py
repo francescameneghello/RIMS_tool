@@ -30,7 +30,6 @@ class SimulationProcess(object):
             res_simpy = Resource(self.env, res, self.params.ROLE_CAPACITY[res][0], self.params.ROLE_CAPACITY[res][1], self.date_start)
             print(res, res_simpy.capacity)
             dict_res[res] = res_simpy
-
         return dict_res
 
     def get_occupations_resource(self, resource):
