@@ -4,6 +4,7 @@ Principal parameters to run the process
 DA AGGIUNGERE: configurazione risorse, tempi per ogni attivita'
 '''
 import json
+import math
 import os
 from datetime import datetime
 
@@ -30,11 +31,13 @@ class Parameters(object):
                 for elem in roles_table:
                     self.ROLE_ACTIVITY[elem['task']] = elem['role']
 
-                self.INDEX_ROLE = {'SYSTEM': 0}
-                self.ROLE_CAPACITY = {'SYSTEM': [1000, {'days': [0, 1, 2, 3, 4], 'hour_min': 8, 'hour_max': 17}]}
+                if data['interTriggerTimer']['calendar']:
+                    self.ROLE_CAPACITY = {'TRIGGER_TIMER': [math.inf, {'days': data['interTriggerTimer']['calendar']['days'], 'hour_min': data['interTriggerTimer']['calendar']['hour_min'], 'hour_max': data['interTriggerTimer']['calendar']['hour_max']}]}
+                else:
+                    self.ROLE_CAPACITY = {'TRIGGER_TIMER': [math.inf, []]}
+
                 roles = data['roles']
                 for idx, key in enumerate(roles):
-                    self.INDEX_ROLE[key] = idx
                     self.ROLE_CAPACITY[key] = [len(roles[key]), {'days': [0, 1, 2, 3, 4, 5, 6], 'hour_min': 0, 'hour_max': 23}]
         else:
             raise ValueError('Parameter file does not exist')

@@ -22,11 +22,14 @@ class InterTriggerTimer(object):
         self.params = params['parameters']
 
     def get_next_arrival(self, env):
-        resource = self.process.get_resource('SYSTEM')
+        resource = self.process.get_resource('TRIGGER_TIMER')
         parameters = list(self.params.values())
         arrival = getattr(np.random, self.name_distribution)(parameters, size=1)[0] ### genero arrivo
-        stop = resource.to_time_schedule(self.start_time + timedelta(seconds=env.now + arrival)) ### check if arrival is inside calendar
-        return stop + arrival
+        if resource.get_calendar():
+            stop = resource.to_time_schedule(self.start_time + timedelta(seconds=env.now + arrival)) ### check if arrival is inside calendar
+            return stop + arrival
+        else:
+            return arrival
 
     def define_calendar(self, params):
         print(params['calendar'])

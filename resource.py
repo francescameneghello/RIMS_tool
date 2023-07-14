@@ -28,6 +28,9 @@ class Resource(object):
     def get_resource(self):
         return self.resource_simpy
 
+    def get_calendar(self):
+        return self.calendar
+
     def release(self, request):
         self.resource_simpy.release(request)
 
