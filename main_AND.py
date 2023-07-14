@@ -16,9 +16,9 @@ def setup(env: simpy.Environment, PATH_PETRINET, params, i):
     writer = csv.writer(f)
     writer.writerow(['caseid', 'task', 'start:timestamp', 'time:timestamp', 'role', 'st_wip', 'st_tsk_wip', 'queue'])
     net, im, fm = pm4py.read_pnml(PATH_PETRINET)
-    interval = InterTriggerTimer(params.INTER_TRIGGER)
+    interval = InterTriggerTimer(params.INTER_TRIGGER, simulation_process, params.START_SIMULATION)
     for i in range(0, params.TRACES):
-        itime = interval.get_next_arrival()
+        itime = interval.get_next_arrival(env)
         yield env.timeout(itime)
         env.process(Token(i, net, im, params, simulation_process, [], 'sequential').simulation(env, writer))
 

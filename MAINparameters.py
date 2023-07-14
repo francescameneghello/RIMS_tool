@@ -13,7 +13,6 @@ class Parameters(object):
     def __init__(self, path_parameters, traces):
         self.SIM_TIME = 1460*36000000000000000  # 10 day
         #self.ARRIVALS = pd.read_csv(self.NAME_EXP + '/arrivals/iarr' + str(iterations) + '.csv', sep=',')
-        self.START_SIMULATION = datetime.now()
         self.TRACES = traces
         self.PATH_PARAMTERS = path_parameters
         self.read_metadata_file()
@@ -23,6 +22,7 @@ class Parameters(object):
             with open(self.PATH_PARAMTERS) as file:
                 data = json.load(file)
                 roles_table = data['roles_table']
+                self.START_SIMULATION = datetime.strptime(data['start_timestamp'], '%Y-%m-%d %H:%M:%S')
                 self.ACTIVITIES = data['activities']
                 self.PROBABILITY = data['probability']
                 self.INTER_TRIGGER = data["interTriggerTimer"]
@@ -31,7 +31,7 @@ class Parameters(object):
                     self.ROLE_ACTIVITY[elem['task']] = elem['role']
 
                 self.INDEX_ROLE = {'SYSTEM': 0}
-                self.ROLE_CAPACITY = {'SYSTEM': [1000, {'days': [0, 1, 2, 3, 4, 5, 6], 'hour_min': 0, 'hour_max': 23}]}
+                self.ROLE_CAPACITY = {'SYSTEM': [1000, {'days': [0, 1, 2, 3, 4], 'hour_min': 8, 'hour_max': 17}]}
                 roles = data['roles']
                 for idx, key in enumerate(roles):
                     self.INDEX_ROLE[key] = idx

@@ -55,12 +55,16 @@ class Token(object):
             if self.see_activity:
                 yield resource_trace_request
             if type(trans) == list:
-                yield AllOf(env, trans)
+                #print(trans)
+                self.process.get_last_events()
+                #yield AllOf(env, trans)
+                yield trans[0] & trans[1]
                 am_after = self.process.get_last_events() - set(self.am)
                 for d in self.delete_places(self.am):
                     del self.am[d]
                 for t in am_after:
                     self.am[t] = 1
+                #pm4py.view_petri_net(self.net, self.am)
                 all_enabled_trans = list(semantics.enabled_transitions(self.net, self.am))
                 trans = all_enabled_trans[0]
 
@@ -122,7 +126,8 @@ class Token(object):
             self.update_marking(trans)
             trans = self.next_transition(env, writer)
 
-        self.process.set_last_events(self.am)
+        if self.type == 'parallel':
+            self.process.set_last_events(self.am)
         resource_trace.release(resource_trace_request)
 
     def update_marking(self, trans):
@@ -184,4 +189,5 @@ class Token(object):
                 path = env.process(Token(self.id, self.net, new_am, self.params, self.process, self.prefix, "parallel").simulation(env, writer))
                 events.append(path)
 
+            #pm4py.view_petri_net(self.net, self.am)
             return events

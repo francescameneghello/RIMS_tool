@@ -1,16 +1,9 @@
-from datetime import timedelta
-import simpy
-import pm4py
-import random
-from process import SimulationProcess
-from pm4py.objects.petri_net import semantics
-from simpy.events import AnyOf, AllOf, Event
 import numpy as np
-
+from datetime import timedelta
 
 class InterTriggerTimer(object):
 
-    def __init__(self, params):
+    def __init__(self, params, process, start):
         if params['type'] == 'distribution':
             self.set_distribution_arrival(params)
         elif params['type'] == 'predictive':
@@ -21,14 +14,20 @@ class InterTriggerTimer(object):
             pass
         else:
             raise ValueError('ERROR: Invalid arrival times generator')
+        self.process = process
+        self.start_time = start
 
     def set_distribution_arrival(self, params):
         self.name_distribution = params['name']
-        del params['type']
-        del params['name']
-        self.params = params
+        self.params = params['parameters']
 
-    def get_next_arrival(self):
+    def get_next_arrival(self, env):
+        resource = self.process.get_resource('SYSTEM')
         parameters = list(self.params.values())
-        return getattr(np.random, self.name_distribution)(parameters, size=1)[0]
+        arrival = getattr(np.random, self.name_distribution)(parameters, size=1)[0] ### genero arrivo
+        stop = resource.to_time_schedule(self.start_time + timedelta(seconds=env.now + arrival)) ### check if arrival is inside calendar
+        return stop + arrival
 
+    def define_calendar(self, params):
+        print(params['calendar'])
+        #Resource(env: simpy.Environment, name: str, capacity: int, calendar: dict, start: datetime)

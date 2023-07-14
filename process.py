@@ -63,7 +63,7 @@ class SimulationProcess(object):
             return self.predictor.predict_waiting_queue(cid, pr_wip, transition, rp_oc, time, queue)
 
     def get_name_first_transition(self, element):
-        if type(element)!= str and element.children:
+        if type(element) != str and element.children:
             return self.get_name_first_transition(element.children[0])
         else:
             return str(element)
