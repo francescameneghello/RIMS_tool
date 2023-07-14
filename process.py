@@ -4,9 +4,6 @@ classe process che contiene risorse ed esegue task
 import simpy
 from resource import Resource
 import math
-import pm4py
-from pm4py.objects.process_tree import obj as pt_opt
-import re
 
 
 class SimulationProcess(object):
@@ -32,10 +29,9 @@ class SimulationProcess(object):
             dict_res[res] = res_simpy
         return dict_res
 
-    def get_occupations_resource(self, resource):
-        occup = []
-        occup.append(self.resource[resource].get_resource().count / self.resource[resource].capacity)
-        return occup
+    def get_occupations_single_resource(self, resource):
+        occup = self.resource[resource].get_resource().count / self.resource[resource].capacity
+        return round(occup, 2)
 
     def get_resource(self, resource_label):
         return self.resource[resource_label] ### ritorna tipo resource mio

@@ -1,8 +1,8 @@
-'''
-Principal parameters to run the process
+"""
+    Define the main parameters of simulation:
+    * SIM_TIME: total simulation duration in seconds (at the end of time the simulation will be stopped even if the execution of traces has not been completed).
 
-DA AGGIUNGERE: configurazione risorse, tempi per ogni attivita'
-'''
+"""
 import json
 import math
 import os
@@ -11,24 +11,20 @@ from datetime import datetime
 
 class Parameters(object):
 
-    '''
-    Define the main parameters of simulation:
-        -SIM_TIME: total simulation duration in seconds (at the end of time the simulation will be stopped even if the execution of traces has not been completed)
-        -TRACES: number of traces to generate
-        -PATH_PARAMTERS: path of json file for others parameters
-    '''
     def __init__(self, path_parameters, traces):
-        self.SIM_TIME = 86400
         self.TRACES = traces
-        self.PATH_PARAMTERS = path_parameters
+        """TRACES: number of traces to generate"""
+        self.PATH_PARAMETERS = path_parameters
+        """PATH_PARAMETERS: path of json file for others parameters. """
         self.read_metadata_file()
 
     def read_metadata_file(self):
-        if os.path.exists(self.PATH_PARAMTERS):
-            with open(self.PATH_PARAMTERS) as file:
+        if os.path.exists(self.PATH_PARAMETERS):
+            with open(self.PATH_PARAMETERS) as file:
                 data = json.load(file)
                 roles_table = data['roles_table']
                 self.START_SIMULATION = datetime.strptime(data['start_timestamp'], '%Y-%m-%d %H:%M:%S')
+                self.SIM_TIME = data['duration_simulation']
                 self.ACTIVITIES = data['activities']
                 self.PROBABILITY = data['probability']
                 self.INTER_TRIGGER = data["interTriggerTimer"]
@@ -43,6 +39,6 @@ class Parameters(object):
 
                 roles = data['roles']
                 for idx, key in enumerate(roles):
-                    self.ROLE_CAPACITY[key] = [len(roles[key]), {'days': [0, 1, 2, 3, 4, 5, 6], 'hour_min': 0, 'hour_max': 23}]
+                    self.ROLE_CAPACITY[key] = [len(roles[key]['resources']), {'days': roles[key]['calendar']['days'], 'hour_min': roles[key]['calendar']['hour_min'], 'hour_max': roles[key]['calendar']['hour_max']}]
         else:
             raise ValueError('Parameter file does not exist')

@@ -104,21 +104,3 @@ class Resource(object):
         ### abbiamo chiamato to_time_schedule e siamo in una posizione corretta
         before, stop, after = self.check_duration(timestamp + timedelta(seconds=stop_pre), duration)
         return stop_pre, before + stop + after
-
-
-
-
-
-
-
-'''
-def defineCalendar(dtstart, dtend, days=['MO','TU','WE','TH','FR', 'SA','SU'], rule='daily'):
-    calendar = Calendar()
-    calendar['begin']="VEVENT"
-    calendar['dtstart']=dtstart.strftime("%Y%m%dT%H%M%S")
-    calendar['dtend']=dtend.strftime("%Y%m%dT%H%M%S")
-    calendar.add('rrule', {'freq': rule, 'byday': days})
-    calendar['end']="VEVENT"
-    calendar['version']="2.0"
-    return calendar
-'''

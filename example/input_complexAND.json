@@ -1,5 +1,6 @@
 {
     "start_timestamp": "2023-03-16 09:32:12",
+    "duration_simulation": 31536000,
     "interTriggerTimer": {
         "type": "distribution",
         "name": "exponential",
@@ -25,18 +26,22 @@
         "Activity_1a6ht9y":  "G"
     },
     "roles": {
-        "Role 1": [
-            "MNO-000002",
-            "MNO-000001"
-        ],
-        "Role 2": [
-            "DEF-000001",
-            "DEF-000001",
-            "DEF-000001",
-            "DEF-000001",
-            "DEF-000001",
-            "DEF-000001"
-        ]
+        "Role 1": {
+            "resources": ["MNO-000002", "MNO-000001"],
+            "calendar": {
+                "days": [0, 1, 2, 3, 4, 5, 6],
+                "hour_min": 0,
+                "hour_max": 23
+            }
+        },
+        "Role 2": {
+            "resources": [ "DEF-000001", "DEF-000001", "DEF-000001", "DEF-000001", "DEF-000001", "DEF-000001"],
+            "calendar": {
+                "days": [0, 1, 2, 3, 4, 5, 6],
+                "hour_min": 0,
+                "hour_max": 23
+            }
+        }
     },
     "roles_table": [
         {
