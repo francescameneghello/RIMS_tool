@@ -14,8 +14,8 @@
         }
     },
     "probability": {
-        "Activity_1sh8ud3": 0.80,
-        "Activity_1tpvdm3": 0.20
+        "Activity_1sh8ud3": "CUSTOM",
+        "Activity_1tpvdm3": "CUSTOM"
     },
     "activities": {
         "Activity_0fv6tmq":  "A",

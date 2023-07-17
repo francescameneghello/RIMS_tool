@@ -4,15 +4,19 @@ import pm4py
 import random
 from process import SimulationProcess
 from pm4py.objects.petri_net import semantics
+from MAINparameters import Parameters
+from utility import Prefix
 from simpy.events import AnyOf, AllOf, Event
 import numpy as np
 import copy
+import csv
 from utility import Buffer
+import json
 
 
 class Token(object):
 
-    def __init__(self, id, net, am, params, process: SimulationProcess, prefix, type, writer):
+    def __init__(self, id: int, net: pm4py.objects.petri_net.obj.PetriNet, am: pm4py.objects.petri_net.obj.Marking, params: Parameters, process: SimulationProcess, prefix: Prefix, type: str, writer: csv.writer):
         self._id = id
         self._process = process
         self._start_time = params.START_SIMULATION
@@ -38,13 +42,13 @@ class Token(object):
     def simulation(self, env: simpy.Environment):
         trans = self.next_transition(env)
         ### register trace in process ###
+
         resource_trace = self._process.get_resource_trace()
-        resource_trace_request = resource_trace.request()
+        resource_trace_request = resource_trace.request() if type == 'sequential' else None
 
         while trans is not None:
-            buffer = Buffer(self._writer)
-            #buffer.write_columns()
-            if self.see_activity:
+            self.buffer = Buffer(self._writer)
+            if self.see_activity and type == 'sequential':
                 yield resource_trace_request
             if type(trans) == list:
                 #print(trans)
@@ -61,9 +65,9 @@ class Token(object):
                 trans = all_enabled_trans[0]
 
             if trans.label is not None:
-                buffer.set_feature("id_case", self._id)
-                buffer.set_feature("activity", trans.label)
-                buffer.set_feature("prefix", self._prefix.get_prefix())
+                self.buffer.set_feature("id_case", self._id)
+                self.buffer.set_feature("activity", trans.label)
+                self.buffer.set_feature("prefix", self._prefix.get_prefix())
                 self._prefix.add_activity(trans.label)
 
                 ### call predictor for waiting time
@@ -72,11 +76,11 @@ class Token(object):
                 else:
                     raise ValueError('Not resource/role defined for this activity', trans.label)
 
-                buffer.set_feature("wip_wait", resource_trace.count)
-                buffer.set_feature("ro_single", self._process.get_occupations_single_resource(resource.get_name()))
+                self.buffer.set_feature("wip_wait", 0 if type != 'sequential' else resource_trace.count-1)
+                self.buffer.set_feature("ro_single", self._process.get_occupations_single_resource(resource.get_name()))
 
                 queue = 0 if len(resource.queue) == 0 else len(resource.queue[-1])
-                buffer.set_feature("queue", queue)
+                self.buffer.set_feature("queue", queue)
 
                 waiting = 5
 
@@ -84,7 +88,7 @@ class Token(object):
                     yield env.timeout(waiting)
 
                 request_resource = resource.request()
-                buffer.set_feature("enabled_time", str(self._start_time + timedelta(seconds=env.now)))
+                self.buffer.set_feature("enabled_time", str(self._start_time + timedelta(seconds=env.now)))
                 yield request_resource
 
                 ### register event in process ###
@@ -92,20 +96,20 @@ class Token(object):
                 resource_task_request = resource_task.request()
                 yield resource_task_request
 
-                buffer.set_feature("start_time", str(self._start_time + timedelta(seconds=env.now)))
+                self.buffer.set_feature("start_time", str(self._start_time + timedelta(seconds=env.now)))
                 ### call predictor for processing time
-                buffer.set_feature("wip_start", resource_trace.count)
-                buffer.set_feature("ro_single", self._process.get_occupations_single_resource(resource.get_name()))
-                buffer.set_feature("wip_activity", resource_task.count)
+                self.buffer.set_feature("wip_start", 0 if type != 'sequential' else resource_trace.count-1)
+                self.buffer.set_feature("ro_single", self._process.get_occupations_single_resource(resource.get_name()))
+                self.buffer.set_feature("wip_activity", resource_task.count-1)
 
                 duration = np.random.uniform(3600, 7200)
 
                 yield env.timeout(duration)
 
-                buffer.set_feature("wip_end", resource_trace.count)
-                buffer.set_feature("end_time", str(self._start_time + timedelta(seconds=env.now)))
-                buffer.set_feature("role", resource.get_name())
-                buffer.print_values()
+                self.buffer.set_feature("wip_end", 0 if type != 'sequential' else resource_trace.count-1)
+                self.buffer.set_feature("end_time", str(self._start_time + timedelta(seconds=env.now)))
+                self.buffer.set_feature("role", resource.get_name())
+                self.buffer.print_values()
                 resource.release(request_resource)
                 resource_task.release(resource_task_request)
 
@@ -114,7 +118,8 @@ class Token(object):
 
         if self._type == 'parallel':
             self._process.set_last_events(self._am)
-        resource_trace.release(resource_trace_request)
+        if self._type == 'sequential':
+            resource_trace.release(resource_trace_request)
 
     def _update_marking(self, trans):
         self._am = semantics.execute(trans, self._net, self._am)
@@ -159,7 +164,7 @@ class Token(object):
         if prob[0] == 'AUTO':
                 next = random.choices(list(range(0, len(all_enabled_trans), 1)))[0]
         elif prob[0] == 'CUSTOM':
-            self.call_custom_xor_function(all_enabled_trans)
+            next = self.call_custom_xor_function(all_enabled_trans)
         elif type(prob[0] == float()):
             if not self._check_probability(prob):
                 value = [*range(0, len(prob), 1)]
@@ -177,8 +182,33 @@ class Token(object):
         return to_delete
 
     def call_custom_xor_function(self, all_enabled_trans):
-        """Define the custom method to determine the path to follow up (See example ...)."""
+        """Define the custom method to determine the path to follow up (return the index of path).
+        Example of features that can be used to predict:
+        {
+              "activity": "B",
+              "enabled_time": "2023-03-16 11:15:27.449050",
+              "end_time": "2023-03-16 12:49:17.927216",
+              "id_case": 0,
+              "prefix": [
+                            "A",
+                            "C",
+                            "B",
+                            "E"
+              ],
+              "queue": 0,
+              "ro_single": 0.33,
+              "ro_total": [],
+              "role": "Role 2",
+              "start_time": "2023-03-16 11:15:27.449050",
+              "wip_activity": 1,
+              "wip_end": 3,
+              "wip_start": 3,
+              "wip_wait": 3
+        }"""
         print('Possible transitions of patrinet: ', all_enabled_trans)
+        print(json.dumps(self.buffer.buffer, indent=14, sort_keys=True))
+
+        return 0
 
     def next_transition(self, env):
         all_enabled_trans = semantics.enabled_transitions(self._net, self._am)
