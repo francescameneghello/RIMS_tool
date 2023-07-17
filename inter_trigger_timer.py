@@ -28,7 +28,8 @@ class InterTriggerTimer(object):
         self.params = params['parameters']
 
     def get_next_arrival(self, env):
-        """Generate a new arrival from the distribution and check if the new token arrival is inside calendar, otherwise wait for a suitable time."""
+        """Generate a new arrival from the distribution and check if the new token arrival is inside calendar,
+        otherwise wait for a suitable time."""
         resource = self.process.get_resource('TRIGGER_TIMER')
         parameters = list(self.params.values())
         arrival = getattr(np.random, self.name_distribution)(parameters, size=1)[0]

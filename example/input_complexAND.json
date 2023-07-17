@@ -14,8 +14,8 @@
         }
     },
     "probability": {
-        "Activity_1sh8ud3": "CUSTOM",
-        "Activity_1tpvdm3": "CUSTOM"
+        "Activity_1sh8ud3": 0.20,
+        "Activity_1tpvdm3": 0.80
     },
     "activities": {
         "Activity_0fv6tmq":  "A",
@@ -26,6 +26,16 @@
         "Activity_1tpvdm3":  "F",
         "Activity_1sh8ud3":  "H",
         "Activity_1a6ht9y":  "G"
+    },
+    "processing_time": {
+        "Activity_0fv6tmq":  ["uniform", 3600, 7200],
+        "Activity_01lq4q3":  ["uniform", 3600, 7200],
+        "Activity_07vyjf4":  ["uniform", 3600, 7200],
+        "Activity_1r9ul3g":  ["uniform", 3600, 7200],
+        "Activity_16w9bad":  ["uniform", 3600, 7200],
+        "Activity_1tpvdm3":  ["custom"],
+        "Activity_1sh8ud3":  ["uniform", 3600, 7200],
+        "Activity_1a6ht9y":  ["uniform", 3600, 7200]
     },
     "roles": {
         "Role 1": {

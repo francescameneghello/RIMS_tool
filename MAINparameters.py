@@ -27,6 +27,7 @@ class Parameters(object):
                 self.SIM_TIME = data['duration_simulation']
                 self.ACTIVITIES = data['activities']
                 self.PROBABILITY = data['probability']
+                self.PROCESSING_TIME = data['processing_time']
                 self.INTER_TRIGGER = data["interTriggerTimer"]
                 self.ROLE_ACTIVITY = dict()
                 for elem in roles_table:

@@ -102,7 +102,7 @@ class Token(object):
                 self.buffer.set_feature("ro_single", self._process.get_occupations_single_resource(resource.get_name()))
                 self.buffer.set_feature("wip_activity", resource_task.count-1)
 
-                duration = np.random.uniform(3600, 7200)
+                duration = self.define_processing_time(trans.name)
 
                 yield env.timeout(duration)
 
@@ -123,6 +123,13 @@ class Token(object):
 
     def _update_marking(self, trans):
         self._am = semantics.execute(trans, self._net, self._am)
+
+    def _delete_tokens(self, name):
+        to_delete = []
+        for p in self._am:
+            if p.name != name:
+                to_delete.append(p)
+        return to_delete
 
     def _check_probability(self, prob):
         """Check if the sum of probabilities is 1
@@ -147,7 +154,6 @@ class Token(object):
         list_trans = [trans.name for trans in all_enabled_trans]
         try:
             prob = [self._params.PROBABILITY[key] for key in list_trans]
-
         except:
             print('ERROR: Not all path probabilities are defined. Define all paths: ', list_trans)
         return prob
@@ -156,8 +162,8 @@ class Token(object):
         """ Three different methods to decide which path following from XOR gateway:
         * Random choice: each path has equal probability to be chosen (AUTO)
         * Defined probability: in the file json it is possible to define for each path a specific probability (PROBABILITY as value)
-        * Ad-hoc method: it is possible to define a dedicate method that given the possible paths it returns the one to follow, using whatever
-         techniques the user prefers. (CUSTOM)"""
+        * Custom method: it is possible to define a dedicate method that given the possible paths it returns the one to
+        follow, using whatever techniques the user prefers. (CUSTOM)"""
 
         prob = self._retrieve_check_paths(all_enabled_trans)
         self._check_type_paths(prob)
@@ -174,37 +180,79 @@ class Token(object):
 
         return all_enabled_trans[next]
 
-    def _delete_tokens(self, name):
-        to_delete = []
-        for p in self._am:
-            if p.name != name:
-                to_delete.append(p)
-        return to_delete
+    def define_processing_time(self, activity):
+        """ Two different methods are available to define the processing time for each activity:
+            * Distribution function: specify in the json file the distribution with the right parameters for each
+            activity, see the [numpy_distribution](https://numpy.org/doc/stable/reference/random/generator.html) distribution, (DISTRIBUTION)
+            <br /> "processing_time": {
+                <br /> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  "Activity_id":  ["uniform", 3600, 7200],
+                <br /> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  ......
+            <br /> }
+            * Custom method: it is possible to define a dedicated method that, given the activity and its
+            characteristics, returns the duration of processing time required. (CUSTOM)
+            <br /> "processing_time": {
+                <br /> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  "Activity_id":  ["custom"],
+                <br /> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  ......
+            <br /> }
+            * Mixed: It is possible to define a distribution function for some activities and a dedicated method for the others. (CUSTOM)
+            <br /> "processing_time": {
+                <br /> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  "Activity_id1":  ["custom"],
+                <br /> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  "Activity_id2":  ["uniform", 3600, 7200],
+                <br /> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  ......
+            <br /> } """
+        try:
+            if self._params.PROCESSING_TIME[activity][0] == 'custom':
+                duration = self.call_custom_processing_time()
+            else:
+                distribution = self._params.PROCESSING_TIME[activity][0]
+                parameters = self._params.PROCESSING_TIME[activity][1:-1]
+                duration = getattr(np.random, distribution)(parameters, size=1)[0]
+        except:
+            raise ValueError("ERROR: The processing time of", activity, "is not defined in json file")
+
+        return duration
+
+    def call_custom_processing_time(self):
+        """Define the processing time of the activity (return the duration in seconds).
+           <br /> Example of features that can be used to predict:
+                <br /> {
+                  <br /> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  "activity": "F",
+                  <br /> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  "enabled_time": "2023-03-16 10:31:58.131415",
+                  <br /> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "end_time": null,
+                  <br /> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "id_case": 0,
+                  <br /> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "prefix": [ "A", "C", "B", "F"],
+                  <br /> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "queue": 0,
+                  <br /> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "ro_single": 0.33,
+                  <br /> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "ro_total": [],
+                  <br /> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "role": null,
+                  <br /> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "start_time": "2023-03-16 10:31:58.131415",
+                  <br /> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "wip_activity": 0,
+                  <br /> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "wip_end": -1,
+                  <br /> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "wip_start": 0,
+                  <br /> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "wip_wait": 0
+        <br />  }"""
+        print(json.dumps(self.buffer.buffer, indent=14, sort_keys=True))
+        return 0
 
     def call_custom_xor_function(self, all_enabled_trans):
         """Define the custom method to determine the path to follow up (return the index of path).
         Example of features that can be used to predict:
-        {
-              "activity": "B",
-              "enabled_time": "2023-03-16 11:15:27.449050",
-              "end_time": "2023-03-16 12:49:17.927216",
-              "id_case": 0,
-              "prefix": [
-                            "A",
-                            "C",
-                            "B",
-                            "E"
-              ],
-              "queue": 0,
-              "ro_single": 0.33,
-              "ro_total": [],
-              "role": "Role 2",
-              "start_time": "2023-03-16 11:15:27.449050",
-              "wip_activity": 1,
-              "wip_end": 3,
-              "wip_start": 3,
-              "wip_wait": 3
-        }"""
+        <br />  {
+              <br /> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "activity": "B",
+              <br /> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "enabled_time": "2023-03-16 11:15:27.449050",
+              <br /> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "end_time": "2023-03-16 12:49:17.927216",
+              <br /> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "id_case": 0,
+              <br /> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "prefix": [ "A", "C", "B", "E" ],
+              <br /> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "queue": 0,
+              <br /> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "ro_single": 0.33,
+              <br /> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "ro_total": [],
+              <br /> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "role": "Role 2",
+              <br /> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "start_time": "2023-03-16 11:15:27.449050",
+              <br /> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "wip_activity": 1,
+              <br /> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "wip_end": 3,
+              <br /> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "wip_start": 3,
+              <br /> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "wip_wait": 3
+        <br />  }"""
         print('Possible transitions of patrinet: ', all_enabled_trans)
         print(json.dumps(self.buffer.buffer, indent=14, sort_keys=True))
 
