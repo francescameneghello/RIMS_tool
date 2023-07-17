@@ -5,7 +5,7 @@ from event_trace import Token
 from MAINparameters import Parameters
 import sys, getopt
 import warnings
-from buffer_log import Buffer
+from buffer_log import Buffer, Prefix
 import pm4py
 from inter_trigger_timer import InterTriggerTimer
 
@@ -14,14 +14,14 @@ def setup(env: simpy.Environment, PATH_PETRINET, params, i):
     simulation_process = SimulationProcess(env, params, PATH_PETRINET)
     f = open('event_log.csv', 'w')
     writer = csv.writer(f)
-    buffer = Buffer(writer)
-    buffer.write_columns()
+    writer.writerow(Buffer(writer).get_buffer_keys())
     net, im, fm = pm4py.read_pnml(PATH_PETRINET)
     interval = InterTriggerTimer(params.INTER_TRIGGER, simulation_process, params.START_SIMULATION)
     for i in range(0, params.TRACES):
+        prefix = Prefix()
         itime = interval.get_next_arrival(env)
         yield env.timeout(itime)
-        env.process(Token(i, net, im, params, simulation_process, [], 'sequential', buffer).simulation(env))
+        env.process(Token(i, net, im, params, simulation_process, prefix, 'sequential', writer).simulation(env))
 
 
 def run_simulation(PATH_PETRINET, PATH_PARAMETERS, N_SIMULATION, N_TRACES):

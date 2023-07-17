@@ -12,7 +12,7 @@ from buffer_log import Buffer
 
 class Token(object):
 
-    def __init__(self, id, net, am, params, process: SimulationProcess, prefix, type, buffer):
+    def __init__(self, id, net, am, params, process: SimulationProcess, prefix, type, writer):
         self.id = id
         self.process = process
         self.start_time = params.START_SIMULATION
@@ -26,7 +26,7 @@ class Token(object):
             self.see_activity = False
         else:
             self.see_activity = True
-        self.buffer = buffer
+        self.writer = writer
 
     def delete_places(self, places):
         delete = []
@@ -43,6 +43,8 @@ class Token(object):
         resource_trace_request = resource_trace.request()
 
         while trans is not None:
+            buffer = Buffer(self.writer)
+            #buffer.write_columns()
             if self.see_activity:
                 yield resource_trace_request
             if type(trans) == list:
@@ -60,9 +62,8 @@ class Token(object):
                 trans = all_enabled_trans[0]
 
             if trans.label is not None:
-                self.buffer.set_feature("id_case", self.id)
-                self.buffer.set_feature("activity", trans.label)
-                self.buffer.set_feature("prefix", trans.label)
+                buffer.set_feature("id_case", self.id)
+                buffer.set_feature("activity", trans.label)
 
                 ### call predictor for waiting time
                 if trans.label in self.params.ROLE_ACTIVITY:
@@ -70,11 +71,11 @@ class Token(object):
                 else:
                     raise ValueError('Not resource/role defined for this activity', trans.label)
 
-                self.buffer.set_feature("wip_wait", resource_trace.count)
-                self.buffer.set_feature("ro_single", self.process.get_occupations_single_resource(resource.get_name()))
+                buffer.set_feature("wip_wait", resource_trace.count)
+                buffer.set_feature("ro_single", self.process.get_occupations_single_resource(resource.get_name()))
 
                 queue = 0 if len(resource.queue) == 0 else len(resource.queue[-1])
-                self.buffer.set_feature("queue", queue)
+                buffer.set_feature("queue", queue)
 
                 waiting = 5
 
@@ -82,7 +83,7 @@ class Token(object):
                     yield env.timeout(waiting)
 
                 request_resource = resource.request()
-                self.buffer.set_feature("enabled_time", str(self.start_time + timedelta(seconds=env.now)))
+                buffer.set_feature("enabled_time", str(self.start_time + timedelta(seconds=env.now)))
                 yield request_resource
 
                 ### register event in process ###
@@ -90,21 +91,22 @@ class Token(object):
                 resource_task_request = resource_task.request()
                 yield resource_task_request
 
-                self.buffer.set_feature("start_time", str(self.start_time + timedelta(seconds=env.now)))
+                buffer.set_feature("start_time", str(self.start_time + timedelta(seconds=env.now)))
                 ### call predictor for processing time
-                self.buffer.set_feature("wip_start", resource_trace.count)
-                self.buffer.set_feature("ro_single", self.process.get_occupations_single_resource(resource.get_name()))
-                self.buffer.set_feature("wip_activity", resource_task.count)
+                buffer.set_feature("wip_start", resource_trace.count)
+                buffer.set_feature("ro_single", self.process.get_occupations_single_resource(resource.get_name()))
+                buffer.set_feature("wip_activity", resource_task.count)
 
                 duration = np.random.uniform(3600, 7200)
 
                 yield env.timeout(duration)
 
-                self.buffer.set_feature("wip_end", resource_trace.count)
-                self.buffer.set_feature("end_time", str(self.start_time + timedelta(seconds=env.now)))
-                self.buffer.set_feature("role", resource.get_name())
-
-                self.buffer.print_values()
+                buffer.set_feature("wip_end", resource_trace.count)
+                buffer.set_feature("end_time", str(self.start_time + timedelta(seconds=env.now)))
+                buffer.set_feature("role", resource.get_name())
+                buffer.set_feature("prefix", self.prefix.get_prefix())
+                self.prefix.add_activity(trans.label)
+                buffer.print_values()
                 resource.release(request_resource)
                 resource_task.release(resource_task_request)
 
@@ -171,7 +173,7 @@ class Token(object):
                 tokens_to_delete = self.delete_tokens(name)
                 for p in tokens_to_delete:
                     del new_am[p]
-                path = env.process(Token(self.id, self.net, new_am, self.params, self.process, self.prefix, "parallel", self.buffer).simulation(env))
+                path = env.process(Token(self.id, self.net, new_am, self.params, self.process, self.prefix, "parallel", self.writer).simulation(env))
                 events.append(path)
 
             #pm4py.view_petri_net(self.net, self.am)
