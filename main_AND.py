@@ -5,7 +5,7 @@ from event_trace import Token
 from MAINparameters import Parameters
 import sys, getopt
 import warnings
-from buffer_log import Buffer, Prefix
+from utility import Buffer, Prefix
 import pm4py
 from inter_trigger_timer import InterTriggerTimer
 

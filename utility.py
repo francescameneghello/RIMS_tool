@@ -1,3 +1,7 @@
+"""
+* Prefix: Class to handle the prefix shared by events within traces.
+* Buffer: Class to handle the features of a single event required for predictive models.
+"""
 
 class Prefix(object):
 
@@ -44,9 +48,6 @@ class Buffer(object):
     def print_values(self):
         print(*self.buffer.values())
         self.writer.writerow(self.buffer.values())
-
-    def update_prefix(self, prefix):
-        self.prefix = prefix
 
     def get_buffer_keys(self):
         return self.buffer.keys()
