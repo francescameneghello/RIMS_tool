@@ -16,10 +16,10 @@ def setup(env: simpy.Environment, PATH_PETRINET, params, i):
     writer = csv.writer(f)
     writer.writerow(Buffer(writer).get_buffer_keys())
     net, im, fm = pm4py.read_pnml(PATH_PETRINET)
-    interval = InterTriggerTimer(params.INTER_TRIGGER, simulation_process, params.START_SIMULATION)
+    interval = InterTriggerTimer(params, simulation_process, params.START_SIMULATION)
     for i in range(0, params.TRACES):
         prefix = Prefix()
-        itime = interval.get_next_arrival(env)
+        itime = interval.get_next_arrival(env, i)
         yield env.timeout(itime)
         env.process(Token(i, net, im, params, simulation_process, prefix, 'sequential', writer).simulation(env))
 

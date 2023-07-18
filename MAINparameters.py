@@ -28,6 +28,7 @@ class Parameters(object):
                 self.ACTIVITIES = data['activities']
                 self.PROBABILITY = data['probability']
                 self.PROCESSING_TIME = data['processing_time']
+                self.WAITING_TIME = data['waiting_time'] if 'waiting_time' in data.keys() else []
                 self.INTER_TRIGGER = data["interTriggerTimer"]
                 self.ROLE_ACTIVITY = dict()
                 for elem in roles_table:

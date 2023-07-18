@@ -82,7 +82,7 @@ class Token(object):
                 queue = 0 if len(resource.queue) == 0 else len(resource.queue[-1])
                 self.buffer.set_feature("queue", queue)
 
-                waiting = 5
+                waiting = self.define_waiting_time(trans.label)
 
                 if self.see_activity:
                     yield env.timeout(waiting)
@@ -161,10 +161,28 @@ class Token(object):
     def define_xor_next_activity(self, all_enabled_trans):
         """ Three different methods to decide which path following from XOR gateway:
         * Random choice: each path has equal probability to be chosen (AUTO)
+        ```json
+        "probability": {
+            "Activity_1sh8ud3": "AUTO",
+            "Activity_1tpvdm3": "AUTO"
+        }
+        ```
         * Defined probability: in the file json it is possible to define for each path a specific probability (PROBABILITY as value)
+        ```json
+        "probability": {
+            "Activity_1sh8ud3": 0.20,
+            "Activity_1tpvdm3": 0.80
+        }
+        ```
         * Custom method: it is possible to define a dedicate method that given the possible paths it returns the one to
-        follow, using whatever techniques the user prefers. (CUSTOM)"""
-
+        follow, using whatever techniques the user prefers. (CUSTOM)
+        ```json
+        "probability": {
+            "Activity_1sh8ud3": "CUSTOM",
+            "Activity_1tpvdm3": "CUSTOM"
+        }
+        ```
+        """
         prob = self._retrieve_check_paths(all_enabled_trans)
         self._check_type_paths(prob)
         if prob[0] == 'AUTO':
@@ -196,7 +214,7 @@ class Token(object):
                  "Activity_id":  ["custom"]
             }
             ```
-            * Mixed: It is possible to define a distribution function for some activities and a dedicated method for the others. (CUSTOM)
+            * Mixed: It is possible to define a distribution function for some activities and a dedicated method for the others.
             ```json
             "processing_time": {
                  "Activity_id1":  ["custom"],
@@ -216,9 +234,69 @@ class Token(object):
 
         return duration
 
+    def define_waiting_time(self, next_act):
+        """ Two different methods are available to define the waiting time before each activity:
+            * Distribution function: specify in the json file the distribution with the right parameters for each
+            activity, see the [numpy_distribution](https://numpy.org/doc/stable/reference/random/generator.html) distribution, (DISTRIBUTION)
+            ```json
+             "waiting_time": {
+                 "Activity_id":  ["uniform", 3600, 7200],
+             }
+            ```
+            * Custom method: it is possible to define a dedicated method that, given the next activity with its
+            features, returns the duration of waiting time. (CUSTOM)
+            ```json
+            "waiting_time": {
+                 "Activity_id":  ["custom"]
+            }
+            ```
+            * Mixed: As the processing time, it is possible to define a mix of methods for each activity.
+            ```json
+            "waiting_time": {
+                 "Activity_id1":  ["custom"],
+                 "Activity_id2":  ["uniform", 3600, 7200]
+            }
+            ```
+        """
+        try:
+            if self._params.WAITING_TIME[next_act][0] == 'custom':
+                duration = self.call_custom_waiting_time()
+            else:
+                distribution = self._params.WAITING_TIME[next_act][0]
+                parameters = self._params.WAITING_TIME[next_act][1:-1]
+                duration = getattr(np.random, distribution)(parameters, size=1)[0]
+        except:
+            duration = 0
+
+        return duration
+
     def call_custom_processing_time(self):
         """Define the processing time of the activity (return the duration in seconds).
            Example of features that can be used to predict:
+        ```json
+        {
+                  "activity": "F",
+                  "enabled_time": "2023-03-16 10:31:58.131415",
+                  "end_time": null,
+                  "id_case": 0,
+                  "prefix": [ "A", "C", "B", "F"],
+                  "queue": 0,
+                  "ro_single": 0.33,
+                  "ro_total": [],
+                  "role": null,
+                  "start_time": "2023-03-16 10:31:58.131415",
+                  "wip_activity": 0,
+                  "wip_end": -1,
+                  "wip_start": 0,
+                  "wip_wait": 0
+        }
+        ```"""
+        print(json.dumps(self.buffer.buffer, indent=14, sort_keys=True))
+        return 0
+
+    def call_custom_waiting_time(self):
+        """Define the waiting time of the activity (return the duration in seconds).
+        Example of features that can be used to predict:
         ```json
         {
                   "activity": "F",
@@ -288,5 +366,4 @@ class Token(object):
                     del new_am[p]
                 path = env.process(Token(self._id, self._net, new_am, self._params, self._process, self._prefix, "parallel", self._writer).simulation(env))
                 events.append(path)
-
             return events
