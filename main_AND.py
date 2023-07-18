@@ -11,7 +11,7 @@ from inter_trigger_timer import InterTriggerTimer
 
 
 def setup(env: simpy.Environment, PATH_PETRINET, params, i):
-    simulation_process = SimulationProcess(env, params, PATH_PETRINET)
+    simulation_process = SimulationProcess(env, params)
     f = open('event_log.csv', 'w')
     writer = csv.writer(f)
     writer.writerow(Buffer(writer).get_buffer_keys())
