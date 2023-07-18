@@ -34,6 +34,7 @@ class SimulationProcess(object):
 
     def get_resource(self, resource_label):
         return self._resource[resource_label]
+
     def get_resource_event(self, task):
         return self._resource_events[task]
 
