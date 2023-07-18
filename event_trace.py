@@ -82,7 +82,7 @@ class Token(object):
                 queue = 0 if len(resource.queue) == 0 else len(resource.queue[-1])
                 self.buffer.set_feature("queue", queue)
 
-                waiting = self.define_waiting_time(trans.label)
+                waiting = self.define_waiting_time(trans.name)
 
                 if self.see_activity:
                     yield env.timeout(waiting)
@@ -199,7 +199,7 @@ class Token(object):
         return all_enabled_trans[next]
 
     def define_processing_time(self, activity):
-        """ Two different methods are available to define the processing time for each activity:
+        """ Three different methods are available to define the processing time for each activity:
             * Distribution function: specify in the json file the distribution with the right parameters for each
             activity, see the [numpy_distribution](https://numpy.org/doc/stable/reference/random/generator.html) distribution, (DISTRIBUTION)
             ```json
@@ -235,7 +235,7 @@ class Token(object):
         return duration
 
     def define_waiting_time(self, next_act):
-        """ Two different methods are available to define the waiting time before each activity:
+        """ Three different methods are available to define the waiting time before each activity:
             * Distribution function: specify in the json file the distribution with the right parameters for each
             activity, see the [numpy_distribution](https://numpy.org/doc/stable/reference/random/generator.html) distribution, (DISTRIBUTION)
             ```json
