@@ -51,16 +51,13 @@ class Token(object):
             if self.see_activity and type == 'sequential':
                 yield resource_trace_request
             if type(trans) == list:
-                #print(trans)
                 self._process._get_last_events()
-                #yield AllOf(env, trans)
-                yield trans[0] & trans[1]
+                yield AllOf(env, trans)
                 am_after = self._process._get_last_events() - set(self._am)
                 for d in self._delete_places(self._am):
                     del self._am[d]
                 for t in am_after:
                     self._am[t] = 1
-                #pm4py.view_petri_net(self._net, self._am)
                 all_enabled_trans = list(semantics.enabled_transitions(self._net, self._am))
                 trans = all_enabled_trans[0]
 
@@ -116,8 +113,7 @@ class Token(object):
             self._update_marking(trans)
             trans = self.next_transition(env)
 
-        if self._type == 'parallel':
-            self._process._set_last_events(self._am)
+        self._process._set_last_events(self._am)
         if self._type == 'sequential':
             resource_trace.release(resource_trace_request)
 

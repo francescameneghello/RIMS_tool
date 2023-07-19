@@ -33,7 +33,7 @@
         "Activity_07vyjf4":  ["uniform", 3600, 7200],
         "Activity_1r9ul3g":  ["uniform", 3600, 7200],
         "Activity_16w9bad":  ["uniform", 3600, 7200],
-        "Activity_1tpvdm3":  ["custom"],
+        "Activity_1tpvdm3":  ["uniform", 3600, 7200],
         "Activity_1sh8ud3":  ["uniform", 3600, 7200],
         "Activity_1a6ht9y":  ["uniform", 3600, 7200]
     },

@@ -33,7 +33,6 @@ def run_simulation(PATH_PETRINET, PATH_PARAMETERS, N_SIMULATION, N_TRACES):
         env.run(until=params.SIM_TIME)
 
 
-
 def main(argv):
     opts, args = getopt.getopt(argv, "h:p:s:t:i:")
     for opt, arg in opts:
