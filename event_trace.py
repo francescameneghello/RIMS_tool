@@ -52,18 +52,13 @@ class Token(object):
             if self.see_activity and type == 'sequential':
                 yield resource_trace_request
             if type(trans) == list:
-                self._parallel_object._get_last_events()
                 yield AllOf(env, trans)
-                #yield AllOf(env, trans)
-                am_after = self._parallel_object._get_last_events() - set(self._am)
+                am_after = self._parallel_object._get_last_events(env)
                 for d in self._delete_places(self._am):
                     del self._am[d]
                 for t in am_after:
                     self._am[t] = 1
-                #pm4py.view_petri_net(self._net, self._am)
-                all_enabled_trans = list(semantics.enabled_transitions(self._net, self._am))
-                trans = all_enabled_trans[0]
-
+                trans = self.next_transition(env)
 
             if trans and trans.label:
                 self.buffer.set_feature("id_case", self._id)
@@ -115,15 +110,12 @@ class Token(object):
                 resource_task.release(resource_task_request)
 
             self._update_marking(trans)
-            trans = self.next_transition(env)
+            trans = self.next_transition(env) if self._am else None
 
         if self._type == 'parallel':
             self._parallel_object._set_last_events(self._am)
         if self._type == 'sequential':
             resource_trace.release(resource_trace_request)
-
-        #if self._type == 'parallel':
-        #    self._event.succeed()
 
 
     def _update_marking(self, trans):
@@ -356,19 +348,19 @@ class Token(object):
         label_element = str(list(self._am)[0])
         if len(all_enabled_trans) == 0:
             return None
-        elif len(self._am) == 1:  ### caso di un singolo token processato dentro petrinet
-            if len(all_enabled_trans) > 1:
+        elif len(all_enabled_trans) == 1:
+            return all_enabled_trans[0]
+        else:
+            if len(self._am) == 1:
                 return self.define_xor_next_activity(all_enabled_trans)
             else:
-                return all_enabled_trans[0]
-        else:
-            events = []
-            for token in self._am:
-                name = token.name
-                new_am = copy.copy(self._am)
-                tokens_to_delete = self._delete_tokens(name)
-                for p in tokens_to_delete:
-                    del new_am[p]
-                path = env.process(Token(self._id, self._net, new_am, self._params, self._process, self._prefix, "parallel", self._writer, self._parallel_object).simulation(env))
-                events.append(path)
-            return events
+                events = []
+                for token in self._am:
+                    name = token.name
+                    new_am = copy.copy(self._am)
+                    tokens_to_delete = self._delete_tokens(name)
+                    for p in tokens_to_delete:
+                        del new_am[p]
+                    path = env.process(Token(self._id, self._net, new_am, self._params, self._process, self._prefix, "parallel", self._writer, self._parallel_object).simulation(env))
+                    events.append(path)
+                return events

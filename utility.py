@@ -15,13 +15,13 @@ class ParallelObject(object):
 
     def __init__(self):
         self._am_parallel = []
+
     def _set_last_events(self, am):
         for token in am:
             self._am_parallel.append(token)
 
-    def _get_last_events(self):
+    def _get_last_events(self, env):
         tokens = set(self._am_parallel)
-        print(tokens)
         self._am_parallel = []
         return tokens
 
