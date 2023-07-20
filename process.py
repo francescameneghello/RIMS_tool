@@ -53,8 +53,12 @@ class SimulationProcess(object):
 
     def _get_last_events(self):
         tokens = set(self._am_parallel)
+        print(tokens)
         self._am_parallel = []
         return tokens
+
+    def _update_last_events(self):
+        self._am_parallel = []
 
 
     #def wait_and_paths(self):

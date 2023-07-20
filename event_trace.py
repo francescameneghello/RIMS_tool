@@ -53,19 +53,21 @@ class Token(object):
             if type(trans) == list:
                 self._process._get_last_events()
                 yield AllOf(env, trans)
+                #yield AllOf(env, trans)
                 am_after = self._process._get_last_events() - set(self._am)
                 for d in self._delete_places(self._am):
                     del self._am[d]
                 for t in am_after:
                     self._am[t] = 1
+                #pm4py.view_petri_net(self._net, self._am)
                 all_enabled_trans = list(semantics.enabled_transitions(self._net, self._am))
                 trans = all_enabled_trans[0]
 
-            if trans.label is not None:
+
+            if trans and trans.label:
                 self.buffer.set_feature("id_case", self._id)
                 self.buffer.set_feature("activity", trans.label)
-                self.buffer.set_feature("prefix", self._prefix.get_prefix())
-                self._prefix.add_activity(trans.label)
+                self.buffer.set_feature("prefix", self._prefix.get_prefix(self._start_time + timedelta(seconds=env.now)))
 
                 ### call predictor for waiting time
                 if trans.label in self._params.ROLE_ACTIVITY:
@@ -106,6 +108,7 @@ class Token(object):
                 self.buffer.set_feature("wip_end", 0 if type != 'sequential' else resource_trace.count-1)
                 self.buffer.set_feature("end_time", str(self._start_time + timedelta(seconds=env.now)))
                 self.buffer.set_feature("role", resource.get_name())
+                self._prefix.add_activity(trans.label, self._start_time + timedelta(seconds=env.now))
                 self.buffer.print_values()
                 resource.release(request_resource)
                 resource_task.release(resource_task_request)
@@ -116,6 +119,10 @@ class Token(object):
         self._process._set_last_events(self._am)
         if self._type == 'sequential':
             resource_trace.release(resource_trace_request)
+
+        #if self._type == 'parallel':
+        #    self._event.succeed()
+
 
     def _update_marking(self, trans):
         self._am = semantics.execute(trans, self._net, self._am)

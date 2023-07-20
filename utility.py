@@ -3,16 +3,29 @@
 * Buffer: Class to handle the features of a single event required for predictive models.
 """
 
+import os
+
+
+def define_folder_output(directory):
+    if not os.path.exists(directory):
+        os.makedirs(directory)
+
+
 class Prefix(object):
 
     def __init__(self):
-        self.list_activities = list()
+        self._list_activities = list()
 
-    def add_activity(self, activity):
-        self.list_activities.append(activity)
+    def add_activity(self, activity, time):
+        self._list_activities.append(activity)
+        #self._list_activities.append((activity, time))
 
-    def get_prefix(self):
-        return self.list_activities
+    def get_prefix(self, time):
+        '''temporal_prefix = []
+        for tuple in self._list_activities:
+            if tuple[1] >= time:
+                temporal_prefix.append(tuple)'''
+        return self._list_activities
 
 
 class Buffer(object):

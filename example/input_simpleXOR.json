@@ -1,9 +1,19 @@
 {
-    "start_timestamp": "16/03/2023 10:32:12",
-    "interTriggerTimer": {"type":"distribution", "name":"exponential", "scale": 5},
+    "start_timestamp": "2023-03-16 09:32:12",
+    "duration_simulation": 31536000,
+    "interTriggerTimer": {
+        "type": "distribution",
+        "name": "exponential",
+        "parameters": {
+            "scale": 5
+        }
+    },
     "probability": {
         "Activity_17lxqwm": 0.70,
-        "sfl_Flow_094gnax": 0.30
+        "sfl_Flow_094gnax": 0.30,
+        "Activity_16kzkuk":  "AUTO",
+        "Activity_1kjjqe1":  "AUTO",
+        "Activity_0suyy7p":  "AUTO"
     },
     "activities": {
         "Activity_0d1gq3n":  "A",
@@ -15,15 +25,33 @@
         "Activity_0b1zvpn":  "G",
         "Activity_0suyy7p":  "H"
     },
+    "processing_time": {
+        "Activity_0d1gq3n":  ["uniform", 3600, 7200],
+        "Activity_17lxqwm":  ["uniform", 3600, 7200],
+        "Activity_1egjnr0":  ["uniform", 3600, 7200],
+        "Activity_1jwn1ap":  ["uniform", 3600, 7200],
+        "Activity_16kzkuk":  ["uniform", 3600, 7200],
+        "Activity_1kjjqe1":  ["uniform", 3600, 7200],
+        "Activity_0b1zvpn":  ["uniform", 3600, 7200],
+        "Activity_0suyy7p":  ["uniform", 3600, 7200]
+    },
     "roles": {
-        "Role 1": [
-            "MNO-000002",
-            "MNO-000001"
-        ],
-        "Role 2": [
-            "DEF-000001",
-            "DEF-000001"
-        ]
+        "Role 1": {
+            "resources": ["MNO-000002", "MNO-000001"],
+            "calendar": {
+                "days": [0, 1, 2, 3, 4, 5, 6],
+                "hour_min": 0,
+                "hour_max": 23
+            }
+        },
+        "Role 2": {
+            "resources": [ "DEF-000001", "DEF-000001", "DEF-000001", "DEF-000001", "DEF-000001", "DEF-000001"],
+            "calendar": {
+                "days": [0, 1, 2, 3, 4, 5, 6],
+                "hour_min": 0,
+                "hour_max": 23
+            }
+        }
     },
     "roles_table": [
         {

@@ -34,7 +34,7 @@ class Parameters(object):
                 for elem in roles_table:
                     self.ROLE_ACTIVITY[elem['task']] = elem['role']
 
-                if data['interTriggerTimer']['calendar']:
+                if 'calendar' in data['interTriggerTimer'] and data['interTriggerTimer']['calendar']:
                     self.ROLE_CAPACITY = {'TRIGGER_TIMER': [math.inf, {'days': data['interTriggerTimer']['calendar']['days'], 'hour_min': data['interTriggerTimer']['calendar']['hour_min'], 'hour_max': data['interTriggerTimer']['calendar']['hour_max']}]}
                 else:
                     self.ROLE_CAPACITY = {'TRIGGER_TIMER': [math.inf, []]}
