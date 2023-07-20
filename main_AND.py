@@ -26,7 +26,8 @@ def setup(env: simpy.Environment, PATH_PETRINET, params, i, NAME):
         prefix = Prefix()
         itime = interval.get_next_arrival(env, i)
         yield env.timeout(itime)
-        env.process(Token(i, net, im, params, simulation_process, prefix, 'sequential', writer).simulation(env))
+        parallel_object = utility.ParallelObject()
+        env.process(Token(i, net, im, params, simulation_process, prefix, 'sequential', writer, parallel_object).simulation(env))
 
 def run_simulation(PATH_PETRINET, PATH_PARAMETERS, N_SIMULATION, N_TRACES, NAME):
     params = Parameters(PATH_PARAMETERS, N_TRACES)
@@ -36,7 +37,7 @@ def run_simulation(PATH_PETRINET, PATH_PARAMETERS, N_SIMULATION, N_TRACES, NAME)
         env.run(until=params.SIM_TIME)
 
     result = Result("output_{}".format(NAME), params)
-    result.analyse()
+    result._analyse()
 
 def main(argv):
     opts, args = getopt.getopt(argv, "h:p:s:t:i:o:")

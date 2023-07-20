@@ -1,12 +1,12 @@
 {
           "total_events": 86,
-          "total_traces": 10,
-          "A_frequency": 10,
-          "B_frequency": 7,
-          "C_frequency": 10,
-          "D_frequency": 10,
-          "E_frequency": 4,
-          "F_frequency": 2,
-          "G_frequency": 10,
-          "H_frequency": 4
+          "total_traces": 1,
+          "A_frequency": 1,
+          "B_frequency": 1,
+          "C_frequency": 1,
+          "D_frequency": 1,
+          "E_frequency": 1,
+          "F_frequency": 1,
+          "H_frequency": 1,
+          "G_frequency": 1
 }

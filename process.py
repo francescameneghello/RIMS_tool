@@ -47,18 +47,3 @@ class SimulationProcess(object):
             resources[key] = simpy.Resource(env, math.inf)
         return resources
 
-    def _set_last_events(self, am):
-        for token in am:
-            self._am_parallel.append(token)
-
-    def _get_last_events(self):
-        tokens = set(self._am_parallel)
-        print(tokens)
-        self._am_parallel = []
-        return tokens
-
-    def _update_last_events(self):
-        self._am_parallel = []
-
-
-    #def wait_and_paths(self):

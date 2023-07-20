@@ -16,7 +16,7 @@ import json
 
 class Token(object):
 
-    def __init__(self, id: int, net: pm4py.objects.petri_net.obj.PetriNet, am: pm4py.objects.petri_net.obj.Marking, params: Parameters, process: SimulationProcess, prefix: Prefix, type: str, writer: csv.writer):
+    def __init__(self, id: int, net: pm4py.objects.petri_net.obj.PetriNet, am: pm4py.objects.petri_net.obj.Marking, params: Parameters, process: SimulationProcess, prefix: Prefix, type: str, writer: csv.writer, parallel_object):
         self._id = id
         self._process = process
         self._start_time = params.START_SIMULATION
@@ -30,6 +30,7 @@ class Token(object):
         else:
             self.see_activity = True
         self._writer = writer
+        self._parallel_object = parallel_object
 
     def _delete_places(self, places):
         delete = []
@@ -51,10 +52,10 @@ class Token(object):
             if self.see_activity and type == 'sequential':
                 yield resource_trace_request
             if type(trans) == list:
-                self._process._get_last_events()
+                self._parallel_object._get_last_events()
                 yield AllOf(env, trans)
                 #yield AllOf(env, trans)
-                am_after = self._process._get_last_events() - set(self._am)
+                am_after = self._parallel_object._get_last_events() - set(self._am)
                 for d in self._delete_places(self._am):
                     del self._am[d]
                 for t in am_after:
@@ -116,7 +117,8 @@ class Token(object):
             self._update_marking(trans)
             trans = self.next_transition(env)
 
-        self._process._set_last_events(self._am)
+        if self._type == 'parallel':
+            self._parallel_object._set_last_events(self._am)
         if self._type == 'sequential':
             resource_trace.release(resource_trace_request)
 
@@ -367,6 +369,6 @@ class Token(object):
                 tokens_to_delete = self._delete_tokens(name)
                 for p in tokens_to_delete:
                     del new_am[p]
-                path = env.process(Token(self._id, self._net, new_am, self._params, self._process, self._prefix, "parallel", self._writer).simulation(env))
+                path = env.process(Token(self._id, self._net, new_am, self._params, self._process, self._prefix, "parallel", self._writer, self._parallel_object).simulation(env))
                 events.append(path)
             return events
