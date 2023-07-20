@@ -20,7 +20,7 @@ class ParallelObject(object):
         for token in am:
             self._am_parallel.append(token)
 
-    def _get_last_events(self, env):
+    def _get_last_events(self):
         tokens = set(self._am_parallel)
         self._am_parallel = []
         return tokens
@@ -34,9 +34,8 @@ class Prefix(object):
     def __init__(self):
         self._list_activities = list()
 
-    def add_activity(self, activity, time):
+    def add_activity(self, activity):
         self._list_activities.append(activity)
-        #self._list_activities.append((activity, time))
 
     def get_prefix(self, time):
         '''temporal_prefix = []

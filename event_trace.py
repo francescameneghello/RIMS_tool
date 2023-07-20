@@ -53,7 +53,7 @@ class Token(object):
                 yield resource_trace_request
             if type(trans) == list:
                 yield AllOf(env, trans)
-                am_after = self._parallel_object._get_last_events(env)
+                am_after = self._parallel_object._get_last_events()
                 for d in self._delete_places(self._am):
                     del self._am[d]
                 for t in am_after:
@@ -104,8 +104,8 @@ class Token(object):
                 self.buffer.set_feature("wip_end", 0 if type != 'sequential' else resource_trace.count-1)
                 self.buffer.set_feature("end_time", str(self._start_time + timedelta(seconds=env.now)))
                 self.buffer.set_feature("role", resource.get_name())
-                self._prefix.add_activity(trans.label, self._start_time + timedelta(seconds=env.now))
                 self.buffer.print_values()
+                self._prefix.add_activity(trans.label)
                 resource.release(request_resource)
                 resource_task.release(resource_task_request)
 
