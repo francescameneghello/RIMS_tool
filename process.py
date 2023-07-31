@@ -1,11 +1,13 @@
 '''
-classe process che contiene risorse ed esegue task
+Class to manage the resources shared by all the traces in the process.
 
+(Aggiungere immagine delle risorse utilizzate: 1) quelle dei ruoli e delle sigole risorse
+2) risorsa fittizzia per tracce e wip 2) risorsa fittizzia per attivita' e wip_activity
 '''
 import simpy
 from resource import Resource
 import math
-from MAINparameters import Parameters
+from parameters import Parameters
 
 
 class SimulationProcess(object):
@@ -20,6 +22,9 @@ class SimulationProcess(object):
         self._am_parallel = []
 
     def define_single_resource(self):
+        """
+        Definition of a *Resource* object for each role in the process.
+        """
         set_resource = list(self._params.ROLE_CAPACITY.keys())
         dict_res = dict()
         for res in set_resource:
@@ -29,6 +34,10 @@ class SimulationProcess(object):
         return dict_res
 
     def get_occupations_single_resource(self, resource):
+        """
+        Method to retrieve the occupation of resource as intercase feature:
+        $\\frac{resources \: occupated \: in \:role}{total\:resources\:in\:role}$.
+        """
         occup = self._resource[resource].get_resource().count / self._resource[resource].capacity
         return round(occup, 2)
 

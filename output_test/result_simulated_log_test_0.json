@@ -1,12 +1,14 @@
 {
-          "total_events": 86,
-          "total_traces": 1,
-          "A_frequency": 1,
-          "B_frequency": 1,
-          "C_frequency": 1,
-          "D_frequency": 1,
-          "E_frequency": 1,
-          "F_frequency": 1,
-          "H_frequency": 1,
-          "G_frequency": 1
+            "total_events": 8,
+            "total_traces": 1,
+            "A_frequency": 1,
+            "B_frequency": 1,
+            "C_frequency": 1,
+            "D_frequency": 1,
+            "E_frequency": 1,
+            "F_frequency": 1,
+            "H_frequency": 1,
+            "G_frequency": 1,
+            "Role 1_frequency": 2,
+            "Role 2_frequency": 6
 }

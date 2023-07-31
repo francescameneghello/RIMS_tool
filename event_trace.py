@@ -4,19 +4,19 @@ import pm4py
 import random
 from process import SimulationProcess
 from pm4py.objects.petri_net import semantics
-from MAINparameters import Parameters
+from parameters import Parameters
 from utility import Prefix
 from simpy.events import AnyOf, AllOf, Event
 import numpy as np
 import copy
 import csv
-from utility import Buffer
+from utility import Buffer, ParallelObject
 import json
 
 
 class Token(object):
 
-    def __init__(self, id: int, net: pm4py.objects.petri_net.obj.PetriNet, am: pm4py.objects.petri_net.obj.Marking, params: Parameters, process: SimulationProcess, prefix: Prefix, type: str, writer: csv.writer, parallel_object):
+    def __init__(self, id: int, net: pm4py.objects.petri_net.obj.PetriNet, am: pm4py.objects.petri_net.obj.Marking, params: Parameters, process: SimulationProcess, prefix: Prefix, type: str, writer: csv.writer, parallel_object: ParallelObject):
         self._id = id
         self._process = process
         self._start_time = params.START_SIMULATION
@@ -276,7 +276,7 @@ class Token(object):
                   "enabled_time": "2023-03-16 10:31:58.131415",
                   "end_time": null,
                   "id_case": 0,
-                  "prefix": [ "A", "C", "B", "F"],
+                  "prefix": [ "A", "C", "B"],
                   "queue": 0,
                   "ro_single": 0.33,
                   "ro_total": [],
@@ -300,7 +300,7 @@ class Token(object):
                   "enabled_time": "2023-03-16 10:31:58.131415",
                   "end_time": null,
                   "id_case": 0,
-                  "prefix": [ "A", "C", "B", "F"],
+                  "prefix": [ "A", "C", "B"],
                   "queue": 0,
                   "ro_single": 0.33,
                   "ro_total": [],
@@ -324,7 +324,7 @@ class Token(object):
               "enabled_time": "2023-03-16 11:15:27.449050",
               "end_time": "2023-03-16 12:49:17.927216",
               "id_case": 0,
-              "prefix": [ "A", "C", "B", "E" ],
+              "prefix": [ "A", "C", "E"],
               "queue": 0,
               "ro_single": 0.33,
               "ro_total": [],
@@ -342,10 +342,12 @@ class Token(object):
         return 0
 
     def next_transition(self, env):
+        """
+        Method to define the next activity in the petrinet.
+        """
         all_enabled_trans = semantics.enabled_transitions(self._net, self._am)
         all_enabled_trans = list(all_enabled_trans)
         all_enabled_trans.sort(key=lambda x: x.name)
-        label_element = str(list(self._am)[0])
         if len(all_enabled_trans) == 0:
             return None
         elif len(all_enabled_trans) == 1:

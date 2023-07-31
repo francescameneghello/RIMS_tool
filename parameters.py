@@ -23,8 +23,8 @@ class Parameters(object):
             with open(self.PATH_PARAMETERS) as file:
                 data = json.load(file)
                 roles_table = data['roles_table']
-                self.START_SIMULATION = datetime.strptime(data['start_timestamp'], '%Y-%m-%d %H:%M:%S')
-                self.SIM_TIME = data['duration_simulation']
+                self.START_SIMULATION = self._check_default_parameters(data, 'start_timestamp')
+                self.SIM_TIME = self._check_default_parameters(data, 'duration_simulation')
                 self.ACTIVITIES = data['activities']
                 self.PROBABILITY = data['probability']
                 self.PROCESSING_TIME = data['processing_time']
@@ -39,8 +39,20 @@ class Parameters(object):
                 else:
                     self.ROLE_CAPACITY = {'TRIGGER_TIMER': [math.inf, []]}
 
+                self._define_roles_resources(data['roles'])
                 roles = data['roles']
-                for idx, key in enumerate(roles):
-                    self.ROLE_CAPACITY[key] = [len(roles[key]['resources']), {'days': roles[key]['calendar']['days'], 'hour_min': roles[key]['calendar']['hour_min'], 'hour_max': roles[key]['calendar']['hour_max']}]
         else:
             raise ValueError('Parameter file does not exist')
+
+    def _define_roles_resources(self, roles):
+        for idx, key in enumerate(roles):
+            self.ROLE_CAPACITY[key] = [len(roles[key]['resources']), {'days': roles[key]['calendar']['days'],
+                                                                      'hour_min': roles[key]['calendar']['hour_min'],
+                                                                      'hour_max': roles[key]['calendar']['hour_max']}]
+
+    def _check_default_parameters(self, data, type):
+        if type == 'start_timestamp':
+            value = datetime.strptime(data['start_timestamp'], '%Y-%m-%d %H:%M:%S') if type in data else datetime.now()
+        elif type == 'duration_simulation':
+            value = data['duration_simulation'] if type in data else 31536000
+        return value

@@ -1,0 +1,3 @@
+"""
+.. include:: running-example.md
+"""

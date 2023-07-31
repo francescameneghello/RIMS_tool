@@ -1,0 +1,14 @@
+{
+            "total_events": 9,
+            "total_traces": 1,
+            "register request_frequency": 1,
+            "check ticket_frequency": 2,
+            "examine thoroughly_frequency": 2,
+            "examine casually_frequency": 0,
+            "decide_frequency": 2,
+            "reinitiate request_frequency": 1,
+            "reject request_frequency": 1,
+            "pay compensation_frequency": 0,
+            "Role 1_frequency": 3,
+            "Role 2_frequency": 6
+}

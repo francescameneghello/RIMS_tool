@@ -4,7 +4,7 @@ Class to manage the arrivals times of tokes in the process.
 
 import numpy as np
 from datetime import datetime, timedelta
-from MAINparameters import Parameters
+from parameters import Parameters
 from process import SimulationProcess
 
 

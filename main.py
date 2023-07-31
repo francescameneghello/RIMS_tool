@@ -1,10 +1,14 @@
+"""
+.. include:: README.md
+"""
+
 import csv
 import simpy
 
 import utility
 from process import SimulationProcess
 from event_trace import Token
-from MAINparameters import Parameters
+from parameters import Parameters
 import sys, getopt
 import warnings
 from utility import *
@@ -20,7 +24,6 @@ def setup(env: simpy.Environment, PATH_PETRINET, params, i, NAME):
     writer = csv.writer(f)
     writer.writerow(Buffer(writer).get_buffer_keys())
     net, im, fm = pm4py.read_pnml(PATH_PETRINET)
-    #pm4py.view_petri_net(net, im, fm)
     interval = InterTriggerTimer(params, simulation_process, params.START_SIMULATION)
     for i in range(0, params.TRACES):
         prefix = Prefix()

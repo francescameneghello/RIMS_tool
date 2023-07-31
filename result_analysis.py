@@ -16,7 +16,7 @@ import glob
 import os
 import pandas as pd
 import json
-from MAINparameters import Parameters
+from parameters import Parameters
 
 
 class Result(object):
@@ -32,17 +32,16 @@ class Result(object):
         '''
         analysis = dict()
         sim_df = pd.read_csv(sim, sep=',')
-        analysis['total_events'] = len(sim)
+        analysis['total_events'] = len(sim_df)
         analysis['total_traces'] = len(set(sim_df['id_case']))
         for act in self._params.ACTIVITIES.values():
             analysis[act + "_frequency"] = len(sim_df[sim_df['activity'] == act])
-        print(analysis)
-        try:
-            filename = '{}/result_{}.json'.format(self._folder, os.path.splitext(os.path.basename(sim))[0])
-            with open(filename, 'w') as json_file:
-                json.dump(analysis, json_file, indent=len(analysis))
-        except Exception as e:
-            print(f"Error: {e}")
+
+        for role in self._params.ROLE_CAPACITY.keys():
+            if role != 'TRIGGER_TIMER':
+                analysis[role + "_frequency"] = len(sim_df[sim_df['role'] == role])
+
+        self._write_json(analysis, sim)
 
     def _analyse(self, type='single'):
         if type == 'single':
@@ -50,3 +49,11 @@ class Result(object):
         else:
             for file in self._all_file:
                 self.analysis_log(file)
+
+    def _write_json(self, analysis, sim):
+        try:
+            filename = '{}/result_{}.json'.format(self._folder, os.path.splitext(os.path.basename(sim))[0])
+            with open(filename, 'w') as json_file:
+                json.dump(analysis, json_file, indent=len(analysis))
+        except Exception as e:
+            print(f"Error: {e}")
