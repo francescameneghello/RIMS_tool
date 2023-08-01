@@ -23,7 +23,7 @@ class Parameters(object):
         if os.path.exists(self.PATH_PARAMETERS):
             with open(self.PATH_PARAMETERS) as file:
                 data = json.load(file)
-                roles_table = data['roles_table']
+                roles_table = data['resource_table']
                 self.START_SIMULATION = self._check_default_parameters(data, 'start_timestamp')
                 self.SIM_TIME = self._check_default_parameters(data, 'duration_simulation')
                 self.ACTIVITIES = data['activities']
@@ -39,18 +39,19 @@ class Parameters(object):
                     self.ROLE_CAPACITY = {'TRIGGER_TIMER': [math.inf, {'days': data['interTriggerTimer']['calendar']['days'], 'hour_min': data['interTriggerTimer']['calendar']['hour_min'], 'hour_max': data['interTriggerTimer']['calendar']['hour_max']}]}
                 else:
                     self.ROLE_CAPACITY = {'TRIGGER_TIMER': [math.inf, []]}
-
-                self._define_roles_resources(data['roles'])
-                roles = data['roles']
+                self.TYPE_RESOURCE = data["type_resource"]
+                self._define_roles_resources(data['resource'])
         else:
             raise ValueError('Parameter file does not exist')
 
     def _define_roles_resources(self, roles):
         for idx, key in enumerate(roles):
-            self.ROLE_CAPACITY[key] = [len(roles[key]['resources']), {'days': roles[key]['calendar']['days'],
+            capacity = len(roles[key]['resources']) if self.TYPE_RESOURCE == "ROLE" else 1
+            self.ROLE_CAPACITY[key] = [capacity, {'days': roles[key]['calendar']['days'],
                                                                       'hour_min': roles[key]['calendar']['hour_min'],
                                                                       'hour_max': roles[key]['calendar']['hour_max']},
                                        roles[key]['resources']]
+        print(self.ROLE_CAPACITY)
 
     def _check_default_parameters(self, data, type):
         if type == 'start_timestamp':

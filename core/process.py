@@ -27,13 +27,9 @@ class SimulationProcess(object):
         """
         set_resource = list(self._params.ROLE_CAPACITY.keys())
         dict_role = dict()
-        dict_resources = dict()
         for res in set_resource:
             res_simpy = Resource(self._env, res, self._params.ROLE_CAPACITY[res][0], self._params.ROLE_CAPACITY[res][1], self._date_start)
-            dict_resources.update(self.define_single_resource(self._params.ROLE_CAPACITY[res]))
-            print(res, res_simpy.capacity)
             dict_role[res] = res_simpy
-        print(dict_resources)
         print(dict_role)
         return dict_role
 

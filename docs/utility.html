@@ -77,9 +77,6 @@
                         <li>
                                 <a class="function" href="#Buffer.get_buffer_keys">get_buffer_keys</a>
                         </li>
-                        <li>
-                                <a class="function" href="#Buffer.duplicate_buffer_parallel">duplicate_buffer_parallel</a>
-                        </li>
                 </ul>
 
             </li>
@@ -187,14 +184,12 @@ utility    </h1>
 </span><span id="L-76"><a href="#L-76"><span class="linenos">76</span></a>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">buffer</span><span class="p">[</span><span class="n">feature</span><span class="p">]</span>
 </span><span id="L-77"><a href="#L-77"><span class="linenos">77</span></a>
 </span><span id="L-78"><a href="#L-78"><span class="linenos">78</span></a>    <span class="k">def</span> <span class="nf">print_values</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-</span><span id="L-79"><a href="#L-79"><span class="linenos">79</span></a>        <span class="nb">print</span><span class="p">(</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">buffer</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>
-</span><span id="L-80"><a href="#L-80"><span class="linenos">80</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">writer</span><span class="o">.</span><span class="n">writerow</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">buffer</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>
-</span><span id="L-81"><a href="#L-81"><span class="linenos">81</span></a>
-</span><span id="L-82"><a href="#L-82"><span class="linenos">82</span></a>    <span class="k">def</span> <span class="nf">get_buffer_keys</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-</span><span id="L-83"><a href="#L-83"><span class="linenos">83</span></a>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">buffer</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
-</span><span id="L-84"><a href="#L-84"><span class="linenos">84</span></a>
-</span><span id="L-85"><a href="#L-85"><span class="linenos">85</span></a>    <span class="k">def</span> <span class="nf">duplicate_buffer_parallel</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-</span><span id="L-86"><a href="#L-86"><span class="linenos">86</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">buffer</span>
+</span><span id="L-79"><a href="#L-79"><span class="linenos">79</span></a>        <span class="n">key</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;id_case&#39;</span><span class="p">,</span> <span class="s1">&#39;activity&#39;</span><span class="p">,</span> <span class="s1">&#39;enabled_time&#39;</span><span class="p">,</span> <span class="s1">&#39;start_time&#39;</span><span class="p">,</span> <span class="s1">&#39;end_time&#39;</span><span class="p">,</span> <span class="s1">&#39;role&#39;</span><span class="p">)</span>
+</span><span id="L-80"><a href="#L-80"><span class="linenos">80</span></a>        <span class="nb">print</span><span class="p">(</span><span class="o">*</span><span class="p">{</span><span class="n">k</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">buffer</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">key</span> <span class="k">if</span> <span class="n">k</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">buffer</span><span class="p">}</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>
+</span><span id="L-81"><a href="#L-81"><span class="linenos">81</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">writer</span><span class="o">.</span><span class="n">writerow</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">buffer</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>
+</span><span id="L-82"><a href="#L-82"><span class="linenos">82</span></a>
+</span><span id="L-83"><a href="#L-83"><span class="linenos">83</span></a>    <span class="k">def</span> <span class="nf">get_buffer_keys</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span id="L-84"><a href="#L-84"><span class="linenos">84</span></a>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">buffer</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
 </span></pre></div>
 
 
@@ -372,14 +367,12 @@ for tuple in self._list_activities:
 </span><span id="Buffer-77"><a href="#Buffer-77"><span class="linenos">77</span></a>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">buffer</span><span class="p">[</span><span class="n">feature</span><span class="p">]</span>
 </span><span id="Buffer-78"><a href="#Buffer-78"><span class="linenos">78</span></a>
 </span><span id="Buffer-79"><a href="#Buffer-79"><span class="linenos">79</span></a>    <span class="k">def</span> <span class="nf">print_values</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-</span><span id="Buffer-80"><a href="#Buffer-80"><span class="linenos">80</span></a>        <span class="nb">print</span><span class="p">(</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">buffer</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>
-</span><span id="Buffer-81"><a href="#Buffer-81"><span class="linenos">81</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">writer</span><span class="o">.</span><span class="n">writerow</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">buffer</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>
-</span><span id="Buffer-82"><a href="#Buffer-82"><span class="linenos">82</span></a>
-</span><span id="Buffer-83"><a href="#Buffer-83"><span class="linenos">83</span></a>    <span class="k">def</span> <span class="nf">get_buffer_keys</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-</span><span id="Buffer-84"><a href="#Buffer-84"><span class="linenos">84</span></a>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">buffer</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
-</span><span id="Buffer-85"><a href="#Buffer-85"><span class="linenos">85</span></a>
-</span><span id="Buffer-86"><a href="#Buffer-86"><span class="linenos">86</span></a>    <span class="k">def</span> <span class="nf">duplicate_buffer_parallel</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-</span><span id="Buffer-87"><a href="#Buffer-87"><span class="linenos">87</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">buffer</span>
+</span><span id="Buffer-80"><a href="#Buffer-80"><span class="linenos">80</span></a>        <span class="n">key</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;id_case&#39;</span><span class="p">,</span> <span class="s1">&#39;activity&#39;</span><span class="p">,</span> <span class="s1">&#39;enabled_time&#39;</span><span class="p">,</span> <span class="s1">&#39;start_time&#39;</span><span class="p">,</span> <span class="s1">&#39;end_time&#39;</span><span class="p">,</span> <span class="s1">&#39;role&#39;</span><span class="p">)</span>
+</span><span id="Buffer-81"><a href="#Buffer-81"><span class="linenos">81</span></a>        <span class="nb">print</span><span class="p">(</span><span class="o">*</span><span class="p">{</span><span class="n">k</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">buffer</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">key</span> <span class="k">if</span> <span class="n">k</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">buffer</span><span class="p">}</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>
+</span><span id="Buffer-82"><a href="#Buffer-82"><span class="linenos">82</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">writer</span><span class="o">.</span><span class="n">writerow</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">buffer</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>
+</span><span id="Buffer-83"><a href="#Buffer-83"><span class="linenos">83</span></a>
+</span><span id="Buffer-84"><a href="#Buffer-84"><span class="linenos">84</span></a>    <span class="k">def</span> <span class="nf">get_buffer_keys</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span id="Buffer-85"><a href="#Buffer-85"><span class="linenos">85</span></a>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">buffer</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
 </span></pre></div>
 
 
@@ -494,8 +487,9 @@ for tuple in self._list_activities:
     </div>
     <a class="headerlink" href="#Buffer.print_values"></a>
             <div class="pdoc-code codehilite"><pre><span></span><span id="Buffer.print_values-79"><a href="#Buffer.print_values-79"><span class="linenos">79</span></a>    <span class="k">def</span> <span class="nf">print_values</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-</span><span id="Buffer.print_values-80"><a href="#Buffer.print_values-80"><span class="linenos">80</span></a>        <span class="nb">print</span><span class="p">(</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">buffer</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>
-</span><span id="Buffer.print_values-81"><a href="#Buffer.print_values-81"><span class="linenos">81</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">writer</span><span class="o">.</span><span class="n">writerow</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">buffer</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>
+</span><span id="Buffer.print_values-80"><a href="#Buffer.print_values-80"><span class="linenos">80</span></a>        <span class="n">key</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;id_case&#39;</span><span class="p">,</span> <span class="s1">&#39;activity&#39;</span><span class="p">,</span> <span class="s1">&#39;enabled_time&#39;</span><span class="p">,</span> <span class="s1">&#39;start_time&#39;</span><span class="p">,</span> <span class="s1">&#39;end_time&#39;</span><span class="p">,</span> <span class="s1">&#39;role&#39;</span><span class="p">)</span>
+</span><span id="Buffer.print_values-81"><a href="#Buffer.print_values-81"><span class="linenos">81</span></a>        <span class="nb">print</span><span class="p">(</span><span class="o">*</span><span class="p">{</span><span class="n">k</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">buffer</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">key</span> <span class="k">if</span> <span class="n">k</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">buffer</span><span class="p">}</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>
+</span><span id="Buffer.print_values-82"><a href="#Buffer.print_values-82"><span class="linenos">82</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">writer</span><span class="o">.</span><span class="n">writerow</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">buffer</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>
 </span></pre></div>
 
 
@@ -513,27 +507,8 @@ for tuple in self._list_activities:
 
     </div>
     <a class="headerlink" href="#Buffer.get_buffer_keys"></a>
-            <div class="pdoc-code codehilite"><pre><span></span><span id="Buffer.get_buffer_keys-83"><a href="#Buffer.get_buffer_keys-83"><span class="linenos">83</span></a>    <span class="k">def</span> <span class="nf">get_buffer_keys</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-</span><span id="Buffer.get_buffer_keys-84"><a href="#Buffer.get_buffer_keys-84"><span class="linenos">84</span></a>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">buffer</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
-</span></pre></div>
-
-
-    
-
-                            </div>
-                            <div id="Buffer.duplicate_buffer_parallel" class="classattr">
-                                        <input id="Buffer.duplicate_buffer_parallel-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
-<div class="attr function">
-            
-        <span class="def">def</span>
-        <span class="name">duplicate_buffer_parallel</span><span class="signature pdoc-code condensed">(<span class="param"><span class="bp">self</span></span><span class="return-annotation">):</span></span>
-
-                <label class="view-source-button" for="Buffer.duplicate_buffer_parallel-view-source"><span>View Source</span></label>
-
-    </div>
-    <a class="headerlink" href="#Buffer.duplicate_buffer_parallel"></a>
-            <div class="pdoc-code codehilite"><pre><span></span><span id="Buffer.duplicate_buffer_parallel-86"><a href="#Buffer.duplicate_buffer_parallel-86"><span class="linenos">86</span></a>    <span class="k">def</span> <span class="nf">duplicate_buffer_parallel</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-</span><span id="Buffer.duplicate_buffer_parallel-87"><a href="#Buffer.duplicate_buffer_parallel-87"><span class="linenos">87</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">buffer</span>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="Buffer.get_buffer_keys-84"><a href="#Buffer.get_buffer_keys-84"><span class="linenos">84</span></a>    <span class="k">def</span> <span class="nf">get_buffer_keys</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span id="Buffer.get_buffer_keys-85"><a href="#Buffer.get_buffer_keys-85"><span class="linenos">85</span></a>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">buffer</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
 </span></pre></div>
 
 

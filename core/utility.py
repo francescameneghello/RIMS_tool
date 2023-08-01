@@ -76,11 +76,10 @@ class Buffer(object):
         return self.buffer[feature]
 
     def print_values(self):
-        print(*self.buffer.values())
+        key = ('id_case', 'activity', 'enabled_time', 'start_time', 'end_time', 'role')
+        print(*{k: self.buffer[k] for k in key if k in self.buffer}.values())
         self.writer.writerow(self.buffer.values())
 
     def get_buffer_keys(self):
         return self.buffer.keys()
 
-    def duplicate_buffer_parallel(self):
-        self.buffer

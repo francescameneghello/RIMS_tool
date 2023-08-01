@@ -12,11 +12,13 @@ import copy
 import csv
 from utility import Buffer, ParallelObject
 import json
+from custom_function import *
+from simpy.events import Condition
 
 
 class Token(object):
 
-    def __init__(self, id: int, net: pm4py.objects.petri_net.obj.PetriNet, am: pm4py.objects.petri_net.obj.Marking, params: Parameters, process: SimulationProcess, prefix: Prefix, type: str, writer: csv.writer, parallel_object: ParallelObject):
+    def __init__(self, id: int, net: pm4py.objects.petri_net.obj.PetriNet, am: pm4py.objects.petri_net.obj.Marking, params: Parameters, process: SimulationProcess, prefix: Prefix, type: str, writer: csv.writer, parallel_object: ParallelObject, buffer=None):
         self._id = id
         self._process = process
         self._start_time = params.START_SIMULATION
@@ -31,6 +33,10 @@ class Token(object):
             self.see_activity = True
         self._writer = writer
         self._parallel_object = parallel_object
+        if buffer:
+            self.buffer = buffer
+        else:
+            self.buffer = Buffer(self._writer)
 
     def _delete_places(self, places):
         delete = []
@@ -43,12 +49,11 @@ class Token(object):
     def simulation(self, env: simpy.Environment):
         trans = self.next_transition(env)
         ### register trace in process ###
-
+        request_resource = None
         resource_trace = self._process.get_resource_trace()
         resource_trace_request = resource_trace.request() if type == 'sequential' else None
 
         while trans is not None:
-            self.buffer = Buffer(self._writer)
             if self.see_activity and type == 'sequential':
                 yield resource_trace_request
             if type(trans) == list:
@@ -83,9 +88,16 @@ class Token(object):
                     yield env.timeout(waiting)
 
                 request_resource = resource.request()
-                print(resource.name, resource.capacity, request_resource)
+                #request_resource = {res.get_name(): res.request() for res in resource}
                 self.buffer.set_feature("enabled_time", str(self._start_time + timedelta(seconds=env.now)))
                 yield request_resource
+                #yield AnyOf(env, request_resource.values())
+                #if Condition.all_events(list(request_resource.values()), 1):
+                #    request_resource = list(request_resource.values())[0]
+                #else:
+                #    request_resource_choiced = random.choice(list(request_resource.values()))
+                #    print(request_resource_choiced)
+                #    list(request_resource.values()).remove(request_resource_choiced)
 
                 ### register event in process ###
                 resource_task = self._process.get_resource_event(trans.name)
@@ -105,7 +117,7 @@ class Token(object):
                 self.buffer.set_feature("wip_end", 0 if type != 'sequential' else resource_trace.count-1)
                 self.buffer.set_feature("end_time", str(self._start_time + timedelta(seconds=env.now)))
                 self.buffer.set_feature("role", resource.get_name())
-                #self.buffer.print_values()
+                self.buffer.print_values()
                 self._prefix.add_activity(trans.label)
                 resource.release(request_resource)
                 resource_task.release(resource_task_request)
@@ -118,6 +130,12 @@ class Token(object):
         if self._type == 'sequential':
             resource_trace.release(resource_trace_request)
 
+    def _get_resource_role(self, activity):
+        elements = self._params.ROLE_ACTIVITY[activity.label]
+        resource_object = []
+        for e in elements:
+            resource_object.append(self._process.get_resource(e))
+        return resource_object
 
     def _update_marking(self, trans):
         self._am = semantics.execute(trans, self._net, self._am)
@@ -338,7 +356,15 @@ class Token(object):
         }
         ```"""
         print('Possible transitions of patrinet: ', all_enabled_trans)
-        print(json.dumps(self.buffer.buffer, indent=14, sort_keys=True))
+        print(self.buffer.buffer)
+        #print(json.dumps(self.buffer.duplicate_buffer_parallel(), indent=14, sort_keys=True))
+
+        """Sistemare risorse prima di fare example!!!!!!!!!!!!!!!!"""
+        #import pickle
+        #label_name = {0: 'examine casually', 1: 'examine thoroughly'}
+        #loaded_clf = pickle.load(open('decision_tree_running_example.pkl', 'rb'))
+        #example = [0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 2, 0]
+        #loaded_clf.predict([example])
 
         return 0
 
@@ -364,6 +390,6 @@ class Token(object):
                     tokens_to_delete = self._delete_tokens(name)
                     for p in tokens_to_delete:
                         del new_am[p]
-                    path = env.process(Token(self._id, self._net, new_am, self._params, self._process, self._prefix, "parallel", self._writer, self._parallel_object).simulation(env))
+                    path = env.process(Token(self._id, self._net, new_am, self._params, self._process, self._prefix, "parallel", self._writer, self._parallel_object, self.buffer).simulation(env))
                     events.append(path)
                 return events
