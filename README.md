@@ -1,4 +1,5 @@
-# <img src="example/other_example/logo.jpeg" width="130" height="130"> Runtime Integration of Machine Learning and Simulation for Business Processes (RIMS)
+# Runtime Integration of Machine Learning and Simulation for Business Processes (RIMS)
+
 
 Recent research in Computer Science has investigated the use of Deep Learning (DL) techniques to complement outcomes or decisions within a Discrete event simulation (DES) model. The main idea of this combination is to maintain a white box simulation model but to complement it with information provided by DL models. Indeed, these models are extremely powerful in learning the true relationship between the covariates and the distribution of the output variable, thus avoiding unrealistic or oversimplifying assumptions that are often made when building or discovering simulation models from data. 
 State of the art techniques in BPM combine Deep Learning and Discrete event simulation in a post-integration fashion: first an entire simulation is performed, and then a DL model is used to add waiting times and processing times to the events produced by the simulation model. 

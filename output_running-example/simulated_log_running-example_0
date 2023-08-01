@@ -1,10 +1,1 @@
 id_case,activity,enabled_time,start_time,end_time,role,wip_wait,wip_start,wip_end,wip_activity,ro_total,ro_single,queue,prefix
-0,register request,2023-07-21 08:00:08.881280,2023-07-21 08:00:08.881280,2023-07-21 08:47:29.264735,Role 1,0,0,0,0,[],0.5,0,[]
-0,examine thoroughly,2023-07-21 08:47:29.264735,2023-07-21 08:47:29.264735,2023-07-21 09:29:42.147176,Role 2,0,0,0,0,[],1.0,0,['register request']
-0,check ticket,2023-07-21 08:47:29.264735,2023-07-21 08:47:29.264735,2023-07-21 09:33:54.488340,Role 2,0,0,0,0,[],1.0,0,"['register request', 'examine thoroughly']"
-0,decide,2023-07-21 09:33:54.488340,2023-07-21 09:33:54.488340,2023-07-21 10:27:04.239111,Role 1,0,0,0,0,[],0.5,0,"['register request', 'examine thoroughly', 'check ticket']"
-0,reinitiate request,2023-07-21 10:27:04.239111,2023-07-21 10:27:04.239111,2023-07-21 11:00:18.674607,Role 2,0,0,0,0,[],0.5,0,"['register request', 'examine thoroughly', 'check ticket', 'decide']"
-0,examine thoroughly,2023-07-21 11:00:18.674607,2023-07-21 11:00:18.674607,2023-07-21 11:43:48.366832,Role 2,0,0,0,0,[],1.0,0,"['register request', 'examine thoroughly', 'check ticket', 'decide', 'reinitiate request']"
-0,check ticket,2023-07-21 11:00:18.674607,2023-07-21 11:00:18.674607,2023-07-21 11:45:41.650414,Role 2,0,0,0,0,[],1.0,0,"['register request', 'examine thoroughly', 'check ticket', 'decide', 'reinitiate request', 'examine thoroughly']"
-0,decide,2023-07-21 11:45:41.650414,2023-07-21 11:45:41.650414,2023-07-21 12:06:37.210458,Role 1,0,0,0,0,[],0.5,0,"['register request', 'examine thoroughly', 'check ticket', 'decide', 'reinitiate request', 'examine thoroughly', 'check ticket']"
-0,reject request,2023-07-21 12:06:37.210458,2023-07-21 12:06:37.210458,2023-07-21 12:52:25.375613,Role 2,0,0,0,0,[],0.5,0,"['register request', 'examine thoroughly', 'check ticket', 'decide', 'reinitiate request', 'examine thoroughly', 'check ticket', 'decide']"

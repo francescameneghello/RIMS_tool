@@ -1,10 +1,10 @@
 """
-.. include:: README.md
+.. include:: ../README.md
+.. include:: running-example/running-example.md
 """
 
 import csv
 import simpy
-
 import utility
 from process import SimulationProcess
 from event_trace import Token

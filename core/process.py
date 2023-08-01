@@ -16,22 +16,34 @@ class SimulationProcess(object):
         self._env = env
         self._params = params
         self._date_start = params.START_SIMULATION
-        self._resource = self.define_single_resource()
+        self._resource = self.define_single_role()
         self._resource_events = self._define_resource_events(env)
         self._resource_trace = simpy.Resource(env, math.inf)
         self._am_parallel = []
 
-    def define_single_resource(self):
+    def define_single_role(self):
         """
         Definition of a *Resource* object for each role in the process.
         """
         set_resource = list(self._params.ROLE_CAPACITY.keys())
-        dict_res = dict()
+        dict_role = dict()
+        dict_resources = dict()
         for res in set_resource:
             res_simpy = Resource(self._env, res, self._params.ROLE_CAPACITY[res][0], self._params.ROLE_CAPACITY[res][1], self._date_start)
+            dict_resources.update(self.define_single_resource(self._params.ROLE_CAPACITY[res]))
             print(res, res_simpy.capacity)
-            dict_res[res] = res_simpy
-        return dict_res
+            dict_role[res] = res_simpy
+        print(dict_resources)
+        print(dict_role)
+        return dict_role
+
+    def define_single_resource(self, role):
+        dict_resources = dict()
+        for resource in role[-1]:
+            res_simpy = Resource(self._env, resource, 1, role[1],
+                                 self._date_start)
+            dict_resources[resource] = res_simpy
+        return dict_resources
 
     def get_occupations_single_resource(self, resource):
         """

@@ -2,6 +2,7 @@
     Define the main parameters of simulation:
     * SIM_TIME: total simulation duration in seconds (at the end of time the simulation will be stopped even if the execution of traces has not been completed).
 
+    * aggiungere tabella con tutti i parametri del json spiegati
 """
 import json
 import math
@@ -48,7 +49,8 @@ class Parameters(object):
         for idx, key in enumerate(roles):
             self.ROLE_CAPACITY[key] = [len(roles[key]['resources']), {'days': roles[key]['calendar']['days'],
                                                                       'hour_min': roles[key]['calendar']['hour_min'],
-                                                                      'hour_max': roles[key]['calendar']['hour_max']}]
+                                                                      'hour_max': roles[key]['calendar']['hour_max']},
+                                       roles[key]['resources']]
 
     def _check_default_parameters(self, data, type):
         if type == 'start_timestamp':

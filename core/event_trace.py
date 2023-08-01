@@ -83,6 +83,7 @@ class Token(object):
                     yield env.timeout(waiting)
 
                 request_resource = resource.request()
+                print(resource.name, resource.capacity, request_resource)
                 self.buffer.set_feature("enabled_time", str(self._start_time + timedelta(seconds=env.now)))
                 yield request_resource
 
@@ -104,7 +105,7 @@ class Token(object):
                 self.buffer.set_feature("wip_end", 0 if type != 'sequential' else resource_trace.count-1)
                 self.buffer.set_feature("end_time", str(self._start_time + timedelta(seconds=env.now)))
                 self.buffer.set_feature("role", resource.get_name())
-                self.buffer.print_values()
+                #self.buffer.print_values()
                 self._prefix.add_activity(trans.label)
                 resource.release(request_resource)
                 resource_task.release(resource_task_request)
