@@ -7,7 +7,7 @@ from datetime import datetime, timedelta
 import simpy
 
 
-class Resource(object):
+class ResourceSim(object):
 
     # qui possiamo aggiungere i calendari per singola risorsa
     def __init__(self, env: simpy.Environment, name: str, capacity: int, calendar: dict, start: datetime):

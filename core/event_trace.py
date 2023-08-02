@@ -18,7 +18,7 @@ from simpy.events import Condition
 
 class Token(object):
 
-    def __init__(self, id: int, net: pm4py.objects.petri_net.obj.PetriNet, am: pm4py.objects.petri_net.obj.Marking, params: Parameters, process: SimulationProcess, prefix: Prefix, type: str, writer: csv.writer, parallel_object: ParallelObject, buffer=None):
+    def __init__(self, id: int, net: pm4py.objects.petri_net.obj.PetriNet, am: pm4py.objects.petri_net.obj.Marking, params: Parameters, process: SimulationProcess, prefix: Prefix, type: str, writer: csv.writer, parallel_object: ParallelObject, values=None):
         self._id = id
         self._process = process
         self._start_time = params.START_SIMULATION
@@ -33,10 +33,7 @@ class Token(object):
             self.see_activity = True
         self._writer = writer
         self._parallel_object = parallel_object
-        if buffer:
-            self.buffer = buffer
-        else:
-            self.buffer = Buffer(self._writer)
+        self.buffer = Buffer(writer, values)
 
     def _delete_places(self, places):
         delete = []
@@ -88,16 +85,8 @@ class Token(object):
                     yield env.timeout(waiting)
 
                 request_resource = resource.request()
-                #request_resource = {res.get_name(): res.request() for res in resource}
                 self.buffer.set_feature("enabled_time", str(self._start_time + timedelta(seconds=env.now)))
                 yield request_resource
-                #yield AnyOf(env, request_resource.values())
-                #if Condition.all_events(list(request_resource.values()), 1):
-                #    request_resource = list(request_resource.values())[0]
-                #else:
-                #    request_resource_choiced = random.choice(list(request_resource.values()))
-                #    print(request_resource_choiced)
-                #    list(request_resource.values()).remove(request_resource_choiced)
 
                 ### register event in process ###
                 resource_task = self._process.get_resource_event(trans.name)
@@ -355,11 +344,11 @@ class Token(object):
               "wip_wait": 3
         }
         ```"""
-        print('Possible transitions of patrinet: ', all_enabled_trans)
-        print(self.buffer.buffer)
+        #print('Possible transitions of patrinet: ', all_enabled_trans)
         #print(json.dumps(self.buffer.duplicate_buffer_parallel(), indent=14, sort_keys=True))
 
         """Sistemare risorse prima di fare example!!!!!!!!!!!!!!!!"""
+        #print('CUSTOM', self.buffer.buffer)
         #import pickle
         #label_name = {0: 'examine casually', 1: 'examine thoroughly'}
         #loaded_clf = pickle.load(open('decision_tree_running_example.pkl', 'rb'))
@@ -390,6 +379,6 @@ class Token(object):
                     tokens_to_delete = self._delete_tokens(name)
                     for p in tokens_to_delete:
                         del new_am[p]
-                    path = env.process(Token(self._id, self._net, new_am, self._params, self._process, self._prefix, "parallel", self._writer, self._parallel_object, self.buffer).simulation(env))
+                    path = env.process(Token(self._id, self._net, new_am, self._params, self._process, self._prefix, "parallel", self._writer, self._parallel_object, self.buffer._get_dictionary()).simulation(env))
                     events.append(path)
                 return events

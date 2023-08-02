@@ -10,8 +10,8 @@
     "probability": {
         "51e11ae8-b45f-4e63-9a72-761a445207bb": "CUSTOM",
         "df3ccb03-7726-4bc4-a58e-64300079c499": "CUSTOM",
-        "21faea29-a88b-490d-b9af-67d1cf80487c": 0.10,
-        "skip_5": 0.90,
+        "21faea29-a88b-490d-b9af-67d1cf80487c": 0.50,
+        "skip_5": 0.50,
         "a7a9a946-d877-4f3e-bca4-4ad966edc2e0": "AUTO",
         "c3856dfd-458a-4833-b755-0504af2d3b0f": "AUTO"
     },

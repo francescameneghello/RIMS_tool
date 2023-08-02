@@ -24,7 +24,7 @@ def setup(env: simpy.Environment, PATH_PETRINET, params, i, NAME):
         itime = interval.get_next_arrival(env, i)
         yield env.timeout(itime)
         parallel_object = utility.ParallelObject()
-        env.process(Token(i, net, im, params, simulation_process, prefix, 'sequential', writer, parallel_object).simulation(env))
+        env.process(Token(i, net, im, params, simulation_process, prefix, 'sequential', writer, parallel_object, None).simulation(env))
 
 
 def run_simulation(PATH_PETRINET, PATH_PARAMETERS, N_SIMULATION, N_TRACES, NAME):

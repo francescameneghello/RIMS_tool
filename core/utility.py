@@ -36,6 +36,7 @@ class Prefix(object):
 
     def add_activity(self, activity):
         self._list_activities.append(activity)
+        #print(activity, len(self._list_activities), self._list_activities[0])
 
     def get_prefix(self, time):
         '''temporal_prefix = []
@@ -47,7 +48,7 @@ class Prefix(object):
 
 class Buffer(object):
 
-    def __init__(self, writer):
+    def __init__(self, writer, values=None):
         self.buffer = {
             "id_case": -1,
             "activity": None,
@@ -64,11 +65,20 @@ class Buffer(object):
             "queue": -1,
             "prefix": Prefix
         }
+        if values:
+            self._decopy_value(values)
         self.writer = writer
+
+    def _decopy_value(self, values):
+        for key in values:
+            self.buffer[key] = values[key]
+
+    def _get_dictionary(self):
+        return self.buffer
 
     def set_feature(self, feature, value):
         if isinstance(self.buffer[feature], list):
-            self.buffer[feature].append(value)
+            self.buffer[feature] = value
         else:
             self.buffer[feature] = value
 
@@ -76,8 +86,7 @@ class Buffer(object):
         return self.buffer[feature]
 
     def print_values(self):
-        key = ('id_case', 'activity', 'enabled_time', 'start_time', 'end_time', 'role')
-        print(*{k: self.buffer[k] for k in key if k in self.buffer}.values())
+        print(*self.buffer.values())
         self.writer.writerow(self.buffer.values())
 
     def get_buffer_keys(self):

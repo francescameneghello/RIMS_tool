@@ -5,7 +5,7 @@ Class to manage the resources shared by all the traces in the process.
 2) risorsa fittizzia per tracce e wip 2) risorsa fittizzia per attivita' e wip_activity
 '''
 import simpy
-from resource import Resource
+from resource_simulation import ResourceSim
 import math
 from parameters import Parameters
 
@@ -28,7 +28,7 @@ class SimulationProcess(object):
         set_resource = list(self._params.ROLE_CAPACITY.keys())
         dict_role = dict()
         for res in set_resource:
-            res_simpy = Resource(self._env, res, self._params.ROLE_CAPACITY[res][0], self._params.ROLE_CAPACITY[res][1], self._date_start)
+            res_simpy = ResourceSim(self._env, res, self._params.ROLE_CAPACITY[res][0], self._params.ROLE_CAPACITY[res][1], self._date_start)
             dict_role[res] = res_simpy
         print(dict_role)
         return dict_role
@@ -36,7 +36,7 @@ class SimulationProcess(object):
     def define_single_resource(self, role):
         dict_resources = dict()
         for resource in role[-1]:
-            res_simpy = Resource(self._env, resource, 1, role[1],
+            res_simpy = ResourceSim(self._env, resource, 1, role[1],
                                  self._date_start)
             dict_resources[resource] = res_simpy
         return dict_resources
