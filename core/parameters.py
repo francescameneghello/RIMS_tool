@@ -26,8 +26,7 @@ class Parameters(object):
                 roles_table = data['resource_table']
                 self.START_SIMULATION = self._check_default_parameters(data, 'start_timestamp')
                 self.SIM_TIME = self._check_default_parameters(data, 'duration_simulation')
-                self.ACTIVITIES = data['activities']
-                self.PROBABILITY = data['probability']
+                self.PROBABILITY = data['probability'] if 'probability' in data.keys() else []
                 self.PROCESSING_TIME = data['processing_time']
                 self.WAITING_TIME = data['waiting_time'] if 'waiting_time' in data.keys() else []
                 self.INTER_TRIGGER = data["interTriggerTimer"]

@@ -1,16 +1,14 @@
 id_case,activity,enabled_time,start_time,end_time,role,resource,wip_wait,wip_start,wip_end,wip_activity,ro_total,ro_single,queue,prefix
-1,register request,2023-07-21 08:00:25.942498,2023-07-21 08:00:25.942498,2023-07-21 08:42:56.692313,Role 1,Mike,0,0,0,1,[],1.0,0,[]
-0,register request,2023-07-21 08:00:24.360911,2023-07-21 08:00:24.360911,2023-07-21 08:47:04.158338,Role 1,Sara,0,0,0,0,[],0.5,0,[]
-1,examine casually,2023-07-21 08:42:56.692313,2023-07-21 08:42:56.692313,2023-07-21 08:56:18.661119,Role 2,Sue,0,0,0,0,[],1.0,0,['register request']
-0,check ticket,2023-07-21 08:47:04.158338,2023-07-21 08:56:18.661119,2023-07-21 09:19:26.497305,Role 2,Sue,0,0,0,1,[],1.0,0,['register request']
-2,register request,2023-07-21 08:00:41.926457,2023-07-21 08:42:56.692313,2023-07-21 09:22:43.360012,Role 1,Mike,0,0,0,1,[],1.0,0,[]
-1,check ticket,2023-07-21 08:42:56.692313,2023-07-21 08:42:56.692313,2023-07-21 09:37:13.967018,Role 2,Ellen,0,0,0,0,[],1.0,0,"['register request', 'examine casually']"
-0,examine casually,2023-07-21 08:47:04.158338,2023-07-21 09:19:26.497305,2023-07-21 09:46:17.772799,Role 2,Sue,0,0,0,0,[],1.0,0,"['register request', 'check ticket']"
-1,decide,2023-07-21 09:37:13.967018,2023-07-21 09:37:13.967018,2023-07-21 09:51:20.829906,Role 1,Sara,0,0,0,0,[],0.5,0,"['register request', 'examine casually', 'check ticket']"
-2,check ticket,2023-07-21 09:22:43.360012,2023-07-21 09:37:13.967018,2023-07-21 09:56:09.638598,Role 2,Ellen,0,0,0,0,[],1.0,0,['register request']
-2,examine casually,2023-07-21 09:22:43.360012,2023-07-21 09:46:17.772799,2023-07-21 10:16:45.917530,Role 2,Sue,0,0,0,0,[],1.0,0,"['register request', 'check ticket']"
-0,decide,2023-07-21 09:46:17.772799,2023-07-21 09:46:17.772799,2023-07-21 10:24:48.659157,Role 1,Mike,0,0,0,1,[],1.0,0,"['register request', 'check ticket', 'examine casually']"
-1,pay compensation,2023-07-21 09:51:20.829906,2023-07-21 09:56:09.638598,2023-07-21 10:46:49.811609,Role 2,Ellen,0,0,0,0,[],1.0,0,"['register request', 'examine casually', 'check ticket', 'decide']"
-2,decide,2023-07-21 10:16:45.917530,2023-07-21 10:16:45.917530,2023-07-21 11:09:42.126084,Role 1,Sara,0,0,0,1,[],1.0,0,"['register request', 'check ticket', 'examine casually']"
-0,reject request,2023-07-21 10:24:48.659157,2023-07-21 10:24:48.659157,2023-07-21 11:23:06.407791,Role 2,Sue,0,0,0,0,[],1.0,0,"['register request', 'check ticket', 'examine casually', 'decide']"
-2,reject request,2023-07-21 11:09:42.126084,2023-07-21 11:09:42.126084,2023-07-21 11:30:22.265983,Role 2,Ellen,0,0,0,1,[],1.0,0,"['register request', 'check ticket', 'examine casually', 'decide']"
+0,register request,2023-07-21 08:00:48.658438,2023-07-21 08:00:48.658438,2023-07-21 08:28:56.614880,Role 1,Sara,0,0,0,0,[],0.5,0,[]
+0,check ticket,2023-07-21 08:28:56.614880,2023-07-21 08:28:56.614880,2023-07-21 08:42:56.967217,Role 2,Ellen,0,0,0,0,[],1.0,0,['register request']
+0,examine thoroughly,2023-07-21 08:28:56.614880,2023-07-21 08:28:56.614880,2023-07-21 09:21:44.208527,Role 2,Sue,0,0,0,0,[],1.0,0,"['register request', 'check ticket']"
+0,decide,2023-07-21 09:21:44.208527,2023-07-21 09:21:44.208527,2023-07-21 09:56:56.309016,Role 1,Mike,0,0,0,0,[],0.5,0,"['register request', 'check ticket', 'examine thoroughly']"
+0,reinitiate request,2023-07-21 09:56:56.309016,2023-07-21 09:56:56.309016,2023-07-21 10:13:59.479992,Role 2,Ellen,0,0,0,0,[],0.5,0,"['register request', 'check ticket', 'examine thoroughly', 'decide']"
+0,examine thoroughly,2023-07-21 10:13:59.479992,2023-07-21 10:13:59.479992,2023-07-21 11:10:48.937978,Role 2,Ellen,0,0,0,0,[],1.0,0,"['register request', 'check ticket', 'examine thoroughly', 'decide', 'reinitiate request']"
+0,check ticket,2023-07-21 10:13:59.479992,2023-07-21 10:13:59.479992,2023-07-21 11:13:06.925057,Role 2,Sue,0,0,0,0,[],1.0,0,"['register request', 'check ticket', 'examine thoroughly', 'decide', 'reinitiate request', 'examine thoroughly']"
+0,decide,2023-07-21 11:13:06.925057,2023-07-21 11:13:06.925057,2023-07-21 11:20:34.379114,Role 1,Sara,0,0,0,0,[],0.5,0,"['register request', 'check ticket', 'examine thoroughly', 'decide', 'reinitiate request', 'examine thoroughly', 'check ticket']"
+0,reinitiate request,2023-07-21 11:20:34.379114,2023-07-21 11:20:34.379114,2023-07-21 11:23:46.028075,Role 2,Ellen,0,0,0,0,[],0.5,0,"['register request', 'check ticket', 'examine thoroughly', 'decide', 'reinitiate request', 'examine thoroughly', 'check ticket', 'decide']"
+0,check ticket,2023-07-21 11:23:46.028075,2023-07-21 11:23:46.028075,2023-07-21 11:36:24.786196,Role 2,Sue,0,0,0,0,[],1.0,0,"['register request', 'check ticket', 'examine thoroughly', 'decide', 'reinitiate request', 'examine thoroughly', 'check ticket', 'decide', 'reinitiate request']"
+0,examine thoroughly,2023-07-21 11:23:46.028075,2023-07-21 11:23:46.028075,2023-07-21 11:51:36.608760,Role 2,Ellen,0,0,0,0,[],1.0,0,"['register request', 'check ticket', 'examine thoroughly', 'decide', 'reinitiate request', 'examine thoroughly', 'check ticket', 'decide', 'reinitiate request', 'check ticket']"
+0,decide,2023-07-21 11:51:36.608760,2023-07-21 11:51:36.608760,2023-07-21 12:25:13.022426,Role 1,Mike,0,0,0,0,[],0.5,0,"['register request', 'check ticket', 'examine thoroughly', 'decide', 'reinitiate request', 'examine thoroughly', 'check ticket', 'decide', 'reinitiate request', 'check ticket', 'examine thoroughly']"
+0,reject request,2023-07-21 12:25:13.022426,2023-07-21 12:25:13.022426,2023-07-21 12:28:13.073856,Role 2,Sue,0,0,0,0,[],0.5,0,"['register request', 'check ticket', 'examine thoroughly', 'decide', 'reinitiate request', 'examine thoroughly', 'check ticket', 'decide', 'reinitiate request', 'check ticket', 'examine thoroughly', 'decide']"

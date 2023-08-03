@@ -79,7 +79,7 @@ class Token(object):
                 queue = 0 if len(resource.queue) == 0 else len(resource.queue[-1])
                 self.buffer.set_feature("queue", queue)
 
-                waiting = self.define_waiting_time(trans.name)
+                waiting = self.define_waiting_time(trans.label)
 
                 if self.see_activity:
                     yield env.timeout(waiting)
@@ -89,7 +89,7 @@ class Token(object):
                 yield request_resource
 
                 ### register event in process ###
-                resource_task = self._process.get_resource_event(trans.name)
+                resource_task = self._process.get_resource_event(trans.label)
                 resource_task_request = resource_task.request()
                 yield resource_task_request
 
@@ -101,7 +101,7 @@ class Token(object):
                 self.buffer.set_feature("ro_single", self._process.get_occupations_single_resource(resource.get_name()))
                 self.buffer.set_feature("wip_activity", resource_task.count-1)
 
-                duration = self.define_processing_time(trans.name)
+                duration = self.define_processing_time(trans.label)
 
                 yield env.timeout(duration)
 
@@ -160,11 +160,16 @@ class Token(object):
             raise ValueError("ERROR: Invalid input, specify the probability as AUTO, float number or CUSTOM ", prob)
 
     def _retrieve_check_paths(self, all_enabled_trans):
-        list_trans = [trans.name for trans in all_enabled_trans]
-        try:
-            prob = [self._params.PROBABILITY[key] for key in list_trans]
-        except:
-            print('ERROR: Not all path probabilities are defined. Define all paths: ', list_trans)
+        prob = []
+        for trans in all_enabled_trans:
+            try:
+                if trans.label:
+                    prob.append(self._params.PROBABILITY[trans.label])
+                else:
+                    prob.append(self._params.PROBABILITY[trans.name])
+            except:
+                print('ERROR: Not all path probabilities are defined. Define all paths: ', all_enabled_trans)
+
         return prob
 
     def define_xor_next_activity(self, all_enabled_trans):
@@ -192,7 +197,7 @@ class Token(object):
         }
         ```
         """
-        prob = self._retrieve_check_paths(all_enabled_trans)
+        prob = ['AUTO'] if not self._params.PROBABILITY else self._retrieve_check_paths(all_enabled_trans)
         self._check_type_paths(prob)
         if prob[0] == 'AUTO':
                 next = random.choices(list(range(0, len(all_enabled_trans), 1)))[0]

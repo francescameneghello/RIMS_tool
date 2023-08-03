@@ -7,34 +7,24 @@
             "scale": 20
         }
     },
-    "probability": {
-        "51e11ae8-b45f-4e63-9a72-761a445207bb": "CUSTOM",
-        "df3ccb03-7726-4bc4-a58e-64300079c499": "CUSTOM",
-        "21faea29-a88b-490d-b9af-67d1cf80487c": 0.50,
-        "skip_5": 0.50,
-        "a7a9a946-d877-4f3e-bca4-4ad966edc2e0": "AUTO",
-        "c3856dfd-458a-4833-b755-0504af2d3b0f": "AUTO"
-    },
     "duration_simulation": 31536000,
-    "activities": {
-        "d04ce00d-f45a-4390-abe7-9a8fcc8cd3b9":  "register request",
-        "c3f33d79-7862-48bb-8bdc-3def68e72f5e":  "check ticket",
-        "df3ccb03-7726-4bc4-a58e-64300079c499":  "examine thoroughly",
-        "51e11ae8-b45f-4e63-9a72-761a445207bb":  "examine casually",
-        "291b787b-726f-4608-adc9-98a05f79585e":  "decide",
-        "21faea29-a88b-490d-b9af-67d1cf80487c":  "reinitiate request",
-        "a7a9a946-d877-4f3e-bca4-4ad966edc2e0":  "reject request",
-        "c3856dfd-458a-4833-b755-0504af2d3b0f":  "pay compensation"
+    "probability": {
+        "examine casually": "CUSTOM",
+        "examine thoroughly": "CUSTOM",
+        "reinitiate request": 0.50,
+        "skip_5": 0.50,
+        "reject request": "AUTO",
+        "pay compensation": "AUTO"
     },
     "processing_time": {
-        "d04ce00d-f45a-4390-abe7-9a8fcc8cd3b9":  ["uniform", 3600, 7200],
-        "c3f33d79-7862-48bb-8bdc-3def68e72f5e":  ["uniform", 3600, 7200],
-        "df3ccb03-7726-4bc4-a58e-64300079c499":  ["uniform", 3600, 7200],
-        "51e11ae8-b45f-4e63-9a72-761a445207bb":  ["uniform", 3600, 7200],
-        "291b787b-726f-4608-adc9-98a05f79585e":  ["uniform", 3600, 7200],
-        "21faea29-a88b-490d-b9af-67d1cf80487c":  ["uniform", 3600, 7200],
-        "a7a9a946-d877-4f3e-bca4-4ad966edc2e0":  ["uniform", 3600, 7200],
-        "c3856dfd-458a-4833-b755-0504af2d3b0f":  ["uniform", 3600, 7200]
+        "register request":  ["uniform", 3600, 7200],
+        "check ticket":  ["uniform", 3600, 7200],
+        "examine thoroughly":  ["uniform", 3600, 7200],
+        "examine casually":  ["uniform", 3600, 7200],
+        "decide":  ["uniform", 3600, 7200],
+        "reinitiate request":  ["uniform", 3600, 7200],
+        "reject request":  ["uniform", 3600, 7200],
+        "pay compensation":  ["uniform", 3600, 7200]
     },
     "resource": {
         "Role 1": {

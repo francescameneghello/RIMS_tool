@@ -34,12 +34,14 @@ class Result(object):
         sim_df = pd.read_csv(sim, sep=',')
         analysis['total_events'] = len(sim_df)
         analysis['total_traces'] = len(set(sim_df['id_case']))
-        for act in self._params.ACTIVITIES.values():
+        for act in self._params.PROCESSING_TIME.keys():
             analysis[act + "_frequency"] = len(sim_df[sim_df['activity'] == act])
 
         for role in self._params.ROLE_CAPACITY.keys():
             if role != 'TRIGGER_TIMER':
-                analysis[role + "_frequency"] = len(sim_df[sim_df['role'] == role])
+                analysis[role] = {"total": len(sim_df[sim_df['role'] == role])}
+                for resource in self._params.ROLE_CAPACITY[role][0]:
+                    analysis[role][resource] = len(sim_df[sim_df['resource'] == resource])
 
         self._write_json(analysis, sim)
 

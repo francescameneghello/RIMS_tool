@@ -52,7 +52,7 @@ class SimulationProcess(object):
 
     def _define_resource_events(self, env):
         resources = dict()
-        for key in self._params.ACTIVITIES.keys():
+        for key in self._params.PROCESSING_TIME.keys():
             resources[key] = simpy.Resource(env, math.inf)
         return resources
 
