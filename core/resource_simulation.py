@@ -5,17 +5,18 @@ calendar = {'days' = [0, 1, 2, 3, 4], 'hour_min' = 9, 'hour_max' = 17]}
 '''
 from datetime import datetime, timedelta
 import simpy
-
+import random
 
 class ResourceSim(object):
 
     # qui possiamo aggiungere i calendari per singola risorsa
-    def __init__(self, env: simpy.Environment, name: str, capacity: int, calendar: dict, start: datetime):
+    def __init__(self, env: simpy.Environment, name: str, capacity: float | list, calendar: dict, start: datetime):
         self.env = env
         self.name = name
-        self.capacity = capacity
+        self._resources_name = capacity
+        self.capacity = capacity if type(capacity) == float else len(capacity)
         self.calendar = calendar
-        self.resource_simpy = simpy.Resource(env, capacity)
+        self.resource_simpy = simpy.Resource(env, self.capacity)
         self.start = start
         self.queue = []
 
@@ -104,3 +105,11 @@ class ResourceSim(object):
         ### abbiamo chiamato to_time_schedule e siamo in una posizione corretta
         before, stop, after = self.check_duration(timestamp + timedelta(seconds=stop_pre), duration)
         return stop_pre, before + stop + after
+
+    def _get_resources_name(self):
+        choiced = self._resources_name[0]
+        self._resources_name.remove(choiced)
+        return choiced
+
+    def _release_resource_name(self, resource):
+        self._resources_name.append(resource)

@@ -39,18 +39,15 @@ class Parameters(object):
                     self.ROLE_CAPACITY = {'TRIGGER_TIMER': [math.inf, {'days': data['interTriggerTimer']['calendar']['days'], 'hour_min': data['interTriggerTimer']['calendar']['hour_min'], 'hour_max': data['interTriggerTimer']['calendar']['hour_max']}]}
                 else:
                     self.ROLE_CAPACITY = {'TRIGGER_TIMER': [math.inf, []]}
-                self.TYPE_RESOURCE = data["type_resource"]
                 self._define_roles_resources(data['resource'])
         else:
             raise ValueError('Parameter file does not exist')
 
     def _define_roles_resources(self, roles):
         for idx, key in enumerate(roles):
-            capacity = len(roles[key]['resources']) if self.TYPE_RESOURCE == "ROLE" else 1
-            self.ROLE_CAPACITY[key] = [capacity, {'days': roles[key]['calendar']['days'],
+            self.ROLE_CAPACITY[key] = [roles[key]['resources'], {'days': roles[key]['calendar']['days'],
                                                                       'hour_min': roles[key]['calendar']['hour_min'],
-                                                                      'hour_max': roles[key]['calendar']['hour_max']},
-                                       roles[key]['resources']]
+                                                                      'hour_max': roles[key]['calendar']['hour_max']}]
         print(self.ROLE_CAPACITY)
 
     def _check_default_parameters(self, data, type):

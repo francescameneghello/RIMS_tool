@@ -93,6 +93,8 @@ class Token(object):
                 resource_task_request = resource_task.request()
                 yield resource_task_request
 
+                single_resource = self._process.set_single_resource(resource.get_name())
+
                 self.buffer.set_feature("start_time", str(self._start_time + timedelta(seconds=env.now)))
                 ### call predictor for processing time
                 self.buffer.set_feature("wip_start", 0 if type != 'sequential' else resource_trace.count-1)
@@ -106,9 +108,11 @@ class Token(object):
                 self.buffer.set_feature("wip_end", 0 if type != 'sequential' else resource_trace.count-1)
                 self.buffer.set_feature("end_time", str(self._start_time + timedelta(seconds=env.now)))
                 self.buffer.set_feature("role", resource.get_name())
+                self.buffer.set_feature("resource", single_resource)
                 self.buffer.print_values()
                 self._prefix.add_activity(trans.label)
                 resource.release(request_resource)
+                self._process.release_single_resource(resource.get_name(), single_resource)
                 resource_task.release(resource_task_request)
 
             self._update_marking(trans)

@@ -36,7 +36,6 @@
         "a7a9a946-d877-4f3e-bca4-4ad966edc2e0":  ["uniform", 3600, 7200],
         "c3856dfd-458a-4833-b755-0504af2d3b0f":  ["uniform", 3600, 7200]
     },
-    "type_resource": "ROLE",
     "resource": {
         "Role 1": {
             "resources": ["Sara", "Mike"],

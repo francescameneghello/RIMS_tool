@@ -16,7 +16,7 @@ class SimulationProcess(object):
         self._env = env
         self._params = params
         self._date_start = params.START_SIMULATION
-        self._resource = self.define_single_role()
+        self._resources = self.define_single_role()
         self._resource_events = self._define_resource_events(env)
         self._resource_trace = simpy.Resource(env, math.inf)
         self._am_parallel = []
@@ -33,24 +33,16 @@ class SimulationProcess(object):
         print(dict_role)
         return dict_role
 
-    def define_single_resource(self, role):
-        dict_resources = dict()
-        for resource in role[-1]:
-            res_simpy = ResourceSim(self._env, resource, 1, role[1],
-                                 self._date_start)
-            dict_resources[resource] = res_simpy
-        return dict_resources
-
     def get_occupations_single_resource(self, resource):
         """
         Method to retrieve the occupation of resource as intercase feature:
         $\\frac{resources \: occupated \: in \:role}{total\:resources\:in\:role}$.
         """
-        occup = self._resource[resource].get_resource().count / self._resource[resource].capacity
+        occup = self._resources[resource].get_resource().count / self._resources[resource].capacity
         return round(occup, 2)
 
     def get_resource(self, resource_label):
-        return self._resource[resource_label]
+        return self._resources[resource_label]
 
     def get_resource_event(self, task):
         return self._resource_events[task]
@@ -64,3 +56,8 @@ class SimulationProcess(object):
             resources[key] = simpy.Resource(env, math.inf)
         return resources
 
+    def set_single_resource(self, resource_task):
+        return self._resources[resource_task]._get_resources_name()
+
+    def release_single_resource(self, role, resource):
+        self._resources[role]._release_resource_name(resource)

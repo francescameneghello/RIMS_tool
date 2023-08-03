@@ -56,6 +56,7 @@ class Buffer(object):
             "start_time": None,
             "end_time": None,
             "role": None,
+            "resource": None,
             "wip_wait": -1,
             "wip_start": -1,
             "wip_end": -1,
