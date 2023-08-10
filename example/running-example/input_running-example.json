@@ -9,8 +9,8 @@
     },
     "duration_simulation": 31536000,
     "probability": {
-        "examine casually": "CUSTOM",
-        "examine thoroughly": "CUSTOM",
+        "examine casually": "AUTO",
+        "examine thoroughly": "AUTO",
         "reinitiate request": 0.50,
         "skip_5": 0.50,
         "reject request": "AUTO",

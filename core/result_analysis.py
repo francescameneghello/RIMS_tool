@@ -17,6 +17,7 @@ import os
 import pandas as pd
 import json
 from parameters import Parameters
+import pm4py
 
 
 class Result(object):
@@ -48,6 +49,7 @@ class Result(object):
     def _analyse(self, type='single'):
         if type == 'single':
             self.analysis_log(self._all_file[0])
+            self._csv_to_xes(self._all_file[0])
         else:
             for file in self._all_file:
                 self.analysis_log(file)
@@ -59,3 +61,10 @@ class Result(object):
                 json.dump(analysis, json_file, indent=len(analysis))
         except Exception as e:
             print(f"Error: {e}")
+
+    def _csv_to_xes(self, sim):
+        sim_df = pd.read_csv(sim, sep=',')
+        sim_df = pm4py.format_dataframe(sim_df, case_id='id_case', activity_key='activity',
+                                           timestamp_key='end_time')
+        event_log = pm4py.convert_to_event_log(sim_df)
+        pm4py.write_xes(event_log, '{}/result_{}.xes'.format(self._folder, os.path.splitext(os.path.basename(sim))[0]))

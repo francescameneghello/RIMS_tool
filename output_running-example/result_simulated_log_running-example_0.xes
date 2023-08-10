@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<log xes.version="1849-2016" xes.features="nested-attributes" xmlns="http://www.xes-standard.org/">
+	<extension name="Time" prefix="time" uri="http://www.xes-standard.org/time.xesext" />
+	<extension name="Concept" prefix="concept" uri="http://www.xes-standard.org/concept.xesext" />
+	<string key="origin" value="csv" />
+	<trace>
+		<string key="concept:name" value="0" />
+		<event>
+			<int key="id_case" value="0" />
+			<string key="activity" value="register request" />
+			<date key="enabled_time" value="2023-07-21T08:00:27.709092+00:00" />
+			<date key="start_time" value="2023-07-21T08:00:27.709092+00:00" />
+			<date key="end_time" value="2023-07-21T08:51:53.949475+00:00" />
+			<string key="role" value="Role 1" />
+			<string key="resource" value="Sara" />
+			<int key="wip_wait" value="0" />
+			<int key="wip_start" value="0" />
+			<int key="wip_end" value="0" />
+			<int key="wip_activity" value="0" />
+			<string key="ro_total" value="[]" />
+			<float key="ro_single" value="0.5" />
+			<int key="queue" value="0" />
+			<string key="prefix" value="[]" />
+			<string key="concept:name" value="register request" />
+			<date key="time:timestamp" value="2023-07-21T08:51:53.949475+00:00" />
+			<int key="@@index" value="0" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<int key="id_case" value="0" />
+			<string key="activity" value="examine casually" />
+			<date key="enabled_time" value="2023-07-21T08:51:53.949475+00:00" />
+			<date key="start_time" value="2023-07-21T08:51:53.949475+00:00" />
+			<date key="end_time" value="2023-07-21T08:57:54.863985+00:00" />
+			<string key="role" value="Role 2" />
+			<string key="resource" value="Sue" />
+			<int key="wip_wait" value="0" />
+			<int key="wip_start" value="0" />
+			<int key="wip_end" value="0" />
+			<int key="wip_activity" value="0" />
+			<string key="ro_total" value="[]" />
+			<float key="ro_single" value="1.0" />
+			<int key="queue" value="0" />
+			<string key="prefix" value="['register request']" />
+			<string key="concept:name" value="examine casually" />
+			<date key="time:timestamp" value="2023-07-21T08:57:54.863985+00:00" />
+			<int key="@@index" value="1" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<int key="id_case" value="0" />
+			<string key="activity" value="check ticket" />
+			<date key="enabled_time" value="2023-07-21T08:51:53.949475+00:00" />
+			<date key="start_time" value="2023-07-21T08:51:53.949475+00:00" />
+			<date key="end_time" value="2023-07-21T09:07:50.865675+00:00" />
+			<string key="role" value="Role 2" />
+			<string key="resource" value="Ellen" />
+			<int key="wip_wait" value="0" />
+			<int key="wip_start" value="0" />
+			<int key="wip_end" value="0" />
+			<int key="wip_activity" value="0" />
+			<string key="ro_total" value="[]" />
+			<float key="ro_single" value="1.0" />
+			<int key="queue" value="0" />
+			<string key="prefix" value="['register request', 'examine casually']" />
+			<string key="concept:name" value="check ticket" />
+			<date key="time:timestamp" value="2023-07-21T09:07:50.865675+00:00" />
+			<int key="@@index" value="2" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<int key="id_case" value="0" />
+			<string key="activity" value="decide" />
+			<date key="enabled_time" value="2023-07-21T09:07:50.865675+00:00" />
+			<date key="start_time" value="2023-07-21T09:07:50.865675+00:00" />
+			<date key="end_time" value="2023-07-21T09:12:54.509838+00:00" />
+			<string key="role" value="Role 1" />
+			<string key="resource" value="Mike" />
+			<int key="wip_wait" value="0" />
+			<int key="wip_start" value="0" />
+			<int key="wip_end" value="0" />
+			<int key="wip_activity" value="0" />
+			<string key="ro_total" value="[]" />
+			<float key="ro_single" value="0.5" />
+			<int key="queue" value="0" />
+			<string key="prefix" value="['register request', 'examine casually', 'check ticket']" />
+			<string key="concept:name" value="decide" />
+			<date key="time:timestamp" value="2023-07-21T09:12:54.509838+00:00" />
+			<int key="@@index" value="3" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<int key="id_case" value="0" />
+			<string key="activity" value="reject request" />
+			<date key="enabled_time" value="2023-07-21T09:12:54.509838+00:00" />
+			<date key="start_time" value="2023-07-21T09:12:54.509838+00:00" />
+			<date key="end_time" value="2023-07-21T09:40:44.652679+00:00" />
+			<string key="role" value="Role 2" />
+			<string key="resource" value="Sue" />
+			<int key="wip_wait" value="0" />
+			<int key="wip_start" value="0" />
+			<int key="wip_end" value="0" />
+			<int key="wip_activity" value="0" />
+			<string key="ro_total" value="[]" />
+			<float key="ro_single" value="0.5" />
+			<int key="queue" value="0" />
+			<string key="prefix" value="['register request', 'examine casually', 'check ticket', 'decide']" />
+			<string key="concept:name" value="reject request" />
+			<date key="time:timestamp" value="2023-07-21T09:40:44.652679+00:00" />
+			<int key="@@index" value="4" />
+			<int key="@@case_index" value="0" />
+		</event>
+	</trace>
+</log>

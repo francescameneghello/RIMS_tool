@@ -1,22 +1,22 @@
 {
-            "total_events": 13,
+            "total_events": 5,
             "total_traces": 1,
             "register request_frequency": 1,
-            "check ticket_frequency": 3,
-            "examine thoroughly_frequency": 3,
-            "examine casually_frequency": 0,
-            "decide_frequency": 3,
-            "reinitiate request_frequency": 2,
+            "check ticket_frequency": 1,
+            "examine thoroughly_frequency": 0,
+            "examine casually_frequency": 1,
+            "decide_frequency": 1,
+            "reinitiate request_frequency": 0,
             "reject request_frequency": 1,
             "pay compensation_frequency": 0,
             "Role 1": {
-                        "total": 4,
-                        "Sara": 2,
-                        "Mike": 2
+                        "total": 2,
+                        "Sara": 1,
+                        "Mike": 1
             },
             "Role 2": {
-                        "total": 9,
-                        "Ellen": 5,
-                        "Sue": 4
+                        "total": 3,
+                        "Ellen": 1,
+                        "Sue": 2
             }
 }

@@ -13,7 +13,6 @@ import csv
 from utility import Buffer, ParallelObject
 import json
 from custom_function import *
-from simpy.events import Condition
 
 
 class Token(object):
