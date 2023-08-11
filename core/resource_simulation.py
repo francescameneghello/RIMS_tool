@@ -6,11 +6,12 @@ calendar = {'days' = [0, 1, 2, 3, 4], 'hour_min' = 9, 'hour_max' = 17]}
 from datetime import datetime, timedelta
 import simpy
 import random
+#capacity: float | list
 
 class ResourceSim(object):
 
     # qui possiamo aggiungere i calendari per singola risorsa
-    def __init__(self, env: simpy.Environment, name: str, capacity: float | list, calendar: dict, start: datetime):
+    def __init__(self, env: simpy.Environment, name: str, capacity, calendar: dict, start: datetime):
         self.env = env
         self.name = name
         self._resources_name = capacity

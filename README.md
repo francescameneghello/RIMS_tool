@@ -15,6 +15,7 @@ To execute this code, simply install the following main packages::
 * tensorflow
 * keras
 * pickle
+* aggiunti per esempio "statsmodels"
 
 ## Running the script
 

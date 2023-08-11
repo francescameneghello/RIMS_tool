@@ -1,0 +1,81 @@
+{
+    "interTriggerTimer": {
+        "type": "distribution",
+        "name": "exponential",
+        "parameters": {
+            "scale": 300
+        }
+    },
+    "processing_time": {
+        "A_SUBMITTED":  ["uniform", 3600, 7200],
+        "A_PARTLYSUBMITTED":  ["uniform", 3600, 7200],
+        "A_PREACCEPTED":  ["uniform", 3600, 7200],
+        "A_ACCEPTED":  ["uniform", 3600, 7200],
+        "A_FINALIZED":  ["uniform", 3600, 7200],
+        "A_CANCELLED":  ["uniform", 3600, 7200],
+        "A_DECLINED":  ["uniform", 3600, 7200],
+        "A_APPROVED":  ["uniform", 3600, 7200],
+        "A_REGISTERED":  ["uniform", 3600, 7200],
+        "A_ACTIVATED":  ["uniform", 3600, 7200]
+    },
+    "resource": {
+        "Role 1": {
+            "resources": ["Sara", "Mike"],
+            "calendar": {
+                "days": [0, 1, 2, 3, 4, 5, 6],
+                "hour_min": 0,
+                "hour_max": 23
+            }
+        },
+        "Role 2": {
+            "resources": ["Ellen", "Sue"],
+            "calendar": {
+                "days": [0, 1, 2, 3, 4, 5, 6],
+                "hour_min": 0,
+                "hour_max": 23
+            }
+        }
+    },
+    "resource_table": [
+        {
+            "role": "Role 1",
+            "task": "A_SUBMITTED"
+        },
+        {
+            "role": "Role 2",
+            "task": "A_PARTLYSUBMITTED"
+        },
+        {
+            "role": "Role 2",
+            "task": "A_PREACCEPTED"
+        },
+        {
+            "role": "Role 1",
+            "task": "A_ACCEPTED"
+        },
+        {
+            "role": "Role 2",
+            "task": "A_FINALIZED"
+        },
+        {
+            "role": "Role 2",
+            "task": "A_CANCELLED"
+        },
+        {
+            "role": "Role 2",
+            "task": "A_DECLINED"
+        },
+        {
+            "role": "Role 2",
+            "task": "A_APPROVED"
+        },
+        {
+            "role": "Role 2",
+            "task": "A_REGISTERED"
+        },
+        {
+            "role": "Role 2",
+            "task": "A_ACTIVATED"
+        }
+    ]
+}

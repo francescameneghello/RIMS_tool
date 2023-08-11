@@ -1,6 +1,6 @@
 """
 .. include:: ../README.md
-.. include:: ../example/running-example/running-example.md
+.. include:: ../example/example_arrivals/arrivals-example.md
 """
 
 

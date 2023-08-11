@@ -1,8 +1,18 @@
 """
     Define the main parameters of simulation:
-    * SIM_TIME: total simulation duration in seconds (at the end of time the simulation will be stopped even if the execution of traces has not been completed).
 
-    * aggiungere tabella con tutti i parametri del json spiegati
+    | Key word of parameters | Optional | Default | Description  |
+    |:-----------|:----------:|:----------:|:----------|
+    | *start_timestamp*    |    True    | datetime.now() | Starting date simulation |
+    | *duration_simulation*  | True      | 365 days   | Total duration of simulation |
+    | *probability*  | True        | equal probability for each gateway    | |
+    | *probability*  | True        | equal probability for each gateway    | |
+    | *processing_time*  | False        | ----    | |
+    | *waiting_time*  | False       | ---    | |
+    | *interTriggerTimer*  | False       |    | |
+    | *resource_table*  | True      |    | |
+
+    See complete examples in <metti link alle pagine di esempio>
 """
 import json
 import math
@@ -12,7 +22,7 @@ from datetime import datetime
 
 class Parameters(object):
 
-    def __init__(self, path_parameters, traces):
+    def __init__(self, path_parameters: str, traces: int):
         self.TRACES = traces
         """TRACES: number of traces to generate"""
         self.PATH_PARAMETERS = path_parameters
@@ -20,6 +30,9 @@ class Parameters(object):
         self.read_metadata_file()
 
     def read_metadata_file(self):
+        '''
+        Method to read parameters from the file json.
+        '''
         if os.path.exists(self.PATH_PARAMETERS):
             with open(self.PATH_PARAMETERS) as file:
                 data = json.load(file)

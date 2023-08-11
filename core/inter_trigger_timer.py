@@ -6,7 +6,7 @@ import numpy as np
 from datetime import datetime, timedelta
 from parameters import Parameters
 from process import SimulationProcess
-
+import custom_function as custom
 
 class InterTriggerTimer(object):
 
@@ -24,8 +24,7 @@ class InterTriggerTimer(object):
         otherwise wait for a suitable time."""
         if self._type == 'distribution':
             resource = self._process.get_resource('TRIGGER_TIMER')
-            parameters = list(self.params.values())
-            arrival = getattr(np.random, self.name_distribution)(parameters, size=1)[0]
+            arrival = getattr(np.random, self.name_distribution)(**self.params, size=1)[0]
             if resource.get_calendar():
                 stop = resource.to_time_schedule(self._start_time + timedelta(seconds=env.now + arrival))
                 return stop + arrival
@@ -37,5 +36,5 @@ class InterTriggerTimer(object):
             raise ValueError('ERROR: Invalid arrival times generator')
 
     def custom_arrival(self, case):
-        return 0
+        return custom.example_arrivals_time(case)
 

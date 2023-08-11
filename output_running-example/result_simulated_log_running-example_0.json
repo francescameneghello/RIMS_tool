@@ -7,8 +7,8 @@
             "examine casually_frequency": 1,
             "decide_frequency": 1,
             "reinitiate request_frequency": 0,
-            "reject request_frequency": 1,
-            "pay compensation_frequency": 0,
+            "reject request_frequency": 0,
+            "pay compensation_frequency": 1,
             "Role 1": {
                         "total": 2,
                         "Sara": 1,
@@ -16,7 +16,7 @@
             },
             "Role 2": {
                         "total": 3,
-                        "Ellen": 1,
-                        "Sue": 2
+                        "Sue": 1,
+                        "Ellen": 2
             }
 }
