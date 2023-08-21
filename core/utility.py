@@ -39,10 +39,6 @@ class Prefix(object):
         #print(activity, len(self._list_activities), self._list_activities[0])
 
     def get_prefix(self, time):
-        '''temporal_prefix = []
-        for tuple in self._list_activities:
-            if tuple[1] >= time:
-                temporal_prefix.append(tuple)'''
         return self._list_activities
 
 
@@ -64,7 +60,9 @@ class Buffer(object):
             "ro_total": [],
             "ro_single": -1,
             "queue": -1,
-            "prefix": Prefix
+            "prefix": Prefix,
+            "attribute_case": dict(),
+            "attribute_event": dict()
         }
         if values:
             self._decopy_value(values)

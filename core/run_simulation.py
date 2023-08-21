@@ -9,6 +9,7 @@ from utility import *
 import pm4py
 from inter_trigger_timer import InterTriggerTimer
 from result_analysis import Result
+from datetime import datetime, timedelta
 
 
 def setup(env: simpy.Environment, PATH_PETRINET, params, i, NAME):
@@ -24,7 +25,8 @@ def setup(env: simpy.Environment, PATH_PETRINET, params, i, NAME):
         itime = interval.get_next_arrival(env, i)
         yield env.timeout(itime)
         parallel_object = utility.ParallelObject()
-        env.process(Token(i, net, im, params, simulation_process, prefix, 'sequential', writer, parallel_object, None).simulation(env))
+        time_trace = params.START_SIMULATION + timedelta(seconds=env.now)
+        env.process(Token(i, net, im, params, simulation_process, prefix, 'sequential', writer, parallel_object, time_trace, None).simulation(env))
 
 
 def run_simulation(PATH_PETRINET, PATH_PARAMETERS, N_SIMULATION, N_TRACES, NAME):

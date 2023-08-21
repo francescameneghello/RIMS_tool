@@ -1,4 +1,4 @@
-from datetime import timedelta
+from datetime import datetime, timedelta
 import simpy
 import pm4py
 import random
@@ -12,12 +12,12 @@ import copy
 import csv
 from utility import Buffer, ParallelObject
 import json
-from custom_function import *
+import custom_function as custom
 
 
 class Token(object):
 
-    def __init__(self, id: int, net: pm4py.objects.petri_net.obj.PetriNet, am: pm4py.objects.petri_net.obj.Marking, params: Parameters, process: SimulationProcess, prefix: Prefix, type: str, writer: csv.writer, parallel_object: ParallelObject, values=None):
+    def __init__(self, id: int, net: pm4py.objects.petri_net.obj.PetriNet, am: pm4py.objects.petri_net.obj.Marking, params: Parameters, process: SimulationProcess, prefix: Prefix, type: str, writer: csv.writer, parallel_object: ParallelObject, time: datetime, values=None):
         self._id = id
         self._process = process
         self._start_time = params.START_SIMULATION
@@ -33,6 +33,7 @@ class Token(object):
         self._writer = writer
         self._parallel_object = parallel_object
         self.buffer = Buffer(writer, values)
+        self.buffer.set_feature("attribute_case", custom.attribute_function_case(self._id, time))
 
     def _delete_places(self, places):
         delete = []
@@ -65,6 +66,7 @@ class Token(object):
                 self.buffer.set_feature("id_case", self._id)
                 self.buffer.set_feature("activity", trans.label)
                 self.buffer.set_feature("prefix", self._prefix.get_prefix(self._start_time + timedelta(seconds=env.now)))
+                self.buffer.set_feature("attribute_event", custom.attribute_function_event(self._id, self._start_time + timedelta(seconds=env.now)))
 
                 ### call predictor for waiting time
                 if trans.label in self._params.ROLE_ACTIVITY:
@@ -84,7 +86,7 @@ class Token(object):
                     yield env.timeout(waiting)
 
                 request_resource = resource.request()
-                self.buffer.set_feature("enabled_time", str(self._start_time + timedelta(seconds=env.now)))
+                self.buffer.set_feature("enabled_time", self._start_time + timedelta(seconds=env.now))
                 yield request_resource
 
                 ### register event in process ###
@@ -94,7 +96,7 @@ class Token(object):
 
                 single_resource = self._process.set_single_resource(resource.get_name())
 
-                self.buffer.set_feature("start_time", str(self._start_time + timedelta(seconds=env.now)))
+                self.buffer.set_feature("start_time", self._start_time + timedelta(seconds=env.now))
                 ### call predictor for processing time
                 self.buffer.set_feature("wip_start", 0 if type != 'sequential' else resource_trace.count-1)
                 self.buffer.set_feature("ro_single", self._process.get_occupations_single_resource(resource.get_name()))
@@ -105,7 +107,7 @@ class Token(object):
                 yield env.timeout(duration)
 
                 self.buffer.set_feature("wip_end", 0 if type != 'sequential' else resource_trace.count-1)
-                self.buffer.set_feature("end_time", str(self._start_time + timedelta(seconds=env.now)))
+                self.buffer.set_feature("end_time", self._start_time + timedelta(seconds=env.now))
                 self.buffer.set_feature("role", resource.get_name())
                 self.buffer.set_feature("resource", single_resource)
                 self.buffer.print_values()
@@ -352,18 +354,7 @@ class Token(object):
               "wip_wait": 3
         }
         ```"""
-        #print('Possible transitions of patrinet: ', all_enabled_trans)
-        #print(json.dumps(self.buffer.duplicate_buffer_parallel(), indent=14, sort_keys=True))
-
-        """Sistemare risorse prima di fare example!!!!!!!!!!!!!!!!"""
-        #print('CUSTOM', self.buffer.buffer)
-        #import pickle
-        #label_name = {0: 'examine casually', 1: 'examine thoroughly'}
-        #loaded_clf = pickle.load(open('decision_tree_running_example.pkl', 'rb'))
-        #example = [0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 2, 0]
-        #loaded_clf.predict([example])
-
-        return 0
+        return custom.example_decision_mining(self.buffer)
 
     def next_transition(self, env):
         """
