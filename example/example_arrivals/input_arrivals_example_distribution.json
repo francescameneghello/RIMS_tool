@@ -4,7 +4,12 @@
         "type": "distribution",
         "name": "exponential",
         "parameters": {
-            "scale": 300
+            "scale": 20
+        },
+        "calendar": {
+            "days": [1, 2, 3, 4, 5],
+            "hour_min": 8,
+            "hour_max": 15
         }
     },
     "processing_time": {

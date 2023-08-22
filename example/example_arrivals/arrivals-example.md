@@ -39,6 +39,24 @@ As in the following example where we set 5 minutes (i.e. 300 seconds) between ea
         "type": "custom"
     }
 ```
+In addition, it is possible to add a schedule for token arrival times, i.e. when a new instance of the process can start. 
+For example, we establish that a new trace of this process can start only from Monday to Friday, from 8 a.m. to 3 p.m.
+
+```json
+    "interTriggerTimer": {
+        "type": "distribution",
+        "name": "exponential",
+        "parameters": {
+            "scale": 20
+        },
+        "calendar": {
+            "days": [1, 2, 3, 4, 5],
+            "hour_min": 8,
+            "hour_max": 15
+        }
+    }
+```
+
 In the following example we define a simple time series model from the python library
 ([statsmodels](https://www.statsmodels.org/dev/examples/notebooks/generated/autoregressions.html#)).
 The AutoReg model is trained on the real log and then we used it to predict the next token arrival in

@@ -104,7 +104,6 @@ class ResourceSim(object):
 
     def define_timework(self, timestamp, duration):
         stop_pre = self.to_time_schedule(timestamp)
-        ### abbiamo chiamato to_time_schedule e siamo in una posizione corretta
         before, stop, after = self.check_duration(timestamp + timedelta(seconds=stop_pre), duration)
         return stop_pre, before + stop + after
 

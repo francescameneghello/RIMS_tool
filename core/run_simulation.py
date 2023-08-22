@@ -14,8 +14,8 @@ from datetime import datetime, timedelta
 
 def setup(env: simpy.Environment, PATH_PETRINET, params, i, NAME):
     simulation_process = SimulationProcess(env, params)
-    utility.define_folder_output("output_{}".format(NAME))
-    f = open("output_{}/simulated_log_{}_{}".format(NAME, NAME, i)+".csv", 'w')
+    utility.define_folder_output("output/output_{}".format(NAME))
+    f = open("output/output_{}/simulated_log_{}_{}".format(NAME, NAME, i)+".csv", 'w')
     writer = csv.writer(f)
     writer.writerow(Buffer(writer).get_buffer_keys())
     net, im, fm = pm4py.read_pnml(PATH_PETRINET)

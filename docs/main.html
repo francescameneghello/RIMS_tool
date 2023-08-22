@@ -54,10 +54,11 @@
             <ul>
   <li><a href="#runtime-integration-of-machine-learning-and-simulation-for-business-processes-rims">Runtime Integration of Machine Learning and Simulation for Business Processes (RIMS)</a>
   <ul>
-    <li><a href="#running-the-script">Running the script</a></li>
+    <li><a href="#installation-guide">Installation guide</a></li>
+    <li><a href="#getting-started">Getting Started</a></li>
     <li><a href="#authors">Authors</a></li>
   </ul></li>
-  <li><a href="#example-of-arrivals-time-of-petrinet">Example of Arrivals Time of petrinet</a></li>
+  <li><a href="#example-of-arrivals-time-and-calendars">Example of Arrivals Time and Calendars</a></li>
   <li><a href="#example-of-decision-mining-of-petrinet">Example of Decision Mining of petrinet</a></li>
 </ul>
 
@@ -83,6 +84,10 @@ main    </h1>
 State of the art techniques in BPM combine Deep Learning and Discrete event simulation in a post-integration fashion: first an entire simulation is performed, and then a DL model is used to add waiting times and processing times to the events produced by the simulation model. 
 In this paper, we aim at taking a step further by introducing \rims (Runtime Integration of Machine Learning and Simulation). Instead of complementing the outcome of a complete simulation with the results of predictions ``a posteriori'', \rims provides a tight integration of the predictions of the DL model \textbf{at runtime} during the simulation. This runtime-integration enables us to fully exploit the specific predictions thus enhancing the performance of the overall system both w.r.t. the single techniques (Business Process Simulation and DL) separately and the post-integration approach. The runtime-integration enables us also to incorporate the queue as an intercase feature in the DL model, thus further improving the performance in process scenarios where the queue plays an important role.</p>
 
+<p><img src="../old_html_version/rims_schema.png" alt="Alt Text" width="780"></p>
+
+<h2 id="installation-guide">Installation guide</h2>
+
 <h3 id="prerequisites">Prerequisites</h3>
 
 <p>To execute this code, simply install the following main packages:: </p>
@@ -96,39 +101,23 @@ In this paper, we aim at taking a step further by introducing \rims (Runtime Int
 <li>aggiunti per esempio "statsmodels"</li>
 </ul>
 
-<h2 id="running-the-script">Running the script</h2>
+<h2 id="getting-started">Getting Started</h2>
 
 <p>Once installed all the packages, you can execute the tool from a terminal specifying the following parameters:</p>
 
 <ul>
-<li><code>-t</code>: to specify if you want to generate a simulated log with RIMS or RIMS+.  Available options: "rims" and "rims_plus".</li>
-<li><code>-l</code>: Refers to the name of event_log.</li>
-<li><code>-n</code>: Total number of simulation to generate from 0 to 25.</li>
+<li><code>-p</code>: specify the path of the Petri net model to be simulated, in <em>pnml</em> format</li>
+<li><code>-s</code>: specify the path to the simulation parameter file, in <em>json</em> format</li>
+<li><code>-t</code>: specify the total number of traces per single simulation</li>
+<li><code>-i</code>: specify the total number of simulation to generate</li>
+<li><code>-o</code>: specify the path where to save the output files</li>
 </ul>
-
-<p>All LSTM models and generated logs are stored in the following link:  <a href="https://drive.google.com/drive/folders/1gmO8ULxtBxqShXnBeEUhBLOy97KYlVI2?usp=sharing">https://drive.google.com/drive/folders/1gmO8ULxtBxqShXnBeEUhBLOy97KYlVI2?usp=sharing</a></p>
-
-<p><strong>Example of basic execution of RIMS:</strong>
-To generate 1 siulation for the log "confidential_1000" </p>
-
-<div class="pdoc-code codehilite">
-<pre><span></span><code>python<span class="w"> </span>python<span class="w"> </span>main.py<span class="w"> </span>-t<span class="w"> </span>rims<span class="w"> </span>-l<span class="w"> </span>confidential_1000<span class="w"> </span>-n<span class="w"> </span><span class="m">1</span>
-</code></pre>
-</div>
-
-<p><strong>Example of basic execution of RIMS+:</strong>
-To generate 1 siulation for the log "confidential_1000" </p>
-
-<div class="pdoc-code codehilite">
-<pre><span></span><code>python<span class="w"> </span>python<span class="w"> </span>main.py<span class="w"> </span>-t<span class="w"> </span>rims_plus<span class="w"> </span>-l<span class="w"> </span>confidential_1000<span class="w"> </span>-n<span class="w"> </span><span class="m">1</span>
-</code></pre>
-</div>
 
 <h2 id="authors">Authors</h2>
 
 <p>Francesca Meneghello, Chiara Di Francescomarino, Chiara Ghidini</p>
 
-<h1 id="example-of-arrivals-time-of-petrinet">Example of Arrivals Time of petrinet</h1>
+<h1 id="example-of-arrivals-time-and-calendars">Example of Arrivals Time and Calendars</h1>
 
 <p>For this example we used the log that we can find in the folder <strong>example_arrivals/BPIChallenge2012A.xes</strong>. This event log pertains to a loan application process of a Dutch financial institute. The data contains all applications filed trough an online system in 2016 and their subsequent events until February 1st 2017, 15:11.
 The company providing the data and the process under consideration is the same as doi:10.4121/uuid:3926db30-f712-4394-aebc-75976070e91f.</p>
@@ -181,10 +170,58 @@ As in the following example where we set 5 minutes (i.e. 300 seconds) between ea
 </code></pre>
 </div>
 
+<p>In addition, it is possible to add a schedule for token arrival times, i.e. when a new instance of the process can start. 
+For example, we establish that a new trace of this process can start only from Monday to Friday, from 8 a.m. to 3 p.m.</p>
+
+<div class="pdoc-code codehilite">
+<pre><span></span><code><span class="w">    </span><span class="nt">&quot;interTriggerTimer&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;distribution&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;exponential&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;parameters&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">&quot;scale&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">20</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">        </span><span class="nt">&quot;calendar&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">&quot;days&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p">],</span>
+<span class="w">            </span><span class="nt">&quot;hour_min&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;hour_max&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">15</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+</code></pre>
+</div>
+
 <p>In the following example we define a simple time series model from the python library
 (<a href="https://www.statsmodels.org/dev/examples/notebooks/generated/autoregressions.html#">statsmodels</a>).
 The AutoReg model is trained on the real log and then we used it to predict the next token arrival in
 the process.</p>
+
+<p>Finally, we defined the two calendars for Role 1 and Role 2 with the following code.
+Role 1 resources, Sara and Mike, work Monday through Friday, 8 a.m. to 4 p.m.</p>
+
+<div class="pdoc-code codehilite">
+<pre><span></span><code><span class="w">   </span><span class="nt">&quot;Role 1&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;resources&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;Sara&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Mike&quot;</span><span class="p">],</span>
+<span class="w">        </span><span class="nt">&quot;calendar&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">&quot;days&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p">],</span>
+<span class="w">            </span><span class="nt">&quot;hour_min&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;hour_max&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">16</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">   </span><span class="p">}</span><span class="w"> </span>
+</code></pre>
+</div>
+
+<p>While Role 2 resources, Ellen and Sue, work Monday through Saturday, 8 a.m. to 7 p.m. </p>
+
+<div class="pdoc-code codehilite">
+<pre><span></span><code><span class="w">   </span><span class="nt">&quot;Role 2&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;resources&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;Ellen&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Sue&quot;</span><span class="p">],</span>
+<span class="w">        </span><span class="nt">&quot;calendar&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">&quot;days&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="mi">6</span><span class="p">],</span>
+<span class="w">            </span><span class="nt">&quot;hour_min&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;hour_max&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">19</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">   </span><span class="p">}</span>
+</code></pre>
+</div>
 
 <p>To run the example use the following commands:</p>
 
@@ -193,7 +230,7 @@ the process.</p>
 </ul>
 
 <div class="pdoc-code codehilite">
-<pre><span></span><code><span class="w">   </span>python<span class="w"> </span>main.py<span class="w"> </span>-p<span class="w"> </span>example/example_arrivals/bpi2012.pnml<span class="w"> </span>-s<span class="w"> </span>example/example_arrivals/input_arrivals_example_distribution.json<span class="w"> </span>-t<span class="w"> </span><span class="m">10</span><span class="w"> </span>-i<span class="w"> </span><span class="m">1</span><span class="w"> </span>-o<span class="w"> </span>example_arrivals
+<pre><span></span><code><span class="w">   </span>python<span class="w"> </span>main.py<span class="w"> </span>-p<span class="w"> </span>../example/example_arrivals/bpi2012.pnml<span class="w"> </span>-s<span class="w"> </span>../example/example_arrivals/input_arrivals_example_distribution.json<span class="w"> </span>-t<span class="w"> </span><span class="m">10</span><span class="w"> </span>-i<span class="w"> </span><span class="m">1</span><span class="w"> </span>-o<span class="w"> </span>example_arrivals
 </code></pre>
 </div>
 
@@ -202,7 +239,7 @@ the process.</p>
 </ul>
 
 <div class="pdoc-code codehilite">
-<pre><span></span><code><span class="w">   </span>python<span class="w"> </span>main.py<span class="w"> </span>-p<span class="w"> </span>example/example_arrivals/bpi2012.pnml<span class="w"> </span>-s<span class="w"> </span>example/example_arrivals/input_arrivals_example_timeseries.json<span class="w"> </span>-t<span class="w"> </span><span class="m">10</span><span class="w"> </span>-i<span class="w"> </span><span class="m">1</span><span class="w"> </span>-o<span class="w"> </span>example_arrivals
+<pre><span></span><code><span class="w">   </span>python<span class="w"> </span>main.py<span class="w"> </span>-p<span class="w"> </span>../example/example_arrivals/bpi2012.pnml<span class="w"> </span>-s<span class="w"> </span>../example/example_arrivals/input_arrivals_example_timeseries.json<span class="w"> </span>-t<span class="w"> </span><span class="m">10</span><span class="w"> </span>-i<span class="w"> </span><span class="m">1</span><span class="w"> </span>-o<span class="w"> </span>example_arrivals
 </code></pre>
 </div>
 
@@ -275,9 +312,13 @@ simple Random Forest to predict the next activity. (CUSTOM) <br /></li>
 </div>
 
 <p>To train the model we used as input the following feature: the presence of A_PREACCEPTED, A_ACCEPTED, A_FINALIZED
-  activities in the prefix of trace, the requested loan amount, the weekday and hour of the time of arrival in the decision point.</p>
+activities in the prefix of trace, the requested loan amount, the weekday and hour of the time of arrival in the decision point.</p>
 
 <p><img src="../example/example_decision_mining/random_forest.png" alt="Alt Text" width="780"></p>
+
+<p>In general, if the user does not define probability parameters in the JSON file, the simulator automatically 
+applies the AUTO mode for each decision point.
+Otherwise, if the user defines the mode for one or more decision points, the user still has to specify all of them even if they are in AUTO mode.</p>
 
 <p>To run the example use the following commands:</p>
 
@@ -286,7 +327,7 @@ simple Random Forest to predict the next activity. (CUSTOM) <br /></li>
 </ul>
 
 <div class="pdoc-code codehilite">
-<pre><span></span><code><span class="w">   </span>python<span class="w"> </span>main.py<span class="w"> </span>-p<span class="w"> </span>example/example_decision_mining/bpi2012.pnml<span class="w"> </span>-s<span class="w"> </span>example/example_decision_mining/input_decision_mining_example.json<span class="w"> </span>-t<span class="w"> </span><span class="m">10</span><span class="w"> </span>-i<span class="w"> </span><span class="m">1</span><span class="w"> </span>-o<span class="w"> </span>example_decision_mining
+<pre><span></span><code><span class="w">   </span>python<span class="w"> </span>main.py<span class="w"> </span>-p<span class="w"> </span>../example/example_decision_mining/bpi2012.pnml<span class="w"> </span>-s<span class="w"> </span>../example/example_decision_mining/input_decision_mining_example.json<span class="w"> </span>-t<span class="w"> </span><span class="m">10</span><span class="w"> </span>-i<span class="w"> </span><span class="m">1</span><span class="w"> </span>-o<span class="w"> </span>example_decision_mining
 </code></pre>
 </div>
 </div>

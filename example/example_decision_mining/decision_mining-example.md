@@ -66,5 +66,5 @@ To run the example use the following commands:
 
 * to run the example with a exponential distribution
 ```shell
-   python main.py -p example/example_decision_mining/bpi2012.pnml -s example/example_decision_mining/input_decision_mining_example.json -t 10 -i 1 -o example_decision_mining
+   python main.py -p ../example/example_decision_mining/bpi2012.pnml -s ../example/example_decision_mining/input_decision_mining_example.json -t 10 -i 1 -o example_decision_mining
 ```

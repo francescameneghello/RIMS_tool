@@ -24,7 +24,7 @@ class Result(object):
 
     def __init__(self, folder: str, params: Parameters):
         self._folder = folder
-        self._all_file = glob.glob("{}/{}/simulated_log_*".format(os.getcwd(), self._folder))
+        self._all_file = glob.glob("{}/output/{}/simulated_log_*".format(os.getcwd(), self._folder))
         self._params = params
 
     def analysis_log(self, sim):
@@ -56,7 +56,7 @@ class Result(object):
 
     def _write_json(self, analysis, sim):
         try:
-            filename = '{}/result_{}.json'.format(self._folder, os.path.splitext(os.path.basename(sim))[0])
+            filename = 'output/{}/result_{}.json'.format(self._folder, os.path.splitext(os.path.basename(sim))[0])
             with open(filename, 'w') as json_file:
                 json.dump(analysis, json_file, indent=len(analysis))
         except Exception as e:
@@ -67,4 +67,4 @@ class Result(object):
         sim_df = pm4py.format_dataframe(sim_df, case_id='id_case', activity_key='activity',
                                            timestamp_key='end_time')
         event_log = pm4py.convert_to_event_log(sim_df)
-        pm4py.write_xes(event_log, '{}/result_{}.xes'.format(self._folder, os.path.splitext(os.path.basename(sim))[0]))
+        pm4py.write_xes(event_log, 'output/{}/{}.xes'.format(self._folder, os.path.splitext(os.path.basename(sim))[0]))
