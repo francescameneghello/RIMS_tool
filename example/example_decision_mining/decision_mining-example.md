@@ -4,26 +4,23 @@
 For this example we used the log that we can find in the folder **example_decision_mining/BPIChallenge2012A.xes**. This event log pertains to a loan application process of a Dutch financial institute. The data contains all applications filed trough an online system in 2016 and their subsequent events until February 1st 2017, 15:11.
 The company providing the data and the process under consideration is the same as doi:10.4121/uuid:3926db30-f712-4394-aebc-75976070e91f.
 
-The petrinet found by the inductive miner is the following:
+The petrinet found by the [Inductive Miner](https://pm4py.fit.fraunhofer.de/documentation#item-3-2) algorithm from pm4py, is the following:
 
-<img src="../example/example_decision_mining/petri_net.png" alt="Alt Text" width="300" height="200">
+<img src="../example/example_decision_mining/petri_net.png" alt="Alt Text" width="740">
 
-For this example we want to show also how to add the specific case attribute for this
-log i.e. the amount of requested loan. Through the function **attribute_function_case(case_id)**
-it is easy to add the attribute/s case with the return of dictionary.
+We also want to show how to add a case-specific attribute, *requested loan amount*, to each simulation trace.
+Through the function *attribute_function_case(case_id)*
+it is easy to add the attribute/s case with the return of a dictionary. In this case, for each trace, we randomly generate a loan amount from 1000 to 99999 euros.
 
 ```python
     def attribute_function_case(case):
-        return {"AMOUNT": random.randint(100, 99999)}
+        return {"AMOUNT": random.randint(1000, 99999)}
 ```
 
+The aim of this example is to present different ways to choose the next activity from a specific decision point of Petri net model. 
+In the following image, the four decision points in the process are highlighted with three different colours.
 
-
-
-In this example, we want to show different ways to choose the next activity from a specific decision point. 
-In the following image, the four decision points in the process are outlined and the three ways allowed by the simulator have been applied.
-
-<img src="../example/example_decision_mining/petri_net_decision.png" alt="Alt Text" width="300" height="200">
+<img src="../example/example_decision_mining/petri_net_decision.png" alt="Alt Text" width="780">
 
 As exaplained in the **link event trace class, next activity** we can define the 3 methods to define the next activity 
 of decision point:
@@ -46,7 +43,7 @@ of decision point:
 ```
 * Custom method: it is possible to define a dedicate method that given the possible paths it returns the one to
   follow, using whatever techniques the user prefers. In this case for the orange point we trained a 
-  simple Random Forest to predict the next activity. (CUSTOM)
+  simple Random Forest to predict the next activity. (CUSTOM) <br />
 ```json
    "probability": {
       "A_CANCELLED": "CUSTOM",
@@ -54,6 +51,16 @@ of decision point:
       "tauSplit_5": "CUSTOM"
    }
 ```
+
+To train the model we used as input the following feature: the presence of A_PREACCEPTED, A_ACCEPTED, A_FINALIZED
+activities in the prefix of trace, the requested loan amount, the weekday and hour of the time of arrival in the decision point.
+
+<img src="../example/example_decision_mining/random_forest.png" alt="Alt Text" width="780">
+
+In general, if the user does not define probability parameters in the JSON file, the simulator automatically 
+applies the AUTO mode for each decision point.
+Otherwise, if the user defines the mode for one or more decision points, the user still has to specify all of them even if they are in AUTO mode.
+
 
 To run the example use the following commands:
 

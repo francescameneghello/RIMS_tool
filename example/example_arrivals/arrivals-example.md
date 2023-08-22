@@ -1,12 +1,12 @@
 
-# Example of Arrivals Time of petrinet
+# Example of Arrivals Time and Calendars
 
 For this example we used the log that we can find in the folder **example_arrivals/BPIChallenge2012A.xes**. This event log pertains to a loan application process of a Dutch financial institute. The data contains all applications filed trough an online system in 2016 and their subsequent events until February 1st 2017, 15:11.
 The company providing the data and the process under consideration is the same as doi:10.4121/uuid:3926db30-f712-4394-aebc-75976070e91f.
 
 The petrinet found by the inductive miner is the following:
 
-<img src="example/example_arrivals/petri_net.png" alt="Alt Text" width="300" height="200">
+<img src="../example/example_arrivals/petri_net.png" alt="Alt Text" width="780">
 
 In this example we want to show different ways to generate the arrivals times of tokens in the simulation.
 As exaplained in the **link inter_trigger_timer class** we can define the arrivals with 3 methods:
@@ -44,14 +44,41 @@ In the following example we define a simple time series model from the python li
 The AutoReg model is trained on the real log and then we used it to predict the next token arrival in
 the process.
 
+Finally, we defined the two calendars for Role 1 and Role 2 with the following code.
+Role 1 resources, Sara and Mike, work Monday through Friday, 8 a.m. to 4 p.m.
+
+```json
+   "Role 1": {
+        "resources": ["Sara", "Mike"],
+        "calendar": {
+            "days": [1, 2, 3, 4, 5],
+            "hour_min": 8,
+            "hour_max": 16
+        }
+   } 
+```
+
+While Role 2 resources, Ellen and Sue, work Monday through Saturday, 8 a.m. to 7 p.m. 
+
+```json
+   "Role 2": {
+        "resources": ["Ellen", "Sue"],
+        "calendar": {
+            "days": [1, 2, 3, 4, 5, 6],
+            "hour_min": 8,
+            "hour_max": 19
+        }
+   }
+```
+
 To run the example use the following commands:
 
 * to run the example with a exponential distribution
 ```shell
-   python main.py -p example/example_arrivals/bpi2012.pnml -s example/example_arrivals/input_arrivals_example_distribution.json -t 10 -i 1 -o example_arrivals
+   python main.py -p ../example/example_arrivals/bpi2012.pnml -s ../example/example_arrivals/input_arrivals_example_distribution.json -t 10 -i 1 -o example_arrivals
 ```
 
 * to run the example with a time series model
 ```shell
-   python main.py -p example/example_arrivals/bpi2012.pnml -s example/example_arrivals/input_arrivals_example_timeseries.json -t 10 -i 1 -o example_arrivals
+   python main.py -p ../example/example_arrivals/bpi2012.pnml -s ../example/example_arrivals/input_arrivals_example_timeseries.json -t 10 -i 1 -o example_arrivals
 ```

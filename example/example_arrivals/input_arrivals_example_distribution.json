@@ -1,4 +1,5 @@
 {
+    "start_timestamp":  "2023-08-22 7:45:00",
     "interTriggerTimer": {
         "type": "distribution",
         "name": "exponential",
@@ -22,17 +23,17 @@
         "Role 1": {
             "resources": ["Sara", "Mike"],
             "calendar": {
-                "days": [0, 1, 2, 3, 4, 5, 6],
-                "hour_min": 0,
-                "hour_max": 23
+                "days": [1, 2, 3, 4, 5],
+                "hour_min": 8,
+                "hour_max": 16
             }
         },
         "Role 2": {
             "resources": ["Ellen", "Sue"],
             "calendar": {
-                "days": [0, 1, 2, 3, 4, 5, 6],
-                "hour_min": 0,
-                "hour_max": 23
+                "days": [1, 2, 3, 4, 5, 6],
+                "hour_min": 8,
+                "hour_max": 19
             }
         }
     },

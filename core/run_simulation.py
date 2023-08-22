@@ -56,5 +56,5 @@ def main(argv):
             N_SIMULATION = int(arg)
         elif opt == "-o":
             NAME = arg
-    print(PATH_PETRINET, N_SIMULATION, N_TRACES, NAME)
+    print(PATH_PETRINET, PATH_PARAMETERS, N_SIMULATION, N_TRACES, NAME)
     run_simulation(PATH_PETRINET, PATH_PARAMETERS, N_SIMULATION, N_TRACES, NAME)

@@ -8,6 +8,7 @@ import simpy
 import random
 #capacity: float | list
 
+
 class ResourceSim(object):
 
     # qui possiamo aggiungere i calendari per singola risorsa
@@ -71,7 +72,7 @@ class ResourceSim(object):
             stop = self.define_stop_week(timestamp)
         else:
             stop = 0
-        return stop
+        return int(stop)
 
     def split_week(self, timestamp, duration):
         ## return before, stop, after

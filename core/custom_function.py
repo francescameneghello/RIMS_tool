@@ -36,7 +36,7 @@ def example_arrivals_time(case):
     Function to define a new arrival of a track.
     For example, we used an AutoRegression model for the *arrivals example*.
     """
-    loaded = AutoRegResults.load('example/example_arrivals/arrival_AutoReg_model.pkl')
+    loaded = AutoRegResults.load('../example/example_arrivals/arrival_AutoReg_model.pkl')
     return loaded.predict(case+1, case+1)[0]
 
 

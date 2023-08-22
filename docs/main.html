@@ -135,7 +135,7 @@ The company providing the data and the process under consideration is the same a
 
 <p>The petrinet found by the inductive miner is the following:</p>
 
-<p><img src="example/example_arrivals/petri_net.png" alt="Alt Text" width="300" height="200"></p>
+<p><img src="../example/example_arrivals/petri_net.png" alt="Alt Text" width="780"></p>
 
 <p>In this example we want to show different ways to generate the arrivals times of tokens in the simulation.
 As exaplained in the <strong>link inter_trigger_timer class</strong> we can define the arrivals with 3 methods:</p>
@@ -211,22 +211,22 @@ the process.</p>
 <p>For this example we used the log that we can find in the folder <strong>example_decision_mining/BPIChallenge2012A.xes</strong>. This event log pertains to a loan application process of a Dutch financial institute. The data contains all applications filed trough an online system in 2016 and their subsequent events until February 1st 2017, 15:11.
 The company providing the data and the process under consideration is the same as doi:10.4121/uuid:3926db30-f712-4394-aebc-75976070e91f.</p>
 
-<p>The petrinet found by the inductive miner is the following:</p>
+<p>The petrinet found by the <a href="https://pm4py.fit.fraunhofer.de/documentation#item-3-2">Inductive Miner</a> algorithm from pm4py, is the following:</p>
 
-<p><img src="../example/example_decision_mining/petri_net.png" alt="Alt Text" width="780"></p>
+<p><img src="../example/example_decision_mining/petri_net.png" alt="Alt Text" width="740"></p>
 
-<p>For this example we want to show also how to add the specific case attribute for this
-log i.e. the amount of requested loan. Through the function <a>href="http://localhost:63342/RIMS_tool/docs/event_trace.html"</a>
-it is easy to add the attribute/s case with the return of dictionary.</p>
+<p>We also want to show how to add a case-specific attribute, <em>requested loan amount</em>, to each simulation trace.
+Through the function <em>attribute_function_case(case_id)</em>
+it is easy to add the attribute/s case with the return of a dictionary. In this case, for each trace, we randomly generate a loan amount from 1000 to 99999 euros.</p>
 
 <div class="pdoc-code codehilite">
 <pre><span></span><code>    <span class="k">def</span> <span class="nf">attribute_function_case</span><span class="p">(</span><span class="n">case</span><span class="p">):</span>
-        <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;AMOUNT&quot;</span><span class="p">:</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">99999</span><span class="p">)}</span>
+        <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;AMOUNT&quot;</span><span class="p">:</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">1000</span><span class="p">,</span> <span class="mi">99999</span><span class="p">)}</span>
 </code></pre>
 </div>
 
-<p>In this example, we want to show different ways to choose the next activity from a specific decision point. 
-In the following image, the four decision points in the process are outlined and the three ways allowed by the simulator have been applied.</p>
+<p>The aim of this example is to present different ways to choose the next activity from a specific decision point of Petri net model. 
+In the following image, the four decision points in the process are highlighted with three different colours.</p>
 
 <p><img src="../example/example_decision_mining/petri_net_decision.png" alt="Alt Text" width="780"></p>
 
@@ -262,7 +262,7 @@ of decision point:</p>
 <ul>
 <li>Custom method: it is possible to define a dedicate method that given the possible paths it returns the one to
 follow, using whatever techniques the user prefers. In this case for the orange point we trained a 
-simple Random Forest to predict the next activity. (CUSTOM)</li>
+simple Random Forest to predict the next activity. (CUSTOM) <br /></li>
 </ul>
 
 <div class="pdoc-code codehilite">
@@ -273,6 +273,11 @@ simple Random Forest to predict the next activity. (CUSTOM)</li>
 <span class="w">   </span><span class="p">}</span>
 </code></pre>
 </div>
+
+<p>To train the model we used as input the following feature: the presence of A_PREACCEPTED, A_ACCEPTED, A_FINALIZED
+  activities in the prefix of trace, the requested loan amount, the weekday and hour of the time of arrival in the decision point.</p>
+
+<p><img src="../example/example_decision_mining/random_forest.png" alt="Alt Text" width="780"></p>
 
 <p>To run the example use the following commands:</p>
 

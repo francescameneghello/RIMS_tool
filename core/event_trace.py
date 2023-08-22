@@ -96,12 +96,14 @@ class Token(object):
 
                 single_resource = self._process.set_single_resource(resource.get_name())
 
-                self.buffer.set_feature("start_time", self._start_time + timedelta(seconds=env.now))
                 ### call predictor for processing time
                 self.buffer.set_feature("wip_start", 0 if type != 'sequential' else resource_trace.count-1)
                 self.buffer.set_feature("ro_single", self._process.get_occupations_single_resource(resource.get_name()))
                 self.buffer.set_feature("wip_activity", resource_task.count-1)
 
+                stop = resource.to_time_schedule(self._start_time + timedelta(seconds=env.now))
+                yield env.timeout(stop)
+                self.buffer.set_feature("start_time", self._start_time + timedelta(seconds=env.now))
                 duration = self.define_processing_time(trans.label)
 
                 yield env.timeout(duration)
@@ -246,7 +248,6 @@ class Token(object):
                 duration = getattr(np.random, distribution)(parameters, size=1)[0]
         except:
             raise ValueError("ERROR: The processing time of", activity, "is not defined in json file")
-
         return duration
 
     def define_waiting_time(self, next_act):

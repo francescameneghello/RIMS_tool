@@ -58,6 +58,9 @@
                     <a class="function" href="#attribute_function_case">attribute_function_case</a>
             </li>
             <li>
+                    <a class="function" href="#attribute_function_event">attribute_function_event</a>
+            </li>
+            <li>
                     <a class="function" href="#example_arrivals_time">example_arrivals_time</a>
             </li>
             <li>
@@ -79,40 +82,74 @@
                     <h1 class="modulename">
 custom_function    </h1>
 
-                
+                        <div class="docstring"><p>This file contains all the customizable functions, which the user can define,
+and which are called by the simulator in the specific steps.</p>
+</div>
+
                         <input id="mod-custom_function-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
 
                         <label class="view-source-button" for="mod-custom_function-view-source"><span>View Source</span></label>
 
-                        <div class="pdoc-code codehilite"><pre><span></span><span id="L-1"><a href="#L-1"><span class="linenos"> 1</span></a><span class="kn">from</span> <span class="nn">statsmodels.tsa.ar_model</span> <span class="kn">import</span> <span class="n">AutoRegResults</span>
-</span><span id="L-2"><a href="#L-2"><span class="linenos"> 2</span></a><span class="kn">from</span> <span class="nn">utility</span> <span class="kn">import</span> <span class="n">Buffer</span><span class="p">,</span> <span class="n">ParallelObject</span>
-</span><span id="L-3"><a href="#L-3"><span class="linenos"> 3</span></a><span class="kn">import</span> <span class="nn">random</span>
-</span><span id="L-4"><a href="#L-4"><span class="linenos"> 4</span></a><span class="kn">import</span> <span class="nn">pickle</span>
+                        <div class="pdoc-code codehilite"><pre><span></span><span id="L-1"><a href="#L-1"><span class="linenos"> 1</span></a><span class="sd">&#39;&#39;&#39;</span>
+</span><span id="L-2"><a href="#L-2"><span class="linenos"> 2</span></a><span class="sd">This file contains all the customizable functions, which the user can define,</span>
+</span><span id="L-3"><a href="#L-3"><span class="linenos"> 3</span></a><span class="sd">and which are called by the simulator in the specific steps.</span>
+</span><span id="L-4"><a href="#L-4"><span class="linenos"> 4</span></a><span class="sd">&#39;&#39;&#39;</span>
 </span><span id="L-5"><a href="#L-5"><span class="linenos"> 5</span></a>
-</span><span id="L-6"><a href="#L-6"><span class="linenos"> 6</span></a><span class="k">def</span> <span class="nf">attribute_function_case</span><span class="p">(</span><span class="n">case</span><span class="p">):</span>
-</span><span id="L-7"><a href="#L-7"><span class="linenos"> 7</span></a>    <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;AMOUNT&quot;</span><span class="p">:</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">99999</span><span class="p">)}</span>
-</span><span id="L-8"><a href="#L-8"><span class="linenos"> 8</span></a>
-</span><span id="L-9"><a href="#L-9"><span class="linenos"> 9</span></a><span class="k">def</span> <span class="nf">example_arrivals_time</span><span class="p">(</span><span class="n">case</span><span class="p">):</span>
-</span><span id="L-10"><a href="#L-10"><span class="linenos">10</span></a>    <span class="n">loaded</span> <span class="o">=</span> <span class="n">AutoRegResults</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;example/example_arrivals/arrival_AutoReg_model.pkl&#39;</span><span class="p">)</span>
-</span><span id="L-11"><a href="#L-11"><span class="linenos">11</span></a>    <span class="k">return</span> <span class="n">loaded</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">case</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">case</span><span class="o">+</span><span class="mi">1</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+</span><span id="L-6"><a href="#L-6"><span class="linenos"> 6</span></a><span class="kn">from</span> <span class="nn">statsmodels.tsa.ar_model</span> <span class="kn">import</span> <span class="n">AutoRegResults</span>
+</span><span id="L-7"><a href="#L-7"><span class="linenos"> 7</span></a><span class="kn">from</span> <span class="nn">utility</span> <span class="kn">import</span> <span class="n">Buffer</span><span class="p">,</span> <span class="n">ParallelObject</span>
+</span><span id="L-8"><a href="#L-8"><span class="linenos"> 8</span></a><span class="kn">import</span> <span class="nn">random</span>
+</span><span id="L-9"><a href="#L-9"><span class="linenos"> 9</span></a><span class="kn">import</span> <span class="nn">pickle</span>
+</span><span id="L-10"><a href="#L-10"><span class="linenos">10</span></a><span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
+</span><span id="L-11"><a href="#L-11"><span class="linenos">11</span></a>
 </span><span id="L-12"><a href="#L-12"><span class="linenos">12</span></a>
-</span><span id="L-13"><a href="#L-13"><span class="linenos">13</span></a>
-</span><span id="L-14"><a href="#L-14"><span class="linenos">14</span></a><span class="k">def</span> <span class="nf">example_decision_mining</span><span class="p">(</span><span class="n">buffer</span><span class="p">:</span> <span class="n">Buffer</span><span class="p">):</span>
-</span><span id="L-15"><a href="#L-15"><span class="linenos">15</span></a>    <span class="n">dict_final</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">:</span> <span class="s2">&quot;A_CANCELLED&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">:</span> <span class="s2">&quot;A_DECLINED&quot;</span><span class="p">,</span> <span class="mi">2</span><span class="p">:</span> <span class="s2">&quot;tauSplit_5&quot;</span><span class="p">}</span>
-</span><span id="L-16"><a href="#L-16"><span class="linenos">16</span></a>    <span class="n">input_feature</span> <span class="o">=</span> <span class="nb">list</span><span class="p">()</span>
-</span><span id="L-17"><a href="#L-17"><span class="linenos">17</span></a>    <span class="n">prefix</span> <span class="o">=</span> <span class="n">buffer</span><span class="o">.</span><span class="n">get_feature</span><span class="p">(</span><span class="s2">&quot;prefix&quot;</span><span class="p">)</span>
-</span><span id="L-18"><a href="#L-18"><span class="linenos">18</span></a>    <span class="n">input_feature</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">1</span> <span class="k">if</span> <span class="s1">&#39;A_PREACCEPTED&#39;</span> <span class="ow">in</span> <span class="n">prefix</span> <span class="k">else</span> <span class="mi">0</span><span class="p">)</span>
-</span><span id="L-19"><a href="#L-19"><span class="linenos">19</span></a>    <span class="n">input_feature</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">1</span> <span class="k">if</span> <span class="s1">&#39;A_ACCEPTED&#39;</span> <span class="ow">in</span> <span class="n">prefix</span> <span class="k">else</span> <span class="mi">0</span><span class="p">)</span>
-</span><span id="L-20"><a href="#L-20"><span class="linenos">20</span></a>    <span class="n">input_feature</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">1</span> <span class="k">if</span> <span class="s1">&#39;A_FINALIZED&#39;</span> <span class="ow">in</span> <span class="n">prefix</span> <span class="k">else</span> <span class="mi">0</span><span class="p">)</span>
-</span><span id="L-21"><a href="#L-21"><span class="linenos">21</span></a>    <span class="n">input_feature</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">buffer</span><span class="o">.</span><span class="n">get_feature</span><span class="p">(</span><span class="s2">&quot;attribute_case&quot;</span><span class="p">)[</span><span class="s1">&#39;AMOUNT&#39;</span><span class="p">])</span>
-</span><span id="L-22"><a href="#L-22"><span class="linenos">22</span></a>    <span class="n">input_feature</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">buffer</span><span class="o">.</span><span class="n">get_feature</span><span class="p">(</span><span class="s2">&quot;end_time&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">hour</span><span class="p">)</span>
-</span><span id="L-23"><a href="#L-23"><span class="linenos">23</span></a>    <span class="n">input_feature</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">buffer</span><span class="o">.</span><span class="n">get_feature</span><span class="p">(</span><span class="s2">&quot;end_time&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">day</span><span class="p">)</span>
-</span><span id="L-24"><a href="#L-24"><span class="linenos">24</span></a>
-</span><span id="L-25"><a href="#L-25"><span class="linenos">25</span></a>    <span class="n">loaded_model</span> <span class="o">=</span> <span class="n">pickle</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="s1">&#39;/Users/francescameneghello/Documents/GitHub/RIMS_tool/example/example_decision_mining/random_forest.pkl&#39;</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">))</span>
-</span><span id="L-26"><a href="#L-26"><span class="linenos">26</span></a>    <span class="n">y_pred_f</span> <span class="o">=</span> <span class="n">loaded_model</span><span class="o">.</span><span class="n">predict</span><span class="p">([</span><span class="n">input_feature</span><span class="p">])</span>
-</span><span id="L-27"><a href="#L-27"><span class="linenos">27</span></a>    <span class="k">return</span> <span class="nb">int</span><span class="p">(</span><span class="n">y_pred_f</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
-</span><span id="L-28"><a href="#L-28"><span class="linenos">28</span></a>
-</span><span id="L-29"><a href="#L-29"><span class="linenos">29</span></a>    <span class="c1">#return 0</span>
+</span><span id="L-13"><a href="#L-13"><span class="linenos">13</span></a><span class="k">def</span> <span class="nf">attribute_function_case</span><span class="p">(</span><span class="n">case</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">time</span><span class="p">:</span> <span class="n">datetime</span><span class="p">):</span>
+</span><span id="L-14"><a href="#L-14"><span class="linenos">14</span></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+</span><span id="L-15"><a href="#L-15"><span class="linenos">15</span></a><span class="sd">        Function to add one or more attributes to each trace.</span>
+</span><span id="L-16"><a href="#L-16"><span class="linenos">16</span></a><span class="sd">        Input parameters are case id number and track start timestamp and return a dictionary.</span>
+</span><span id="L-17"><a href="#L-17"><span class="linenos">17</span></a><span class="sd">        For example, we generate a trace attribute, the requested loan amount, to simulate the process from the BPIChallenge2012A.xes log.</span>
+</span><span id="L-18"><a href="#L-18"><span class="linenos">18</span></a><span class="sd">    &quot;&quot;&quot;</span>
+</span><span id="L-19"><a href="#L-19"><span class="linenos">19</span></a>    <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;AMOUNT&quot;</span><span class="p">:</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">99999</span><span class="p">)}</span>
+</span><span id="L-20"><a href="#L-20"><span class="linenos">20</span></a>
+</span><span id="L-21"><a href="#L-21"><span class="linenos">21</span></a>
+</span><span id="L-22"><a href="#L-22"><span class="linenos">22</span></a><span class="k">def</span> <span class="nf">attribute_function_event</span><span class="p">(</span><span class="n">case</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">time</span><span class="p">:</span> <span class="n">datetime</span><span class="p">):</span>
+</span><span id="L-23"><a href="#L-23"><span class="linenos">23</span></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+</span><span id="L-24"><a href="#L-24"><span class="linenos">24</span></a><span class="sd">        Function to add one or more attributes to each event.</span>
+</span><span id="L-25"><a href="#L-25"><span class="linenos">25</span></a><span class="sd">        Input parameters are case id number and track start timestamp and return a dictionary.</span>
+</span><span id="L-26"><a href="#L-26"><span class="linenos">26</span></a><span class="sd">        In the following example, we assume that there are multiple bank branches where activities</span>
+</span><span id="L-27"><a href="#L-27"><span class="linenos">27</span></a><span class="sd">        are executed by day of the week. From Monday to Wednesday, activities are executed in the</span>
+</span><span id="L-28"><a href="#L-28"><span class="linenos">28</span></a><span class="sd">        Eindhoven branch otherwise in the Utrecht one.</span>
+</span><span id="L-29"><a href="#L-29"><span class="linenos">29</span></a><span class="sd">    &quot;&quot;&quot;</span>
+</span><span id="L-30"><a href="#L-30"><span class="linenos">30</span></a>    <span class="n">bank</span> <span class="o">=</span> <span class="s2">&quot;Utrecht&quot;</span> <span class="k">if</span> <span class="n">time</span><span class="o">.</span><span class="n">weekday</span><span class="p">()</span> <span class="o">&gt;</span> <span class="mi">3</span> <span class="k">else</span> <span class="s2">&quot;Eindhoven&quot;</span>
+</span><span id="L-31"><a href="#L-31"><span class="linenos">31</span></a>    <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;bank_branch&quot;</span><span class="p">:</span> <span class="n">bank</span><span class="p">}</span>
+</span><span id="L-32"><a href="#L-32"><span class="linenos">32</span></a>
+</span><span id="L-33"><a href="#L-33"><span class="linenos">33</span></a>
+</span><span id="L-34"><a href="#L-34"><span class="linenos">34</span></a><span class="k">def</span> <span class="nf">example_arrivals_time</span><span class="p">(</span><span class="n">case</span><span class="p">):</span>
+</span><span id="L-35"><a href="#L-35"><span class="linenos">35</span></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+</span><span id="L-36"><a href="#L-36"><span class="linenos">36</span></a><span class="sd">    Function to define a new arrival of a track.</span>
+</span><span id="L-37"><a href="#L-37"><span class="linenos">37</span></a><span class="sd">    For example, we used an AutoRegression model for the *arrivals example*.</span>
+</span><span id="L-38"><a href="#L-38"><span class="linenos">38</span></a><span class="sd">    &quot;&quot;&quot;</span>
+</span><span id="L-39"><a href="#L-39"><span class="linenos">39</span></a>    <span class="n">loaded</span> <span class="o">=</span> <span class="n">AutoRegResults</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;example/example_arrivals/arrival_AutoReg_model.pkl&#39;</span><span class="p">)</span>
+</span><span id="L-40"><a href="#L-40"><span class="linenos">40</span></a>    <span class="k">return</span> <span class="n">loaded</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">case</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">case</span><span class="o">+</span><span class="mi">1</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+</span><span id="L-41"><a href="#L-41"><span class="linenos">41</span></a>
+</span><span id="L-42"><a href="#L-42"><span class="linenos">42</span></a>
+</span><span id="L-43"><a href="#L-43"><span class="linenos">43</span></a><span class="k">def</span> <span class="nf">example_decision_mining</span><span class="p">(</span><span class="n">buffer</span><span class="p">:</span> <span class="n">Buffer</span><span class="p">):</span>
+</span><span id="L-44"><a href="#L-44"><span class="linenos">44</span></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+</span><span id="L-45"><a href="#L-45"><span class="linenos">45</span></a><span class="sd">    Function to define the next activity from a decision point in the Petri net model.</span>
+</span><span id="L-46"><a href="#L-46"><span class="linenos">46</span></a><span class="sd">    For example, we used a Random Forest model for the *decision mining* example.</span>
+</span><span id="L-47"><a href="#L-47"><span class="linenos">47</span></a><span class="sd">    &quot;&quot;&quot;</span>
+</span><span id="L-48"><a href="#L-48"><span class="linenos">48</span></a>    <span class="c1"># class output names ---&gt; 0: &quot;A_CANCELLED&quot;, 1: &quot;A_DECLINED&quot;, 2: &quot;tauSplit_5&quot;</span>
+</span><span id="L-49"><a href="#L-49"><span class="linenos">49</span></a>    <span class="n">input_feature</span> <span class="o">=</span> <span class="nb">list</span><span class="p">()</span>
+</span><span id="L-50"><a href="#L-50"><span class="linenos">50</span></a>    <span class="n">prefix</span> <span class="o">=</span> <span class="n">buffer</span><span class="o">.</span><span class="n">get_feature</span><span class="p">(</span><span class="s2">&quot;prefix&quot;</span><span class="p">)</span>
+</span><span id="L-51"><a href="#L-51"><span class="linenos">51</span></a>    <span class="n">input_feature</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">1</span> <span class="k">if</span> <span class="s1">&#39;A_PREACCEPTED&#39;</span> <span class="ow">in</span> <span class="n">prefix</span> <span class="k">else</span> <span class="mi">0</span><span class="p">)</span>
+</span><span id="L-52"><a href="#L-52"><span class="linenos">52</span></a>    <span class="n">input_feature</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">1</span> <span class="k">if</span> <span class="s1">&#39;A_ACCEPTED&#39;</span> <span class="ow">in</span> <span class="n">prefix</span> <span class="k">else</span> <span class="mi">0</span><span class="p">)</span>
+</span><span id="L-53"><a href="#L-53"><span class="linenos">53</span></a>    <span class="n">input_feature</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">1</span> <span class="k">if</span> <span class="s1">&#39;A_FINALIZED&#39;</span> <span class="ow">in</span> <span class="n">prefix</span> <span class="k">else</span> <span class="mi">0</span><span class="p">)</span>
+</span><span id="L-54"><a href="#L-54"><span class="linenos">54</span></a>    <span class="n">input_feature</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">buffer</span><span class="o">.</span><span class="n">get_feature</span><span class="p">(</span><span class="s2">&quot;attribute_case&quot;</span><span class="p">)[</span><span class="s1">&#39;AMOUNT&#39;</span><span class="p">])</span>
+</span><span id="L-55"><a href="#L-55"><span class="linenos">55</span></a>    <span class="n">input_feature</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">buffer</span><span class="o">.</span><span class="n">get_feature</span><span class="p">(</span><span class="s2">&quot;end_time&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">hour</span><span class="p">)</span>
+</span><span id="L-56"><a href="#L-56"><span class="linenos">56</span></a>    <span class="n">input_feature</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">buffer</span><span class="o">.</span><span class="n">get_feature</span><span class="p">(</span><span class="s2">&quot;end_time&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">day</span><span class="p">)</span>
+</span><span id="L-57"><a href="#L-57"><span class="linenos">57</span></a>
+</span><span id="L-58"><a href="#L-58"><span class="linenos">58</span></a>    <span class="n">loaded_model</span> <span class="o">=</span> <span class="n">pickle</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="s1">&#39;/Users/francescameneghello/Documents/GitHub/RIMS_tool/example/example_decision_mining/random_forest.pkl&#39;</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">))</span>
+</span><span id="L-59"><a href="#L-59"><span class="linenos">59</span></a>    <span class="n">y_pred_f</span> <span class="o">=</span> <span class="n">loaded_model</span><span class="o">.</span><span class="n">predict</span><span class="p">([</span><span class="n">input_feature</span><span class="p">])</span>
+</span><span id="L-60"><a href="#L-60"><span class="linenos">60</span></a>    <span class="k">return</span> <span class="nb">int</span><span class="p">(</span><span class="n">y_pred_f</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
 </span></pre></div>
 
 
@@ -122,18 +159,60 @@ custom_function    </h1>
 <div class="attr function">
             
         <span class="def">def</span>
-        <span class="name">attribute_function_case</span><span class="signature pdoc-code condensed">(<span class="param"><span class="k">case</span></span><span class="return-annotation">):</span></span>
+        <span class="name">attribute_function_case</span><span class="signature pdoc-code condensed">(<span class="param"><span class="n">case</span><span class="p">:</span> <span class="nb">int</span>, </span><span class="param"><span class="n">time</span><span class="p">:</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span></span><span class="return-annotation">):</span></span>
 
                 <label class="view-source-button" for="attribute_function_case-view-source"><span>View Source</span></label>
 
     </div>
     <a class="headerlink" href="#attribute_function_case"></a>
-            <div class="pdoc-code codehilite"><pre><span></span><span id="attribute_function_case-7"><a href="#attribute_function_case-7"><span class="linenos">7</span></a><span class="k">def</span> <span class="nf">attribute_function_case</span><span class="p">(</span><span class="n">case</span><span class="p">):</span>
-</span><span id="attribute_function_case-8"><a href="#attribute_function_case-8"><span class="linenos">8</span></a>    <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;AMOUNT&quot;</span><span class="p">:</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">99999</span><span class="p">)}</span>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="attribute_function_case-14"><a href="#attribute_function_case-14"><span class="linenos">14</span></a><span class="k">def</span> <span class="nf">attribute_function_case</span><span class="p">(</span><span class="n">case</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">time</span><span class="p">:</span> <span class="n">datetime</span><span class="p">):</span>
+</span><span id="attribute_function_case-15"><a href="#attribute_function_case-15"><span class="linenos">15</span></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+</span><span id="attribute_function_case-16"><a href="#attribute_function_case-16"><span class="linenos">16</span></a><span class="sd">        Function to add one or more attributes to each trace.</span>
+</span><span id="attribute_function_case-17"><a href="#attribute_function_case-17"><span class="linenos">17</span></a><span class="sd">        Input parameters are case id number and track start timestamp and return a dictionary.</span>
+</span><span id="attribute_function_case-18"><a href="#attribute_function_case-18"><span class="linenos">18</span></a><span class="sd">        For example, we generate a trace attribute, the requested loan amount, to simulate the process from the BPIChallenge2012A.xes log.</span>
+</span><span id="attribute_function_case-19"><a href="#attribute_function_case-19"><span class="linenos">19</span></a><span class="sd">    &quot;&quot;&quot;</span>
+</span><span id="attribute_function_case-20"><a href="#attribute_function_case-20"><span class="linenos">20</span></a>    <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;AMOUNT&quot;</span><span class="p">:</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">99999</span><span class="p">)}</span>
 </span></pre></div>
 
 
-    
+            <div class="docstring"><p>Function to add one or more attributes to each trace.
+Input parameters are case id number and track start timestamp and return a dictionary.
+For example, we generate a trace attribute, the requested loan amount, to simulate the process from the BPIChallenge2012A.xes log.</p>
+</div>
+
+
+                </section>
+                <section id="attribute_function_event">
+                            <input id="attribute_function_event-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
+<div class="attr function">
+            
+        <span class="def">def</span>
+        <span class="name">attribute_function_event</span><span class="signature pdoc-code condensed">(<span class="param"><span class="n">case</span><span class="p">:</span> <span class="nb">int</span>, </span><span class="param"><span class="n">time</span><span class="p">:</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span></span><span class="return-annotation">):</span></span>
+
+                <label class="view-source-button" for="attribute_function_event-view-source"><span>View Source</span></label>
+
+    </div>
+    <a class="headerlink" href="#attribute_function_event"></a>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="attribute_function_event-23"><a href="#attribute_function_event-23"><span class="linenos">23</span></a><span class="k">def</span> <span class="nf">attribute_function_event</span><span class="p">(</span><span class="n">case</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">time</span><span class="p">:</span> <span class="n">datetime</span><span class="p">):</span>
+</span><span id="attribute_function_event-24"><a href="#attribute_function_event-24"><span class="linenos">24</span></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+</span><span id="attribute_function_event-25"><a href="#attribute_function_event-25"><span class="linenos">25</span></a><span class="sd">        Function to add one or more attributes to each event.</span>
+</span><span id="attribute_function_event-26"><a href="#attribute_function_event-26"><span class="linenos">26</span></a><span class="sd">        Input parameters are case id number and track start timestamp and return a dictionary.</span>
+</span><span id="attribute_function_event-27"><a href="#attribute_function_event-27"><span class="linenos">27</span></a><span class="sd">        In the following example, we assume that there are multiple bank branches where activities</span>
+</span><span id="attribute_function_event-28"><a href="#attribute_function_event-28"><span class="linenos">28</span></a><span class="sd">        are executed by day of the week. From Monday to Wednesday, activities are executed in the</span>
+</span><span id="attribute_function_event-29"><a href="#attribute_function_event-29"><span class="linenos">29</span></a><span class="sd">        Eindhoven branch otherwise in the Utrecht one.</span>
+</span><span id="attribute_function_event-30"><a href="#attribute_function_event-30"><span class="linenos">30</span></a><span class="sd">    &quot;&quot;&quot;</span>
+</span><span id="attribute_function_event-31"><a href="#attribute_function_event-31"><span class="linenos">31</span></a>    <span class="n">bank</span> <span class="o">=</span> <span class="s2">&quot;Utrecht&quot;</span> <span class="k">if</span> <span class="n">time</span><span class="o">.</span><span class="n">weekday</span><span class="p">()</span> <span class="o">&gt;</span> <span class="mi">3</span> <span class="k">else</span> <span class="s2">&quot;Eindhoven&quot;</span>
+</span><span id="attribute_function_event-32"><a href="#attribute_function_event-32"><span class="linenos">32</span></a>    <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;bank_branch&quot;</span><span class="p">:</span> <span class="n">bank</span><span class="p">}</span>
+</span></pre></div>
+
+
+            <div class="docstring"><p>Function to add one or more attributes to each event.
+Input parameters are case id number and track start timestamp and return a dictionary.
+In the following example, we assume that there are multiple bank branches where activities
+are executed by day of the week. From Monday to Wednesday, activities are executed in the
+Eindhoven branch otherwise in the Utrecht one.</p>
+</div>
+
 
                 </section>
                 <section id="example_arrivals_time">
@@ -147,13 +226,20 @@ custom_function    </h1>
 
     </div>
     <a class="headerlink" href="#example_arrivals_time"></a>
-            <div class="pdoc-code codehilite"><pre><span></span><span id="example_arrivals_time-10"><a href="#example_arrivals_time-10"><span class="linenos">10</span></a><span class="k">def</span> <span class="nf">example_arrivals_time</span><span class="p">(</span><span class="n">case</span><span class="p">):</span>
-</span><span id="example_arrivals_time-11"><a href="#example_arrivals_time-11"><span class="linenos">11</span></a>    <span class="n">loaded</span> <span class="o">=</span> <span class="n">AutoRegResults</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;example/example_arrivals/arrival_AutoReg_model.pkl&#39;</span><span class="p">)</span>
-</span><span id="example_arrivals_time-12"><a href="#example_arrivals_time-12"><span class="linenos">12</span></a>    <span class="k">return</span> <span class="n">loaded</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">case</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">case</span><span class="o">+</span><span class="mi">1</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="example_arrivals_time-35"><a href="#example_arrivals_time-35"><span class="linenos">35</span></a><span class="k">def</span> <span class="nf">example_arrivals_time</span><span class="p">(</span><span class="n">case</span><span class="p">):</span>
+</span><span id="example_arrivals_time-36"><a href="#example_arrivals_time-36"><span class="linenos">36</span></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+</span><span id="example_arrivals_time-37"><a href="#example_arrivals_time-37"><span class="linenos">37</span></a><span class="sd">    Function to define a new arrival of a track.</span>
+</span><span id="example_arrivals_time-38"><a href="#example_arrivals_time-38"><span class="linenos">38</span></a><span class="sd">    For example, we used an AutoRegression model for the *arrivals example*.</span>
+</span><span id="example_arrivals_time-39"><a href="#example_arrivals_time-39"><span class="linenos">39</span></a><span class="sd">    &quot;&quot;&quot;</span>
+</span><span id="example_arrivals_time-40"><a href="#example_arrivals_time-40"><span class="linenos">40</span></a>    <span class="n">loaded</span> <span class="o">=</span> <span class="n">AutoRegResults</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;example/example_arrivals/arrival_AutoReg_model.pkl&#39;</span><span class="p">)</span>
+</span><span id="example_arrivals_time-41"><a href="#example_arrivals_time-41"><span class="linenos">41</span></a>    <span class="k">return</span> <span class="n">loaded</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">case</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">case</span><span class="o">+</span><span class="mi">1</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
 </span></pre></div>
 
 
-    
+            <div class="docstring"><p>Function to define a new arrival of a track.
+For example, we used an AutoRegression model for the <em>arrivals example</em>.</p>
+</div>
+
 
                 </section>
                 <section id="example_decision_mining">
@@ -167,26 +253,31 @@ custom_function    </h1>
 
     </div>
     <a class="headerlink" href="#example_decision_mining"></a>
-            <div class="pdoc-code codehilite"><pre><span></span><span id="example_decision_mining-15"><a href="#example_decision_mining-15"><span class="linenos">15</span></a><span class="k">def</span> <span class="nf">example_decision_mining</span><span class="p">(</span><span class="n">buffer</span><span class="p">:</span> <span class="n">Buffer</span><span class="p">):</span>
-</span><span id="example_decision_mining-16"><a href="#example_decision_mining-16"><span class="linenos">16</span></a>    <span class="n">dict_final</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">:</span> <span class="s2">&quot;A_CANCELLED&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">:</span> <span class="s2">&quot;A_DECLINED&quot;</span><span class="p">,</span> <span class="mi">2</span><span class="p">:</span> <span class="s2">&quot;tauSplit_5&quot;</span><span class="p">}</span>
-</span><span id="example_decision_mining-17"><a href="#example_decision_mining-17"><span class="linenos">17</span></a>    <span class="n">input_feature</span> <span class="o">=</span> <span class="nb">list</span><span class="p">()</span>
-</span><span id="example_decision_mining-18"><a href="#example_decision_mining-18"><span class="linenos">18</span></a>    <span class="n">prefix</span> <span class="o">=</span> <span class="n">buffer</span><span class="o">.</span><span class="n">get_feature</span><span class="p">(</span><span class="s2">&quot;prefix&quot;</span><span class="p">)</span>
-</span><span id="example_decision_mining-19"><a href="#example_decision_mining-19"><span class="linenos">19</span></a>    <span class="n">input_feature</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">1</span> <span class="k">if</span> <span class="s1">&#39;A_PREACCEPTED&#39;</span> <span class="ow">in</span> <span class="n">prefix</span> <span class="k">else</span> <span class="mi">0</span><span class="p">)</span>
-</span><span id="example_decision_mining-20"><a href="#example_decision_mining-20"><span class="linenos">20</span></a>    <span class="n">input_feature</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">1</span> <span class="k">if</span> <span class="s1">&#39;A_ACCEPTED&#39;</span> <span class="ow">in</span> <span class="n">prefix</span> <span class="k">else</span> <span class="mi">0</span><span class="p">)</span>
-</span><span id="example_decision_mining-21"><a href="#example_decision_mining-21"><span class="linenos">21</span></a>    <span class="n">input_feature</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">1</span> <span class="k">if</span> <span class="s1">&#39;A_FINALIZED&#39;</span> <span class="ow">in</span> <span class="n">prefix</span> <span class="k">else</span> <span class="mi">0</span><span class="p">)</span>
-</span><span id="example_decision_mining-22"><a href="#example_decision_mining-22"><span class="linenos">22</span></a>    <span class="n">input_feature</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">buffer</span><span class="o">.</span><span class="n">get_feature</span><span class="p">(</span><span class="s2">&quot;attribute_case&quot;</span><span class="p">)[</span><span class="s1">&#39;AMOUNT&#39;</span><span class="p">])</span>
-</span><span id="example_decision_mining-23"><a href="#example_decision_mining-23"><span class="linenos">23</span></a>    <span class="n">input_feature</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">buffer</span><span class="o">.</span><span class="n">get_feature</span><span class="p">(</span><span class="s2">&quot;end_time&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">hour</span><span class="p">)</span>
-</span><span id="example_decision_mining-24"><a href="#example_decision_mining-24"><span class="linenos">24</span></a>    <span class="n">input_feature</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">buffer</span><span class="o">.</span><span class="n">get_feature</span><span class="p">(</span><span class="s2">&quot;end_time&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">day</span><span class="p">)</span>
-</span><span id="example_decision_mining-25"><a href="#example_decision_mining-25"><span class="linenos">25</span></a>
-</span><span id="example_decision_mining-26"><a href="#example_decision_mining-26"><span class="linenos">26</span></a>    <span class="n">loaded_model</span> <span class="o">=</span> <span class="n">pickle</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="s1">&#39;/Users/francescameneghello/Documents/GitHub/RIMS_tool/example/example_decision_mining/random_forest.pkl&#39;</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">))</span>
-</span><span id="example_decision_mining-27"><a href="#example_decision_mining-27"><span class="linenos">27</span></a>    <span class="n">y_pred_f</span> <span class="o">=</span> <span class="n">loaded_model</span><span class="o">.</span><span class="n">predict</span><span class="p">([</span><span class="n">input_feature</span><span class="p">])</span>
-</span><span id="example_decision_mining-28"><a href="#example_decision_mining-28"><span class="linenos">28</span></a>    <span class="k">return</span> <span class="nb">int</span><span class="p">(</span><span class="n">y_pred_f</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
-</span><span id="example_decision_mining-29"><a href="#example_decision_mining-29"><span class="linenos">29</span></a>
-</span><span id="example_decision_mining-30"><a href="#example_decision_mining-30"><span class="linenos">30</span></a>    <span class="c1">#return 0</span>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="example_decision_mining-44"><a href="#example_decision_mining-44"><span class="linenos">44</span></a><span class="k">def</span> <span class="nf">example_decision_mining</span><span class="p">(</span><span class="n">buffer</span><span class="p">:</span> <span class="n">Buffer</span><span class="p">):</span>
+</span><span id="example_decision_mining-45"><a href="#example_decision_mining-45"><span class="linenos">45</span></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+</span><span id="example_decision_mining-46"><a href="#example_decision_mining-46"><span class="linenos">46</span></a><span class="sd">    Function to define the next activity from a decision point in the Petri net model.</span>
+</span><span id="example_decision_mining-47"><a href="#example_decision_mining-47"><span class="linenos">47</span></a><span class="sd">    For example, we used a Random Forest model for the *decision mining* example.</span>
+</span><span id="example_decision_mining-48"><a href="#example_decision_mining-48"><span class="linenos">48</span></a><span class="sd">    &quot;&quot;&quot;</span>
+</span><span id="example_decision_mining-49"><a href="#example_decision_mining-49"><span class="linenos">49</span></a>    <span class="c1"># class output names ---&gt; 0: &quot;A_CANCELLED&quot;, 1: &quot;A_DECLINED&quot;, 2: &quot;tauSplit_5&quot;</span>
+</span><span id="example_decision_mining-50"><a href="#example_decision_mining-50"><span class="linenos">50</span></a>    <span class="n">input_feature</span> <span class="o">=</span> <span class="nb">list</span><span class="p">()</span>
+</span><span id="example_decision_mining-51"><a href="#example_decision_mining-51"><span class="linenos">51</span></a>    <span class="n">prefix</span> <span class="o">=</span> <span class="n">buffer</span><span class="o">.</span><span class="n">get_feature</span><span class="p">(</span><span class="s2">&quot;prefix&quot;</span><span class="p">)</span>
+</span><span id="example_decision_mining-52"><a href="#example_decision_mining-52"><span class="linenos">52</span></a>    <span class="n">input_feature</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">1</span> <span class="k">if</span> <span class="s1">&#39;A_PREACCEPTED&#39;</span> <span class="ow">in</span> <span class="n">prefix</span> <span class="k">else</span> <span class="mi">0</span><span class="p">)</span>
+</span><span id="example_decision_mining-53"><a href="#example_decision_mining-53"><span class="linenos">53</span></a>    <span class="n">input_feature</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">1</span> <span class="k">if</span> <span class="s1">&#39;A_ACCEPTED&#39;</span> <span class="ow">in</span> <span class="n">prefix</span> <span class="k">else</span> <span class="mi">0</span><span class="p">)</span>
+</span><span id="example_decision_mining-54"><a href="#example_decision_mining-54"><span class="linenos">54</span></a>    <span class="n">input_feature</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">1</span> <span class="k">if</span> <span class="s1">&#39;A_FINALIZED&#39;</span> <span class="ow">in</span> <span class="n">prefix</span> <span class="k">else</span> <span class="mi">0</span><span class="p">)</span>
+</span><span id="example_decision_mining-55"><a href="#example_decision_mining-55"><span class="linenos">55</span></a>    <span class="n">input_feature</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">buffer</span><span class="o">.</span><span class="n">get_feature</span><span class="p">(</span><span class="s2">&quot;attribute_case&quot;</span><span class="p">)[</span><span class="s1">&#39;AMOUNT&#39;</span><span class="p">])</span>
+</span><span id="example_decision_mining-56"><a href="#example_decision_mining-56"><span class="linenos">56</span></a>    <span class="n">input_feature</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">buffer</span><span class="o">.</span><span class="n">get_feature</span><span class="p">(</span><span class="s2">&quot;end_time&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">hour</span><span class="p">)</span>
+</span><span id="example_decision_mining-57"><a href="#example_decision_mining-57"><span class="linenos">57</span></a>    <span class="n">input_feature</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">buffer</span><span class="o">.</span><span class="n">get_feature</span><span class="p">(</span><span class="s2">&quot;end_time&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">day</span><span class="p">)</span>
+</span><span id="example_decision_mining-58"><a href="#example_decision_mining-58"><span class="linenos">58</span></a>
+</span><span id="example_decision_mining-59"><a href="#example_decision_mining-59"><span class="linenos">59</span></a>    <span class="n">loaded_model</span> <span class="o">=</span> <span class="n">pickle</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="s1">&#39;/Users/francescameneghello/Documents/GitHub/RIMS_tool/example/example_decision_mining/random_forest.pkl&#39;</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">))</span>
+</span><span id="example_decision_mining-60"><a href="#example_decision_mining-60"><span class="linenos">60</span></a>    <span class="n">y_pred_f</span> <span class="o">=</span> <span class="n">loaded_model</span><span class="o">.</span><span class="n">predict</span><span class="p">([</span><span class="n">input_feature</span><span class="p">])</span>
+</span><span id="example_decision_mining-61"><a href="#example_decision_mining-61"><span class="linenos">61</span></a>    <span class="k">return</span> <span class="nb">int</span><span class="p">(</span><span class="n">y_pred_f</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
 </span></pre></div>
 
 
-    
+            <div class="docstring"><p>Function to define the next activity from a decision point in the Petri net model.
+For example, we used a Random Forest model for the <em>decision mining</em> example.</p>
+</div>
+
 
                 </section>
     </main>
