@@ -32,8 +32,8 @@ class Token(object):
             self.see_activity = True
         self._writer = writer
         self._parallel_object = parallel_object
-        self.buffer = Buffer(writer, values)
-        self.buffer.set_feature("attribute_case", custom.attribute_function_case(self._id, time))
+        self._buffer = Buffer(writer, values)
+        self._buffer.set_feature("attribute_case", custom.attribute_function_case(self._id, time))
 
     def _delete_places(self, places):
         delete = []
@@ -44,14 +44,17 @@ class Token(object):
         return delete
 
     def simulation(self, env: simpy.Environment):
+        """
+            The main function to handle the simulation of a single trace
+        """
         trans = self.next_transition(env)
         ### register trace in process ###
         request_resource = None
-        resource_trace = self._process.get_resource_trace()
-        resource_trace_request = resource_trace.request() if type == 'sequential' else None
+        resource_trace = self._process._get_resource_trace()
+        resource_trace_request = resource_trace.request() if self._type == 'sequential' else None
 
         while trans is not None:
-            if self.see_activity and type == 'sequential':
+            if not self.see_activity and self._type == 'sequential':
                 yield resource_trace_request
             if type(trans) == list:
                 yield AllOf(env, trans)
@@ -63,22 +66,23 @@ class Token(object):
                 trans = self.next_transition(env)
 
             if trans and trans.label:
-                self.buffer.set_feature("id_case", self._id)
-                self.buffer.set_feature("activity", trans.label)
-                self.buffer.set_feature("prefix", self._prefix.get_prefix(self._start_time + timedelta(seconds=env.now)))
-                self.buffer.set_feature("attribute_event", custom.attribute_function_event(self._id, self._start_time + timedelta(seconds=env.now)))
+                self._buffer.set_feature("id_case", self._id)
+                self._buffer.set_feature("activity", trans.label)
+                self._buffer.set_feature("prefix", self._prefix.get_prefix(self._start_time + timedelta(seconds=env.now)))
+                self._buffer.set_feature("attribute_event", custom.attribute_function_event(self._id, self._start_time + timedelta(seconds=env.now)))
 
                 ### call predictor for waiting time
                 if trans.label in self._params.ROLE_ACTIVITY:
-                    resource = self._process.get_resource(self._params.ROLE_ACTIVITY[trans.label])
+                    resource = self._process._get_resource(self._params.ROLE_ACTIVITY[trans.label])
                 else:
                     raise ValueError('Not resource/role defined for this activity', trans.label)
 
-                self.buffer.set_feature("wip_wait", 0 if type != 'sequential' else resource_trace.count-1)
-                self.buffer.set_feature("ro_single", self._process.get_occupations_single_resource(resource.get_name()))
+                #self._buffer.set_feature("wip_wait", 0 if type != 'sequential' else resource_trace.count-1)
+                self._buffer.set_feature("wip_wait", resource_trace.count)
+                self._buffer.set_feature("ro_single", self._process.get_occupations_single_role(resource.get_name()))
 
                 queue = 0 if len(resource.queue) == 0 else len(resource.queue[-1])
-                self.buffer.set_feature("queue", queue)
+                self._buffer.set_feature("queue", queue)
 
                 waiting = self.define_waiting_time(trans.label)
 
@@ -86,36 +90,37 @@ class Token(object):
                     yield env.timeout(waiting)
 
                 request_resource = resource.request()
-                self.buffer.set_feature("enabled_time", self._start_time + timedelta(seconds=env.now))
+                self._buffer.set_feature("enabled_time", self._start_time + timedelta(seconds=env.now))
                 yield request_resource
 
                 ### register event in process ###
-                resource_task = self._process.get_resource_event(trans.label)
+                resource_task = self._process._get_resource_event(trans.label)
                 resource_task_request = resource_task.request()
                 yield resource_task_request
 
-                single_resource = self._process.set_single_resource(resource.get_name())
+                single_resource = self._process._set_single_resource(resource.get_name())
 
                 ### call predictor for processing time
-                self.buffer.set_feature("wip_start", 0 if type != 'sequential' else resource_trace.count-1)
-                self.buffer.set_feature("ro_single", self._process.get_occupations_single_resource(resource.get_name()))
-                self.buffer.set_feature("wip_activity", resource_task.count-1)
+                self._buffer.set_feature("wip_start", resource_trace.count)
+                self._buffer.set_feature("ro_single", self._process.get_occupations_single_role(resource.get_name()))
+                self._buffer.set_feature("ro_total", self._process.get_occupations_all_role())
+                self._buffer.set_feature("wip_activity", resource_task.count)
 
                 stop = resource.to_time_schedule(self._start_time + timedelta(seconds=env.now))
                 yield env.timeout(stop)
-                self.buffer.set_feature("start_time", self._start_time + timedelta(seconds=env.now))
+                self._buffer.set_feature("start_time", self._start_time + timedelta(seconds=env.now))
                 duration = self.define_processing_time(trans.label)
 
                 yield env.timeout(duration)
 
-                self.buffer.set_feature("wip_end", 0 if type != 'sequential' else resource_trace.count-1)
-                self.buffer.set_feature("end_time", self._start_time + timedelta(seconds=env.now))
-                self.buffer.set_feature("role", resource.get_name())
-                self.buffer.set_feature("resource", single_resource)
-                self.buffer.print_values()
+                self._buffer.set_feature("wip_end", resource_trace.count)
+                self._buffer.set_feature("end_time", self._start_time + timedelta(seconds=env.now))
+                self._buffer.set_feature("role", resource.get_name())
+                self._buffer.set_feature("resource", single_resource)
+                self._buffer.print_values()
                 self._prefix.add_activity(trans.label)
                 resource.release(request_resource)
-                self._process.release_single_resource(resource.get_name(), single_resource)
+                self._process._release_single_resource(resource.get_name(), single_resource)
                 resource_task.release(resource_task_request)
 
             self._update_marking(trans)
@@ -130,7 +135,7 @@ class Token(object):
         elements = self._params.ROLE_ACTIVITY[activity.label]
         resource_object = []
         for e in elements:
-            resource_object.append(self._process.get_resource(e))
+            resource_object.append(self._process._get_resource(e))
         return resource_object
 
     def _update_marking(self, trans):
@@ -307,7 +312,7 @@ class Token(object):
                   "wip_wait": 0
         }
         ```"""
-        print(json.dumps(self.buffer.buffer, indent=14, sort_keys=True))
+        print(json.dumps(self._buffer.buffer, indent=14, sort_keys=True))
         return 0
 
     def call_custom_waiting_time(self):
@@ -331,7 +336,7 @@ class Token(object):
                   "wip_wait": 0
         }
         ```"""
-        print(json.dumps(self.buffer.buffer, indent=14, sort_keys=True))
+        print(self._buffer.buffer)
         return 0
 
     def call_custom_xor_function(self, all_enabled_trans):
@@ -339,23 +344,27 @@ class Token(object):
         Example of features that can be used to predict:
         ```json
         {
-              "activity": "B",
-              "enabled_time": "2023-03-16 11:15:27.449050",
-              "end_time": "2023-03-16 12:49:17.927216",
-              "id_case": 0,
-              "prefix": [ "A", "C", "E"],
-              "queue": 0,
-              "ro_single": 0.33,
-              "ro_total": [],
-              "role": "Role 2",
-              "start_time": "2023-03-16 11:15:27.449050",
-              "wip_activity": 1,
-              "wip_end": 3,
-              "wip_start": 3,
-              "wip_wait": 3
+            "id_case": 43,
+            "activity": "A_FINALIZED",
+            "enabled_time": "2023-08-24 16:24:29",
+            "start_time": "2023-08-24 19:37:31",
+            "end_time": "2023-08-24 20:03:34",
+            "role": "Role 2",
+            "resource": "Sue",
+            "wip_wait": 16,
+            "wip_start": 4,
+            "wip_end": 4,
+            "wip_activity": 2,
+            "ro_total": [0.0, 1],
+            "ro_single": 1,
+            "queue": 15,
+            "prefix": ["A_SUBMITTED", "A_PARTLYSUBMITTED", "A_PREACCEPTED", "A_ACCEPTED"],
+            "attribute_case": {"AMOUNT": 86061},
+            "attribute_event": {"bank_branch": "Eindhoven"}
+
         }
         ```"""
-        return custom.example_decision_mining(self.buffer)
+        return custom.example_decision_mining(self._buffer)
 
     def next_transition(self, env):
         """
@@ -379,6 +388,6 @@ class Token(object):
                     tokens_to_delete = self._delete_tokens(name)
                     for p in tokens_to_delete:
                         del new_am[p]
-                    path = env.process(Token(self._id, self._net, new_am, self._params, self._process, self._prefix, "parallel", self._writer, self._parallel_object, self.buffer._get_dictionary()).simulation(env))
+                    path = env.process(Token(self._id, self._net, new_am, self._params, self._process, self._prefix, "parallel", self._writer, self._parallel_object, self._buffer._get_dictionary()).simulation(env))
                     events.append(path)
                 return events

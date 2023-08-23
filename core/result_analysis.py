@@ -24,7 +24,7 @@ class Result(object):
 
     def __init__(self, folder: str, params: Parameters):
         self._folder = folder
-        self._all_file = glob.glob("{}/output/{}/simulated_log_*".format(os.getcwd(), self._folder))
+        self._all_file = glob.glob("{}/output/{}/simulated_log_*.csv".format(os.getcwd(), self._folder))
         self._params = params
 
     def analysis_log(self, sim):

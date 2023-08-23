@@ -28,6 +28,21 @@ Once installed all the packages, you can execute the tool from a terminal specif
 * `-i`: specify the total number of simulation to generate
 * `-o`: specify the path where to save the output files
 
+## Input files
+
+### Petri net model
+
+### Simulation parameters
+| Key word of parameters | Optional |                 Default                  | Description                                                                                                                                            |
+|:-----------------------|:--------:|:----------------------------------------:|:-------------------------------------------------------------------------------------------------------------------------------------------------------|
+| *start_timestamp*      |   True   |              datetime.now()              | Starting date simulation.                                                                                                                              |
+| *duration_simulation*  |   True   |                 365 days                 | Total duration of simulation.                                                                                                                          |
+| *probability*          |   True   | equal probability for each decison point | Three different possible ways to set which path following for decision point (AUTO, float, CUSTOM), for details see the example *decision_mining*.     |
+| *processing_time*      |  False   |                   ----                   | Three different possible ways to set the processing time for each activity (AUTO, DISTRIBUTION, CUSTOM), for details see the example *process times*.  |
+| *waiting_time*         |  False   |                   ----                   | Three different possible ways to set the processing time for each activity (AUTO, DISTRIBUTION, CUSTOM), for details see the example *process times*.  |
+| *interTriggerTimer*    |  False   |                   ----                   | Two different ways to generate the arrivals times of the next tokens in the simulation (DISTRIBUTION, CUSTOM), for details see the example *arrivals*. |
+| *resource*             |  False   |                   ----                   | The list of Roles involved in the simulation, for each of which, individual resources and work schedule are specified (see the example *arrivals*).    |
+| *resource_table*       |  False   |                   ----                   | For each activity, it is defined which role is to perform it.                                                                                          |
 
 ## Authors
 

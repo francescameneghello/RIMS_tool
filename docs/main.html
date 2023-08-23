@@ -56,6 +56,7 @@
   <ul>
     <li><a href="#installation-guide">Installation guide</a></li>
     <li><a href="#getting-started">Getting Started</a></li>
+    <li><a href="#input-files">Input files</a></li>
     <li><a href="#authors">Authors</a></li>
   </ul></li>
   <li><a href="#example-of-arrivals-time-and-calendars">Example of Arrivals Time and Calendars</a></li>
@@ -112,6 +113,73 @@ In this paper, we aim at taking a step further by introducing \rims (Runtime Int
 <li><code>-i</code>: specify the total number of simulation to generate</li>
 <li><code>-o</code>: specify the path where to save the output files</li>
 </ul>
+
+<h2 id="input-files">Input files</h2>
+
+<h3 id="petri-net-model">Petri net model</h3>
+
+<h3 id="simulation-parameters">Simulation parameters</h3>
+
+<table>
+<thead>
+<tr>
+  <th style="text-align:left;">Key word of parameters</th>
+  <th style="text-align:center;">Optional</th>
+  <th style="text-align:center;">Default</th>
+  <th style="text-align:left;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td style="text-align:left;"><em>start_timestamp</em></td>
+  <td style="text-align:center;">True</td>
+  <td style="text-align:center;">datetime.now()</td>
+  <td style="text-align:left;">Starting date simulation.</td>
+</tr>
+<tr>
+  <td style="text-align:left;"><em>duration_simulation</em></td>
+  <td style="text-align:center;">True</td>
+  <td style="text-align:center;">365 days</td>
+  <td style="text-align:left;">Total duration of simulation.</td>
+</tr>
+<tr>
+  <td style="text-align:left;"><em>probability</em></td>
+  <td style="text-align:center;">True</td>
+  <td style="text-align:center;">equal probability for each decison point</td>
+  <td style="text-align:left;">Three different possible ways to set which path following for decision point (AUTO, float, CUSTOM), for details see the example <em>decision_mining</em>.</td>
+</tr>
+<tr>
+  <td style="text-align:left;"><em>processing_time</em></td>
+  <td style="text-align:center;">False</td>
+  <td style="text-align:center;">----</td>
+  <td style="text-align:left;">Three different possible ways to set the processing time for each activity (AUTO, DISTRIBUTION, CUSTOM), for details see the example <em>process times</em>.</td>
+</tr>
+<tr>
+  <td style="text-align:left;"><em>waiting_time</em></td>
+  <td style="text-align:center;">False</td>
+  <td style="text-align:center;">----</td>
+  <td style="text-align:left;">Three different possible ways to set the processing time for each activity (AUTO, DISTRIBUTION, CUSTOM), for details see the example <em>process times</em>.</td>
+</tr>
+<tr>
+  <td style="text-align:left;"><em>interTriggerTimer</em></td>
+  <td style="text-align:center;">False</td>
+  <td style="text-align:center;">----</td>
+  <td style="text-align:left;">Two different ways to generate the arrivals times of the next tokens in the simulation (DISTRIBUTION, CUSTOM), for details see the example <em>arrivals</em>.</td>
+</tr>
+<tr>
+  <td style="text-align:left;"><em>resource</em></td>
+  <td style="text-align:center;">False</td>
+  <td style="text-align:center;">----</td>
+  <td style="text-align:left;">The list of Roles involved in the simulation, for each of which, individual resources and work schedule are specified (see the example <em>arrivals</em>).</td>
+</tr>
+<tr>
+  <td style="text-align:left;"><em>resource_table</em></td>
+  <td style="text-align:center;">False</td>
+  <td style="text-align:center;">----</td>
+  <td style="text-align:left;">For each activity, it is defined which role is to perform it.</td>
+</tr>
+</tbody>
+</table>
 
 <h2 id="authors">Authors</h2>
 

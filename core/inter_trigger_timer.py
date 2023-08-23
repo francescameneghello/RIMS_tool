@@ -23,7 +23,7 @@ class InterTriggerTimer(object):
         """Generate a new arrival from the distribution and check if the new token arrival is inside calendar,
         otherwise wait for a suitable time."""
         if self._type == 'distribution':
-            resource = self._process.get_resource('TRIGGER_TIMER')
+            resource = self._process._get_resource('TRIGGER_TIMER')
             arrival = getattr(np.random, self.name_distribution)(**self.params, size=1)[0]
             if resource.get_calendar():
                 stop = resource.to_time_schedule(self._start_time + timedelta(seconds=env.now + arrival))

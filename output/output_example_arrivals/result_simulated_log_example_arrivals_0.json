@@ -1,0 +1,24 @@
+{
+              "total_events": 411,
+              "total_traces": 100,
+              "A_SUBMITTED_frequency": 100,
+              "A_PARTLYSUBMITTED_frequency": 100,
+              "A_PREACCEPTED_frequency": 45,
+              "A_ACCEPTED_frequency": 27,
+              "A_FINALIZED_frequency": 17,
+              "A_CANCELLED_frequency": 30,
+              "A_DECLINED_frequency": 23,
+              "A_APPROVED_frequency": 23,
+              "A_REGISTERED_frequency": 23,
+              "A_ACTIVATED_frequency": 23,
+              "Role 1": {
+                            "total": 127,
+                            "Sara": 56,
+                            "Mike": 71
+              },
+              "Role 2": {
+                            "total": 284,
+                            "Sue": 138,
+                            "Ellen": 146
+              }
+}

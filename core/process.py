@@ -1,8 +1,7 @@
 '''
 Class to manage the resources shared by all the traces in the process.
 
-(Aggiungere immagine delle risorse utilizzate: 1) quelle dei ruoli e delle sigole risorse
-2) risorsa fittizzia per tracce e wip 2) risorsa fittizzia per attivita' e wip_activity
+<img src="../old_html_version/process_class.png" alt="Alt Text" width="780">
 '''
 import simpy
 from resource_simulation import ResourceSim
@@ -33,21 +32,32 @@ class SimulationProcess(object):
         print(dict_role)
         return dict_role
 
-    def get_occupations_single_resource(self, resource):
+    def get_occupations_single_role(self, resource):
         """
-        Method to retrieve the occupation of resource as intercase feature:
+        Method to retrieve the specified role occupancy in percentage, as an intercase feature:
         $\\frac{resources \: occupated \: in \:role}{total\:resources\:in\:role}$.
         """
         occup = self._resources[resource].get_resource().count / self._resources[resource].capacity
         return round(occup, 2)
 
-    def get_resource(self, resource_label):
+    def get_occupations_all_role(self):
+        """
+        Method to retrieve the occupancy in percentage of all roles, as an intercase feature.
+        """
+        list_occupations = []
+        for res in self._resources:
+            if res != 'TRIGGER_TIMER':
+                occup = round(self._resources[res].get_resource().count / self._resources[res].capacity, 2)
+                list_occupations.append(occup)
+        return list_occupations
+
+    def _get_resource(self, resource_label):
         return self._resources[resource_label]
 
-    def get_resource_event(self, task):
+    def _get_resource_event(self, task):
         return self._resource_events[task]
 
-    def get_resource_trace(self):
+    def _get_resource_trace(self):
         return self._resource_trace
 
     def _define_resource_events(self, env):
@@ -56,8 +66,8 @@ class SimulationProcess(object):
             resources[key] = simpy.Resource(env, math.inf)
         return resources
 
-    def set_single_resource(self, resource_task):
+    def _set_single_resource(self, resource_task):
         return self._resources[resource_task]._get_resources_name()
 
-    def release_single_resource(self, role, resource):
+    def _release_single_resource(self, role, resource):
         self._resources[role]._release_resource_name(resource)

@@ -1,18 +1,5 @@
 """
-    Define the main parameters of simulation:
-
-    | Key word of parameters | Optional | Default | Description  |
-    |:-----------|:----------:|:----------:|:----------|
-    | *start_timestamp*    |    True    | datetime.now() | Starting date simulation |
-    | *duration_simulation*  | True      | 365 days   | Total duration of simulation |
-    | *probability*  | True        | equal probability for each gateway    | |
-    | *probability*  | True        | equal probability for each gateway    | |
-    | *processing_time*  | False        | ----    | |
-    | *waiting_time*  | False       | ---    | |
-    | *interTriggerTimer*  | False       |    | |
-    | *resource_table*  | True      |    | |
-
-    See complete examples in <metti link alle pagine di esempio>
+    Class for reading simulation parameters
 """
 import json
 import math
