@@ -24,6 +24,18 @@
         "A_REGISTERED":  ["uniform", 3600, 7200],
         "A_ACTIVATED":  ["uniform", 3600, 7200]
     },
+    "waiting_time": {
+        "A_SUBMITTED":  ["uniform", 3600, 7200],
+        "A_PARTLYSUBMITTED":  ["custom", 3600, 7200],
+        "A_PREACCEPTED":  ["uniform", 3600, 7200],
+        "A_ACCEPTED":  ["uniform", 3600, 7200],
+        "A_FINALIZED":  ["uniform", 3600, 7200],
+        "A_CANCELLED":  ["uniform", 3600, 7200],
+        "A_DECLINED":  ["uniform", 3600, 7200],
+        "A_APPROVED":  ["uniform", 3600, 7200],
+        "A_REGISTERED":  ["uniform", 3600, 7200],
+        "A_ACTIVATED":  ["uniform", 3600, 7200]
+    },
     "resource": {
         "Role 1": {
             "resources": ["Sara", "Mike"],

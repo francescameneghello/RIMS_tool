@@ -1,24 +1,24 @@
 {
-              "total_events": 411,
-              "total_traces": 100,
-              "A_SUBMITTED_frequency": 100,
-              "A_PARTLYSUBMITTED_frequency": 100,
-              "A_PREACCEPTED_frequency": 45,
-              "A_ACCEPTED_frequency": 27,
-              "A_FINALIZED_frequency": 17,
-              "A_CANCELLED_frequency": 30,
-              "A_DECLINED_frequency": 23,
-              "A_APPROVED_frequency": 23,
-              "A_REGISTERED_frequency": 23,
-              "A_ACTIVATED_frequency": 23,
+              "total_events": 102,
+              "total_traces": 25,
+              "A_SUBMITTED_frequency": 25,
+              "A_PARTLYSUBMITTED_frequency": 25,
+              "A_PREACCEPTED_frequency": 10,
+              "A_ACCEPTED_frequency": 5,
+              "A_FINALIZED_frequency": 3,
+              "A_CANCELLED_frequency": 6,
+              "A_DECLINED_frequency": 4,
+              "A_APPROVED_frequency": 8,
+              "A_REGISTERED_frequency": 8,
+              "A_ACTIVATED_frequency": 8,
               "Role 1": {
-                            "total": 127,
-                            "Sara": 56,
-                            "Mike": 71
+                            "total": 30,
+                            "Mike": 16,
+                            "Sara": 14
               },
               "Role 2": {
-                            "total": 284,
-                            "Sue": 138,
-                            "Ellen": 146
+                            "total": 72,
+                            "Ellen": 34,
+                            "Sue": 38
               }
 }

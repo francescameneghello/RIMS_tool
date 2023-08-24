@@ -66,6 +66,7 @@ class Token(object):
                 trans = self.next_transition(env)
 
             if trans and trans.label:
+                self._buffer.reset()
                 self._buffer.set_feature("id_case", self._id)
                 self._buffer.set_feature("activity", trans.label)
                 self._buffer.set_feature("prefix", self._prefix.get_prefix(self._start_time + timedelta(seconds=env.now)))
@@ -80,6 +81,12 @@ class Token(object):
                 #self._buffer.set_feature("wip_wait", 0 if type != 'sequential' else resource_trace.count-1)
                 self._buffer.set_feature("wip_wait", resource_trace.count)
                 self._buffer.set_feature("ro_single", self._process.get_occupations_single_role(resource.get_name()))
+                self._buffer.set_feature("ro_total", self._process.get_occupations_all_role())
+                self._buffer.set_feature("role", resource.get_name())
+
+                ### register event in process ###
+                resource_task = self._process._get_resource_event(trans.label)
+                self._buffer.set_feature("wip_activity", resource_task.count)
 
                 queue = 0 if len(resource.queue) == 0 else len(resource.queue[-1])
                 self._buffer.set_feature("queue", queue)
@@ -92,13 +99,11 @@ class Token(object):
                 request_resource = resource.request()
                 self._buffer.set_feature("enabled_time", self._start_time + timedelta(seconds=env.now))
                 yield request_resource
+                single_resource = self._process._set_single_resource(resource.get_name())
+                self._buffer.set_feature("resource", single_resource)
 
-                ### register event in process ###
-                resource_task = self._process._get_resource_event(trans.label)
                 resource_task_request = resource_task.request()
                 yield resource_task_request
-
-                single_resource = self._process._set_single_resource(resource.get_name())
 
                 ### call predictor for processing time
                 self._buffer.set_feature("wip_start", resource_trace.count)
@@ -115,8 +120,6 @@ class Token(object):
 
                 self._buffer.set_feature("wip_end", resource_trace.count)
                 self._buffer.set_feature("end_time", self._start_time + timedelta(seconds=env.now))
-                self._buffer.set_feature("role", resource.get_name())
-                self._buffer.set_feature("resource", single_resource)
                 self._buffer.print_values()
                 self._prefix.add_activity(trans.label)
                 resource.release(request_resource)
@@ -185,23 +188,25 @@ class Token(object):
         * Random choice: each path has equal probability to be chosen (AUTO)
         ```json
         "probability": {
-            "Activity_1sh8ud3": "AUTO",
-            "Activity_1tpvdm3": "AUTO"
+            "A_ACCEPTED": "AUTO",
+            "skip_2": "AUTO",
+            "A_FINALIZED": "AUTO",
         }
         ```
         * Defined probability: in the file json it is possible to define for each path a specific probability (PROBABILITY as value)
         ```json
         "probability": {
-            "Activity_1sh8ud3": 0.20,
-            "Activity_1tpvdm3": 0.80
+            "A_PREACCEPTED": 0.20,
+            "skip_1": 0.80
         }
         ```
         * Custom method: it is possible to define a dedicate method that given the possible paths it returns the one to
         follow, using whatever techniques the user prefers. (CUSTOM)
         ```json
         "probability": {
-            "Activity_1sh8ud3": "CUSTOM",
-            "Activity_1tpvdm3": "CUSTOM"
+            "A_CANCELLED": "CUSTOM",
+            "A_DECLINED": "CUSTOM",
+            "tauSplit_5": "CUSTOM"
         }
         ```
         """
@@ -226,21 +231,21 @@ class Token(object):
             activity, see the [numpy_distribution](https://numpy.org/doc/stable/reference/random/generator.html) distribution, (DISTRIBUTION)
             ```json
              "processing_time": {
-                 "Activity_id":  ["uniform", 3600, 7200],
+                 "A_FINALIZED":  ["uniform", 3600, 7200],
              }
             ```
             * Custom method: it is possible to define a dedicated method that, given the activity and its
             characteristics, returns the duration of processing time required. (CUSTOM)
             ```json
             "processing_time": {
-                 "Activity_id":  ["custom"]
+                 "A_FINALIZED":  ["custom"]
             }
             ```
             * Mixed: It is possible to define a distribution function for some activities and a dedicated method for the others.
             ```json
             "processing_time": {
-                 "Activity_id1":  ["custom"],
-                 "Activity_id2":  ["uniform", 3600, 7200]
+                 "A_FINALIZED":  ["custom"],
+                 "A_REGISTERED":  ["uniform", 3600, 7200]
             }
             ```
         """
@@ -261,21 +266,21 @@ class Token(object):
             activity, see the [numpy_distribution](https://numpy.org/doc/stable/reference/random/generator.html) distribution, (DISTRIBUTION)
             ```json
              "waiting_time": {
-                 "Activity_id":  ["uniform", 3600, 7200],
+                 "A_PARTLYSUBMITTED":  ["uniform", 3600, 7200],
              }
             ```
             * Custom method: it is possible to define a dedicated method that, given the next activity with its
             features, returns the duration of waiting time. (CUSTOM)
             ```json
             "waiting_time": {
-                 "Activity_id":  ["custom"]
+                 "A_PARTLYSUBMITTED":  ["custom"]
             }
             ```
             * Mixed: As the processing time, it is possible to define a mix of methods for each activity.
             ```json
             "waiting_time": {
-                 "Activity_id1":  ["custom"],
-                 "Activity_id2":  ["uniform", 3600, 7200]
+                 "A_PARTLYSUBMITTED":  ["custom"],
+                 "A_APPROVED":  ["uniform", 3600, 7200]
             }
             ```
         """
@@ -296,23 +301,25 @@ class Token(object):
            Example of features that can be used to predict:
         ```json
         {
-                  "activity": "F",
-                  "enabled_time": "2023-03-16 10:31:58.131415",
-                  "end_time": null,
-                  "id_case": 0,
-                  "prefix": [ "A", "C", "B"],
-                  "queue": 0,
-                  "ro_single": 0.33,
-                  "ro_total": [],
-                  "role": null,
-                  "start_time": "2023-03-16 10:31:58.131415",
-                  "wip_activity": 0,
-                  "wip_end": -1,
-                  "wip_start": 0,
-                  "wip_wait": 0
+            "id_case": 23,
+            "activity": "A_ACCEPTED",
+            "enabled_time": "2023-08-23 11:14:13",
+            "start_time": "2023-08-23 11:14:13",
+            "end_time": "2023-08-23 11:20:13",
+            "role": "Role 2",
+            "resource": "Sue",
+            "wip_wait": 3,
+            "wip_start": 3,
+            "wip_end": 3,
+            "wip_activity": 1,
+            "ro_total": [0.5, 1],
+            "ro_single": 1,
+            "queue": 0,
+            "prefix": ["A_SUBMITTED", "A_PARTLYSUBMITTED", "A_PREACCEPTED"],
+            "attribute_case": {"AMOUNT": 59024},
+            "attribute_event": {"bank_branch": "Eindhoven"}
         }
         ```"""
-        print(json.dumps(self._buffer.buffer, indent=14, sort_keys=True))
         return 0
 
     def call_custom_waiting_time(self):
@@ -320,20 +327,23 @@ class Token(object):
         Example of features that can be used to predict:
         ```json
         {
-                  "activity": "F",
-                  "enabled_time": "2023-03-16 10:31:58.131415",
-                  "end_time": null,
-                  "id_case": 0,
-                  "prefix": [ "A", "C", "B"],
-                  "queue": 0,
-                  "ro_single": 0.33,
-                  "ro_total": [],
-                  "role": null,
-                  "start_time": "2023-03-16 10:31:58.131415",
-                  "wip_activity": 0,
-                  "wip_end": -1,
-                  "wip_start": 0,
-                  "wip_wait": 0
+            "id_case": 15,
+            "activity": "A_PARTLYSUBMITTED",
+            "enabled_time": "None",
+            "start_time": "None",
+            "end_time": "None",
+            "role": "Role 2",
+            "resource": "None",
+            "wip_wait": 21,
+            "wip_start": -1,
+            "wip_end": -1,
+            "wip_activity": 1,
+            "ro_total": [0.5, 1],
+            "ro_single": 1,
+            "queue": 13,
+            "prefix": ["A_SUBMITTED"],
+            "attribute_case": {"AMOUNT": 18207},
+            "attribute_event": {"bank_branch": "Eindhoven"}
         }
         ```"""
         print(self._buffer.buffer)

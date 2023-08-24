@@ -91,3 +91,16 @@ class Buffer(object):
     def get_buffer_keys(self):
         return self.buffer.keys()
 
+    def reset(self):
+        self.buffer["enabled_time"] = None
+        self.buffer["start_time"] = None
+        self.buffer["end_time"] = None
+        self.buffer["resource"] = None
+        self.buffer["wip_wait"] = -1
+        self.buffer["wip_start"] = -1
+        self.buffer["wip_end"] = -1
+        self.buffer["wip_activity"] = -1
+        self.buffer["ro_total"] = []
+        self.buffer["ro_single"] = -1
+        self.buffer["queue"] = -1
+        self.buffer["attribute_event"] = dict()
