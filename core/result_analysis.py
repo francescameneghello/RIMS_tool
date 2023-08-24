@@ -3,7 +3,7 @@ Class to generate the output json file "result_simulated_log(experiment_name)" w
 Example of analysis:
 
 | Name       | Description  |
-|------------|--------------------------
+|:------------:|:-------------------------- |
 | total_events | Total events in the log |
 | total_traces | Total traces in the log |
 | *A*_frequency | Total occurrences of activity *A* in the log |

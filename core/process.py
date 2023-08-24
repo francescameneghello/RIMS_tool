@@ -37,7 +37,7 @@ class SimulationProcess(object):
         Method to retrieve the specified role occupancy in percentage, as an intercase feature:
         $\\frac{resources \: occupated \: in \:role}{total\:resources\:in\:role}$.
         """
-        occup = self._resources[resource].get_resource().count / self._resources[resource].capacity
+        occup = self._resources[resource].get_resource().count / self._resources[resource]._capacity
         return round(occup, 2)
 
     def get_occupations_all_role(self):
@@ -47,7 +47,7 @@ class SimulationProcess(object):
         list_occupations = []
         for res in self._resources:
             if res != 'TRIGGER_TIMER':
-                occup = round(self._resources[res].get_resource().count / self._resources[res].capacity, 2)
+                occup = round(self._resources[res].get_resource().count / self._resources[res]._capacity, 2)
                 list_occupations.append(occup)
         return list_occupations
 

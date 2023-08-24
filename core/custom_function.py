@@ -1,6 +1,30 @@
 '''
 This file contains all the customizable functions, which the user can define,
 and which are called by the simulator in the specific steps.
+
+The following table describes the case and inter-case features that can be
+used as input from a predictive model.
+
+| Feature      | Description  |
+|:------------:|:-------------------------- |
+| id_case | Case id of the trace to which the event belongs. |
+| activity | Represents the next activity to be performedg. |
+| enabled_time | Timestamp of when the activity requests the role to be executed. |
+| start_time |  Timestamp of when the activity starts to run.   |
+| end_time |   Timestamp of when the activity ends to run.    |
+| role |   Designated role to perform the next activity.   |
+| resource |  Role resource available to perform the activity.   |
+| wip_wait | Represents the number of traces running in the simulation before the waiting time.  |
+| wip_start |  Represents the number of traces running in the simulation once an available resource is obtained to run the activity. |
+| wip_end | Represents the number of traces running in the simulation at the end of the activity execution. |
+| wip_activity |  Represents the number of events running in the simulation that perform the same activity, once an available resource is obtained.   |
+| ro_total |    The percentage of occupancy in terms of resources in use for the roles defined in the simulation.   |
+| ro_single |   The percentage of occupancy in terms of resources in use for the role defined for the next activity.     |
+| queue |  Represents the length of the queue for the required resource.  |
+| prefix |  List of activities already performed.  |
+| attribute_case |  Attributes defined for the trace.      |
+| attribute_event |  Attributes defined for the next event to be executed.   |
+
 '''
 
 from statsmodels.tsa.ar_model import AutoRegResults
@@ -39,11 +63,61 @@ def example_arrivals_time(case):
     loaded = AutoRegResults.load('../example/example_arrivals/arrival_AutoReg_model.pkl')
     return loaded.predict(case+1, case+1)[0]
 
+def custom_waiting_time(buffer: Buffer):
+    """ Define the waiting time of the activity (return the duration in seconds).
+    Example of features that can be used to predict:
+    ```json
+    {
+        "id_case": 15,
+        "activity": "A_PARTLYSUBMITTED",
+        "enabled_time": "None",
+        "start_time": "None",
+        "end_time": "None",
+        "role": "Role 2",
+        "resource": "None",
+        "wip_wait": 21,
+        "wip_start": -1,
+        "wip_end": -1,
+        "wip_activity": 1,
+        "ro_total": [0.5, 1],
+        "ro_single": 1,
+        "queue": 13,
+        "prefix": ["A_SUBMITTED"],
+        "attribute_case": {"AMOUNT": 18207},
+        "attribute_event": {"bank_branch": "Eindhoven"}
+
+    }
+    ```
+"""
 
 def example_decision_mining(buffer: Buffer):
     """
     Function to define the next activity from a decision point in the Petri net model.
     For example, we used a Random Forest model for the *decision mining* example.
+
+    Example of features that can be used to predict:
+    ```json
+        {
+            "id_case": 43,
+            "activity": "A_FINALIZED",
+            "enabled_time": "2023-08-24 16:24:29",
+            "start_time": "2023-08-24 19:37:31",
+            "end_time": "2023-08-24 20:03:34",
+            "role": "Role 2",
+            "resource": "Sue",
+            "wip_wait": 16,
+            "wip_start": 4,
+            "wip_end": 4,
+            "wip_activity": 2,
+            "ro_total": [0.0, 1],
+            "ro_single": 1,
+            "queue": 15,
+            "prefix": ["A_SUBMITTED", "A_PARTLYSUBMITTED", "A_PREACCEPTED", "A_ACCEPTED"],
+            "attribute_case": {"AMOUNT": 86061},
+            "attribute_event": {"bank_branch": "Eindhoven"}
+
+        }
+    ```
     """
     # class output names ---> 0: "A_CANCELLED", 1: "A_DECLINED", 2: "tauSplit_5"
     input_feature = list()

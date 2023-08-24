@@ -323,57 +323,9 @@ class Token(object):
         return 0
 
     def call_custom_waiting_time(self):
-        """Define the waiting time of the activity (return the duration in seconds).
-        Example of features that can be used to predict:
-        ```json
-        {
-            "id_case": 15,
-            "activity": "A_PARTLYSUBMITTED",
-            "enabled_time": "None",
-            "start_time": "None",
-            "end_time": "None",
-            "role": "Role 2",
-            "resource": "None",
-            "wip_wait": 21,
-            "wip_start": -1,
-            "wip_end": -1,
-            "wip_activity": 1,
-            "ro_total": [0.5, 1],
-            "ro_single": 1,
-            "queue": 13,
-            "prefix": ["A_SUBMITTED"],
-            "attribute_case": {"AMOUNT": 18207},
-            "attribute_event": {"bank_branch": "Eindhoven"}
-        }
-        ```"""
-        print(self._buffer.buffer)
         return 0
 
     def call_custom_xor_function(self, all_enabled_trans):
-        """Define the custom method to determine the path to follow up (return the index of path).
-        Example of features that can be used to predict:
-        ```json
-        {
-            "id_case": 43,
-            "activity": "A_FINALIZED",
-            "enabled_time": "2023-08-24 16:24:29",
-            "start_time": "2023-08-24 19:37:31",
-            "end_time": "2023-08-24 20:03:34",
-            "role": "Role 2",
-            "resource": "Sue",
-            "wip_wait": 16,
-            "wip_start": 4,
-            "wip_end": 4,
-            "wip_activity": 2,
-            "ro_total": [0.0, 1],
-            "ro_single": 1,
-            "queue": 15,
-            "prefix": ["A_SUBMITTED", "A_PARTLYSUBMITTED", "A_PREACCEPTED", "A_ACCEPTED"],
-            "attribute_case": {"AMOUNT": 86061},
-            "attribute_event": {"bank_branch": "Eindhoven"}
-
-        }
-        ```"""
         return custom.example_decision_mining(self._buffer)
 
     def next_transition(self, env):
