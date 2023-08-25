@@ -1,7 +1,7 @@
 '''
 Class to manage resources and comply with their calendars.
 
-The calendar follows the following format: 
+The calendar follows the following format:
 calendar = {'days' = [0, 1, 2, 3, 4], 'hour_min' = 9, 'hour_max' = 17]}
 '''
 from datetime import datetime, timedelta

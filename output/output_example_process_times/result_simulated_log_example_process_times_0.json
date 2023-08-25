@@ -1,0 +1,31 @@
+{
+                   "total_events": 261,
+                   "total_traces": 35,
+                   "A_SUBMITTED_frequency": 35,
+                   "A_PARTLYSUBMITTED_frequency": 35,
+                   "W_Fix_incomplete_submission_frequency": 35,
+                   "W_Assess_fraud_frequency": 35,
+                   "A_PREACCEPTED_frequency": 10,
+                   "W_Complete_preaccepted_appl_frequency": 16,
+                   "A_ACCEPTED_frequency": 10,
+                   "A_FINALIZED_frequency": 10,
+                   "O_SELECTED_frequency": 10,
+                   "O_CREATED_frequency": 10,
+                   "A_CANCELLED_frequency": 10,
+                   "O_SENT_frequency": 10,
+                   "O_DECLINED_frequency": 15,
+                   "W_Call_after_offer_frequency": 20,
+                   "Role 1": {
+                                      "total": 115,
+                                      "D": 56,
+                                      "E": 59
+                   },
+                   "Role 2": {
+                                      "total": 106,
+                                      "A": 96
+                   },
+                   "Role 3": {
+                                      "total": 40,
+                                      "C": 40
+                   }
+}

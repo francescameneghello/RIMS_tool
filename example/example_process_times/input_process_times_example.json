@@ -1,0 +1,290 @@
+{
+    "start_timestamp": "2022-01-01 09:37:50",
+    "interTriggerTimer": {
+        "type": "distribution",
+        "name": "exponential",
+        "parameters": {
+            "scale": 300
+        }
+    },
+    "processing_time": {
+        "A_SUBMITTED": {
+            "name": "uniform",
+            "parameters": {
+                "low": 3600,
+                "high": 7200
+            }
+        },
+        "A_PARTLYSUBMITTED": {
+            "name": "uniform",
+            "parameters": {
+                "low": 3600,
+                "high": 7200
+            }
+        },
+        "W_Fix_incomplete_submission": {
+            "name": "uniform",
+            "parameters": {
+                "low": 3600,
+                "high": 7200
+            }
+        },
+        "W_Assess_fraud": {
+            "name": "uniform",
+            "parameters": {
+                "low": 3600,
+                "high": 7200
+            }
+        },
+        "A_PREACCEPTED": {
+            "name": "uniform",
+            "parameters": {
+                "low": 3600,
+                "high": 7200
+            }
+        },
+        "W_Complete_preaccepted_appl": {
+            "name": "custom"
+        },
+        "A_ACCEPTED": {
+            "name": "uniform",
+            "parameters": {
+                "low": 3600,
+                "high": 7200
+            }
+        },
+        "A_FINALIZED": {
+            "name": "uniform",
+            "parameters": {
+                "low": 3600,
+                "high": 7200
+            }
+        },
+        "O_SELECTED": {
+            "name": "uniform",
+            "parameters": {
+                "low": 3600,
+                "high": 7200
+            }
+        },
+        "O_CREATED": {
+            "name": "uniform",
+            "parameters": {
+                "low": 3600,
+                "high": 7200
+            }
+        },
+        "A_CANCELLED": {
+            "name": "uniform",
+            "parameters": {
+                "low": 3600,
+                "high": 7200
+            }
+        },
+        "O_SENT": {
+            "name": "uniform",
+            "parameters": {
+                "low": 3600,
+                "high": 7200
+            }
+        },
+        "O_DECLINED": {
+            "name": "uniform",
+            "parameters": {
+                "low": 3600,
+                "high": 7200
+            }
+        },
+        "W_Call_after_offer": {
+            "name": "uniform",
+            "parameters": {
+                "low": 3600,
+                "high": 7200
+            }
+        }
+    },
+    "waiting_time": {
+        "A_SUBMITTED": {
+            "name": "uniform",
+            "parameters": {
+                "low": 3600,
+                "high": 7200
+            }
+        },
+        "A_PARTLYSUBMITTED": {
+            "name": "uniform",
+            "parameters": {
+                "low": 3600,
+                "high": 7200
+            }
+        },
+        "W_Fix_incomplete_submission": {
+            "name": "uniform",
+            "parameters": {
+                "low": 3600,
+                "high": 7200
+            }
+        },
+        "W_Assess_fraud": {
+            "name": "uniform",
+            "parameters": {
+                "low": 3600,
+                "high": 7200
+            }
+        },
+        "A_PREACCEPTED": {
+            "name": "uniform",
+            "parameters": {
+                "low": 3600,
+                "high": 7200
+            }
+        },
+        "W_Complete_preaccepted_appl": {
+            "name": "uniform",
+            "parameters": {
+                "low": 3600,
+                "high": 7200
+            }
+        },
+        "A_ACCEPTED": {
+            "name": "uniform",
+            "parameters": {
+                "low": 3600,
+                "high": 7200
+            }
+        },
+        "A_FINALIZED": {
+            "name": "uniform",
+            "parameters": {
+                "low": 3600,
+                "high": 7200
+            }
+        },
+        "O_SELECTED": {
+            "name": "uniform",
+            "parameters": {
+                "low": 3600,
+                "high": 7200
+            }
+        },
+        "O_CREATED": {
+            "name": "uniform",
+            "parameters": {
+                "low": 3600,
+                "high": 7200
+            }
+        },
+        "A_CANCELLED": {
+            "name": "uniform",
+            "parameters": {
+                "low": 3600,
+                "high": 7200
+            }
+        },
+        "O_SENT": {
+            "name": "uniform",
+            "parameters": {
+                "low": 3600,
+                "high": 7200
+            }
+        },
+        "O_DECLINED": {
+            "name": "uniform",
+            "parameters": {
+                "low": 3600,
+                "high": 7200
+            }
+        },
+        "W_Call_after_offer": {
+            "name": "custom"
+        }
+    },
+    "resource": {
+        "Role 1": {
+            "resources": ["E", "D"],
+            "calendar": {
+                "days": [0, 1, 2, 3, 4, 5, 6],
+                "hour_min": 0,
+                "hour_max": 23
+            }
+        },
+        "Role 2": {
+            "resources": ["A"],
+            "calendar": {
+                "days": [0, 1, 2, 3, 4, 5, 6],
+                "hour_min": 0,
+                "hour_max": 23
+            }
+        },
+        "Role 3": {
+            "resources": ["C"],
+            "calendar": {
+                "days": [0, 1, 2, 3, 4, 5, 6],
+                "hour_min": 0,
+                "hour_max": 23
+            }
+        }
+    },
+    "resource_table": [
+        {
+            "role": "Role 3",
+            "task": "A_CANCELLED"
+        },
+        {
+            "role": "Role 3",
+            "task": "A_ACCEPTED"
+        },
+        {
+            "role": "Role 1",
+            "task": "O_DECLINED"
+        },
+        {
+            "role": "Role 1",
+            "task": "A_FINALIZED"
+        },
+        {
+            "role": "Role 1",
+            "task": "A_ACCEPTED"
+        },
+        {
+            "role": "Role 2",
+            "task": "W_Assess_fraud"
+        },
+        {
+            "role": "Role 1",
+            "task": "A_PREACCEPTED"
+        },
+        {
+            "role": "Role 1",
+            "task": "A_SUBMITTED"
+        },
+        {
+            "role": "Role 1",
+            "task": "A_PARTLYSUBMITTED"
+        },
+        {
+            "role": "Role 3",
+            "task": "O_CREATED"
+        },
+        {
+            "role": "Role 3",
+            "task": "O_SELECTED"
+        },
+        {
+            "role": "Role 3",
+            "task": "O_SENT"
+        },
+        {
+            "role": "Role 2",
+            "task": "W_Call_after_offer"
+        },
+        {
+            "role": "Role 2",
+            "task": "W_Fix_incomplete_submission"
+        },
+        {
+            "role": "Role 2",
+            "task": "W_Complete_preaccepted_appl"
+        }
+    ]
+}

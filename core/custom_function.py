@@ -63,6 +63,45 @@ def example_arrivals_time(case):
     loaded = AutoRegResults.load('../example/example_arrivals/arrival_AutoReg_model.pkl')
     return loaded.predict(case+1, case+1)[0]
 
+
+def custom_processing_time(buffer: Buffer):
+    """
+    Define the processing time of the activity (return the duration in seconds).
+    Example of features that can be used to predict:
+
+    ```json
+            {
+                "id_case": 23,
+                "activity": "A_ACCEPTED",
+                "enabled_time": "2023-08-23 11:14:13",
+                "start_time": "2023-08-23 11:14:13",
+                "end_time": "2023-08-23 11:20:13",
+                "role": "Role 2",
+                "resource": "Sue",
+                "wip_wait": 3,
+                "wip_start": 3,
+                "wip_end": 3,
+                "wip_activity": 1,
+                "ro_total": [0.5, 1],
+                "ro_single": 1,
+                "queue": 0,
+                "prefix": ["A_SUBMITTED", "A_PARTLYSUBMITTED", "A_PREACCEPTED"],
+                "attribute_case": {"AMOUNT": 59024},
+                "attribute_event": {"bank_branch": "Eindhoven"}
+            }
+    ```
+    """
+    input_feature = list()
+    input_feature.append(buffer.get_feature("wip_start"))
+    input_feature.append(buffer.get_feature("wip_activity"))
+    input_feature.append(buffer.get_feature("start_time").weekday())
+    input_feature.append(buffer.get_feature("start_time").hour)
+    loaded_model = pickle.load(
+        open('/Users/francescameneghello/Documents/GitHub/RIMS_tool/example/example_process_times/processing_time_random_forest.pkl', 'rb'))
+    y_pred_f = loaded_model.predict([input_feature])
+    return int(y_pred_f[0])
+
+
 def custom_waiting_time(buffer: Buffer):
     """ Define the waiting time of the activity (return the duration in seconds).
     Example of features that can be used to predict:
@@ -88,7 +127,19 @@ def custom_waiting_time(buffer: Buffer):
 
     }
     ```
-"""
+    """
+    input_feature = list()
+    buffer.print_values()
+    input_feature.append(buffer.get_feature("wip_wait"))
+    input_feature.append(buffer.get_feature("wip_activity"))
+    input_feature.append(buffer.get_feature("enabled_time").weekday())
+    input_feature.append(buffer.get_feature("enabled_time").hour)
+    input_feature.append(buffer.get_feature("ro_single"))
+    input_feature.append(buffer.get_feature("queue"))
+    loaded_model = pickle.load(open('/Users/francescameneghello/Documents/GitHub/RIMS_tool/example/example_process_times/waiting_time_random_forest.pkl','rb'))
+    y_pred_f = loaded_model.predict([input_feature])
+    return int(y_pred_f[0])
+
 
 def example_decision_mining(buffer: Buffer):
     """
@@ -127,7 +178,7 @@ def example_decision_mining(buffer: Buffer):
     input_feature.append(1 if 'A_FINALIZED' in prefix else 0)
     input_feature.append(buffer.get_feature("attribute_case")['AMOUNT'])
     input_feature.append(buffer.get_feature("end_time").hour)
-    input_feature.append(buffer.get_feature("end_time").day)
+    input_feature.append(buffer.get_feature("end_time").weekday())
 
     loaded_model = pickle.load(open('/Users/francescameneghello/Documents/GitHub/RIMS_tool/example/example_decision_mining/random_forest.pkl', 'rb'))
     y_pred_f = loaded_model.predict([input_feature])

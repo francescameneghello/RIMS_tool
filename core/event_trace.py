@@ -90,14 +90,13 @@ class Token(object):
 
                 queue = 0 if len(resource.queue) == 0 else len(resource.queue[-1])
                 self._buffer.set_feature("queue", queue)
+                self._buffer.set_feature("enabled_time", self._start_time + timedelta(seconds=env.now))
 
                 waiting = self.define_waiting_time(trans.label)
-
                 if self.see_activity:
                     yield env.timeout(waiting)
 
                 request_resource = resource.request()
-                self._buffer.set_feature("enabled_time", self._start_time + timedelta(seconds=env.now))
                 yield request_resource
                 single_resource = self._process._set_single_resource(resource.get_name())
                 self._buffer.set_feature("resource", single_resource)
@@ -250,12 +249,12 @@ class Token(object):
             ```
         """
         try:
-            if self._params.PROCESSING_TIME[activity][0] == 'custom':
+            if self._params.PROCESSING_TIME[activity]["name"] == 'custom':
                 duration = self.call_custom_processing_time()
             else:
-                distribution = self._params.PROCESSING_TIME[activity][0]
-                parameters = self._params.PROCESSING_TIME[activity][1:-1]
-                duration = getattr(np.random, distribution)(parameters, size=1)[0]
+                distribution = self._params.PROCESSING_TIME[activity]['name']
+                parameters = self._params.PROCESSING_TIME[activity]['parameters']
+                duration = getattr(np.random, distribution)(**parameters, size=1)[0]
         except:
             raise ValueError("ERROR: The processing time of", activity, "is not defined in json file")
         return duration
@@ -285,45 +284,22 @@ class Token(object):
             ```
         """
         try:
-            if self._params.WAITING_TIME[next_act][0] == 'custom':
+            if self._params.WAITING_TIME[next_act]["name"] == 'custom':
                 duration = self.call_custom_waiting_time()
             else:
-                distribution = self._params.WAITING_TIME[next_act][0]
-                parameters = self._params.WAITING_TIME[next_act][1:-1]
-                duration = getattr(np.random, distribution)(parameters, size=1)[0]
+                distribution = self._params.WAITING_TIME[next_act]['name']
+                parameters = self._params.WAITING_TIME[next_act]['parameters']
+                duration = getattr(np.random, distribution)(**parameters, size=1)[0]
         except:
             duration = 0
 
         return duration
 
     def call_custom_processing_time(self):
-        """Define the processing time of the activity (return the duration in seconds).
-           Example of features that can be used to predict:
-        ```json
-        {
-            "id_case": 23,
-            "activity": "A_ACCEPTED",
-            "enabled_time": "2023-08-23 11:14:13",
-            "start_time": "2023-08-23 11:14:13",
-            "end_time": "2023-08-23 11:20:13",
-            "role": "Role 2",
-            "resource": "Sue",
-            "wip_wait": 3,
-            "wip_start": 3,
-            "wip_end": 3,
-            "wip_activity": 1,
-            "ro_total": [0.5, 1],
-            "ro_single": 1,
-            "queue": 0,
-            "prefix": ["A_SUBMITTED", "A_PARTLYSUBMITTED", "A_PREACCEPTED"],
-            "attribute_case": {"AMOUNT": 59024},
-            "attribute_event": {"bank_branch": "Eindhoven"}
-        }
-        ```"""
-        return 0
+        return custom.custom_processing_time(self._buffer)
 
     def call_custom_waiting_time(self):
-        return 0
+        return custom.custom_waiting_time(self._buffer)
 
     def call_custom_xor_function(self, all_enabled_trans):
         return custom.example_decision_mining(self._buffer)
