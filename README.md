@@ -35,7 +35,7 @@ Once installed all the packages, you can execute the tool from a terminal specif
 ### Simulation parameters
 | Key word of parameters | Optional |                 Default                  | Description                                                                                                                                            |
 |:-----------------------|:--------:|:----------------------------------------:|:-------------------------------------------------------------------------------------------------------------------------------------------------------|
-| *start_timestamp*      |   True   |              datetime.now()              | Starting date simulation.                                                                                                                              |
+| *start_timestamp*      |   True   |              datetime.now()              | Starting date simulation <br/> (%Y-%m-%d %H:%M:%S datetime format).                                                                                    |
 | *duration_simulation*  |   True   |                 365 days                 | Total duration of simulation.                                                                                                                          |
 | *probability*          |   True   | equal probability for each decison point | Three different possible ways to set which path following for decision point (AUTO, float, CUSTOM), for details see the example *decision_mining*.     |
 | *processing_time*      |  False   |                   ----                   | Three different possible ways to set the processing time for each activity (AUTO, DISTRIBUTION, CUSTOM), for details see the example *process times*.  |

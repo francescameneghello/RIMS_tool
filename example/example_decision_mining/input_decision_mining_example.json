@@ -7,16 +7,76 @@
         }
     },
     "processing_time": {
-        "A_SUBMITTED":  ["uniform", 3600, 7200],
-        "A_PARTLYSUBMITTED":  ["uniform", 3600, 7200],
-        "A_PREACCEPTED":  ["uniform", 3600, 7200],
-        "A_ACCEPTED":  ["uniform", 3600, 7200],
-        "A_FINALIZED":  ["uniform", 3600, 7200],
-        "A_CANCELLED":  ["uniform", 3600, 7200],
-        "A_DECLINED":  ["uniform", 3600, 7200],
-        "A_APPROVED":  ["uniform", 3600, 7200],
-        "A_REGISTERED":  ["uniform", 3600, 7200],
-        "A_ACTIVATED":  ["uniform", 3600, 7200]
+        "A_SUBMITTED":  {
+            "name": "uniform",
+            "parameters": {
+                "low": 3600,
+                "high": 7200
+            }
+        },
+        "A_PARTLYSUBMITTED": {
+            "name": "uniform",
+            "parameters": {
+                "low": 3600,
+                "high": 7200
+            }
+        },
+        "A_PREACCEPTED":  {
+            "name": "uniform",
+            "parameters": {
+                "low": 3600,
+                "high": 7200
+            }
+        },
+        "A_ACCEPTED":  {
+            "name": "uniform",
+            "parameters": {
+                "low": 3600,
+                "high": 7200
+            }
+        },
+        "A_FINALIZED":  {
+            "name": "uniform",
+            "parameters": {
+                "low": 3600,
+                "high": 7200
+            }
+        },
+        "A_CANCELLED":  {
+            "name": "uniform",
+            "parameters": {
+                "low": 3600,
+                "high": 7200
+            }
+        },
+        "A_DECLINED":  {
+            "name": "uniform",
+            "parameters": {
+                "low": 3600,
+                "high": 7200
+            }
+        },
+        "A_APPROVED":  {
+            "name": "uniform",
+            "parameters": {
+                "low": 3600,
+                "high": 7200
+            }
+        },
+        "A_REGISTERED":  {
+            "name": "uniform",
+            "parameters": {
+                "low": 3600,
+                "high": 7200
+            }
+        },
+        "A_ACTIVATED":  {
+            "name": "uniform",
+            "parameters": {
+                "low": 3600,
+                "high": 7200
+            }
+        }
     },
     "probability": {
         "skip_2": "AUTO",
