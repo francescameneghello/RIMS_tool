@@ -8,6 +8,7 @@ from parameters import Parameters
 from process import SimulationProcess
 import custom_function as custom
 
+
 class InterTriggerTimer(object):
 
     def __init__(self, params: Parameters, process: SimulationProcess, start: datetime):

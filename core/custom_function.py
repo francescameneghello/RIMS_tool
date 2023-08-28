@@ -32,6 +32,7 @@ from utility import Buffer, ParallelObject
 import random
 import pickle
 from datetime import datetime
+import os
 
 
 def attribute_function_case(case: int, time: datetime):
@@ -97,7 +98,7 @@ def custom_processing_time(buffer: Buffer):
     input_feature.append(buffer.get_feature("start_time").weekday())
     input_feature.append(buffer.get_feature("start_time").hour)
     loaded_model = pickle.load(
-        open('/Users/francescameneghello/Documents/GitHub/RIMS_tool/example/example_process_times/processing_time_random_forest.pkl', 'rb'))
+        open(os.getcwd()+'/example/example_process_times/processing_time_random_forest.pkl', 'rb'))
     y_pred_f = loaded_model.predict([input_feature])
     return int(y_pred_f[0])
 
@@ -136,7 +137,8 @@ def custom_waiting_time(buffer: Buffer):
     input_feature.append(buffer.get_feature("enabled_time").hour)
     input_feature.append(buffer.get_feature("ro_single"))
     input_feature.append(buffer.get_feature("queue"))
-    loaded_model = pickle.load(open('/Users/francescameneghello/Documents/GitHub/RIMS_tool/example/example_process_times/waiting_time_random_forest.pkl','rb'))
+    loaded_model = pickle.load(
+        open(os.getcwd() + '/example/example_process_times/waiting_time_random_forest.pkl', 'rb'))
     y_pred_f = loaded_model.predict([input_feature])
     return int(y_pred_f[0])
 

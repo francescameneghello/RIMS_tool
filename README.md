@@ -30,9 +30,9 @@ Once installed all the packages, you can execute the tool from a terminal specif
 
 ## Input files
 
-### Petri net model
+##### Petri net model
 
-### Simulation parameters
+##### Simulation parameters
 | Key word of parameters | Optional |                 Default                  | Description                                                                                                                                            |
 |:-----------------------|:--------:|:----------------------------------------:|:-------------------------------------------------------------------------------------------------------------------------------------------------------|
 | *start_timestamp*      |   True   |              datetime.now()              | Starting date simulation <br/> (%Y-%m-%d %H:%M:%S datetime format).                                                                                    |
@@ -43,6 +43,16 @@ Once installed all the packages, you can execute the tool from a terminal specif
 | *interTriggerTimer*    |  False   |                   ----                   | Two different ways to generate the arrivals times of the next tokens in the simulation (DISTRIBUTION, CUSTOM), for details see the example *arrivals*. |
 | *resource*             |  False   |                   ----                   | The list of Roles involved in the simulation, for each of which, individual resources and work schedule are specified (see the example *arrivals*).    |
 | *resource_table*       |  False   |                   ----                   | For each activity, it is defined which role is to perform it.                                                                                          |
+
+## Output files
+
+##### Simulated log
+
+Breve descrizione del formato
+
+##### Analysis pf simulated log
+
+Breve descrizione file Json e output di esempio dal terminale
 
 ## Authors
 

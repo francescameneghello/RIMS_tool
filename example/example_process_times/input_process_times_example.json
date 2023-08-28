@@ -9,17 +9,24 @@
     },
     "processing_time": {
         "A_SUBMITTED": {
-            "name": "uniform",
+            "name": "normal",
             "parameters": {
-                "low": 3600,
-                "high": 7200
+                "loc": 2689.43,
+                "scale": 1525.64
             }
         },
         "A_PARTLYSUBMITTED": {
             "name": "uniform",
             "parameters": {
                 "low": 3600,
-                "high": 7200
+                "high": 1525
+            }
+        },
+        "A_ACTIVATED": {
+            "name": "uniform",
+            "parameters": {
+                "low": 1555,
+                "high": 968
             }
         },
         "W_Fix_incomplete_submission": {
@@ -46,11 +53,17 @@
         "W_Complete_preaccepted_appl": {
             "name": "custom"
         },
-        "A_ACCEPTED": {
-            "name": "uniform",
+        "W_Assess_application": {
+            "name": "exponential",
             "parameters": {
-                "low": 3600,
-                "high": 7200
+                "scale": 1791.89
+            }
+        },
+        "A_ACCEPTED": {
+            "name": "gamma",
+            "parameters": {
+                "shape": 0.99,
+                "scale": 852.40
             }
         },
         "A_FINALIZED": {
@@ -74,6 +87,18 @@
                 "high": 7200
             }
         },
+        "O_SENT_BACK": {
+            "name": "exponential",
+            "parameters": {
+            "scale": 600
+            }
+        },
+        "O_ACCEPTED": {
+            "name": "exponential",
+            "parameters": {
+            "scale": 600
+            }
+        },
         "A_CANCELLED": {
             "name": "uniform",
             "parameters": {
@@ -88,7 +113,7 @@
                 "high": 7200
             }
         },
-        "O_DECLINED": {
+        "A_DECLINED": {
             "name": "uniform",
             "parameters": {
                 "low": 3600,
@@ -96,6 +121,20 @@
             }
         },
         "W_Call_after_offer": {
+            "name": "uniform",
+            "parameters": {
+                "low": 3600,
+                "high": 7200
+            }
+        },
+        "A_REGISTERED": {
+            "name": "uniform",
+            "parameters": {
+                "low": 3600,
+                "high": 7200
+            }
+        },
+        "A_APPROVED": {
             "name": "uniform",
             "parameters": {
                 "low": 3600,
@@ -104,99 +143,15 @@
         }
     },
     "waiting_time": {
-        "A_SUBMITTED": {
-            "name": "uniform",
-            "parameters": {
-                "low": 3600,
-                "high": 7200
-            }
-        },
-        "A_PARTLYSUBMITTED": {
-            "name": "uniform",
-            "parameters": {
-                "low": 3600,
-                "high": 7200
-            }
-        },
-        "W_Fix_incomplete_submission": {
-            "name": "uniform",
-            "parameters": {
-                "low": 3600,
-                "high": 7200
-            }
-        },
-        "W_Assess_fraud": {
-            "name": "uniform",
-            "parameters": {
-                "low": 3600,
-                "high": 7200
-            }
-        },
-        "A_PREACCEPTED": {
-            "name": "uniform",
-            "parameters": {
-                "low": 3600,
-                "high": 7200
-            }
-        },
-        "W_Complete_preaccepted_appl": {
-            "name": "uniform",
-            "parameters": {
-                "low": 3600,
-                "high": 7200
-            }
-        },
-        "A_ACCEPTED": {
-            "name": "uniform",
-            "parameters": {
-                "low": 3600,
-                "high": 7200
-            }
-        },
-        "A_FINALIZED": {
-            "name": "uniform",
-            "parameters": {
-                "low": 3600,
-                "high": 7200
-            }
-        },
-        "O_SELECTED": {
-            "name": "uniform",
-            "parameters": {
-                "low": 3600,
-                "high": 7200
-            }
-        },
-        "O_CREATED": {
-            "name": "uniform",
-            "parameters": {
-                "low": 3600,
-                "high": 7200
-            }
-        },
-        "A_CANCELLED": {
-            "name": "uniform",
-            "parameters": {
-                "low": 3600,
-                "high": 7200
-            }
-        },
-        "O_SENT": {
-            "name": "uniform",
-            "parameters": {
-                "low": 3600,
-                "high": 7200
-            }
-        },
-        "O_DECLINED": {
-            "name": "uniform",
-            "parameters": {
-                "low": 3600,
-                "high": 7200
-            }
-        },
         "W_Call_after_offer": {
             "name": "custom"
+        },
+        "A_REGISTERED": {
+            "name": "uniform",
+            "parameters": {
+                "low": 300,
+                "high": 600
+            }
         }
     },
     "resource": {
@@ -236,7 +191,7 @@
         },
         {
             "role": "Role 1",
-            "task": "O_DECLINED"
+            "task": "A_DECLINED"
         },
         {
             "role": "Role 1",
@@ -244,7 +199,15 @@
         },
         {
             "role": "Role 1",
+            "task": "A_APPROVED"
+        },
+        {
+            "role": "Role 1",
             "task": "A_ACCEPTED"
+        },
+        {
+            "role": "Role 1",
+            "task": "A_REGISTERED"
         },
         {
             "role": "Role 2",
@@ -275,8 +238,20 @@
             "task": "O_SENT"
         },
         {
+            "role": "Role 1",
+            "task": "A_ACTIVATED"
+        },
+        {
+            "role": "Role 2",
+            "task": "O_ACCEPTED"
+        },
+        {
             "role": "Role 2",
             "task": "W_Call_after_offer"
+        },
+        {
+            "role": "Role 2",
+            "task": "W_Assess_application"
         },
         {
             "role": "Role 2",
@@ -285,6 +260,10 @@
         {
             "role": "Role 2",
             "task": "W_Complete_preaccepted_appl"
+        },
+        {
+            "role": "Role 2",
+            "task": "O_SENT_BACK"
         }
     ]
 }

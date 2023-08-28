@@ -256,6 +256,9 @@ class Token(object):
                 distribution = self._params.PROCESSING_TIME[activity]['name']
                 parameters = self._params.PROCESSING_TIME[activity]['parameters']
                 duration = getattr(np.random, distribution)(**parameters, size=1)[0]
+                if duration < 0:
+                    print("WARNING: Negative processing time",  duration)
+                    duration = 0
         except:
             raise ValueError("ERROR: The processing time of", activity, "is not defined in json file")
         return duration
@@ -292,6 +295,9 @@ class Token(object):
                 distribution = self._params.WAITING_TIME[next_act]['name']
                 parameters = self._params.WAITING_TIME[next_act]['parameters']
                 duration = getattr(np.random, distribution)(**parameters, size=1)[0]
+                if duration < 0:
+                    print("WARNING: Negative waiting time",  duration)
+                    duration = 0
         except:
             duration = 0
 

@@ -29,7 +29,6 @@ class SimulationProcess(object):
         for res in set_resource:
             res_simpy = ResourceSim(self._env, res, self._params.ROLE_CAPACITY[res][0], self._params.ROLE_CAPACITY[res][1], self._date_start)
             dict_role[res] = res_simpy
-        print(dict_role)
         return dict_role
 
     def get_occupations_single_role(self, resource):

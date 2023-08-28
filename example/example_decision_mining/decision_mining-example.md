@@ -1,12 +1,15 @@
 
 # Example of Decision Mining of petrinet
 
-For this example we used the log that we can find in the folder **example_decision_mining/BPIChallenge2012A.xes**. This event log pertains to a loan application process of a Dutch financial institute. The data contains all applications filed trough an online system in 2016 and their subsequent events until February 1st 2017, 15:11.
+For this example we used the log that we can find in the folder **example_decision_mining/BPIChallenge2012A.xes**. This event log pertains to a loan application process of a Dutch financial institute. 
+The data contains all applications filed trough an online system in 2016 and their subsequent events until February 1st 2017, 15:11.
 The company providing the data and the process under consideration is the same as doi:10.4121/uuid:3926db30-f712-4394-aebc-75976070e91f.
+Every process execution represents a single application to the bank by a customer for a personal loan.
+The application can be accepted or rejected by the bank, likewise the customer can withdraw the application at any time.
 
 The petrinet found by the [Inductive Miner](https://pm4py.fit.fraunhofer.de/documentation#item-3-2) algorithm from pm4py, is the following:
 
-<img src="../example/example_decision_mining/petri_net.png" alt="Alt Text" width="740">
+<img src="../example/example_decision_mining/petri_net.png" alt="Alt Text" width="740"> 
 
 We also want to show how to add a case-specific attribute, *requested loan amount*, to each simulation trace.
 Through the function *attribute_function_case(case_id)*
