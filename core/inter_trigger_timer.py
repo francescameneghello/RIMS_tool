@@ -26,7 +26,7 @@ class InterTriggerTimer(object):
         if self._type == 'distribution':
             resource = self._process._get_resource('TRIGGER_TIMER')
             arrival = getattr(np.random, self.name_distribution)(**self.params, size=1)[0]
-            if resource.get_calendar():
+            if resource._get_calendar():
                 stop = resource.to_time_schedule(self._start_time + timedelta(seconds=env.now + arrival))
                 return stop + arrival
             else:
@@ -37,5 +37,5 @@ class InterTriggerTimer(object):
             raise ValueError('ERROR: Invalid arrival times generator')
 
     def custom_arrival(self, case):
-        return custom.example_arrivals_time(case)
+        return custom.custom_arrivals_time(case)
 

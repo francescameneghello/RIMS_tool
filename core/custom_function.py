@@ -28,7 +28,7 @@ used as input from a predictive model.
 '''
 
 from statsmodels.tsa.ar_model import AutoRegResults
-from utility import Buffer, ParallelObject
+from utility import Buffer
 import random
 import pickle
 from datetime import datetime
@@ -56,7 +56,7 @@ def attribute_function_event(case: int, time: datetime):
     return {"bank_branch": bank}
 
 
-def example_arrivals_time(case):
+def custom_arrivals_time(case):
     """
     Function to define a new arrival of a track.
     For example, we used an AutoRegression model for the *arrivals example*.
@@ -143,7 +143,7 @@ def custom_waiting_time(buffer: Buffer):
     return int(y_pred_f[0])
 
 
-def example_decision_mining(buffer: Buffer):
+def custom_decision_mining(buffer: Buffer):
     """
     Function to define the next activity from a decision point in the Petri net model.
     For example, we used a Random Forest model for the *decision mining* example.
@@ -172,7 +172,6 @@ def example_decision_mining(buffer: Buffer):
         }
     ```
     """
-    # class output names ---> 0: "A_CANCELLED", 1: "A_DECLINED", 2: "tauSplit_5"
     input_feature = list()
     prefix = buffer.get_feature("prefix")
     input_feature.append(1 if 'A_PREACCEPTED' in prefix else 0)
@@ -182,6 +181,7 @@ def example_decision_mining(buffer: Buffer):
     input_feature.append(buffer.get_feature("end_time").hour)
     input_feature.append(buffer.get_feature("end_time").weekday())
 
-    loaded_model = pickle.load(open('/Users/francescameneghello/Documents/GitHub/RIMS_tool/example/example_decision_mining/random_forest.pkl', 'rb'))
+    loaded_model = pickle.load(
+        open(os.getcwd() + '/example/example_decision_mining/random_forest.pkl', 'rb'))
     y_pred_f = loaded_model.predict([input_feature])
     return int(y_pred_f[0])

@@ -18,7 +18,7 @@ class Parameters(object):
 
     def read_metadata_file(self):
         '''
-        Method to read parameters from the file json.
+        Method to read parameters from json file, see *main page* to get the whole list of simulation parameters.
         '''
         if os.path.exists(self.PATH_PARAMETERS):
             with open(self.PATH_PARAMETERS) as file:

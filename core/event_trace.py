@@ -11,7 +11,6 @@ import numpy as np
 import copy
 import csv
 from utility import Buffer, ParallelObject
-import json
 import custom_function as custom
 
 
@@ -80,15 +79,15 @@ class Token(object):
 
                 #self._buffer.set_feature("wip_wait", 0 if type != 'sequential' else resource_trace.count-1)
                 self._buffer.set_feature("wip_wait", resource_trace.count)
-                self._buffer.set_feature("ro_single", self._process.get_occupations_single_role(resource.get_name()))
+                self._buffer.set_feature("ro_single", self._process.get_occupations_single_role(resource._get_name()))
                 self._buffer.set_feature("ro_total", self._process.get_occupations_all_role())
-                self._buffer.set_feature("role", resource.get_name())
+                self._buffer.set_feature("role", resource._get_name())
 
                 ### register event in process ###
                 resource_task = self._process._get_resource_event(trans.label)
                 self._buffer.set_feature("wip_activity", resource_task.count)
 
-                queue = 0 if len(resource.queue) == 0 else len(resource.queue[-1])
+                queue = 0 if len(resource._queue) == 0 else len(resource._queue[-1])
                 self._buffer.set_feature("queue", queue)
                 self._buffer.set_feature("enabled_time", self._start_time + timedelta(seconds=env.now))
 
@@ -98,7 +97,7 @@ class Token(object):
 
                 request_resource = resource.request()
                 yield request_resource
-                single_resource = self._process._set_single_resource(resource.get_name())
+                single_resource = self._process._set_single_resource(resource._get_name())
                 self._buffer.set_feature("resource", single_resource)
 
                 resource_task_request = resource_task.request()
@@ -106,7 +105,7 @@ class Token(object):
 
                 ### call predictor for processing time
                 self._buffer.set_feature("wip_start", resource_trace.count)
-                self._buffer.set_feature("ro_single", self._process.get_occupations_single_role(resource.get_name()))
+                self._buffer.set_feature("ro_single", self._process.get_occupations_single_role(resource._get_name()))
                 self._buffer.set_feature("ro_total", self._process.get_occupations_all_role())
                 self._buffer.set_feature("wip_activity", resource_task.count)
 
@@ -122,7 +121,7 @@ class Token(object):
                 self._buffer.print_values()
                 self._prefix.add_activity(trans.label)
                 resource.release(request_resource)
-                self._process._release_single_resource(resource.get_name(), single_resource)
+                self._process._release_single_resource(resource._get_name(), single_resource)
                 resource_task.release(resource_task_request)
 
             self._update_marking(trans)
@@ -304,13 +303,22 @@ class Token(object):
         return duration
 
     def call_custom_processing_time(self):
+        """
+        Call to the custom functions in the file *custom_function.py*.
+        """
         return custom.custom_processing_time(self._buffer)
 
     def call_custom_waiting_time(self):
+        """
+            Call to the custom functions in the file *custom_function.py*.
+        """
         return custom.custom_waiting_time(self._buffer)
 
     def call_custom_xor_function(self, all_enabled_trans):
-        return custom.example_decision_mining(self._buffer)
+        """
+            Call to the custom functions in the file *custom_function.py*.
+        """
+        return custom.custom_decision_mining(self._buffer)
 
     def next_transition(self, env):
         """

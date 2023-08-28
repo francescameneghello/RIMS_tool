@@ -36,7 +36,6 @@ class Prefix(object):
 
     def add_activity(self, activity):
         self._list_activities.append(activity)
-        #print(activity, len(self._list_activities), self._list_activities[0])
 
     def get_prefix(self, time):
         return self._list_activities

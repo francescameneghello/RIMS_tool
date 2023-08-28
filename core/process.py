@@ -4,7 +4,7 @@ Class to manage the resources shared by all the traces in the process.
 <img src="../old_html_version/process_class.png" alt="Alt Text" width="780">
 '''
 import simpy
-from resource_simulation import ResourceSim
+from role_simulator import RoleSimulator
 import math
 from parameters import Parameters
 
@@ -22,12 +22,13 @@ class SimulationProcess(object):
 
     def define_single_role(self):
         """
-        Definition of a *Resource* object for each role in the process.
+        Definition of a *RoleSimulator* object for each role in the process.
         """
         set_resource = list(self._params.ROLE_CAPACITY.keys())
         dict_role = dict()
         for res in set_resource:
-            res_simpy = ResourceSim(self._env, res, self._params.ROLE_CAPACITY[res][0], self._params.ROLE_CAPACITY[res][1], self._date_start)
+            res_simpy = RoleSimulator(self._env, res, self._params.ROLE_CAPACITY[res][0],
+                                      self._params.ROLE_CAPACITY[res][1])
             dict_role[res] = res_simpy
         return dict_role
 
@@ -36,7 +37,7 @@ class SimulationProcess(object):
         Method to retrieve the specified role occupancy in percentage, as an intercase feature:
         $\\frac{resources \: occupated \: in \:role}{total\:resources\:in\:role}$.
         """
-        occup = self._resources[resource].get_resource().count / self._resources[resource]._capacity
+        occup = self._resources[resource]._get_resource().count / self._resources[resource]._capacity
         return round(occup, 2)
 
     def get_occupations_all_role(self):
@@ -46,7 +47,7 @@ class SimulationProcess(object):
         list_occupations = []
         for res in self._resources:
             if res != 'TRIGGER_TIMER':
-                occup = round(self._resources[res].get_resource().count / self._resources[res]._capacity, 2)
+                occup = round(self._resources[res]._get_resource().count / self._resources[res]._capacity, 2)
                 list_occupations.append(occup)
         return list_occupations
 

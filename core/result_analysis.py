@@ -7,7 +7,9 @@ Example of analysis:
 | total_events | Total events in the log |
 | total_traces | Total traces in the log |
 | *A*_frequency | Total occurrences of activity *A* in the log |
-
+| total_duration | Total duration of simulation |
+| start_date | Start date of the simulation |
+| end_date | End date of the simulation |
 
 '''
 
@@ -18,7 +20,7 @@ import pandas as pd
 import json
 from parameters import Parameters
 import pm4py
-from datetime import datetime
+from datetime import datetime, timedelta
 
 
 class Result(object):
@@ -50,9 +52,10 @@ class Result(object):
         analysis['total_traces'] = len(set(sim_df['id_case']))
         for act in self._params.PROCESSING_TIME.keys():
             analysis[act + "_frequency"] = len(sim_df[sim_df['activity'] == act])
-        analysis['duration'] = (datetime.strptime(sim_df['end_time'].iloc[-1], '%Y-%m-%d %H:%M:%S.%f') - datetime.strptime(sim_df['start_time'].iloc[0], '%Y-%m-%d %H:%M:%S.%f')).total_seconds()
-        ## media eventi per traccia
-        ## case duration media
+        seconds = (datetime.strptime(sim_df['end_time'].iloc[-1], '%Y-%m-%d %H:%M:%S.%f') - datetime.strptime(sim_df['start_time'].iloc[0], '%Y-%m-%d %H:%M:%S.%f')).total_seconds()
+        analysis['duration'] = str(timedelta(seconds=seconds))
+        analysis['start_simulation'] = sim_df['start_time'].iloc[0]
+        analysis['end_simulation'] = sim_df['end_time'].iloc[-1]
 
         return analysis
     def _analyse(self, type='single'):
