@@ -100,10 +100,10 @@
             }
         },
         "A_CANCELLED": {
-            "name": "uniform",
+            "name": "normal",
             "parameters": {
-                "low": 3600,
-                "high": 7200
+                "loc": 2701.98,
+                "scale": 968.323
             }
         },
         "O_SENT": {

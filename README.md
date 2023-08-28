@@ -30,19 +30,34 @@ Once installed all the packages, you can execute the tool from a terminal specif
 
 ## Input files
 
+As explained in the figure, the tool requires as input files at least: the Petri net model and the json file.
+
 ##### Petri net model
 
+RIMS to model and simulate the process utilizes the Petri net model, which is handled through the methods provided by the pm4py library. 
+The input file for correct reading needs to be in the format [pnml](https://www.pnml.org/) i.e. *name_file.pnml*. Finally, it must not contain two or more transitions with the same name. 
+
 ##### Simulation parameters
+
+As a second input file, the tool requires a json file in which the simulation parameters are specified. The table shows the parameters that must always be present to generate 
+a simulation and the optional ones with possible default values.
+
 | Key word of parameters | Optional |                 Default                  | Description                                                                                                                                            |
 |:-----------------------|:--------:|:----------------------------------------:|:-------------------------------------------------------------------------------------------------------------------------------------------------------|
 | *start_timestamp*      |   True   |              datetime.now()              | Starting date simulation <br/> (%Y-%m-%d %H:%M:%S datetime format).                                                                                    |
 | *duration_simulation*  |   True   |                 365 days                 | Total duration of simulation.                                                                                                                          |
 | *probability*          |   True   | equal probability for each decison point | Three different possible ways to set which path following for decision point (AUTO, float, CUSTOM), for details see the example *decision_mining*.     |
 | *processing_time*      |  False   |                   ----                   | Three different possible ways to set the processing time for each activity (AUTO, DISTRIBUTION, CUSTOM), for details see the example *process times*.  |
-| *waiting_time*         |  False   |                   ----                   | Three different possible ways to set the processing time for each activity (AUTO, DISTRIBUTION, CUSTOM), for details see the example *process times*.  |
+| *waiting_time*         |   True   |                   ----                   | Three different possible ways to set the processing time for each activity (AUTO, DISTRIBUTION, CUSTOM), for details see the example *process times*.  |
 | *interTriggerTimer*    |  False   |                   ----                   | Two different ways to generate the arrivals times of the next tokens in the simulation (DISTRIBUTION, CUSTOM), for details see the example *arrivals*. |
 | *resource*             |  False   |                   ----                   | The list of Roles involved in the simulation, for each of which, individual resources and work schedule are specified (see the example *arrivals*).    |
 | *resource_table*       |  False   |                   ----                   | For each activity, it is defined which role is to perform it.                                                                                          |
+
+
+##### Custom functions
+
+In the file *custom_function.py*(link file html) it is possible to insert several runtime customizable functions of predictive models to RIMS. 
+The next three examples explain how it is possible to define this integration in a simple and quick way.
 
 ## Output files
 
@@ -50,9 +65,16 @@ Once installed all the packages, you can execute the tool from a terminal specif
 
 Breve descrizione del formato
 
-##### Analysis pf simulated log
+##### Analysis of simulated log
 
-Breve descrizione file Json e output di esempio dal terminale
+Class to generate the output json file *result_simulated_log_(experiment_name).json* with some analysis on the simulated log.
+
+| Name       | Description                                  |
+|:------------:|:---------------------------------------------|
+| total_events | Total events in the log                      |
+| total_traces | Total traces in the log                      |
+| *A*_frequency | Total occurrences of activity *A* in the log |
+
 
 ## Authors
 

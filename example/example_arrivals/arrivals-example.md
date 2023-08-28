@@ -1,7 +1,7 @@
 
 # Example of Arrivals Time and Calendars
 
-For this example we used the log that we can find in the folder **example_arrivals/BPIChallenge2012A.xes**. This event log pertains to a loan application process of a Dutch financial institute. The data contains all applications filed trough an online system in 2016 and their subsequent events until February 1st 2017, 15:11.
+For this example we used the log that we can find in the folder *example_arrivals/BPIChallenge2012A.xes*. This event log pertains to a loan application process of a Dutch financial institute. The data contains all applications filed trough an online system in 2016 and their subsequent events until February 1st 2017, 15:11.
 The company providing the data and the process under consideration is the same as doi:10.4121/uuid:3926db30-f712-4394-aebc-75976070e91f.
 
 The petrinet found by the inductive miner is the following:

@@ -18,6 +18,7 @@ import pandas as pd
 import json
 from parameters import Parameters
 import pm4py
+from datetime import datetime
 
 
 class Result(object):
@@ -33,10 +34,7 @@ class Result(object):
         '''
         analysis = dict()
         sim_df = pd.read_csv(sim, sep=',')
-        analysis['total_events'] = len(sim_df)
-        analysis['total_traces'] = len(set(sim_df['id_case']))
-        for act in self._params.PROCESSING_TIME.keys():
-            analysis[act + "_frequency"] = len(sim_df[sim_df['activity'] == act])
+        analysis.update(self.general_analysis(sim_df))
 
         for role in self._params.ROLE_CAPACITY.keys():
             if role != 'TRIGGER_TIMER':
@@ -46,6 +44,17 @@ class Result(object):
 
         self._write_json(analysis, sim)
 
+    def general_analysis(self, sim_df):
+        analysis = dict()
+        analysis['total_events'] = len(sim_df)
+        analysis['total_traces'] = len(set(sim_df['id_case']))
+        for act in self._params.PROCESSING_TIME.keys():
+            analysis[act + "_frequency"] = len(sim_df[sim_df['activity'] == act])
+        analysis['duration'] = (datetime.strptime(sim_df['end_time'].iloc[-1], '%Y-%m-%d %H:%M:%S.%f') - datetime.strptime(sim_df['start_time'].iloc[0], '%Y-%m-%d %H:%M:%S.%f')).total_seconds()
+        ## media eventi per traccia
+        ## case duration media
+
+        return analysis
     def _analyse(self, type='single'):
         if type == 'single':
             self.analysis_log(self._all_file[0])
