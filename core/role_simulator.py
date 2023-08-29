@@ -32,6 +32,21 @@ through Saturday, from 8 a.m. to 7 p.m.
         }
     }
 ```
+Finally, in the simulation parameters file, we have to indicate the role assigned to the execution of each activity.
+(Here to view complete examples)
+
+```json
+    "resource_table": [
+        {
+            "role": "Role 1",
+            "task": "A_SUBMITTED"
+        },
+        {
+            "role": "Role 2",
+            "task": "A_PARTLYSUBMITTED"
+        }
+    ]
+```
 
 '''
 from datetime import timedelta

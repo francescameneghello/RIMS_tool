@@ -37,5 +37,8 @@ class InterTriggerTimer(object):
             raise ValueError('ERROR: Invalid arrival times generator')
 
     def custom_arrival(self, case):
+        """
+        Call to the custom functions in the file custom_function.py.
+        """
         return custom.custom_arrivals_time(case)
 

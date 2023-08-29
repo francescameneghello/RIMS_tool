@@ -7,7 +7,7 @@ The log contains 4000 traces with 20 different activities.
 
 Let's define the following Petri net model to generate a new simulation.
 
-<img src="../example/example_process_times/synthetic_petrinet.png" alt="Alt Text" width="740">
+<img src="../core/example/example_process_times/synthetic_petrinet.png" alt="Alt Text" width="740">
 
 
 The aim of this example is to present several ways to set the processing time of each activity and the waiting time between them.

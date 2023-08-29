@@ -52,38 +52,14 @@
 
             <h2>Contents</h2>
             <ul>
-  <li><a href="#runtime-integration-of-machine-learning-and-simulation-for-business-processes-rims">Runtime Integration of Machine Learning and Simulation for Business Processes (RIMS)</a>
+  <li><a href="#runtime-integration-of-machine-learning-and-simulation-for-business-processes-rims">Examples</a>
   <ul>
-    <li><a href="#installation-guide">Installation guide</a></li>
-    <li><a href="#getting-started">Getting Started</a></li>
-    <li><a href="#input-files">Input files</a></li>
-    <li><a href="#output-files">Output files</a></li>
-    <li><a href="#authors">Authors</a></li>
+    <li><a href="#example-of-arrivals-time-and-calendars">Arrivals Time and Calendars</a></li>
+    <li><a href="#example-of-decision-mining-of-petrinet">Decision Mining of petrinet</a></li>
+    <li><a href="#example-of-process-times-of-petrinet">Process Times of petrinet</a></li>
   </ul></li>
-  <li><a href="#example-of-arrivals-time-and-calendars">Example of Arrivals Time and Calendars</a></li>
-  <li><a href="#example-of-decision-mining-of-petrinet">Example of Decision Mining of petrinet</a></li>
-  <li><a href="#example-of-process-times-of-petrinet">Example of Process Times of petrinet</a></li>
+
 </ul>
-
-
-
-            <h2>API Documentation</h2>
-                <ul class="memberlist">
-            <li>
-                    <a class="variable" href="#EXAMPLE">EXAMPLE</a>
-            </li>
-            <li>
-                    <a class="function" href="#setup">setup</a>
-            </li>
-            <li>
-                    <a class="function" href="#run_simulation">run_simulation</a>
-            </li>
-            <li>
-                    <a class="function" href="#main">main</a>
-            </li>
-    </ul>
-
-
 
         <a class="attribution" title="pdoc: Python API documentation generator" href="https://pdoc.dev" target="_blank">
             built with <span class="visually-hidden">pdoc</span><img
@@ -94,174 +70,16 @@
     </nav>
     <main class="pdoc">
             <section class="module-info">
-                    <h1 class="modulename">
-run_simulation    </h1>
+                    <h1 class="modulename"> Examples </h1>
 
-                        <div class="docstring"><h1 id="runtime-integration-of-machine-learning-and-simulation-for-business-processes-rims">Runtime Integration of Machine Learning and Simulation for Business Processes (RIMS)</h1>
-
-<p>Recent research in Computer Science has investigated the use of Deep Learning (DL) techniques to complement outcomes or decisions within a Discrete event simulation (DES) model. The main idea of this combination is to maintain a white box simulation model but to complement it with information provided by DL models. Indeed, these models are extremely powerful in learning the true relationship between the covariates and the distribution of the output variable, thus avoiding unrealistic or oversimplifying assumptions that are often made when building or discovering simulation models from data. 
-State of the art techniques in BPM combine Deep Learning and Discrete event simulation in a post-integration fashion: first an entire simulation is performed, and then a DL model is used to add waiting times and processing times to the events produced by the simulation model. 
-In this paper, we aim at taking a step further by introducing \rims (Runtime Integration of Machine Learning and Simulation). Instead of complementing the outcome of a complete simulation with the results of predictions ``a posteriori'', \rims provides a tight integration of the predictions of the DL model \textbf{at runtime} during the simulation. This runtime-integration enables us to fully exploit the specific predictions thus enhancing the performance of the overall system both w.r.t. the single techniques (Business Process Simulation and DL) separately and the post-integration approach. The runtime-integration enables us also to incorporate the queue as an intercase feature in the DL model, thus further improving the performance in process scenarios where the queue plays an important role.</p>
-
-<p><img src="../old_html_version/rims_schema.png" alt="Alt Text" width="780"></p>
-
-<h2 id="installation-guide">Installation guide</h2>
-
-<h3 id="prerequisites">Prerequisites</h3>
-
-<p>To execute this code, simply install the following main packages:: </p>
-
-<ul>
-<li>simpy</li>
-<li>pm4py</li>
-<li>tensorflow</li>
-<li>keras</li>
-<li>pickle</li>
-<li>aggiunti per esempio "statsmodels"</li>
-</ul>
-
-<h2 id="getting-started">Getting Started</h2>
-
-<p>Once installed all the packages, you can execute the tool from a terminal specifying the following parameters:</p>
-
-<ul>
-<li><code>-p</code>: specify the path of the Petri net model to be simulated, in <em>pnml</em> format</li>
-<li><code>-s</code>: specify the path to the simulation parameter file, in <em>json</em> format</li>
-<li><code>-t</code>: specify the total number of traces per single simulation</li>
-<li><code>-i</code>: specify the total number of simulation to generate</li>
-<li><code>-o</code>: specify the path where to save the output files</li>
-</ul>
-
-<h2 id="input-files">Input files</h2>
-
-<p>As explained in the figure, the tool requires as input files at least: the Petri net model and the json file.</p>
-
-<h5 id="petri-net-model">Petri net model</h5>
-
-<p>RIMS to model and simulate the process utilizes the Petri net model, which is handled through the methods provided by the pm4py library. 
-The input file for correct reading needs to be in the format <a href="https://www.pnml.org/">pnml</a> i.e. <em>name_file.pnml</em>. Finally, it must not contain two or more transitions with the same name. </p>
-
-<h5 id="simulation-parameters">Simulation parameters</h5>
-
-<p>As a second input file, the tool requires a json file in which the simulation parameters are specified. The table shows the parameters that must always be present to generate 
-a simulation and the optional ones with possible default values.</p>
-
-<table>
-<thead>
-<tr>
-  <th style="text-align:left;">Key word of parameters</th>
-  <th style="text-align:center;">Optional</th>
-  <th style="text-align:center;">Default</th>
-  <th style="text-align:left;">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-  <td style="text-align:left;"><em>start_timestamp</em></td>
-  <td style="text-align:center;">True</td>
-  <td style="text-align:center;">datetime.now()</td>
-  <td style="text-align:left;">Starting date simulation <br/> (%Y-%m-%d %H:%M:%S datetime format).</td>
-</tr>
-<tr>
-  <td style="text-align:left;"><em>duration_simulation</em></td>
-  <td style="text-align:center;">True</td>
-  <td style="text-align:center;">365 days</td>
-  <td style="text-align:left;">Total duration of simulation.</td>
-</tr>
-<tr>
-  <td style="text-align:left;"><em>probability</em></td>
-  <td style="text-align:center;">True</td>
-  <td style="text-align:center;">equal probability for each decison point</td>
-  <td style="text-align:left;">Three different possible ways to set which path following for decision point (AUTO, float, CUSTOM), for details see the example <em>decision_mining</em>.</td>
-</tr>
-<tr>
-  <td style="text-align:left;"><em>processing_time</em></td>
-  <td style="text-align:center;">False</td>
-  <td style="text-align:center;">----</td>
-  <td style="text-align:left;">Three different possible ways to set the processing time for each activity (AUTO, DISTRIBUTION, CUSTOM), for details see the example <em>process times</em>.</td>
-</tr>
-<tr>
-  <td style="text-align:left;"><em>waiting_time</em></td>
-  <td style="text-align:center;">True</td>
-  <td style="text-align:center;">----</td>
-  <td style="text-align:left;">Three different possible ways to set the processing time for each activity (AUTO, DISTRIBUTION, CUSTOM), for details see the example <em>process times</em>.</td>
-</tr>
-<tr>
-  <td style="text-align:left;"><em>interTriggerTimer</em></td>
-  <td style="text-align:center;">False</td>
-  <td style="text-align:center;">----</td>
-  <td style="text-align:left;">Two different ways to generate the arrivals times of the next tokens in the simulation (DISTRIBUTION, CUSTOM), for details see the example <em>arrivals</em>.</td>
-</tr>
-<tr>
-  <td style="text-align:left;"><em>resource</em></td>
-  <td style="text-align:center;">False</td>
-  <td style="text-align:center;">----</td>
-  <td style="text-align:left;">The list of Roles involved in the simulation, for each of which, individual resources and work schedule are specified (see the example <em>arrivals</em>).</td>
-</tr>
-<tr>
-  <td style="text-align:left;"><em>resource_table</em></td>
-  <td style="text-align:center;">False</td>
-  <td style="text-align:center;">----</td>
-  <td style="text-align:left;">For each activity, it is defined which role is to perform it.</td>
-</tr>
-</tbody>
-</table>
-
-<h5 id="custom-functions">Custom functions</h5>
-
-<p>In the file <em>custom_function.py</em>(link file html) it is possible to insert several runtime customizable functions of predictive models to RIMS. 
-The next three examples explain how it is possible to define this integration in a simple and quick way.</p>
-
-<h2 id="output-files">Output files</h2>
-
-<h5 id="simulated-log">Simulated log</h5>
-
-<p>At the end of the simulation, the tool returns the simulated log in <a href="https://www.xes-standard.org/">XES</a> and CSV format with all the features associated
-with each event (to see the full list of features, click here).</p>
-
-<p><img src="../old_html_version/log_xes.png" alt="Alt Text" width="780"></p>
-
-<p>All events generated by the simulation are still printed in the terminal view</p>
-
-<h5 id="analysis-of-simulated-log">Analysis of simulated log</h5>
-
-<p>Class to generate the output json file <em>result_simulated_log_(experiment_name).json</em> with some analysis on the simulated log.</p>
-
-<table>
-<thead>
-<tr>
-  <th style="text-align:center;">Name</th>
-  <th style="text-align:left;">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-  <td style="text-align:center;">total_events</td>
-  <td style="text-align:left;">Total events in the log</td>
-</tr>
-<tr>
-  <td style="text-align:center;">total_traces</td>
-  <td style="text-align:left;">Total traces in the log</td>
-</tr>
-<tr>
-  <td style="text-align:center;"><em>A</em>_frequency</td>
-  <td style="text-align:left;">Total occurrences of activity <em>A</em> in the log</td>
-</tr>
-</tbody>
-</table>
-
-<h2 id="authors">Authors</h2>
-
-<p>Francesca Meneghello, Chiara Di Francescomarino, Chiara Ghidini</p>
-
-<h1 id="example-of-arrivals-time-and-calendars">Example of Arrivals Time and Calendars</h1>
+<h1 id="example-of-arrivals-time-and-calendars">Arrivals Time and Calendars</h1>
 
 <p>For this example we used the log that we can find in the folder <em>example_arrivals/BPIChallenge2012A.xes</em>. This event log pertains to a loan application process of a Dutch financial institute. The data contains all applications filed trough an online system in 2016 and their subsequent events until February 1st 2017, 15:11.
 The company providing the data and the process under consideration is the same as doi:10.4121/uuid:3926db30-f712-4394-aebc-75976070e91f.</p>
 
 <p>The petrinet found by the inductive miner is the following:</p>
 
-<p><img src="../example/example_arrivals/petri_net.png" alt="Alt Text" width="780"></p>
+<p><img src="images/arrivals/petri_net.png" alt="Alt Text" width="780"></p>
 
 <p>In this example we want to show different ways to generate the arrivals times of tokens in the simulation.
 As exaplained in the <strong>link inter_trigger_timer class</strong> we can define the arrivals with 3 methods:</p>
@@ -281,7 +99,7 @@ As exaplained in the <strong>link inter_trigger_timer class</strong> we can defi
 </code></pre>
 </div>
 
-<p>In addition, it is possible to add a schedule for token arrival times, i.e. when a new instance of the process can start. 
+<p>In addition, it is possible to add a schedule for token arrival times, i.e. when a new instance of the process can start.
 For example, we establish that a new trace of this process can start only from Monday to Friday, from 8 a.m. to 3 p.m.</p>
 
 <div class="pdoc-code codehilite">
@@ -380,9 +198,9 @@ Role 1 resources, Sara and Mike, work Monday through Friday, 8 a.m. to 4 p.m.</p
 </code></pre>
 </div>
 
-<h1 id="example-of-decision-mining-of-petrinet">Example of Decision Mining of petrinet</h1>
+<h1 id="example-of-decision-mining-of-petrinet">Decision Mining of petrinet</h1>
 
-<p>For this example we used the log that we can find in the folder <strong>example_decision_mining/BPIChallenge2012A.xes</strong>. This event log pertains to a loan application process of a Dutch financial institute. 
+<p>For this example we used the log that we can find in the folder <strong>example_decision_mining/BPIChallenge2012A.xes</strong>. This event log pertains to a loan application process of a Dutch financial institute.
 The data contains all applications filed trough an online system in 2016 and their subsequent events until February 1st 2017, 15:11.
 The company providing the data and the process under consideration is the same as doi:10.4121/uuid:3926db30-f712-4394-aebc-75976070e91f.
 Every process execution represents a single application to the bank by a customer for a personal loan.
@@ -390,7 +208,7 @@ The application can be accepted or rejected by the bank, likewise the customer c
 
 <p>The petrinet found by the <a href="https://pm4py.fit.fraunhofer.de/documentation#item-3-2">Inductive Miner</a> algorithm from pm4py, is the following:</p>
 
-<p><img src="../example/example_decision_mining/petri_net.png" alt="Alt Text" width="740"> </p>
+<p><img src="images/decision_mining/petri_net.png" alt="Alt Text" width="740"> </p>
 
 <p>We also want to show how to add a case-specific attribute, <em>requested loan amount</em>, to each simulation trace.
 Through the function <em>attribute_function_case(case_id)</em>
@@ -402,12 +220,12 @@ it is easy to add the attribute/s case with the return of a dictionary. In this 
 </code></pre>
 </div>
 
-<p>The aim of this example is to present different ways to choose the next activity from a specific decision point of Petri net model. 
+<p>The aim of this example is to present different ways to choose the next activity from a specific decision point of Petri net model.
 In the following image, the four decision points in the process are highlighted with three different colours.</p>
 
-<p><img src="../example/example_decision_mining/petri_net_decision.png" alt="Alt Text" width="780"></p>
+<p><img src="images/decision_mining/petri_net_decision.png" alt="Alt Text" width="780"></p>
 
-<p>As exaplained in the <strong>link event trace class, next activity</strong> we can define the 3 methods to define the next activity 
+<p>As exaplained in the <strong>link event trace class, next activity</strong> we can define the 3 methods to define the next activity
 of decision point:</p>
 
 <ul>
@@ -438,7 +256,7 @@ of decision point:</p>
 
 <ul>
 <li>Custom method: it is possible to define a dedicate method that given the possible paths it returns the one to
-follow, using whatever techniques the user prefers. In this case for the orange point we trained a 
+follow, using whatever techniques the user prefers. In this case for the orange point we trained a
 simple Random Forest to predict the next activity. (CUSTOM) <br /></li>
 </ul>
 
@@ -454,9 +272,9 @@ simple Random Forest to predict the next activity. (CUSTOM) <br /></li>
 <p>To train the model we used as input the following feature: the presence of A_PREACCEPTED, A_ACCEPTED, A_FINALIZED
 activities in the prefix of trace, the requested loan amount, the weekday and hour of the time of arrival in the decision point.</p>
 
-<p><img src="../example/example_decision_mining/random_forest.png" alt="Alt Text" width="780"></p>
+<p><img src="images/decision_mining/random_forest.png" alt="Alt Text" width="780"></p>
 
-<p>In general, if the user does not define probability parameters in the JSON file, the simulator automatically 
+<p>In general, if the user does not define probability parameters in the JSON file, the simulator automatically
 applies the AUTO mode for each decision point.
 Otherwise, if the user defines the mode for one or more decision points, the user still has to specify all of them even if they are in AUTO mode.</p>
 
@@ -471,15 +289,15 @@ Otherwise, if the user defines the mode for one or more decision points, the use
 </code></pre>
 </div>
 
-<h1 id="example-of-process-times-of-petrinet">Example of Process Times of petrinet</h1>
+<h1 id="example-of-process-times-of-petrinet">Process Times of petrinet</h1>
 
 <p>For this example, we used the log located in the <strong>example_process_times/synthetic_log.xes</strong> folder.
-To generate the synthetic log we define a simulation model inspired by the BPIC2012 process (the log in the other two examples). 
+To generate the synthetic log we define a simulation model inspired by the BPIC2012 process (the log in the other two examples).
 The log contains 4000 traces with 20 different activities.</p>
 
 <p>Let's define the following Petri net model to generate a new simulation.</p>
 
-<p><img src="../core/example/example_process_times/synthetic_petrinet.png" alt="Alt Text" width="740"></p>
+<p><img src="images/process_times/synthetic_petrinet.png" alt="Alt Text" width="740"></p>
 
 <p>The aim of this example is to present several ways to set the processing time of each activity and the waiting time between them.</p>
 
@@ -504,7 +322,7 @@ activity, see the <a href="https://numpy.org/doc/stable/reference/random/generat
 </div>
 
 <ul>
-<li>Custom method: a dedicated method can be defined that, given the activity and its features, returns 
+<li>Custom method: a dedicated method can be defined that, given the activity and its features, returns
 the processing time duration or the needed waiting time. (CUSTOM)</li>
 </ul>
 
@@ -540,7 +358,7 @@ to 10 minutes are required to prepare documentation for registration, which is n
 <p>The following figure describes the features involved in training the two random forest models. All features except "start_time" are intercase features that RIMS can provide during simulation.
 From the code shown, it can be seen that it is simple to predict the prediction at runtime using the intercase features.</p>
 
-<p><img src="../old_html_version/example_process_times.png" alt="Alt Text" width="780"></p>
+<p><img src="images/process_times/example_process_times.png" alt="Alt Text" width="780"></p>
 
 <ul>
 <li>To predict the processing time of the activity <em>W_Complete_preaccepted_appl</em> with the following features.</li>
@@ -689,118 +507,11 @@ e come e' possibile sfruttare le feature intercase per predirre</p>
 
 
             </section>
-                <section id="EXAMPLE">
-                    <div class="attr variable">
-            <span class="name">EXAMPLE</span>        =
-<input id="EXAMPLE-view-value" class="view-value-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
-            <label class="view-value-button pdoc-button" for="EXAMPLE-view-value"></label><span class="default_value">{&#39;arrivalsD&#39;: [&#39;example/example_arrivals/bpi2012.pnml&#39;, &#39;example/example_arrivals/input_arrivals_example_distribution.json&#39;, 1, 15, &#39;example_arrivals&#39;], &#39;arrivalsS&#39;: [&#39;example/example_arrivals/bpi2012.pnml&#39;, &#39;example/example_arrivals/input_arrivals_example_timeseries.json&#39;, 1, 15, &#39;example_arrivals&#39;], &#39;process_times&#39;: [&#39;example/example_process_times/synthetic_petrinet.pnml&#39;, &#39;example/example_process_times/input_process_times_example.json&#39;, 1, 15, &#39;example_process_times&#39;], &#39;decision mining&#39;: [&#39;example/example_decision_mining/bpi2012.pnml&#39;, &#39;example/example_decision_mining/input_decision_mining_example.json&#39;, 1, 10, &#39;example_decision_mining&#39;]}</span>
-
-        
-    </div>
-    <a class="headerlink" href="#EXAMPLE"></a>
-    
-    
-
-                </section>
-                <section id="setup">
-                            <input id="setup-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
-<div class="attr function">
-            
-        <span class="def">def</span>
-        <span class="name">setup</span><span class="signature pdoc-code condensed">(<span class="param"><span class="n">env</span><span class="p">:</span> <span class="n">simpy</span><span class="o">.</span><span class="n">core</span><span class="o">.</span><span class="n">Environment</span>, </span><span class="param"><span class="n">PATH_PETRINET</span>, </span><span class="param"><span class="n">params</span>, </span><span class="param"><span class="n">i</span>, </span><span class="param"><span class="n">NAME</span></span><span class="return-annotation">):</span></span>
-
-                <label class="view-source-button" for="setup-view-source"><span>View Source</span></label>
-
-    </div>
-    <a class="headerlink" href="#setup"></a>
-            <div class="pdoc-code codehilite"><pre><span></span><span id="setup-31"><a href="#setup-31"><span class="linenos">31</span></a><span class="k">def</span> <span class="nf">setup</span><span class="p">(</span><span class="n">env</span><span class="p">:</span> <span class="n">simpy</span><span class="o">.</span><span class="n">Environment</span><span class="p">,</span> <span class="n">PATH_PETRINET</span><span class="p">,</span> <span class="n">params</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">NAME</span><span class="p">):</span>
-</span><span id="setup-32"><a href="#setup-32"><span class="linenos">32</span></a>    <span class="n">simulation_process</span> <span class="o">=</span> <span class="n">SimulationProcess</span><span class="p">(</span><span class="n">env</span><span class="p">,</span> <span class="n">params</span><span class="p">)</span>
-</span><span id="setup-33"><a href="#setup-33"><span class="linenos">33</span></a>    <span class="n">utility</span><span class="o">.</span><span class="n">define_folder_output</span><span class="p">(</span><span class="s2">&quot;output/output_</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">NAME</span><span class="p">))</span>
-</span><span id="setup-34"><a href="#setup-34"><span class="linenos">34</span></a>    <span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;output/output_</span><span class="si">{}</span><span class="s2">/simulated_log_</span><span class="si">{}</span><span class="s2">_</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">NAME</span><span class="p">,</span> <span class="n">NAME</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span><span class="o">+</span><span class="s2">&quot;.csv&quot;</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span>
-</span><span id="setup-35"><a href="#setup-35"><span class="linenos">35</span></a>    <span class="n">writer</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">writer</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
-</span><span id="setup-36"><a href="#setup-36"><span class="linenos">36</span></a>    <span class="n">writer</span><span class="o">.</span><span class="n">writerow</span><span class="p">(</span><span class="n">Buffer</span><span class="p">(</span><span class="n">writer</span><span class="p">)</span><span class="o">.</span><span class="n">get_buffer_keys</span><span class="p">())</span>
-</span><span id="setup-37"><a href="#setup-37"><span class="linenos">37</span></a>    <span class="n">net</span><span class="p">,</span> <span class="n">im</span><span class="p">,</span> <span class="n">fm</span> <span class="o">=</span> <span class="n">pm4py</span><span class="o">.</span><span class="n">read_pnml</span><span class="p">(</span><span class="n">PATH_PETRINET</span><span class="p">)</span>
-</span><span id="setup-38"><a href="#setup-38"><span class="linenos">38</span></a>    <span class="n">interval</span> <span class="o">=</span> <span class="n">InterTriggerTimer</span><span class="p">(</span><span class="n">params</span><span class="p">,</span> <span class="n">simulation_process</span><span class="p">,</span> <span class="n">params</span><span class="o">.</span><span class="n">START_SIMULATION</span><span class="p">)</span>
-</span><span id="setup-39"><a href="#setup-39"><span class="linenos">39</span></a>    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">params</span><span class="o">.</span><span class="n">TRACES</span><span class="p">):</span>
-</span><span id="setup-40"><a href="#setup-40"><span class="linenos">40</span></a>        <span class="n">prefix</span> <span class="o">=</span> <span class="n">Prefix</span><span class="p">()</span>
-</span><span id="setup-41"><a href="#setup-41"><span class="linenos">41</span></a>        <span class="n">itime</span> <span class="o">=</span> <span class="n">interval</span><span class="o">.</span><span class="n">get_next_arrival</span><span class="p">(</span><span class="n">env</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span>
-</span><span id="setup-42"><a href="#setup-42"><span class="linenos">42</span></a>        <span class="k">yield</span> <span class="n">env</span><span class="o">.</span><span class="n">timeout</span><span class="p">(</span><span class="n">itime</span><span class="p">)</span>
-</span><span id="setup-43"><a href="#setup-43"><span class="linenos">43</span></a>        <span class="n">parallel_object</span> <span class="o">=</span> <span class="n">utility</span><span class="o">.</span><span class="n">ParallelObject</span><span class="p">()</span>
-</span><span id="setup-44"><a href="#setup-44"><span class="linenos">44</span></a>        <span class="n">time_trace</span> <span class="o">=</span> <span class="n">params</span><span class="o">.</span><span class="n">START_SIMULATION</span> <span class="o">+</span> <span class="n">timedelta</span><span class="p">(</span><span class="n">seconds</span><span class="o">=</span><span class="n">env</span><span class="o">.</span><span class="n">now</span><span class="p">)</span>
-</span><span id="setup-45"><a href="#setup-45"><span class="linenos">45</span></a>        <span class="n">env</span><span class="o">.</span><span class="n">process</span><span class="p">(</span><span class="n">Token</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">net</span><span class="p">,</span> <span class="n">im</span><span class="p">,</span> <span class="n">params</span><span class="p">,</span> <span class="n">simulation_process</span><span class="p">,</span> <span class="n">prefix</span><span class="p">,</span> <span class="s1">&#39;sequential&#39;</span><span class="p">,</span> <span class="n">writer</span><span class="p">,</span> <span class="n">parallel_object</span><span class="p">,</span> <span class="n">time_trace</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span><span class="o">.</span><span class="n">simulation</span><span class="p">(</span><span class="n">env</span><span class="p">))</span>
-</span></pre></div>
 
 
-    
-
-                </section>
-                <section id="run_simulation">
-                            <input id="run_simulation-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
-<div class="attr function">
-            
-        <span class="def">def</span>
-        <span class="name">run_simulation</span><span class="signature pdoc-code condensed">(<span class="param"><span class="n">PATH_PETRINET</span>, </span><span class="param"><span class="n">PATH_PARAMETERS</span>, </span><span class="param"><span class="n">N_SIMULATION</span>, </span><span class="param"><span class="n">N_TRACES</span>, </span><span class="param"><span class="n">NAME</span></span><span class="return-annotation">):</span></span>
-
-                <label class="view-source-button" for="run_simulation-view-source"><span>View Source</span></label>
-
-    </div>
-    <a class="headerlink" href="#run_simulation"></a>
-            <div class="pdoc-code codehilite"><pre><span></span><span id="run_simulation-48"><a href="#run_simulation-48"><span class="linenos">48</span></a><span class="k">def</span> <span class="nf">run_simulation</span><span class="p">(</span><span class="n">PATH_PETRINET</span><span class="p">,</span> <span class="n">PATH_PARAMETERS</span><span class="p">,</span> <span class="n">N_SIMULATION</span><span class="p">,</span> <span class="n">N_TRACES</span><span class="p">,</span> <span class="n">NAME</span><span class="p">):</span>
-</span><span id="run_simulation-49"><a href="#run_simulation-49"><span class="linenos">49</span></a>    <span class="n">params</span> <span class="o">=</span> <span class="n">Parameters</span><span class="p">(</span><span class="n">PATH_PARAMETERS</span><span class="p">,</span> <span class="n">N_TRACES</span><span class="p">)</span>
-</span><span id="run_simulation-50"><a href="#run_simulation-50"><span class="linenos">50</span></a>    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">N_SIMULATION</span><span class="p">):</span>
-</span><span id="run_simulation-51"><a href="#run_simulation-51"><span class="linenos">51</span></a>        <span class="n">env</span> <span class="o">=</span> <span class="n">simpy</span><span class="o">.</span><span class="n">Environment</span><span class="p">()</span>
-</span><span id="run_simulation-52"><a href="#run_simulation-52"><span class="linenos">52</span></a>        <span class="n">env</span><span class="o">.</span><span class="n">process</span><span class="p">(</span><span class="n">setup</span><span class="p">(</span><span class="n">env</span><span class="p">,</span> <span class="n">PATH_PETRINET</span><span class="p">,</span> <span class="n">params</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">NAME</span><span class="p">))</span>
-</span><span id="run_simulation-53"><a href="#run_simulation-53"><span class="linenos">53</span></a>        <span class="n">env</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">until</span><span class="o">=</span><span class="n">params</span><span class="o">.</span><span class="n">SIM_TIME</span><span class="p">)</span>
-</span><span id="run_simulation-54"><a href="#run_simulation-54"><span class="linenos">54</span></a>
-</span><span id="run_simulation-55"><a href="#run_simulation-55"><span class="linenos">55</span></a>    <span class="n">result</span> <span class="o">=</span> <span class="n">Result</span><span class="p">(</span><span class="s2">&quot;output_</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">NAME</span><span class="p">),</span> <span class="n">params</span><span class="p">)</span>
-</span><span id="run_simulation-56"><a href="#run_simulation-56"><span class="linenos">56</span></a>    <span class="n">result</span><span class="o">.</span><span class="n">_analyse</span><span class="p">()</span>
-</span></pre></div>
 
 
-    
 
-                </section>
-                <section id="main">
-                            <input id="main-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
-<div class="attr function">
-            
-        <span class="def">def</span>
-        <span class="name">main</span><span class="signature pdoc-code condensed">(<span class="param"><span class="n">argv</span></span><span class="return-annotation">):</span></span>
-
-                <label class="view-source-button" for="main-view-source"><span>View Source</span></label>
-
-    </div>
-    <a class="headerlink" href="#main"></a>
-            <div class="pdoc-code codehilite"><pre><span></span><span id="main-59"><a href="#main-59"><span class="linenos">59</span></a><span class="k">def</span> <span class="nf">main</span><span class="p">(</span><span class="n">argv</span><span class="p">):</span>
-</span><span id="main-60"><a href="#main-60"><span class="linenos">60</span></a>    <span class="n">opts</span><span class="p">,</span> <span class="n">args</span> <span class="o">=</span> <span class="n">getopt</span><span class="o">.</span><span class="n">getopt</span><span class="p">(</span><span class="n">argv</span><span class="p">,</span> <span class="s2">&quot;h:p:s:t:i:o:e:&quot;</span><span class="p">)</span>
-</span><span id="main-61"><a href="#main-61"><span class="linenos">61</span></a>    <span class="k">for</span> <span class="n">opt</span><span class="p">,</span> <span class="n">arg</span> <span class="ow">in</span> <span class="n">opts</span><span class="p">:</span>
-</span><span id="main-62"><a href="#main-62"><span class="linenos">62</span></a>        <span class="nb">print</span><span class="p">(</span><span class="n">opt</span><span class="p">,</span> <span class="n">arg</span><span class="p">)</span>
-</span><span id="main-63"><a href="#main-63"><span class="linenos">63</span></a>        <span class="k">if</span> <span class="n">opt</span> <span class="o">==</span> <span class="s1">&#39;-h&#39;</span><span class="p">:</span>
-</span><span id="main-64"><a href="#main-64"><span class="linenos">64</span></a>            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;main.py -p &lt;petrinet in pnml format&gt; -s &lt;parameters read from file .json&gt; -t &lt;total number of traces&gt; -i &lt;total number of simulation&gt;&#39;</span><span class="p">)</span>
-</span><span id="main-65"><a href="#main-65"><span class="linenos">65</span></a>            <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">()</span>
-</span><span id="main-66"><a href="#main-66"><span class="linenos">66</span></a>        <span class="k">elif</span> <span class="n">opt</span> <span class="o">==</span> <span class="s2">&quot;-p&quot;</span><span class="p">:</span>
-</span><span id="main-67"><a href="#main-67"><span class="linenos">67</span></a>            <span class="n">PATH_PETRINET</span> <span class="o">=</span> <span class="n">arg</span>
-</span><span id="main-68"><a href="#main-68"><span class="linenos">68</span></a>        <span class="k">elif</span> <span class="n">opt</span> <span class="o">==</span> <span class="s2">&quot;-s&quot;</span><span class="p">:</span>
-</span><span id="main-69"><a href="#main-69"><span class="linenos">69</span></a>            <span class="n">PATH_PARAMETERS</span> <span class="o">=</span> <span class="n">arg</span>
-</span><span id="main-70"><a href="#main-70"><span class="linenos">70</span></a>        <span class="k">elif</span> <span class="n">opt</span> <span class="o">==</span> <span class="s2">&quot;-t&quot;</span><span class="p">:</span>
-</span><span id="main-71"><a href="#main-71"><span class="linenos">71</span></a>            <span class="n">N_TRACES</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">arg</span><span class="p">)</span>
-</span><span id="main-72"><a href="#main-72"><span class="linenos">72</span></a>        <span class="k">elif</span> <span class="n">opt</span> <span class="o">==</span> <span class="s2">&quot;-i&quot;</span><span class="p">:</span>
-</span><span id="main-73"><a href="#main-73"><span class="linenos">73</span></a>            <span class="n">N_SIMULATION</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">arg</span><span class="p">)</span>
-</span><span id="main-74"><a href="#main-74"><span class="linenos">74</span></a>        <span class="k">elif</span> <span class="n">opt</span> <span class="o">==</span> <span class="s2">&quot;-o&quot;</span><span class="p">:</span>
-</span><span id="main-75"><a href="#main-75"><span class="linenos">75</span></a>            <span class="n">NAME</span> <span class="o">=</span> <span class="n">arg</span>
-</span><span id="main-76"><a href="#main-76"><span class="linenos">76</span></a>        <span class="k">elif</span> <span class="n">opt</span> <span class="o">==</span> <span class="s2">&quot;-e&quot;</span><span class="p">:</span>
-</span><span id="main-77"><a href="#main-77"><span class="linenos">77</span></a>            <span class="k">if</span> <span class="n">arg</span> <span class="ow">in</span> <span class="n">EXAMPLE</span><span class="p">:</span>
-</span><span id="main-78"><a href="#main-78"><span class="linenos">78</span></a>                <span class="n">PATH_PETRINET</span><span class="p">,</span> <span class="n">PATH_PARAMETERS</span><span class="p">,</span> <span class="n">N_SIMULATION</span><span class="p">,</span> <span class="n">N_TRACES</span><span class="p">,</span> <span class="n">NAME</span> <span class="o">=</span> <span class="n">EXAMPLE</span><span class="p">[</span><span class="n">arg</span><span class="p">]</span>
-</span><span id="main-79"><a href="#main-79"><span class="linenos">79</span></a>            <span class="k">else</span><span class="p">:</span>
-</span><span id="main-80"><a href="#main-80"><span class="linenos">80</span></a>                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;The keywords for the provided examples are the following: arrivalsD, arrivalsS, decision_mining, process_times&#39;</span><span class="p">)</span>
-</span><span id="main-81"><a href="#main-81"><span class="linenos">81</span></a>    <span class="nb">print</span><span class="p">(</span><span class="n">PATH_PETRINET</span><span class="p">,</span> <span class="n">PATH_PARAMETERS</span><span class="p">,</span> <span class="n">N_SIMULATION</span><span class="p">,</span> <span class="n">N_TRACES</span><span class="p">,</span> <span class="n">NAME</span><span class="p">)</span>
-</span><span id="main-82"><a href="#main-82"><span class="linenos">82</span></a>    <span class="n">run_simulation</span><span class="p">(</span><span class="n">PATH_PETRINET</span><span class="p">,</span> <span class="n">PATH_PARAMETERS</span><span class="p">,</span> <span class="n">N_SIMULATION</span><span class="p">,</span> <span class="n">N_TRACES</span><span class="p">,</span> <span class="n">NAME</span><span class="p">)</span>
-</span></pre></div>
-
-
-    
-
-                </section>
     </main>
 <script>
     function escapeHTML(html) {

@@ -1,3 +1,10 @@
+"""
+.. include:: ../README.md
+.. include:: example/example_arrivals/arrivals-example.md
+.. include:: example/example_decision_mining/decision_mining-example.md
+.. include:: example/example_process_times/process_times-example.md
+"""
+
 import csv
 import simpy
 import utility
@@ -9,7 +16,15 @@ from utility import *
 import pm4py
 from inter_trigger_timer import InterTriggerTimer
 from result_analysis import Result
-from datetime import datetime, timedelta
+from datetime import timedelta
+import warnings
+import sys
+
+EXAMPLE = {'arrivalsD': ['example/example_arrivals/bpi2012.pnml', 'example/example_arrivals/input_arrivals_example_distribution.json', 1, 15, 'example_arrivals'],
+           'arrivalsS': ['example/example_arrivals/bpi2012.pnml', 'example/example_arrivals/input_arrivals_example_timeseries.json', 1, 15, 'example_arrivals'],
+           'process_times': ['example/example_process_times/synthetic_petrinet.pnml', 'example/example_process_times/input_process_times_example.json', 1, 15, 'example_process_times'],
+           'decision mining': ['example/example_decision_mining/bpi2012.pnml', 'example/example_decision_mining/input_decision_mining_example.json', 1, 10, 'example_decision_mining'],
+           }
 
 
 def setup(env: simpy.Environment, PATH_PETRINET, params, i, NAME):
@@ -41,8 +56,9 @@ def run_simulation(PATH_PETRINET, PATH_PARAMETERS, N_SIMULATION, N_TRACES, NAME)
 
 
 def main(argv):
-    opts, args = getopt.getopt(argv, "h:p:s:t:i:o:")
+    opts, args = getopt.getopt(argv, "h:p:s:t:i:o:e:")
     for opt, arg in opts:
+        print(opt, arg)
         if opt == '-h':
             print('main.py -p <petrinet in pnml format> -s <parameters read from file .json> -t <total number of traces> -i <total number of simulation>')
             sys.exit()
@@ -56,5 +72,15 @@ def main(argv):
             N_SIMULATION = int(arg)
         elif opt == "-o":
             NAME = arg
+        elif opt == "-e":
+            if arg in EXAMPLE:
+                PATH_PETRINET, PATH_PARAMETERS, N_SIMULATION, N_TRACES, NAME = EXAMPLE[arg]
+            else:
+                raise ValueError('The keywords for the provided examples are the following: arrivalsD, arrivalsS, decision_mining, process_times')
     print(PATH_PETRINET, PATH_PARAMETERS, N_SIMULATION, N_TRACES, NAME)
     run_simulation(PATH_PETRINET, PATH_PARAMETERS, N_SIMULATION, N_TRACES, NAME)
+
+
+if __name__ == "__main__":
+    warnings.filterwarnings("ignore")
+    main(sys.argv[1:])
