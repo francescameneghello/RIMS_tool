@@ -82,7 +82,7 @@ The company providing the data and the process under consideration is the same a
 <p><img src="images/arrivals/petri_net.png" alt="Alt Text" width="780"></p>
 
 <p>In this example we want to show different ways to generate the arrivals times of tokens in the simulation.
-As exaplained in the <strong>link inter_trigger_timer class</strong> we can define the arrivals with 3 methods:</p>
+As exaplained in the <a href="inter_trigger_timer.html">inter_trigger_timer class</a> we can define the arrivals with 3 methods:</p>
 
 <ul>
 <li>Distribution function: specify in the json file the distribution with the right parameters in seconds, see the <a href="https://numpy.org/doc/stable/reference/random/generator.html">numpy_distribution</a>.</li>
@@ -200,7 +200,7 @@ Role 1 resources, Sara and Mike, work Monday through Friday, 8 a.m. to 4 p.m.</p
 
 <h1 id="example-of-decision-mining-of-petrinet">Decision Mining of petrinet</h1>
 
-<p>For this example we used the log that we can find in the folder <strong>example_decision_mining/BPIChallenge2012A.xes</strong>. This event log pertains to a loan application process of a Dutch financial institute.
+<p>For this example we used the log that we can find in the folder <em>example_decision_mining/BPIChallenge2012A.xes</em>. This event log pertains to a loan application process of a Dutch financial institute.
 The data contains all applications filed trough an online system in 2016 and their subsequent events until February 1st 2017, 15:11.
 The company providing the data and the process under consideration is the same as doi:10.4121/uuid:3926db30-f712-4394-aebc-75976070e91f.
 Every process execution represents a single application to the bank by a customer for a personal loan.
@@ -225,7 +225,7 @@ In the following image, the four decision points in the process are highlighted 
 
 <p><img src="images/decision_mining/petri_net_decision.png" alt="Alt Text" width="780"></p>
 
-<p>As exaplained in the <strong>link event trace class, next activity</strong> we can define the 3 methods to define the next activity
+<p>As exaplained in the <a href="event_trace.html#Token.define_xor_next_activity">event trace class,</a> we can define the 3 methods to define the next activity
 of decision point:</p>
 
 <ul>
@@ -291,7 +291,7 @@ Otherwise, if the user defines the mode for one or more decision points, the use
 
 <h1 id="example-of-process-times-of-petrinet">Process Times of petrinet</h1>
 
-<p>For this example, we used the log located in the <strong>example_process_times/synthetic_log.xes</strong> folder.
+<p>For this example, we used the log located in the <em>example_process_times/synthetic_log.xes</em> folder.
 To generate the synthetic log we define a simulation model inspired by the BPIC2012 process (the log in the other two examples).
 The log contains 4000 traces with 20 different activities.</p>
 
@@ -301,13 +301,12 @@ The log contains 4000 traces with 20 different activities.</p>
 
 <p>The aim of this example is to present several ways to set the processing time of each activity and the waiting time between them.</p>
 
-<p>As explained in <strong>custom class link, processing time</strong> we can apply two methods to define processing and waiting times:</p>
+<p>As explained in <a href="custom_function.html##custom_processing_time">custom_function</a>, we can apply two methods to define processing and waiting times:</p>
 
 <ul>
 <li><p>Distribution function: specify in the json file the distribution with the right parameters for each
 activity, see the <a href="https://numpy.org/doc/stable/reference/random/generator.html">numpy_distribution</a>.</p>
-
-<p><em>Warning</em>: The simulator raises an error if the distribution produces a negative value as processing/waiting time. </p></li>
+</li>
 </ul>
 
 <div class="pdoc-code codehilite">

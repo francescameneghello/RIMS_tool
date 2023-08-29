@@ -23,7 +23,7 @@ import sys
 EXAMPLE = {'arrivalsD': ['example/example_arrivals/bpi2012.pnml', 'example/example_arrivals/input_arrivals_example_distribution.json', 1, 15, 'example_arrivals'],
            'arrivalsS': ['example/example_arrivals/bpi2012.pnml', 'example/example_arrivals/input_arrivals_example_timeseries.json', 1, 15, 'example_arrivals'],
            'process_times': ['example/example_process_times/synthetic_petrinet.pnml', 'example/example_process_times/input_process_times_example.json', 1, 15, 'example_process_times'],
-           'decision mining': ['example/example_decision_mining/bpi2012.pnml', 'example/example_decision_mining/input_decision_mining_example.json', 1, 10, 'example_decision_mining'],
+           'decision_mining': ['example/example_decision_mining/bpi2012.pnml', 'example/example_decision_mining/input_decision_mining_example.json', 1, 10, 'example_decision_mining'],
            }
 
 
