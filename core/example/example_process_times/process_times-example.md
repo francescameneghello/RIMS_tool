@@ -1,4 +1,3 @@
-
 # Example of Process Times of petrinet
 
 For this example, we used the log located in the **example_process_times/synthetic_log.xes** folder.
@@ -7,17 +6,16 @@ The log contains 4000 traces with 20 different activities.
 
 Let's define the following Petri net model to generate a new simulation.
 
-<img src="../core/example/example_process_times/synthetic_petrinet.png" alt="Alt Text" width="740">
+<img src="synthetic_petrinet.png" alt="Alt Text" width="740">
 
 
 The aim of this example is to present several ways to set the processing time of each activity and the waiting time between them.
 
-As explained in **custom class link, processing time** we can apply two methods to define processing and waiting times:
+As explained in *custom_function.py* we can apply two methods to define processing and waiting times:
 
 * Distribution function: specify in the json file the distribution with the right parameters for each
 activity, see the [numpy_distribution](https://numpy.org/doc/stable/reference/random/generator.html).
 
-    *Warning*: The simulator raises an error if the distribution produces a negative value as processing/waiting time. 
 ```json
 "A_FINALIZED": {
     "name": "uniform",
@@ -59,7 +57,7 @@ to 10 minutes are required to prepare documentation for registration, which is n
 The following figure describes the features involved in training the two random forest models. All features except "start_time" are intercase features that RIMS can provide during simulation.
 From the code shown, it can be seen that it is simple to predict the prediction at runtime using the intercase features.
 
-<img src="../old_html_version/example_process_times.png" alt="Alt Text" width="780">
+<img src="example_process_times.png" alt="Alt Text" width="780">
 
 
 * To predict the processing time of the activity *W_Complete_preaccepted_appl* with the following features.
