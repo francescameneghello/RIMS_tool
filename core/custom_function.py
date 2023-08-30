@@ -38,7 +38,7 @@ import os
 def case_function_attribute(case: int, time: datetime):
     """
         Function to add one or more attributes to each trace.
-        Input parameters are case id number and track start timestamp and return a dictionary.
+        Input parameters are case id number and trace start timestamp and return a dictionary.
         For example, we generate a trace attribute, the requested loan amount, to simulate the process from the BPIChallenge2012A.xes log.
     """
     return {"AMOUNT": random.randint(100, 99999)}
@@ -56,12 +56,12 @@ def event_function_attribute(case: int, time: datetime):
     return {"bank_branch": bank}
 
 
-def custom_arrivals_time(case):
+def custom_arrivals_time(case, previous):
     """
-    Function to define a new arrival of a track.
+    Function to define a new arrival of a trace. The input parameters are the case id number and the start timestamp of the previous trace.
     For example, we used an AutoRegression model for the *arrivals example*.
     """
-    loaded = AutoRegResults.load('../example/example_arrivals/arrival_AutoReg_model.pkl')
+    loaded = AutoRegResults.load('example/example_arrivals/arrival_AutoReg_model.pkl')
     return loaded.predict(case+1, case+1)[0]
 
 

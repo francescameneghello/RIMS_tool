@@ -435,23 +435,23 @@ Eindhoven branch otherwise in the Utrecht one.</p>
 <div class="attr function">
             
         <span class="def">def</span>
-        <span class="name">custom_arrivals_time</span><span class="signature pdoc-code condensed">(<span class="param"><span class="k">case</span></span><span class="return-annotation">):</span></span>
+        <span class="name">custom_arrivals_time</span><span class="signature pdoc-code condensed">(<span class="param"><span class="k">case</span>, </span><span class="param"><span class="n">previous</span></span><span class="return-annotation">):</span></span>
 
                 <label class="view-source-button" for="custom_arrivals_time-view-source"><span>View Source</span></label>
 
     </div>
     <a class="headerlink" href="#custom_arrivals_time"></a>
-            <div class="pdoc-code codehilite"><pre><span></span><span id="custom_arrivals_time-60"><a href="#custom_arrivals_time-60"><span class="linenos">60</span></a><span class="k">def</span> <span class="nf">custom_arrivals_time</span><span class="p">(</span><span class="n">case</span><span class="p">):</span>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="custom_arrivals_time-60"><a href="#custom_arrivals_time-60"><span class="linenos">60</span></a><span class="k">def</span> <span class="nf">custom_arrivals_time</span><span class="p">(</span><span class="n">case</span><span class="p">,</span> <span class="n">previous</span><span class="p">):</span>
 </span><span id="custom_arrivals_time-61"><a href="#custom_arrivals_time-61"><span class="linenos">61</span></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-</span><span id="custom_arrivals_time-62"><a href="#custom_arrivals_time-62"><span class="linenos">62</span></a><span class="sd">    Function to define a new arrival of a trace.</span>
+</span><span id="custom_arrivals_time-62"><a href="#custom_arrivals_time-62"><span class="linenos">62</span></a><span class="sd">    Function to define a new arrival of a trace. The input parameters are the case id number and the start timestamp of the previous trace.</span>
 </span><span id="custom_arrivals_time-63"><a href="#custom_arrivals_time-63"><span class="linenos">63</span></a><span class="sd">    For example, we used an AutoRegression model for the *arrivals example*.</span>
 </span><span id="custom_arrivals_time-64"><a href="#custom_arrivals_time-64"><span class="linenos">64</span></a><span class="sd">    &quot;&quot;&quot;</span>
-</span><span id="custom_arrivals_time-65"><a href="#custom_arrivals_time-65"><span class="linenos">65</span></a>    <span class="n">loaded</span> <span class="o">=</span> <span class="n">AutoRegResults</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;../example/example_arrivals/arrival_AutoReg_model.pkl&#39;</span><span class="p">)</span>
+</span><span id="custom_arrivals_time-65"><a href="#custom_arrivals_time-65"><span class="linenos">65</span></a>    <span class="n">loaded</span> <span class="o">=</span> <span class="n">AutoRegResults</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;example/example_arrivals/arrival_AutoReg_model.pkl&#39;</span><span class="p">)</span>
 </span><span id="custom_arrivals_time-66"><a href="#custom_arrivals_time-66"><span class="linenos">66</span></a>    <span class="k">return</span> <span class="n">loaded</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">case</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">case</span><span class="o">+</span><span class="mi">1</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
 </span></pre></div>
 
 
-            <div class="docstring"><p>Function to define a new arrival of a trace.
+            <div class="docstring"><p>Function to define a new arrival of a trace. The input parameters are the <em>case id</em> and the <em>start timestamp</em> of the previous trace.
 For example, we used an AutoRegression model for the <em>arrivals example</em>.</p>
 </div>
 

@@ -393,11 +393,11 @@ The application can be accepted or rejected by the bank, likewise the customer c
 <p><img src="../example/example_decision_mining/petri_net.png" alt="Alt Text" width="740"> </p>
 
 <p>We also want to show how to add a case-specific attribute, <em>requested loan amount</em>, to each simulation trace.
-Through the function <em>attribute_function_case(case_id)</em>
+Through the function <em>case_function_attribute(case_id)</em>
 it is easy to add the attribute/s case with the return of a dictionary. In this case, for each trace, we randomly generate a loan amount from 1000 to 99999 euros.</p>
 
 <div class="pdoc-code codehilite">
-<pre><span></span><code>    <span class="k">def</span> <span class="nf">attribute_function_case</span><span class="p">(</span><span class="n">case</span><span class="p">):</span>
+<pre><span></span><code>    <span class="k">def</span> <span class="nf">case_function_attribute</span><span class="p">(</span><span class="n">case</span><span class="p">):</span>
         <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;AMOUNT&quot;</span><span class="p">:</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">1000</span><span class="p">,</span> <span class="mi">99999</span><span class="p">)}</span>
 </code></pre>
 </div>
@@ -479,17 +479,15 @@ The log contains 4000 traces with 20 different activities.</p>
 
 <p>Let's define the following Petri net model to generate a new simulation.</p>
 
-<p><img src="../core/example/example_process_times/synthetic_petrinet.png" alt="Alt Text" width="740"></p>
+<p><img src="synthetic_petrinet.png" alt="Alt Text" width="740"></p>
 
 <p>The aim of this example is to present several ways to set the processing time of each activity and the waiting time between them.</p>
 
-<p>As explained in <strong>custom class link, processing time</strong> we can apply two methods to define processing and waiting times:</p>
+<p>As explained in <em>custom_function.py</em> we can apply two methods to define processing and waiting times:</p>
 
 <ul>
-<li><p>Distribution function: specify in the json file the distribution with the right parameters for each
-activity, see the <a href="https://numpy.org/doc/stable/reference/random/generator.html">numpy_distribution</a>.</p>
-
-<p><em>Warning</em>: The simulator raises an error if the distribution produces a negative value as processing/waiting time. </p></li>
+<li>Distribution function: specify in the json file the distribution with the right parameters for each
+activity, see the <a href="https://numpy.org/doc/stable/reference/random/generator.html">numpy_distribution</a>.</li>
 </ul>
 
 <div class="pdoc-code codehilite">
@@ -540,7 +538,7 @@ to 10 minutes are required to prepare documentation for registration, which is n
 <p>The following figure describes the features involved in training the two random forest models. All features except "start_time" are intercase features that RIMS can provide during simulation.
 From the code shown, it can be seen that it is simple to predict the prediction at runtime using the intercase features.</p>
 
-<p><img src="../old_html_version/example_process_times.png" alt="Alt Text" width="780"></p>
+<p><img src="example_process_times.png" alt="Alt Text" width="780"></p>
 
 <ul>
 <li>To predict the processing time of the activity <em>W_Complete_preaccepted_appl</em> with the following features.</li>
@@ -622,9 +620,9 @@ e come e' possibile sfruttare le feature intercase per predirre</p>
 </span><span id="L-21"><a href="#L-21"><span class="linenos">21</span></a><span class="kn">import</span> <span class="nn">sys</span>
 </span><span id="L-22"><a href="#L-22"><span class="linenos">22</span></a>
 </span><span id="L-23"><a href="#L-23"><span class="linenos">23</span></a><span class="n">EXAMPLE</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;arrivalsD&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;example/example_arrivals/bpi2012.pnml&#39;</span><span class="p">,</span> <span class="s1">&#39;example/example_arrivals/input_arrivals_example_distribution.json&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="s1">&#39;example_arrivals&#39;</span><span class="p">],</span>
-</span><span id="L-24"><a href="#L-24"><span class="linenos">24</span></a>           <span class="s1">&#39;arrivalsS&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;example/example_arrivals/bpi2012.pnml&#39;</span><span class="p">,</span> <span class="s1">&#39;example/example_arrivals/input_arrivals_example_timeseries.json&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="s1">&#39;example_arrivals&#39;</span><span class="p">],</span>
+</span><span id="L-24"><a href="#L-24"><span class="linenos">24</span></a>           <span class="s1">&#39;arrivalsS&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;example/example_arrivals/bpi2012.pnml&#39;</span><span class="p">,</span> <span class="s1">&#39;example/example_arrivals/input_arrivals_example_timeseries.json&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="s1">&#39;example_arrivals&#39;</span><span class="p">],</span>
 </span><span id="L-25"><a href="#L-25"><span class="linenos">25</span></a>           <span class="s1">&#39;process_times&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;example/example_process_times/synthetic_petrinet.pnml&#39;</span><span class="p">,</span> <span class="s1">&#39;example/example_process_times/input_process_times_example.json&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="s1">&#39;example_process_times&#39;</span><span class="p">],</span>
-</span><span id="L-26"><a href="#L-26"><span class="linenos">26</span></a>           <span class="s1">&#39;decision mining&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;example/example_decision_mining/bpi2012.pnml&#39;</span><span class="p">,</span> <span class="s1">&#39;example/example_decision_mining/input_decision_mining_example.json&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="s1">&#39;example_decision_mining&#39;</span><span class="p">],</span>
+</span><span id="L-26"><a href="#L-26"><span class="linenos">26</span></a>           <span class="s1">&#39;decision_mining&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;example/example_decision_mining/bpi2012.pnml&#39;</span><span class="p">,</span> <span class="s1">&#39;example/example_decision_mining/input_decision_mining_example.json&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="s1">&#39;example_decision_mining&#39;</span><span class="p">],</span>
 </span><span id="L-27"><a href="#L-27"><span class="linenos">27</span></a>           <span class="p">}</span>
 </span><span id="L-28"><a href="#L-28"><span class="linenos">28</span></a>
 </span><span id="L-29"><a href="#L-29"><span class="linenos">29</span></a>
@@ -693,7 +691,7 @@ e come e' possibile sfruttare le feature intercase per predirre</p>
                     <div class="attr variable">
             <span class="name">EXAMPLE</span>        =
 <input id="EXAMPLE-view-value" class="view-value-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
-            <label class="view-value-button pdoc-button" for="EXAMPLE-view-value"></label><span class="default_value">{&#39;arrivalsD&#39;: [&#39;example/example_arrivals/bpi2012.pnml&#39;, &#39;example/example_arrivals/input_arrivals_example_distribution.json&#39;, 1, 15, &#39;example_arrivals&#39;], &#39;arrivalsS&#39;: [&#39;example/example_arrivals/bpi2012.pnml&#39;, &#39;example/example_arrivals/input_arrivals_example_timeseries.json&#39;, 1, 15, &#39;example_arrivals&#39;], &#39;process_times&#39;: [&#39;example/example_process_times/synthetic_petrinet.pnml&#39;, &#39;example/example_process_times/input_process_times_example.json&#39;, 1, 15, &#39;example_process_times&#39;], &#39;decision mining&#39;: [&#39;example/example_decision_mining/bpi2012.pnml&#39;, &#39;example/example_decision_mining/input_decision_mining_example.json&#39;, 1, 10, &#39;example_decision_mining&#39;]}</span>
+            <label class="view-value-button pdoc-button" for="EXAMPLE-view-value"></label><span class="default_value">{&#39;arrivalsD&#39;: [&#39;example/example_arrivals/bpi2012.pnml&#39;, &#39;example/example_arrivals/input_arrivals_example_distribution.json&#39;, 1, 15, &#39;example_arrivals&#39;], &#39;arrivalsS&#39;: [&#39;example/example_arrivals/bpi2012.pnml&#39;, &#39;example/example_arrivals/input_arrivals_example_timeseries.json&#39;, 1, 5, &#39;example_arrivals&#39;], &#39;process_times&#39;: [&#39;example/example_process_times/synthetic_petrinet.pnml&#39;, &#39;example/example_process_times/input_process_times_example.json&#39;, 1, 15, &#39;example_process_times&#39;], &#39;decision_mining&#39;: [&#39;example/example_decision_mining/bpi2012.pnml&#39;, &#39;example/example_decision_mining/input_decision_mining_example.json&#39;, 1, 10, &#39;example_decision_mining&#39;]}</span>
 
         
     </div>

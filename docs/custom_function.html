@@ -55,10 +55,10 @@
             <h2>API Documentation</h2>
                 <ul class="memberlist">
             <li>
-                    <a class="function" href="#attribute_function_case">attribute_function_case</a>
+                    <a class="function" href="#case_function_attribute">case_function_attribute</a>
             </li>
             <li>
-                    <a class="function" href="#attribute_function_event">attribute_function_event</a>
+                    <a class="function" href="#event_function_attribute">event_function_attribute</a>
             </li>
             <li>
                     <a class="function" href="#custom_arrivals_time">custom_arrivals_time</a>
@@ -215,16 +215,16 @@ used as input from a predictive model.</p>
 </span><span id="L-35"><a href="#L-35"><span class="linenos"> 35</span></a><span class="kn">import</span> <span class="nn">os</span>
 </span><span id="L-36"><a href="#L-36"><span class="linenos"> 36</span></a>
 </span><span id="L-37"><a href="#L-37"><span class="linenos"> 37</span></a>
-</span><span id="L-38"><a href="#L-38"><span class="linenos"> 38</span></a><span class="k">def</span> <span class="nf">attribute_function_case</span><span class="p">(</span><span class="n">case</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">time</span><span class="p">:</span> <span class="n">datetime</span><span class="p">):</span>
+</span><span id="L-38"><a href="#L-38"><span class="linenos"> 38</span></a><span class="k">def</span> <span class="nf">case_function_attribute</span><span class="p">(</span><span class="n">case</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">time</span><span class="p">:</span> <span class="n">datetime</span><span class="p">):</span>
 </span><span id="L-39"><a href="#L-39"><span class="linenos"> 39</span></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 </span><span id="L-40"><a href="#L-40"><span class="linenos"> 40</span></a><span class="sd">        Function to add one or more attributes to each trace.</span>
-</span><span id="L-41"><a href="#L-41"><span class="linenos"> 41</span></a><span class="sd">        Input parameters are case id number and track start timestamp and return a dictionary.</span>
+</span><span id="L-41"><a href="#L-41"><span class="linenos"> 41</span></a><span class="sd">        Input parameters are case id number and trace start timestamp and return a dictionary.</span>
 </span><span id="L-42"><a href="#L-42"><span class="linenos"> 42</span></a><span class="sd">        For example, we generate a trace attribute, the requested loan amount, to simulate the process from the BPIChallenge2012A.xes log.</span>
 </span><span id="L-43"><a href="#L-43"><span class="linenos"> 43</span></a><span class="sd">    &quot;&quot;&quot;</span>
 </span><span id="L-44"><a href="#L-44"><span class="linenos"> 44</span></a>    <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;AMOUNT&quot;</span><span class="p">:</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">99999</span><span class="p">)}</span>
 </span><span id="L-45"><a href="#L-45"><span class="linenos"> 45</span></a>
 </span><span id="L-46"><a href="#L-46"><span class="linenos"> 46</span></a>
-</span><span id="L-47"><a href="#L-47"><span class="linenos"> 47</span></a><span class="k">def</span> <span class="nf">attribute_function_event</span><span class="p">(</span><span class="n">case</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">time</span><span class="p">:</span> <span class="n">datetime</span><span class="p">):</span>
+</span><span id="L-47"><a href="#L-47"><span class="linenos"> 47</span></a><span class="k">def</span> <span class="nf">event_function_attribute</span><span class="p">(</span><span class="n">case</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">time</span><span class="p">:</span> <span class="n">datetime</span><span class="p">):</span>
 </span><span id="L-48"><a href="#L-48"><span class="linenos"> 48</span></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 </span><span id="L-49"><a href="#L-49"><span class="linenos"> 49</span></a><span class="sd">        Function to add one or more attributes to each event.</span>
 </span><span id="L-50"><a href="#L-50"><span class="linenos"> 50</span></a><span class="sd">        Input parameters are case id number and track start timestamp and return a dictionary.</span>
@@ -236,12 +236,12 @@ used as input from a predictive model.</p>
 </span><span id="L-56"><a href="#L-56"><span class="linenos"> 56</span></a>    <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;bank_branch&quot;</span><span class="p">:</span> <span class="n">bank</span><span class="p">}</span>
 </span><span id="L-57"><a href="#L-57"><span class="linenos"> 57</span></a>
 </span><span id="L-58"><a href="#L-58"><span class="linenos"> 58</span></a>
-</span><span id="L-59"><a href="#L-59"><span class="linenos"> 59</span></a><span class="k">def</span> <span class="nf">custom_arrivals_time</span><span class="p">(</span><span class="n">case</span><span class="p">):</span>
+</span><span id="L-59"><a href="#L-59"><span class="linenos"> 59</span></a><span class="k">def</span> <span class="nf">custom_arrivals_time</span><span class="p">(</span><span class="n">case</span><span class="p">,</span> <span class="n">previous</span><span class="p">):</span>
 </span><span id="L-60"><a href="#L-60"><span class="linenos"> 60</span></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-</span><span id="L-61"><a href="#L-61"><span class="linenos"> 61</span></a><span class="sd">    Function to define a new arrival of a track.</span>
+</span><span id="L-61"><a href="#L-61"><span class="linenos"> 61</span></a><span class="sd">    Function to define a new arrival of a trace. The input parameters are the case id number and the start timestamp of the previous trace.</span>
 </span><span id="L-62"><a href="#L-62"><span class="linenos"> 62</span></a><span class="sd">    For example, we used an AutoRegression model for the *arrivals example*.</span>
 </span><span id="L-63"><a href="#L-63"><span class="linenos"> 63</span></a><span class="sd">    &quot;&quot;&quot;</span>
-</span><span id="L-64"><a href="#L-64"><span class="linenos"> 64</span></a>    <span class="n">loaded</span> <span class="o">=</span> <span class="n">AutoRegResults</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;../example/example_arrivals/arrival_AutoReg_model.pkl&#39;</span><span class="p">)</span>
+</span><span id="L-64"><a href="#L-64"><span class="linenos"> 64</span></a>    <span class="n">loaded</span> <span class="o">=</span> <span class="n">AutoRegResults</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;example/example_arrivals/arrival_AutoReg_model.pkl&#39;</span><span class="p">)</span>
 </span><span id="L-65"><a href="#L-65"><span class="linenos"> 65</span></a>    <span class="k">return</span> <span class="n">loaded</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">case</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">case</span><span class="o">+</span><span class="mi">1</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
 </span><span id="L-66"><a href="#L-66"><span class="linenos"> 66</span></a>
 </span><span id="L-67"><a href="#L-67"><span class="linenos"> 67</span></a>
@@ -369,55 +369,55 @@ used as input from a predictive model.</p>
 
 
             </section>
-                <section id="attribute_function_case">
-                            <input id="attribute_function_case-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
+                <section id="case_function_attribute">
+                            <input id="case_function_attribute-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
 <div class="attr function">
             
         <span class="def">def</span>
-        <span class="name">attribute_function_case</span><span class="signature pdoc-code condensed">(<span class="param"><span class="n">case</span><span class="p">:</span> <span class="nb">int</span>, </span><span class="param"><span class="n">time</span><span class="p">:</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span></span><span class="return-annotation">):</span></span>
+        <span class="name">case_function_attribute</span><span class="signature pdoc-code condensed">(<span class="param"><span class="n">case</span><span class="p">:</span> <span class="nb">int</span>, </span><span class="param"><span class="n">time</span><span class="p">:</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span></span><span class="return-annotation">):</span></span>
 
-                <label class="view-source-button" for="attribute_function_case-view-source"><span>View Source</span></label>
+                <label class="view-source-button" for="case_function_attribute-view-source"><span>View Source</span></label>
 
     </div>
-    <a class="headerlink" href="#attribute_function_case"></a>
-            <div class="pdoc-code codehilite"><pre><span></span><span id="attribute_function_case-39"><a href="#attribute_function_case-39"><span class="linenos">39</span></a><span class="k">def</span> <span class="nf">attribute_function_case</span><span class="p">(</span><span class="n">case</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">time</span><span class="p">:</span> <span class="n">datetime</span><span class="p">):</span>
-</span><span id="attribute_function_case-40"><a href="#attribute_function_case-40"><span class="linenos">40</span></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-</span><span id="attribute_function_case-41"><a href="#attribute_function_case-41"><span class="linenos">41</span></a><span class="sd">        Function to add one or more attributes to each trace.</span>
-</span><span id="attribute_function_case-42"><a href="#attribute_function_case-42"><span class="linenos">42</span></a><span class="sd">        Input parameters are case id number and track start timestamp and return a dictionary.</span>
-</span><span id="attribute_function_case-43"><a href="#attribute_function_case-43"><span class="linenos">43</span></a><span class="sd">        For example, we generate a trace attribute, the requested loan amount, to simulate the process from the BPIChallenge2012A.xes log.</span>
-</span><span id="attribute_function_case-44"><a href="#attribute_function_case-44"><span class="linenos">44</span></a><span class="sd">    &quot;&quot;&quot;</span>
-</span><span id="attribute_function_case-45"><a href="#attribute_function_case-45"><span class="linenos">45</span></a>    <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;AMOUNT&quot;</span><span class="p">:</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">99999</span><span class="p">)}</span>
+    <a class="headerlink" href="#case_function_attribute"></a>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="case_function_attribute-39"><a href="#case_function_attribute-39"><span class="linenos">39</span></a><span class="k">def</span> <span class="nf">case_function_attribute</span><span class="p">(</span><span class="n">case</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">time</span><span class="p">:</span> <span class="n">datetime</span><span class="p">):</span>
+</span><span id="case_function_attribute-40"><a href="#case_function_attribute-40"><span class="linenos">40</span></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+</span><span id="case_function_attribute-41"><a href="#case_function_attribute-41"><span class="linenos">41</span></a><span class="sd">        Function to add one or more attributes to each trace.</span>
+</span><span id="case_function_attribute-42"><a href="#case_function_attribute-42"><span class="linenos">42</span></a><span class="sd">        Input parameters are case id number and trace start timestamp and return a dictionary.</span>
+</span><span id="case_function_attribute-43"><a href="#case_function_attribute-43"><span class="linenos">43</span></a><span class="sd">        For example, we generate a trace attribute, the requested loan amount, to simulate the process from the BPIChallenge2012A.xes log.</span>
+</span><span id="case_function_attribute-44"><a href="#case_function_attribute-44"><span class="linenos">44</span></a><span class="sd">    &quot;&quot;&quot;</span>
+</span><span id="case_function_attribute-45"><a href="#case_function_attribute-45"><span class="linenos">45</span></a>    <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;AMOUNT&quot;</span><span class="p">:</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">99999</span><span class="p">)}</span>
 </span></pre></div>
 
 
             <div class="docstring"><p>Function to add one or more attributes to each trace.
-Input parameters are case id number and track start timestamp and return a dictionary.
+Input parameters are case id number and trace start timestamp and return a dictionary.
 For example, we generate a trace attribute, the requested loan amount, to simulate the process from the BPIChallenge2012A.xes log.</p>
 </div>
 
 
                 </section>
-                <section id="attribute_function_event">
-                            <input id="attribute_function_event-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
+                <section id="event_function_attribute">
+                            <input id="event_function_attribute-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
 <div class="attr function">
             
         <span class="def">def</span>
-        <span class="name">attribute_function_event</span><span class="signature pdoc-code condensed">(<span class="param"><span class="n">case</span><span class="p">:</span> <span class="nb">int</span>, </span><span class="param"><span class="n">time</span><span class="p">:</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span></span><span class="return-annotation">):</span></span>
+        <span class="name">event_function_attribute</span><span class="signature pdoc-code condensed">(<span class="param"><span class="n">case</span><span class="p">:</span> <span class="nb">int</span>, </span><span class="param"><span class="n">time</span><span class="p">:</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span></span><span class="return-annotation">):</span></span>
 
-                <label class="view-source-button" for="attribute_function_event-view-source"><span>View Source</span></label>
+                <label class="view-source-button" for="event_function_attribute-view-source"><span>View Source</span></label>
 
     </div>
-    <a class="headerlink" href="#attribute_function_event"></a>
-            <div class="pdoc-code codehilite"><pre><span></span><span id="attribute_function_event-48"><a href="#attribute_function_event-48"><span class="linenos">48</span></a><span class="k">def</span> <span class="nf">attribute_function_event</span><span class="p">(</span><span class="n">case</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">time</span><span class="p">:</span> <span class="n">datetime</span><span class="p">):</span>
-</span><span id="attribute_function_event-49"><a href="#attribute_function_event-49"><span class="linenos">49</span></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-</span><span id="attribute_function_event-50"><a href="#attribute_function_event-50"><span class="linenos">50</span></a><span class="sd">        Function to add one or more attributes to each event.</span>
-</span><span id="attribute_function_event-51"><a href="#attribute_function_event-51"><span class="linenos">51</span></a><span class="sd">        Input parameters are case id number and track start timestamp and return a dictionary.</span>
-</span><span id="attribute_function_event-52"><a href="#attribute_function_event-52"><span class="linenos">52</span></a><span class="sd">        In the following example, we assume that there are multiple bank branches where activities</span>
-</span><span id="attribute_function_event-53"><a href="#attribute_function_event-53"><span class="linenos">53</span></a><span class="sd">        are executed by day of the week. From Monday to Wednesday, activities are executed in the</span>
-</span><span id="attribute_function_event-54"><a href="#attribute_function_event-54"><span class="linenos">54</span></a><span class="sd">        Eindhoven branch otherwise in the Utrecht one.</span>
-</span><span id="attribute_function_event-55"><a href="#attribute_function_event-55"><span class="linenos">55</span></a><span class="sd">    &quot;&quot;&quot;</span>
-</span><span id="attribute_function_event-56"><a href="#attribute_function_event-56"><span class="linenos">56</span></a>    <span class="n">bank</span> <span class="o">=</span> <span class="s2">&quot;Utrecht&quot;</span> <span class="k">if</span> <span class="n">time</span><span class="o">.</span><span class="n">weekday</span><span class="p">()</span> <span class="o">&gt;</span> <span class="mi">3</span> <span class="k">else</span> <span class="s2">&quot;Eindhoven&quot;</span>
-</span><span id="attribute_function_event-57"><a href="#attribute_function_event-57"><span class="linenos">57</span></a>    <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;bank_branch&quot;</span><span class="p">:</span> <span class="n">bank</span><span class="p">}</span>
+    <a class="headerlink" href="#event_function_attribute"></a>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="event_function_attribute-48"><a href="#event_function_attribute-48"><span class="linenos">48</span></a><span class="k">def</span> <span class="nf">event_function_attribute</span><span class="p">(</span><span class="n">case</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">time</span><span class="p">:</span> <span class="n">datetime</span><span class="p">):</span>
+</span><span id="event_function_attribute-49"><a href="#event_function_attribute-49"><span class="linenos">49</span></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+</span><span id="event_function_attribute-50"><a href="#event_function_attribute-50"><span class="linenos">50</span></a><span class="sd">        Function to add one or more attributes to each event.</span>
+</span><span id="event_function_attribute-51"><a href="#event_function_attribute-51"><span class="linenos">51</span></a><span class="sd">        Input parameters are case id number and track start timestamp and return a dictionary.</span>
+</span><span id="event_function_attribute-52"><a href="#event_function_attribute-52"><span class="linenos">52</span></a><span class="sd">        In the following example, we assume that there are multiple bank branches where activities</span>
+</span><span id="event_function_attribute-53"><a href="#event_function_attribute-53"><span class="linenos">53</span></a><span class="sd">        are executed by day of the week. From Monday to Wednesday, activities are executed in the</span>
+</span><span id="event_function_attribute-54"><a href="#event_function_attribute-54"><span class="linenos">54</span></a><span class="sd">        Eindhoven branch otherwise in the Utrecht one.</span>
+</span><span id="event_function_attribute-55"><a href="#event_function_attribute-55"><span class="linenos">55</span></a><span class="sd">    &quot;&quot;&quot;</span>
+</span><span id="event_function_attribute-56"><a href="#event_function_attribute-56"><span class="linenos">56</span></a>    <span class="n">bank</span> <span class="o">=</span> <span class="s2">&quot;Utrecht&quot;</span> <span class="k">if</span> <span class="n">time</span><span class="o">.</span><span class="n">weekday</span><span class="p">()</span> <span class="o">&gt;</span> <span class="mi">3</span> <span class="k">else</span> <span class="s2">&quot;Eindhoven&quot;</span>
+</span><span id="event_function_attribute-57"><a href="#event_function_attribute-57"><span class="linenos">57</span></a>    <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;bank_branch&quot;</span><span class="p">:</span> <span class="n">bank</span><span class="p">}</span>
 </span></pre></div>
 
 
@@ -435,23 +435,23 @@ Eindhoven branch otherwise in the Utrecht one.</p>
 <div class="attr function">
             
         <span class="def">def</span>
-        <span class="name">custom_arrivals_time</span><span class="signature pdoc-code condensed">(<span class="param"><span class="k">case</span></span><span class="return-annotation">):</span></span>
+        <span class="name">custom_arrivals_time</span><span class="signature pdoc-code condensed">(<span class="param"><span class="k">case</span>, </span><span class="param"><span class="n">previous</span></span><span class="return-annotation">):</span></span>
 
                 <label class="view-source-button" for="custom_arrivals_time-view-source"><span>View Source</span></label>
 
     </div>
     <a class="headerlink" href="#custom_arrivals_time"></a>
-            <div class="pdoc-code codehilite"><pre><span></span><span id="custom_arrivals_time-60"><a href="#custom_arrivals_time-60"><span class="linenos">60</span></a><span class="k">def</span> <span class="nf">custom_arrivals_time</span><span class="p">(</span><span class="n">case</span><span class="p">):</span>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="custom_arrivals_time-60"><a href="#custom_arrivals_time-60"><span class="linenos">60</span></a><span class="k">def</span> <span class="nf">custom_arrivals_time</span><span class="p">(</span><span class="n">case</span><span class="p">,</span> <span class="n">previous</span><span class="p">):</span>
 </span><span id="custom_arrivals_time-61"><a href="#custom_arrivals_time-61"><span class="linenos">61</span></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-</span><span id="custom_arrivals_time-62"><a href="#custom_arrivals_time-62"><span class="linenos">62</span></a><span class="sd">    Function to define a new arrival of a track.</span>
+</span><span id="custom_arrivals_time-62"><a href="#custom_arrivals_time-62"><span class="linenos">62</span></a><span class="sd">    Function to define a new arrival of a trace. The input parameters are the case id number and the start timestamp of the previous trace.</span>
 </span><span id="custom_arrivals_time-63"><a href="#custom_arrivals_time-63"><span class="linenos">63</span></a><span class="sd">    For example, we used an AutoRegression model for the *arrivals example*.</span>
 </span><span id="custom_arrivals_time-64"><a href="#custom_arrivals_time-64"><span class="linenos">64</span></a><span class="sd">    &quot;&quot;&quot;</span>
-</span><span id="custom_arrivals_time-65"><a href="#custom_arrivals_time-65"><span class="linenos">65</span></a>    <span class="n">loaded</span> <span class="o">=</span> <span class="n">AutoRegResults</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;../example/example_arrivals/arrival_AutoReg_model.pkl&#39;</span><span class="p">)</span>
+</span><span id="custom_arrivals_time-65"><a href="#custom_arrivals_time-65"><span class="linenos">65</span></a>    <span class="n">loaded</span> <span class="o">=</span> <span class="n">AutoRegResults</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;example/example_arrivals/arrival_AutoReg_model.pkl&#39;</span><span class="p">)</span>
 </span><span id="custom_arrivals_time-66"><a href="#custom_arrivals_time-66"><span class="linenos">66</span></a>    <span class="k">return</span> <span class="n">loaded</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">case</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">case</span><span class="o">+</span><span class="mi">1</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
 </span></pre></div>
 
 
-            <div class="docstring"><p>Function to define a new arrival of a track.
+            <div class="docstring"><p>Function to define a new arrival of a trace. The input parameters are the case id number and the start timestamp of the previous trace.
 For example, we used an AutoRegression model for the <em>arrivals example</em>.</p>
 </div>
 
