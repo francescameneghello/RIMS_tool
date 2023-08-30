@@ -154,7 +154,8 @@ In this paper, we aim at taking a step further by introducing \rims (Runtime Int
 <h5 id="petri-net-model">Petri net model</h5>
 
 <p>RIMS to model and simulate the process utilizes the Petri net model, which is handled through the methods provided by the pm4py library.
-The input file for correct reading needs to be in the format <a href="https://www.pnml.org/">pnml</a> i.e. <em>name_file.pnml</em>. Finally, it must not contain two or more transitions with the same name. </p>
+The input file for correct reading needs to be in the format <a href="https://www.pnml.org/">pnml</a> i.e. <em>name_file.pnml</em>. Finally, it must not contain two or more transitions with the same name.<br>
+The tool does not accept a BPMN model as input, however, it can be easily transformed into a Petri net, through various Python libraries <a href="https://pm4py.fit.fraunhofer.de/">PM4PY</a> or PM tool such as <a href="https://promtools.org/">ProM</a>.</p>
 
 <h5 id="simulation-parameters">Simulation parameters</h5>
 

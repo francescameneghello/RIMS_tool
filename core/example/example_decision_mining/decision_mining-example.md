@@ -12,11 +12,11 @@ The petrinet found by the [Inductive Miner](https://pm4py.fit.fraunhofer.de/docu
 <img src="../example/example_decision_mining/petri_net.png" alt="Alt Text" width="740"> 
 
 We also want to show how to add a case-specific attribute, *requested loan amount*, to each simulation trace.
-Through the function *attribute_function_case(case_id)*
+Through the function *case_function_attribute(case_id)*
 it is easy to add the attribute/s case with the return of a dictionary. In this case, for each trace, we randomly generate a loan amount from 1000 to 99999 euros.
 
 ```python
-    def attribute_function_case(case):
+    def case_function_attribute(case):
         return {"AMOUNT": random.randint(1000, 99999)}
 ```
 

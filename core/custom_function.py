@@ -35,7 +35,7 @@ from datetime import datetime
 import os
 
 
-def attribute_function_case(case: int, time: datetime):
+def case_function_attribute(case: int, time: datetime):
     """
         Function to add one or more attributes to each trace.
         Input parameters are case id number and track start timestamp and return a dictionary.
@@ -44,7 +44,7 @@ def attribute_function_case(case: int, time: datetime):
     return {"AMOUNT": random.randint(100, 99999)}
 
 
-def attribute_function_event(case: int, time: datetime):
+def event_function_attribute(case: int, time: datetime):
     """
         Function to add one or more attributes to each event.
         Input parameters are case id number and track start timestamp and return a dictionary.

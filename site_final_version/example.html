@@ -212,11 +212,11 @@ The application can be accepted or rejected by the bank, likewise the customer c
 <p><img src="images/decision_mining/petri_net.png" alt="Alt Text" width="740"> </p>
 
 <p>We also want to show how to add a case-specific attribute, <em>requested loan amount</em>, to each simulation trace.
-Through the function <em>attribute_function_case(case_id)</em>
+Through the function <em>case_function_attribute(case_id)</em>
 it is easy to add the attribute/s case with the return of a dictionary. In this case, for each trace, we randomly generate a loan amount from 1000 to 99999 euros.</p>
 
 <div class="pdoc-code codehilite">
-<pre><span></span><code>    <span class="k">def</span> <span class="nf">attribute_function_case</span><span class="p">(</span><span class="n">case</span><span class="p">):</span>
+<pre><span></span><code>    <span class="k">def</span> <span class="nf">case_function_attribute</span><span class="p">(</span><span class="n">case</span><span class="p">):</span>
         <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;AMOUNT&quot;</span><span class="p">:</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">1000</span><span class="p">,</span> <span class="mi">99999</span><span class="p">)}</span>
 </code></pre>
 </div>

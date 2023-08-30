@@ -32,7 +32,7 @@ class Token(object):
         self._writer = writer
         self._parallel_object = parallel_object
         self._buffer = Buffer(writer, values)
-        self._buffer.set_feature("attribute_case", custom.attribute_function_case(self._id, time))
+        self._buffer.set_feature("attribute_case", custom.case_function_attribute(self._id, time))
 
     def _delete_places(self, places):
         delete = []
@@ -69,7 +69,9 @@ class Token(object):
                 self._buffer.set_feature("id_case", self._id)
                 self._buffer.set_feature("activity", trans.label)
                 self._buffer.set_feature("prefix", self._prefix.get_prefix(self._start_time + timedelta(seconds=env.now)))
-                self._buffer.set_feature("attribute_event", custom.attribute_function_event(self._id, self._start_time + timedelta(seconds=env.now)))
+                self._buffer.set_feature("attribute_event", custom.event_function_attribute(self._id,
+                                                                                            self._start_time + timedelta(
+                                                                                                seconds=env.now)))
 
                 ### call predictor for waiting time
                 if trans.label in self._params.ROLE_ACTIVITY:
