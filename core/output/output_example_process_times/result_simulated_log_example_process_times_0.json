@@ -1,4 +1,5 @@
 {
+<<<<<<< HEAD
                             "total_events": 3,
                             "total_traces": 1,
                             "A_SUBMITTED_frequency": 1,
@@ -36,5 +37,44 @@
                             "Role 3": {
                                                         "total": 0,
                                                         "C": 0
+=======
+                            "total_events": 158,
+                            "total_traces": 15,
+                            "A_SUBMITTED_frequency": 15,
+                            "A_PARTLYSUBMITTED_frequency": 15,
+                            "A_ACTIVATED_frequency": 8,
+                            "W_Fix_incomplete_submission_frequency": 4,
+                            "W_Assess_fraud_frequency": 4,
+                            "A_PREACCEPTED_frequency": 8,
+                            "W_Complete_preaccepted_appl_frequency": 17,
+                            "W_Assess_application_frequency": 2,
+                            "A_ACCEPTED_frequency": 3,
+                            "A_FINALIZED_frequency": 3,
+                            "O_SELECTED_frequency": 9,
+                            "O_CREATED_frequency": 9,
+                            "O_SENT_BACK_frequency": 1,
+                            "O_ACCEPTED_frequency": 8,
+                            "A_CANCELLED_frequency": 3,
+                            "O_SENT_frequency": 9,
+                            "A_DECLINED_frequency": 4,
+                            "W_Call_after_offer_frequency": 20,
+                            "A_REGISTERED_frequency": 8,
+                            "A_APPROVED_frequency": 8,
+                            "duration": "3 days, 3:42:47.411362",
+                            "start_simulation": "2022-01-01 09:39:37.394632",
+                            "end_simulation": "2022-01-04 13:22:24.805994",
+                            "Role 1": {
+                                                        "total": 72,
+                                                        "D": 34,
+                                                        "E": 38
+                            },
+                            "Role 2": {
+                                                        "total": 56,
+                                                        "A": 46
+                            },
+                            "Role 3": {
+                                                        "total": 30,
+                                                        "C": 30
+>>>>>>> a82bc5325f8c66368163bc49d3b59fda56b61f97
                             }
 }
