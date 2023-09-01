@@ -1,40 +1,40 @@
 {
-                            "total_events": 151,
+                            "total_events": 158,
                             "total_traces": 15,
                             "A_SUBMITTED_frequency": 15,
                             "A_PARTLYSUBMITTED_frequency": 15,
-                            "A_ACTIVATED_frequency": 3,
-                            "W_Fix_incomplete_submission_frequency": 8,
-                            "W_Assess_fraud_frequency": 5,
+                            "A_ACTIVATED_frequency": 8,
+                            "W_Fix_incomplete_submission_frequency": 4,
+                            "W_Assess_fraud_frequency": 4,
                             "A_PREACCEPTED_frequency": 8,
-                            "W_Complete_preaccepted_appl_frequency": 16,
+                            "W_Complete_preaccepted_appl_frequency": 17,
                             "W_Assess_application_frequency": 2,
-                            "A_ACCEPTED_frequency": 4,
-                            "A_FINALIZED_frequency": 4,
+                            "A_ACCEPTED_frequency": 3,
+                            "A_FINALIZED_frequency": 3,
                             "O_SELECTED_frequency": 9,
                             "O_CREATED_frequency": 9,
                             "O_SENT_BACK_frequency": 1,
-                            "O_ACCEPTED_frequency": 3,
-                            "A_CANCELLED_frequency": 4,
+                            "O_ACCEPTED_frequency": 8,
+                            "A_CANCELLED_frequency": 3,
                             "O_SENT_frequency": 9,
-                            "A_DECLINED_frequency": 8,
-                            "W_Call_after_offer_frequency": 22,
-                            "A_REGISTERED_frequency": 3,
-                            "A_APPROVED_frequency": 3,
-                            "duration": "2 days, 23:51:42.613671",
-                            "start_simulation": "2022-01-01 09:38:33.129614",
-                            "end_simulation": "2022-01-04 09:30:15.743285",
+                            "A_DECLINED_frequency": 4,
+                            "W_Call_after_offer_frequency": 20,
+                            "A_REGISTERED_frequency": 8,
+                            "A_APPROVED_frequency": 8,
+                            "duration": "3 days, 3:42:47.411362",
+                            "start_simulation": "2022-01-01 09:39:37.394632",
+                            "end_simulation": "2022-01-04 13:22:24.805994",
                             "Role 1": {
-                                                        "total": 63,
-                                                        "D": 31,
-                                                        "E": 32
+                                                        "total": 72,
+                                                        "D": 34,
+                                                        "E": 38
                             },
                             "Role 2": {
-                                                        "total": 57,
+                                                        "total": 56,
                                                         "A": 46
                             },
                             "Role 3": {
-                                                        "total": 31,
-                                                        "C": 31
+                                                        "total": 30,
+                                                        "C": 30
                             }
 }
