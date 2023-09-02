@@ -6,7 +6,7 @@ The company providing the data and the process under consideration is the same a
 
 The petrinet found by the inductive miner is the following:
 
-<img src="../example/example_arrivals/petri_net.png" alt="Alt Text" width="780">
+<img src="petri_net.png" alt="Alt Text" width="780">
 
 In this example we want to show different ways to generate the arrivals times of tokens in the simulation.
 As exaplained in the **link inter_trigger_timer class** we can define the arrivals with 3 methods:

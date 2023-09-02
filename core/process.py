@@ -1,7 +1,7 @@
 '''
 Class to manage the resources shared by all the traces in the process.
 
-<img src="../old_html_version/process_class.png" alt="Alt Text" width="780">
+<img src="../docs/images/process_class.png" alt="Alt Text" width="780">
 '''
 import simpy
 from role_simulator import RoleSimulator
