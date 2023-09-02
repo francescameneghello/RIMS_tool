@@ -9,7 +9,7 @@ The application can be accepted or rejected by the bank, likewise the customer c
 
 The petrinet found by the [Inductive Miner](https://pm4py.fit.fraunhofer.de/documentation#item-3-2) algorithm from pm4py, is the following:
 
-<img src="../example/example_decision_mining/petri_net.png" alt="Alt Text" width="740"> 
+<img src="petri_net.png" alt="Alt Text" width="740"> 
 
 We also want to show how to add a case-specific attribute, *requested loan amount*, to each simulation trace.
 Through the function *case_function_attribute(case_id)*
@@ -23,7 +23,7 @@ it is easy to add the attribute/s case with the return of a dictionary. In this 
 The aim of this example is to present different ways to choose the next activity from a specific decision point of Petri net model. 
 In the following image, the four decision points in the process are highlighted with three different colours.
 
-<img src="../example/example_decision_mining/petri_net_decision.png" alt="Alt Text" width="780">
+<img src="petri_net_decision.png" alt="Alt Text" width="780">
 
 As exaplained in the **link event trace class, next activity** we can define the 3 methods to define the next activity 
 of decision point:
@@ -58,7 +58,7 @@ of decision point:
 To train the model we used as input the following feature: the presence of A_PREACCEPTED, A_ACCEPTED, A_FINALIZED
 activities in the prefix of trace, the requested loan amount, the weekday and hour of the time of arrival in the decision point.
 
-<img src="../example/example_decision_mining/random_forest.png" alt="Alt Text" width="780">
+<img src="random_forest.png" alt="Alt Text" width="780">
 
 In general, if the user does not define probability parameters in the JSON file, the simulator automatically 
 applies the AUTO mode for each decision point.
