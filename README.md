@@ -6,7 +6,7 @@ Predictive Process Monitoring, on the other hand, offers a viable way to complet
 Rims_tool is a hybrid business process simulator that aims at combining predictive models built from data and Discrete event simulation at runtime in a white-box manner. The proposed tool, thus, is able to exploit the strengths and avoid the limitations of both approaches.
 
 
-<img src="../docs/images/rims_schema.png" alt="Alt Text" width="780">
+<img src="docs/images/rims_schema.png" alt="Alt Text" width="780">
 
 ## Installation guide
 
