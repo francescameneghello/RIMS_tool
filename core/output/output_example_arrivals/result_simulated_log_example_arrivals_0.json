@@ -1,27 +1,27 @@
 {
-                 "total_events": 55,
-                 "total_traces": 15,
-                 "A_SUBMITTED_frequency": 15,
-                 "A_PARTLYSUBMITTED_frequency": 15,
-                 "A_PREACCEPTED_frequency": 10,
-                 "A_ACCEPTED_frequency": 3,
+                 "total_events": 15,
+                 "total_traces": 5,
+                 "A_SUBMITTED_frequency": 5,
+                 "A_PARTLYSUBMITTED_frequency": 5,
+                 "A_PREACCEPTED_frequency": 2,
+                 "A_ACCEPTED_frequency": 1,
                  "A_FINALIZED_frequency": 0,
-                 "A_CANCELLED_frequency": 8,
-                 "A_DECLINED_frequency": 1,
-                 "A_APPROVED_frequency": 1,
-                 "A_REGISTERED_frequency": 1,
-                 "A_ACTIVATED_frequency": 1,
-                 "duration": "2 days, 7:23:18.704732",
-                 "start_simulation": "2023-08-22 08:00:49.157913",
-                 "end_simulation": "2023-08-24 15:24:07.862645",
+                 "A_CANCELLED_frequency": 0,
+                 "A_DECLINED_frequency": 2,
+                 "A_APPROVED_frequency": 0,
+                 "A_REGISTERED_frequency": 0,
+                 "A_ACTIVATED_frequency": 0,
+                 "duration": "42 days, 1:44:47.053594",
+                 "start_simulation": "2023-09-04 08:00:00.658234",
+                 "end_simulation": "2023-10-16 09:44:47.711828",
                  "Role 1": {
-                                  "total": 18,
-                                  "Sara": 9,
-                                  "Mike": 9
+                                  "total": 6,
+                                  "Mike": 3,
+                                  "Sara": 3
                  },
                  "Role 2": {
-                                  "total": 37,
-                                  "Sue": 19,
-                                  "Ellen": 18
+                                  "total": 9,
+                                  "Sue": 4,
+                                  "Ellen": 5
                  }
 }

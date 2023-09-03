@@ -46,7 +46,7 @@
     <nav class="pdoc">
         <label id="navtoggle" for="togglestate" class="pdoc-button"><svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'><path stroke-linecap='round' stroke="currentColor" stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/></svg></label>
         <input id="togglestate" type="checkbox" aria-hidden="true" tabindex="-1">
-        <div>    <h2>${\mathsf{Rims_{Tool}}}$</h2><p></p>
+        <div>    <h2><a href="https://github.com/francescameneghello/RIMS_tool">${\mathsf{Rims_{Tool}}}$</a></h2><p></p>
     <ul>
             <li><a href="#runtime-integration-of-machine-learning-and-simulation-for-business-processes-rims">Overview</a></li>
             <li><a href="#installation-guide">Installation guide</a></li>
@@ -115,31 +115,42 @@
                             <p>Business Process Simulation represents a powerful instrument for business analysts when analyzing and comparing business processes.
 Most of the state-of-the-art business process simulators, however, rely on Discrete event simulation, which requires various unrealistic assumptions and simplifications to perform experiments.
 Predictive Process Monitoring, on the other hand, offers a viable way to complete ongoing traces or to generate entire traces from scratch, via predictions of the next activities and their attributes. Predictive models, though, are usually based on black-box approaches that makes it difficult to reason on what-if scenarios.
-Rims_tool is a hybrid business process simulator that aims at combining predictive models built from data and Discrete event simulation at runtime in a white-box manner. The proposed tool, thus, is able to exploit the strengths and avoid the limitations of both approaches.
+${\mathsf{Rims_{Tool}}}$ is a hybrid business process simulator that aims at combining predictive models built from data and Discrete event simulation at runtime in a white-box manner. The proposed tool, thus, is able to exploit the strengths and avoid the limitations of both approaches.
 </p>
 <p><img src="images/rims_schema.png" alt="Alt Text" width="780"></p>
 
 <h2 id="installation-guide">Installation guide</h2>
 
-
-<h3 id="prerequisites">Prerequisites</h3>
-
-<h1 style="color:red;">FINIRE</h1>
-
-<p>To execute this code, simply install the following main packages:: </p>
+<p>To execute this code, simply install the following main packages:</p>
 
 <ul>
-<li>simpy</li>
-<li>pm4py</li>
-<li>tensorflow</li>
-<li>keras</li>
-<li>pickle</li>
-<li>aggiunti per esempio "statsmodels"</li>
+<li>scikit-learn==1.2.1</li>
+<li>scipy==1.11.2</li>
+<li>simpy==4.0.1</li>
+<li>pm4py==2.7.5.2</li>
+<li>statsmodels==0.14.0</li>
+<li>pandas==1.5.3</li>
 </ul>
+
+<p>or you can use the configuration file called requirements.txt to install all specified package versions.</p>
+
+<div class="pdoc-code codehilite">
+<pre><span></span><code><span class="w">   </span>pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>requirements.txt
+   <span class="w"></span>conda<span class="w"> </span>activate<span class="w"> </span>rims_tool</code></pre>
+</div>
+
+<p>Otherwise, with the anaconda system you can create an environment using the environment.yml specification provided in the repository.</p>
+
+conda activate rims_tool
+ <div class="pdoc-code codehilite">
+<pre><span></span><code><span class="w">   </span>conda<span class="w"> </span>env<span class="w"> </span>create<span class="w"> </span>-f<span class="w"> </span>environment.yml
+</code></pre>
+</div>
+
 
 <h2 id="getting-started">Getting Started</h2>
 
-<p>Once installed all the packages, you can execute the tool from a terminal specifying the following parameters:</p>
+<p>Once the packages are installed, you can run one or more simulations by specifying the following parameters:</p>
 
 <ul>
 <li><code>-p</code>: specify the path of the Petri net model to be simulated, in <em>pnml</em> format</li>
@@ -148,6 +159,13 @@ Rims_tool is a hybrid business process simulator that aims at combining predicti
 <li><code>-i</code>: specify the total number of simulation to generate</li>
 <li><code>-o</code>: specify the path where to save the output files</li>
 </ul>
+
+<div class="pdoc-code codehilite">
+<pre><span></span><code><span class="w">   </span>python<span class="w"> </span>run_simulation.py<span class="w"> </span>-p<span class="w"> </span>&ltpetrinet&gt.pnml<span class="w"> </span>-s<span class="w"> </span>&ltsimulation_parameters&gt.json<span class="w"> </span>-t<span class="w"> </span><span class="m">10</span><span class="w"> </span>-i<span class="w"> </span><span class="m">1</span><span class="w"> </span>-o<span class="w"> </span>&ltoutput_folder_name&gt
+</code></pre>
+</div>
+
+<p>Otherwise, it is possible to run the three examples directly with the keywords: <em>arrivalsD</em>, <em>arrivalsS</em>, <em>process_times</em>, <em>decision_mining</em>.</p>
 
 <h2 id="input-files">Input files</h2>
 
@@ -241,8 +259,6 @@ with each event (<a href="custom_function.html">here</a> to see the full list of
 
 <p>All events generated by the simulation are still printed in the terminal view</p>
 
-<h1 style="color:red;">Aggiungere immagine print in terminal</h1>
-
 <h5 id="analysis-of-simulated-log">Analysis of simulated log</h5>
 
 <p>Class to generate the output json file <em>result_simulated_log_(experiment_name).json</em> with some analysis on the simulated log.</p>
@@ -288,6 +304,7 @@ with each event (<a href="custom_function.html">here</a> to see the full list of
   <a href="mailto:fmeneghello@fbk.eu">fmeneghello@fbk.eu</a>, <a href="mailto:francesca.meneghello@uniroma1.it">francesca.meneghello@uniroma1.it</a><br>
   Chiara Di Francescomarino: <em>University of Trento</em><br>
   Chiara Ghidini: <em>Fondazione Bruno Kessler (FBK)</em></p>
+  <p>Demo paper  <a href="images/rims_tool_hybrid_simulator.pdf">${\mathsf{Rims_{Tool}}}$: a Hybrid Simulator for Business Processes</a>.</p>
 </footer>
 </main>
 

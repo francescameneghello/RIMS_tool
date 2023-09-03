@@ -17,6 +17,7 @@ To execute this code, simply install the following main packages:
 * simpy==4.0.1
 * pm4py==2.7.5.2
 * statsmodels==0.14.0
+* pandas==1.5.3
 
 or you can use the configuration file called requirements.txt to install all specified package versions.
 
@@ -35,13 +36,23 @@ conda activate rims_tool
 
 ## Getting Started
 
-Once installed all the packages, you can execute the tool from a terminal specifying the following parameters:
+Once the packages are installed, you can run one or more simulations by specifying the following parameters:
 
 * `-p`: specify the path of the Petri net model to be simulated, in *pnml* format
 * `-s`: specify the path to the simulation parameter file, in *json* format
 * `-t`: specify the total number of traces per single simulation
 * `-i`: specify the total number of simulation to generate
 * `-o`: specify the path where to save the output files
+
+```shell
+python run_simulation.py -p <petrinet>.pnml -s <simulation_parameters>.json -t 10 -i 1 -o <output_folder_name>
+```
+
+Otherwise, it is possible to run the three examples directly with the keywords: *arrivalsD*, *arrivalsS*, *process_times*, *decision_mining*
+```shell
+python run_simulation.py -e arrivalsD
+```
+
 
 ## Input files
 
