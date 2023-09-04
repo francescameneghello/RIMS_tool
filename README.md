@@ -1,14 +1,14 @@
-# ${\mathsf{Rims_{Tool}}}$: Runtime Integration of Machine Learning and Simulation for Business Processes
+# ${RIMS}{\mathsf{_{Tool}}}$: Runtime Integration of Machine Learning and Simulation for Business Processes
 
 Business Process Simulation represents a powerful instrument for business analysts when analyzing and comparing business processes. 
 Most of the state-of-the-art business process simulators, however, rely on Discrete event simulation, which requires various unrealistic assumptions and simplifications to perform experiments. 
 Predictive Process Monitoring, on the other hand, offers a viable way to complete ongoing traces or to generate entire traces from scratch, via predictions of the next activities and their attributes. Predictive models, though, are usually based on black-box approaches that makes it difficult to reason on what-if scenarios.
-Rims_tool is a hybrid business process simulator that aims at combining predictive models built from data and Discrete event simulation at runtime in a white-box manner. The proposed tool, thus, is able to exploit the strengths and avoid the limitations of both approaches.
+RIMS_tool is a hybrid business process simulator that aims at combining predictive models built from data and Discrete event simulation at runtime in a white-box manner. The proposed tool, thus, is able to exploit the strengths and avoid the limitations of both approaches.
 
 
 <img src="docs/images/rims_schema.png" alt="Alt Text" width="780">
 
-Here to see the full documentation, [Rims_Tool documentation](https://francescameneghello.github.io/RIMS_tool/index.html)
+Here to see the full documentation, [RIMS_Tool documentation](https://francescameneghello.github.io/RIMS_tool/index.html)
 
 ## Installation guide
 
