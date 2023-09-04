@@ -6,6 +6,24 @@
             "scale": 300
         }
     },
+    "resource": {
+        "Role 1": {
+            "resources": ["Sara", "Mike"],
+            "calendar": {
+                "days": [0, 1, 2, 3, 4, 5, 6],
+                "hour_min": 0,
+                "hour_max": 23
+            }
+        },
+        "Role 2": {
+            "resources": ["Ellen", "Sue"],
+            "calendar": {
+                "days": [0, 1, 2, 3, 4, 5, 6],
+                "hour_min": 0,
+                "hour_max": 23
+            }
+        }
+    },
     "processing_time": {
         "A_SUBMITTED":  {
             "name": "uniform",
@@ -88,24 +106,6 @@
         "A_CANCELLED": "CUSTOM",
         "A_DECLINED": "CUSTOM",
         "tauSplit_5": "CUSTOM"
-    },
-    "resource": {
-        "Role 1": {
-            "resources": ["Sara", "Mike"],
-            "calendar": {
-                "days": [0, 1, 2, 3, 4, 5, 6],
-                "hour_min": 0,
-                "hour_max": 23
-            }
-        },
-        "Role 2": {
-            "resources": ["Ellen", "Sue"],
-            "calendar": {
-                "days": [0, 1, 2, 3, 4, 5, 6],
-                "hour_min": 0,
-                "hour_max": 23
-            }
-        }
     },
     "resource_table": [
         {
