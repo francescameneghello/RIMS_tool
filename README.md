@@ -8,7 +8,7 @@ Rims_tool is a hybrid business process simulator that aims at combining predicti
 
 <img src="docs/images/rims_schema.png" alt="Alt Text" width="780">
 
-Here to see the full documentation, [${\mathsf{Rims_{Tool}}}$ documentation](https://francescameneghello.github.io/RIMS_tool/index.html)
+Here to see the full documentation, [Rims_Tool](https://francescameneghello.github.io/RIMS_tool/index.html)
 
 ## Installation guide
 
