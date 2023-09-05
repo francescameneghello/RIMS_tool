@@ -69,6 +69,14 @@
 </div>
     </nav>
     <main class="pdoc">
+            <style>
+                img {
+                  display: block;
+                  margin-left: auto;
+                  margin-right: auto;
+                    max-width: 100%;
+                }
+            </style>
             <section class="module-info">
                     <h1 class="modulename"> Examples </h1>
 
@@ -178,23 +186,32 @@ Role 1 resources, Sara and Mike, work Monday through Friday, 8 a.m. to 4 p.m.</p
 </code></pre>
 </div>
 
-<p>To run the example use the following commands:</p>
 
-<ul>
-<li>to run the example with a exponential distribution</li>
-</ul>
+<p>To run the example with a <em>exponential distribution</em>:</p>
 
 <div class="pdoc-code codehilite">
-<pre><span></span><code><span class="w">   </span>python<span class="w"> </span>main.py<span class="w"> </span>-p<span class="w"> </span>../example/example_arrivals/bpi2012.pnml<span class="w"> </span>-s<span class="w"> </span>../example/example_arrivals/input_arrivals_example_distribution.json<span class="w"> </span>-t<span class="w"> </span><span class="m">10</span><span class="w"> </span>-i<span class="w"> </span><span class="m">1</span><span class="w"> </span>-o<span class="w"> </span>example_arrivals
+<pre><span></span><code><span class="w">   </span>python<span class="w"> </span>run_simulation.py<span class="w"> </span>-p<span class="w"> </span>example/example_arrivals/bpi2012.pnml<span class="w"> </span>-s<span class="w"> </span>/example/example_arrivals/input_arrivals_example_distribution.json<span class="w"> </span>-t<span class="w"> </span><span class="m">20</span><span class="w"> </span>-i<span class="w"> </span><span class="m">1</span><span class="w"> </span>-o<span class="w"> </span>example_arrivals
 </code></pre>
 </div>
 
-<ul>
-<li>to run the example with a time series model</li>
-</ul>
+<p>or use the short command</p>
 
 <div class="pdoc-code codehilite">
-<pre><span></span><code><span class="w">   </span>python<span class="w"> </span>main.py<span class="w"> </span>-p<span class="w"> </span>../example/example_arrivals/bpi2012.pnml<span class="w"> </span>-s<span class="w"> </span>../example/example_arrivals/input_arrivals_example_timeseries.json<span class="w"> </span>-t<span class="w"> </span><span class="m">10</span><span class="w"> </span>-i<span class="w"> </span><span class="m">1</span><span class="w"> </span>-o<span class="w"> </span>example_arrivals
+<pre><span></span><code><span class="w">   </span>python<span class="w"> </span>run_simulation.py<span class="w"> </span>-e<span class="w"> </span>arrivalsD
+</code></pre>
+</div>
+
+<p>To run the example with a <em>time series model</em>:</p>
+
+<div class="pdoc-code codehilite">
+<pre><span></span><code><span class="w">   </span>python<span class="w"> </span>run_simulation.py<span class="w"> </span>-p<span class="w"> </span>example/example_arrivals/bpi2012.pnml<span class="w"> </span>-s<span class="w"> </span>example/example_arrivals/input_arrivals_example_timeseries.json<span class="w"> </span>-t<span class="w"> </span><span class="m">10</span><span class="w"> </span>-i<span class="w"> </span><span class="m">1</span><span class="w"> </span>-o<span class="w"> </span>example_arrivals
+</code></pre>
+</div>
+
+<p>or use the short command</p>
+
+<div class="pdoc-code codehilite">
+<pre><span></span><code><span class="w">   </span>python<span class="w"> </span>run_simulation.py<span class="w"> </span>-e<span class="w"> </span>arrivalsS
 </code></pre>
 </div>
 
@@ -278,14 +295,17 @@ activities in the prefix of trace, the requested loan amount, the weekday and ho
 applies the AUTO mode for each decision point.
 Otherwise, if the user defines the mode for one or more decision points, the user still has to specify all of them even if they are in AUTO mode.</p>
 
-<p>To run the example use the following commands:</p>
-
-<ul>
-<li>to run the example with a exponential distribution</li>
-</ul>
+<p>To run the example:</p>
 
 <div class="pdoc-code codehilite">
 <pre><span></span><code><span class="w">   </span>python<span class="w"> </span>main.py<span class="w"> </span>-p<span class="w"> </span>../example/example_decision_mining/bpi2012.pnml<span class="w"> </span>-s<span class="w"> </span>../example/example_decision_mining/input_decision_mining_example.json<span class="w"> </span>-t<span class="w"> </span><span class="m">10</span><span class="w"> </span>-i<span class="w"> </span><span class="m">1</span><span class="w"> </span>-o<span class="w"> </span>example_decision_mining
+</code></pre>
+</div>
+
+<p>or use the short command</p>
+
+<div class="pdoc-code codehilite">
+<pre><span></span><code><span class="w">   </span>python<span class="w"> </span>run_simulation.py<span class="w"> </span>-e<span class="w"> </span>decision_mining
 </code></pre>
 </div>
 
@@ -398,14 +418,18 @@ From the code shown, it can be seen that it is simple to predict the prediction 
 </div>
 
 
-<p>To run the example use the following commands:</p>
+<p>To run the example:</p>
 
-<ul>
-<li>to run the example with a exponential distribution</li>
-</ul>
 
 <div class="pdoc-code codehilite">
 <pre><span></span><code><span class="w">   </span>python<span class="w"> </span>main.py<span class="w"> </span>-p<span class="w"> </span>../example/example_decision_mining/bpi2012.pnml<span class="w"> </span>-s<span class="w"> </span>../example/example_decision_mining/input_decision_mining_example.json<span class="w"> </span>-t<span class="w"> </span><span class="m">10</span><span class="w"> </span>-i<span class="w"> </span><span class="m">1</span><span class="w"> </span>-o<span class="w"> </span>example_decision_mining
+</code></pre>
+</div>
+
+<p>or use the short command</p>
+
+<div class="pdoc-code codehilite">
+<pre><span></span><code><span class="w">   </span>python<span class="w"> </span>run_simulation.py<span class="w"> </span>-e<span class="w"> </span>process_times
 </code></pre>
 </div>
 </div>
