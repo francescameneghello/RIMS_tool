@@ -35,7 +35,7 @@ Otherwise, with the anaconda system you can create an environment using the envi
 specification provided in the repository.
 
 ```shell
-conda env create -f environment.yml
+conda env create -f rims_tool.yml
 conda activate rims_tool
 ```
 
