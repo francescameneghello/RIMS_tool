@@ -1,27 +1,27 @@
 {
-                 "total_events": 194,
-                 "total_traces": 50,
-                 "A_SUBMITTED_frequency": 50,
-                 "A_PARTLYSUBMITTED_frequency": 50,
-                 "A_PREACCEPTED_frequency": 20,
-                 "A_ACCEPTED_frequency": 12,
-                 "A_FINALIZED_frequency": 4,
-                 "A_CANCELLED_frequency": 8,
-                 "A_DECLINED_frequency": 38,
-                 "A_APPROVED_frequency": 4,
-                 "A_REGISTERED_frequency": 4,
-                 "A_ACTIVATED_frequency": 4,
-                 "duration": "4 days, 6:10:14.002025",
-                 "start_simulation": "2023-09-04 15:13:25.545700",
-                 "end_simulation": "2023-09-08 21:23:39.547725",
+                 "total_events": 49,
+                 "total_traces": 10,
+                 "A_SUBMITTED_frequency": 10,
+                 "A_PARTLYSUBMITTED_frequency": 10,
+                 "A_PREACCEPTED_frequency": 8,
+                 "A_ACCEPTED_frequency": 5,
+                 "A_FINALIZED_frequency": 2,
+                 "A_CANCELLED_frequency": 3,
+                 "A_DECLINED_frequency": 5,
+                 "A_APPROVED_frequency": 2,
+                 "A_REGISTERED_frequency": 2,
+                 "A_ACTIVATED_frequency": 2,
+                 "duration": "1 day, 4:43:01.818444",
+                 "start_simulation": "2023-09-05 16:40:09.454572",
+                 "end_simulation": "2023-09-06 21:23:11.273016",
                  "Role 1": {
-                                  "total": 62,
-                                  "Sara": 31,
-                                  "Mike": 31
+                                  "total": 15,
+                                  "Sara": 7,
+                                  "Mike": 8
                  },
                  "Role 2": {
-                                  "total": 132,
-                                  "Ellen": 66,
-                                  "Sue": 66
+                                  "total": 34,
+                                  "Ellen": 18,
+                                  "Sue": 16
                  }
 }
