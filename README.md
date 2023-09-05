@@ -117,3 +117,5 @@ Class to generate the output json file *result_simulated_log_(experiment_name).j
 ## Authors
 
 Francesca Meneghello, Chiara Di Francescomarino, Chiara Ghidini
+
+Demo paper *RIMS_tool: a Hybrid Simulator for Business Processes*.
