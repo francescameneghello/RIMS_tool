@@ -1,27 +1,27 @@
 {
-                 "total_events": 49,
-                 "total_traces": 10,
-                 "A_SUBMITTED_frequency": 10,
-                 "A_PARTLYSUBMITTED_frequency": 10,
-                 "A_PREACCEPTED_frequency": 8,
-                 "A_ACCEPTED_frequency": 5,
-                 "A_FINALIZED_frequency": 2,
-                 "A_CANCELLED_frequency": 3,
-                 "A_DECLINED_frequency": 5,
-                 "A_APPROVED_frequency": 2,
-                 "A_REGISTERED_frequency": 2,
-                 "A_ACTIVATED_frequency": 2,
-                 "duration": "1 day, 4:43:01.818444",
-                 "start_simulation": "2023-09-05 16:40:09.454572",
-                 "end_simulation": "2023-09-06 21:23:11.273016",
+                 "total_events": 4087,
+                 "total_traces": 1000,
+                 "A_SUBMITTED_frequency": 1000,
+                 "A_PARTLYSUBMITTED_frequency": 1000,
+                 "A_PREACCEPTED_frequency": 499,
+                 "A_ACCEPTED_frequency": 233,
+                 "A_FINALIZED_frequency": 119,
+                 "A_CANCELLED_frequency": 114,
+                 "A_DECLINED_frequency": 768,
+                 "A_APPROVED_frequency": 118,
+                 "A_REGISTERED_frequency": 118,
+                 "A_ACTIVATED_frequency": 118,
+                 "duration": "90 days, 4:30:05.535019",
+                 "start_simulation": "2023-09-05 17:46:39.730642",
+                 "end_simulation": "2023-12-04 22:16:45.265661",
                  "Role 1": {
-                                  "total": 15,
-                                  "Sara": 7,
-                                  "Mike": 8
+                                  "total": 1233,
+                                  "Sara": 619,
+                                  "Mike": 614
                  },
                  "Role 2": {
-                                  "total": 34,
-                                  "Ellen": 18,
-                                  "Sue": 16
+                                  "total": 2854,
+                                  "Sue": 1426,
+                                  "Ellen": 1428
                  }
 }
