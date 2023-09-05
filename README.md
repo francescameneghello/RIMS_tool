@@ -10,6 +10,10 @@ RIMS_tool is a hybrid business process simulator that aims at combining predicti
 
 Here to see the full documentation, [RIMS_Tool documentation](https://francescameneghello.github.io/RIMS_tool/index.html)
 
+## Video 
+
+The demonstration video is in *docs/images/* folder or at the following link [video tutorial](https://francescameneghello.github.io/RIMS_tool/index.html#video-tutorial).
+
 ## Installation guide
 
 To execute this code, simply install the following main packages:
