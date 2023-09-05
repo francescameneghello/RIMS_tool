@@ -113,6 +113,7 @@ Class to generate the output json file *result_simulated_log_(experiment_name).j
 |   start_date   | Start date of the simulation                 |
 |    end_date    | End date of the simulation                   |
 
+If the number of simulations to be run is more than one, RIMS_tool returns the simulated log and analysis file for each simulation.
 
 ## Authors
 
