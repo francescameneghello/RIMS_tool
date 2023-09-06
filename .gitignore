@@ -5,7 +5,7 @@
 .env
 
 /event_log.csv
-/.idea/workspace.xml
+/.idea/
 
 __pycache__/
 *.py[cod]
