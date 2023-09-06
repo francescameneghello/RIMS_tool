@@ -42,7 +42,7 @@ conda activate rims_tool
 
 ## Getting Started
 
-Once the packages are installed, **inside the core folder** you can run one or more simulations by specifying the following parameters:
+Once the packages are installed, <ins>inside the core folder</ins> you can run one or more simulations by specifying the following parameters:
 
 * `-p`: specify the path of the Petri net model to be simulated, in *pnml* format
 * `-s`: specify the path to the simulation parameter file, in *json* format
