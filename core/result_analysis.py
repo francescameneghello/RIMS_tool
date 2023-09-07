@@ -52,7 +52,15 @@ class Result(object):
         analysis['total_traces'] = len(set(sim_df['id_case']))
         for act in self._params.PROCESSING_TIME.keys():
             analysis[act + "_frequency"] = len(sim_df[sim_df['activity'] == act])
-        seconds = (datetime.strptime(sim_df['end_time'].iloc[-1], '%Y-%m-%d %H:%M:%S.%f') - datetime.strptime(sim_df['start_time'].iloc[0], '%Y-%m-%d %H:%M:%S.%f')).total_seconds()
+        try:
+            start = datetime.strptime(sim_df['start_time'].iloc[0], '%Y-%m-%d %H:%M:%S.%f')
+        except:
+            start = datetime.strptime(sim_df['start_time'].iloc[0], '%Y-%m-%d %H:%M:%S')
+        try:
+            end = datetime.strptime(sim_df['start_time'].iloc[0], '%Y-%m-%d %H:%M:%S.%f')
+        except:
+            end = datetime.strptime(sim_df['start_time'].iloc[0], '%Y-%m-%d %H:%M:%S')
+        seconds = (end - start).total_seconds()
         analysis['duration'] = str(timedelta(seconds=seconds))
         analysis['start_simulation'] = sim_df['start_time'].iloc[0]
         analysis['end_simulation'] = sim_df['end_time'].iloc[-1]
