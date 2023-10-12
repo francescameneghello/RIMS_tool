@@ -1,4 +1,4 @@
-# ${RIMS}{\mathsf{_{Tool}}}$: Runtime Integration of Machine Learning and Simulation for Business Processes
+# RIMS_Tool: Runtime Integration of Machine Learning and Simulation for Business Processes
 
 Business Process Simulation represents a powerful instrument for business analysts when analyzing and comparing business processes. 
 Most of the state-of-the-art business process simulators, however, rely on Discrete event simulation, which requires various unrealistic assumptions and simplifications to perform experiments. 
