@@ -66,6 +66,7 @@ class Result(object):
         analysis['end_simulation'] = sim_df['end_time'].iloc[-1]
 
         return analysis
+
     def _analyse(self, type='single'):
         if type == 'single':
             self.analysis_log(self._all_file[0])
