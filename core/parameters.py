@@ -52,5 +52,5 @@ class Parameters(object):
         if type == 'start_timestamp':
             value = datetime.strptime(data['start_timestamp'], '%Y-%m-%d %H:%M:%S') if type in data else datetime.now()
         elif type == 'duration_simulation':
-            value = data['duration_simulation'] if type in data else 31536000
+            value = data['duration_simulation']*86400 if type in data else 31536000
         return value

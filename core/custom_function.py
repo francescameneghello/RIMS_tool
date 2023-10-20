@@ -58,8 +58,11 @@ def event_function_attribute(case: int, time: datetime):
 
 def custom_arrivals_time(case, previous):
     """
-    Function to define a new arrival of a trace. The input parameters are the case id number and the start timestamp of the previous trace.
-    For example, we used an AutoRegression model for the *arrivals example*.
+    Function to define a new arrival of a trace. 
+    The input parameters are the case id number and 
+    the start timestamp of the previous trace.
+    For example, we used an AutoRegression model 
+    for the *arrivals example*.
     """
     loaded = AutoRegResults.load('example/example_arrivals/arrival_AutoReg_model.pkl')
     return loaded.predict(case+1, case+1)[0]
