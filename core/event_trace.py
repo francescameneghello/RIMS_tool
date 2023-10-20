@@ -217,7 +217,7 @@ class Token(object):
         elif prob[0] == 'CUSTOM':
             next = self.call_custom_xor_function(all_enabled_trans)
         elif type(prob[0] == float()):
-            if not self._check_probability(prob):
+            if self._check_probability(prob):
                 value = [*range(0, len(prob), 1)]
                 next = int(random.choices(value, prob)[0])
             else:

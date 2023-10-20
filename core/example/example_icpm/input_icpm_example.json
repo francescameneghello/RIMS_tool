@@ -107,8 +107,8 @@
         "A_ACCEPTED": "AUTO",
         "skip_3": "AUTO",
         "A_FINALIZED": "AUTO",
-        "A_PREACCEPTED": 0.20,
-        "skip_1": 0.80,
+        "A_PREACCEPTED": 0.80,
+        "skip_1": 0.20,
         "A_CANCELLED": "CUSTOM",
         "A_DECLINED": "CUSTOM",
         "tauSplit_5": "CUSTOM"
