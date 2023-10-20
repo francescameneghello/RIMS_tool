@@ -1,28 +1,33 @@
 {
-    "start_timestamp": "2023-10-21 08:10:00",
-    "duration_simulation": 30,
+    "start_timestamp": "2023-10-26 08:10:00",
+    "duration_simulation": 365,
     "interTriggerTimer": {
         "type": "distribution",
         "name": "exponential",
         "parameters": {
             "scale": 300
+        },
+        "calendar": {
+            "days": [1, 2, 3, 4, 5],
+            "hour_min": 8,
+            "hour_max": 15
         }
     },
     "resource": {
         "Role 1": {
             "resources": ["Sara", "Mike"],
             "calendar": {
-                "days": [0, 1, 2, 3, 4, 5, 6],
-                "hour_min": 0,
-                "hour_max": 23
+                "days": [1, 2, 3, 4, 5],
+                "hour_min": 8,
+                "hour_max": 16
             }
         },
         "Role 2": {
             "resources": ["Ellen", "Sue"],
             "calendar": {
                 "days": [0, 1, 2, 3, 4, 5, 6],
-                "hour_min": 0,
-                "hour_max": 23
+                "hour_min": 8,
+                "hour_max": 19
             }
         }
     },
@@ -42,17 +47,17 @@
             }
         },
         "A_PREACCEPTED":  {
-            "name": "uniform",
+            "name": "normal",
             "parameters": {
-                "low": 3600,
-                "high": 7200
+                "loc": 1800,
+                "scale": 300
             }
         },
         "A_ACCEPTED":  {
             "name": "uniform",
             "parameters": {
                 "low": 3600,
-                "high": 7200
+                "high": 3600
             }
         },
         "A_FINALIZED":  {
@@ -63,10 +68,9 @@
             }
         },
         "A_CANCELLED":  {
-            "name": "uniform",
+            "name": "poisson",
             "parameters": {
-                "low": 3600,
-                "high": 7200
+                "lam": 300
             }
         },
         "A_DECLINED":  {
@@ -119,7 +123,7 @@
             "task": "A_PARTLYSUBMITTED"
         },
         {
-            "role": "Role 2",
+            "role": "Role 1",
             "task": "A_PREACCEPTED"
         },
         {
