@@ -28,6 +28,7 @@ class Result(object):
     def __init__(self, folder: str, params: Parameters):
         self._folder = folder
         self._all_file = glob.glob("{}/output/{}/simulated_log_*.csv".format(os.getcwd(), self._folder))
+        print(self._all_file)
         self._params = params
 
     def analysis_log(self, sim):
@@ -67,13 +68,9 @@ class Result(object):
 
         return analysis
 
-    def _analyse(self, type='single'):
-        if type == 'single':
-            self.analysis_log(self._all_file[0])
-            self._csv_to_xes(self._all_file[0])
-        else:
-            for file in self._all_file:
-                self.analysis_log(file)
+    def _analyse(self):
+        for file in self._all_file:
+            self.analysis_log(file)
 
     def _write_json(self, analysis, sim):
         try:

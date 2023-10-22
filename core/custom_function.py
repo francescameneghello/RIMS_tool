@@ -95,7 +95,6 @@ def custom_processing_time(buffer: Buffer):
             }
     ```
     """
-    print('CUSTOM')
     buffer.print_values()
     input_feature = list()
     input_feature.append(buffer.get_feature("wip_start"))

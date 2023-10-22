@@ -54,11 +54,7 @@
             }
         },
         "A_ACCEPTED":  {
-            "name": "uniform",
-            "parameters": {
-                "low": 3600,
-                "high": 3600
-            }
+            "name": "custom"
         },
         "A_FINALIZED":  {
             "name": "uniform",
