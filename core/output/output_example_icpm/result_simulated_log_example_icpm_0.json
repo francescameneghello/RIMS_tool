@@ -1,0 +1,25 @@
+{
+                 "total_events": 26,
+                 "total_traces": 12,
+                 "A_SUBMITTED_frequency": 12,
+                 "A_PARTLYSUBMITTED_frequency": 11,
+                 "A_PREACCEPTED_frequency": 0,
+                 "A_ACCEPTED_frequency": 0,
+                 "A_FINALIZED_frequency": 0,
+                 "A_CANCELLED_frequency": 0,
+                 "A_DECLINED_frequency": 3,
+                 "A_APPROVED_frequency": 0,
+                 "A_REGISTERED_frequency": 0,
+                 "A_ACTIVATED_frequency": 0,
+                 "duration": "10:05:40.737541",
+                 "start_simulation": "2023-10-26 08:16:52.889877",
+                 "end_simulation": "2023-10-26 19:38:49.853065",
+                 "Role 1": {
+                                  "total": 12
+                 },
+                 "Role 2": {
+                                  "total": 14,
+                                  "Sue": 6,
+                                  "Ellen": 8
+                 }
+}

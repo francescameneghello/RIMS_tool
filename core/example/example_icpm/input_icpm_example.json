@@ -1,6 +1,6 @@
 {
     "start_timestamp": "2023-10-26 08:10:00",
-    "duration_simulation": 365,
+    "duration_simulation": 1,
     "interTriggerTimer": {
         "type": "distribution",
         "name": "exponential",

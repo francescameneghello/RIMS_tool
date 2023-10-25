@@ -27,10 +27,9 @@ EXAMPLE = {'arrivalsD': ['example/example_arrivals/bpi2012.pnml', 'example/examp
            }
 
 
-def setup(env: simpy.Environment, PATH_PETRINET, params, i, NAME):
+def setup(env: simpy.Environment, PATH_PETRINET, params, i, NAME, f):
     simulation_process = SimulationProcess(env, params)
     utility.define_folder_output("output/output_{}".format(NAME))
-    f = open("output/output_{}/simulated_log_{}_{}".format(NAME, NAME, i)+".csv", 'w')
     writer = csv.writer(f)
     writer.writerow(Buffer(writer).get_buffer_keys())
     net, im, fm = pm4py.read_pnml(PATH_PETRINET)
@@ -44,12 +43,12 @@ def setup(env: simpy.Environment, PATH_PETRINET, params, i, NAME):
         env.process(Token(i, net, im, params, simulation_process, prefix, 'sequential', writer, parallel_object, time_trace, None).simulation(env))
 
 def run_simulation(PATH_PETRINET, PATH_PARAMETERS, N_SIMULATION, N_TRACES, NAME):
-    params = Parameters(PATH_PARAMETERS, N_TRACES)
     for i in range(0, N_SIMULATION):
-        env = simpy.Environment()
-        env.process(setup(env, PATH_PETRINET, params, i, NAME))
-        env.run(until=params.SIM_TIME)
-
+        with open("output/output_{}/simulated_log_{}_{}".format(NAME, NAME, i) + ".csv", 'w') as f:
+            params = Parameters(PATH_PARAMETERS, N_TRACES)
+            env = simpy.Environment()
+            env.process(setup(env, PATH_PETRINET, params, i, NAME, f))
+            env.run(until=params.SIM_TIME)
     result = Result("output_{}".format(NAME), params)
     result._analyse()
 

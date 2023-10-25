@@ -28,7 +28,6 @@ class Result(object):
     def __init__(self, folder: str, params: Parameters):
         self._folder = folder
         self._all_file = glob.glob("{}/output/{}/simulated_log_*.csv".format(os.getcwd(), self._folder))
-        print(self._all_file)
         self._params = params
 
     def analysis_log(self, sim):
@@ -38,13 +37,11 @@ class Result(object):
         analysis = dict()
         sim_df = pd.read_csv(sim, sep=',')
         analysis.update(self.general_analysis(sim_df))
-
         for role in self._params.ROLE_CAPACITY.keys():
             if role != 'TRIGGER_TIMER':
                 analysis[role] = {"total": len(sim_df[sim_df['role'] == role])}
                 for resource in self._params.ROLE_CAPACITY[role][0]:
                     analysis[role][resource] = len(sim_df[sim_df['resource'] == resource])
-
         self._write_json(analysis, sim)
 
     def general_analysis(self, sim_df):
@@ -71,6 +68,7 @@ class Result(object):
     def _analyse(self):
         for file in self._all_file:
             self.analysis_log(file)
+            self._csv_to_xes(file)
 
     def _write_json(self, analysis, sim):
         try:
