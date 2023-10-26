@@ -55,11 +55,10 @@ class Result(object):
         except:
             start = datetime.strptime(sim_df['start_time'].iloc[0], '%Y-%m-%d %H:%M:%S')
         try:
-            end = datetime.strptime(sim_df['start_time'].iloc[-1], '%Y-%m-%d %H:%M:%S.%f')
+            end = datetime.strptime(sim_df['end_time'].iloc[-1], '%Y-%m-%d %H:%M:%S.%f')
         except:
-            end = datetime.strptime(sim_df['start_time'].iloc[-1], '%Y-%m-%d %H:%M:%S')
-        seconds = (end - start).total_seconds()
-        analysis['duration'] = str(timedelta(seconds=seconds))
+            end = datetime.strptime(sim_df['end_time'].iloc[-1], '%Y-%m-%d %H:%M:%S')
+        analysis['duration'] = str((end - start).total_seconds())
         analysis['start_simulation'] = sim_df['start_time'].iloc[0]
         analysis['end_simulation'] = sim_df['end_time'].iloc[-1]
 

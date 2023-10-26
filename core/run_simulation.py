@@ -49,7 +49,7 @@ def run_simulation(PATH_PETRINET, PATH_PARAMETERS, N_SIMULATION, N_TRACES, NAME)
             env = simpy.Environment()
             env.process(setup(env, PATH_PETRINET, params, i, NAME, f))
             env.run(until=params.SIM_TIME)
-    result = Result("output_{}".format(NAME), params)
+    result = Result("output_{}".format(NAME), Parameters(PATH_PARAMETERS, N_TRACES))
     result._analyse()
 
 
