@@ -96,7 +96,10 @@ class RoleSimulator(object):
         return True if (self._calendar['hour_min'] <= timestamp.hour < self._calendar['hour_max']) else False
 
     def _define_stop_weekend(self, timestamp):
-        monday = 7 - timestamp.weekday()
+        if min(self._calendar['days']) > timestamp.weekday():
+            monday = min(self._calendar['days']) - timestamp.weekday()
+        else:
+            monday = 7 - timestamp.weekday()
         new_start = timestamp.replace(hour=self._calendar['hour_min'], minute=0, second=0) + timedelta(days=monday)
         return (new_start-timestamp).total_seconds()
 
@@ -105,8 +108,10 @@ class RoleSimulator(object):
             stop = timestamp.replace(hour=self._calendar['hour_min'], minute=0, second=0) - timestamp
         else:
             new_day = timestamp.replace(hour=self._calendar['hour_min'], minute=0, second=0) + timedelta(days=1)
-            stop = new_day - timestamp
-        return stop.total_seconds()
+            stop = (new_day - timestamp).total_seconds()
+            if new_day.weekday() not in self._calendar['days']:
+                stop = stop + self._define_stop_weekend(new_day)
+        return stop
 
     def to_time_schedule(self, timestamp):
         """

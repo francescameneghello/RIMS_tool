@@ -41,7 +41,8 @@ def case_function_attribute(case: int, time: datetime):
         Input parameters are case id number and trace start timestamp and return a dictionary.
         For example, we generate a trace attribute, the requested loan amount, to simulate the process from the BPIChallenge2012A.xes log.
     """
-    return {"AMOUNT": random.randint(100, 99999)}
+    #return {"AMOUNT": random.randint(100, 99999)}
+    return {}
 
 
 def event_function_attribute(case: int, time: datetime):
@@ -52,8 +53,9 @@ def event_function_attribute(case: int, time: datetime):
         are executed by day of the week. From Monday to Wednesday, activities are executed in the
         Eindhoven branch otherwise in the Utrecht one.
     """
-    bank = "Utrecht" if time.weekday() > 3 else "Eindhoven"
-    return {"bank_branch": bank}
+    #bank = "Utrecht" if time.weekday() > 3 else "Eindhoven"
+    #return {"bank_branch": bank}
+    return {}
 
 
 def custom_arrivals_time(case, previous):

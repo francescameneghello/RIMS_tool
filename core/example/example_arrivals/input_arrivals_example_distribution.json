@@ -7,7 +7,7 @@
             "scale": 20
         },
         "calendar": {
-            "days": [1, 2, 3, 4, 5],
+            "days": [0, 1, 2, 3, 4],
             "hour_min": 8,
             "hour_max": 15
         }
@@ -88,7 +88,7 @@
         "Role 1": {
             "resources": ["Sara", "Mike"],
             "calendar": {
-                "days": [1, 2, 3, 4, 5],
+                "days": [0, 1, 2, 3, 4],
                 "hour_min": 8,
                 "hour_max": 16
             }
@@ -96,7 +96,7 @@
         "Role 2": {
             "resources": ["Ellen", "Sue"],
             "calendar": {
-                "days": [1, 2, 3, 4, 5, 6],
+                "days": [0, 1, 2, 3, 4, 5],
                 "hour_min": 8,
                 "hour_max": 19
             }
