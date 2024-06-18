@@ -8,150 +8,32 @@
 		<event>
 			<int key="id_case" value="0" />
 			<string key="activity" value="A_SUBMITTED" />
-			<date key="enabled_time" value="2023-10-26T08:17:45.483272+00:00" />
-			<date key="start_time" value="2023-10-26T08:17:45.483272+00:00" />
-			<date key="end_time" value="2023-10-26T09:23:22.358657+00:00" />
+			<date key="enabled_time" value="2023-10-26T08:21:34.287293+00:00" />
+			<date key="start_time" value="2023-10-26T08:21:34.287293+00:00" />
+			<date key="end_time" value="2023-10-26T09:44:14.197870+00:00" />
 			<string key="role" value="Role 1" />
 			<string key="resource" value="Sara" />
 			<int key="wip_wait" value="1" />
 			<int key="wip_start" value="1" />
-			<int key="wip_end" value="12" />
+			<int key="wip_end" value="20" />
 			<int key="wip_activity" value="1" />
 			<string key="ro_total" value="[0.5, 0.0]" />
 			<float key="ro_single" value="0.5" />
 			<int key="queue" value="0" />
 			<string key="prefix" value="[]" />
-			<string key="attribute_case" value="{'AMOUNT': 38535}" />
+			<string key="attribute_case" value="{'AMOUNT': 51957}" />
 			<string key="attribute_event" value="{'bank_branch': 'Eindhoven'}" />
 			<string key="concept:name" value="A_SUBMITTED" />
-			<date key="time:timestamp" value="2023-10-26T09:23:22.358657+00:00" />
+			<date key="time:timestamp" value="2023-10-26T09:44:14.197870+00:00" />
 			<int key="@@index" value="0" />
 			<int key="@@case_index" value="0" />
 		</event>
 		<event>
 			<int key="id_case" value="0" />
 			<string key="activity" value="A_PARTLYSUBMITTED" />
-			<date key="enabled_time" value="2023-10-26T09:23:22.358657+00:00" />
-			<date key="start_time" value="2023-10-26T09:23:22.358657+00:00" />
-			<date key="end_time" value="2023-10-26T10:17:03.586723+00:00" />
-			<string key="role" value="Role 2" />
-			<string key="resource" value="Ellen" />
-			<int key="wip_wait" value="12" />
-			<int key="wip_start" value="12" />
-			<int key="wip_end" value="20" />
-			<int key="wip_activity" value="1" />
-			<string key="ro_total" value="[1.0, 0.5]" />
-			<float key="ro_single" value="0.5" />
-			<int key="queue" value="0" />
-			<string key="prefix" value="['A_SUBMITTED']" />
-			<string key="attribute_case" value="{'AMOUNT': 38535}" />
-			<string key="attribute_event" value="{'bank_branch': 'Eindhoven'}" />
-			<string key="concept:name" value="A_PARTLYSUBMITTED" />
-			<date key="time:timestamp" value="2023-10-26T10:17:03.586723+00:00" />
-			<int key="@@index" value="1" />
-			<int key="@@case_index" value="0" />
-		</event>
-		<event>
-			<int key="id_case" value="0" />
-			<string key="activity" value="A_PREACCEPTED" />
-			<date key="enabled_time" value="2023-10-26T10:17:03.586723+00:00" />
-			<date key="start_time" value="2023-10-27T14:19:05.744475+00:00" />
-			<date key="end_time" value="2023-10-27T14:50:41.522916+00:00" />
-			<string key="role" value="Role 1" />
-			<string key="resource" value="Sara" />
-			<int key="wip_wait" value="20" />
-			<int key="wip_start" value="17" />
-			<int key="wip_end" value="17" />
-			<int key="wip_activity" value="1" />
-			<string key="ro_total" value="[1.0, 1.0]" />
-			<float key="ro_single" value="1.0" />
-			<int key="queue" value="16" />
-			<string key="prefix" value="['A_SUBMITTED', 'A_PARTLYSUBMITTED']" />
-			<string key="attribute_case" value="{'AMOUNT': 38535}" />
-			<string key="attribute_event" value="{'bank_branch': 'Eindhoven'}" />
-			<string key="concept:name" value="A_PREACCEPTED" />
-			<date key="time:timestamp" value="2023-10-27T14:50:41.522916+00:00" />
-			<int key="@@index" value="2" />
-			<int key="@@case_index" value="0" />
-		</event>
-		<event>
-			<int key="id_case" value="0" />
-			<string key="activity" value="A_DECLINED" />
-			<date key="enabled_time" value="2023-10-27T14:50:41.522916+00:00" />
-			<date key="start_time" value="2023-10-27T17:28:34.065360+00:00" />
-			<date key="end_time" value="2023-10-27T18:46:31.623538+00:00" />
-			<string key="role" value="Role 2" />
-			<string key="resource" value="Sue" />
-			<int key="wip_wait" value="17" />
-			<int key="wip_start" value="15" />
-			<int key="wip_end" value="15" />
-			<int key="wip_activity" value="1" />
-			<string key="ro_total" value="[1.0, 1.0]" />
-			<float key="ro_single" value="1.0" />
-			<int key="queue" value="3" />
-			<string key="prefix" value="['A_SUBMITTED', 'A_PARTLYSUBMITTED', 'A_PREACCEPTED']" />
-			<string key="attribute_case" value="{'AMOUNT': 38535}" />
-			<string key="attribute_event" value="{'bank_branch': 'Utrecht'}" />
-			<string key="concept:name" value="A_DECLINED" />
-			<date key="time:timestamp" value="2023-10-27T18:46:31.623538+00:00" />
-			<int key="@@index" value="3" />
-			<int key="@@case_index" value="0" />
-		</event>
-	</trace>
-	<trace>
-		<string key="concept:name" value="1" />
-		<event>
-			<int key="id_case" value="1" />
-			<string key="activity" value="A_SUBMITTED" />
-			<date key="enabled_time" value="2023-10-26T08:22:01.479923+00:00" />
-			<date key="start_time" value="2023-10-26T08:22:01.479923+00:00" />
-			<date key="end_time" value="2023-10-26T09:33:41.108765+00:00" />
-			<string key="role" value="Role 1" />
-			<string key="resource" value="Mike" />
-			<int key="wip_wait" value="2" />
-			<int key="wip_start" value="2" />
-			<int key="wip_end" value="13" />
-			<int key="wip_activity" value="2" />
-			<string key="ro_total" value="[1.0, 0.0]" />
-			<float key="ro_single" value="1.0" />
-			<int key="queue" value="0" />
-			<string key="prefix" value="[]" />
-			<string key="attribute_case" value="{'AMOUNT': 761}" />
-			<string key="attribute_event" value="{'bank_branch': 'Eindhoven'}" />
-			<string key="concept:name" value="A_SUBMITTED" />
-			<date key="time:timestamp" value="2023-10-26T09:33:41.108765+00:00" />
-			<int key="@@index" value="4" />
-			<int key="@@case_index" value="1" />
-		</event>
-		<event>
-			<int key="id_case" value="1" />
-			<string key="activity" value="A_PARTLYSUBMITTED" />
-			<date key="enabled_time" value="2023-10-26T09:33:41.108765+00:00" />
-			<date key="start_time" value="2023-10-26T09:33:41.108765+00:00" />
-			<date key="end_time" value="2023-10-26T10:29:12.736507+00:00" />
-			<string key="role" value="Role 2" />
-			<string key="resource" value="Sue" />
-			<int key="wip_wait" value="13" />
-			<int key="wip_start" value="13" />
-			<int key="wip_end" value="20" />
-			<int key="wip_activity" value="2" />
-			<string key="ro_total" value="[1.0, 1.0]" />
-			<float key="ro_single" value="1.0" />
-			<int key="queue" value="0" />
-			<string key="prefix" value="['A_SUBMITTED']" />
-			<string key="attribute_case" value="{'AMOUNT': 761}" />
-			<string key="attribute_event" value="{'bank_branch': 'Eindhoven'}" />
-			<string key="concept:name" value="A_PARTLYSUBMITTED" />
-			<date key="time:timestamp" value="2023-10-26T10:29:12.736507+00:00" />
-			<int key="@@index" value="5" />
-			<int key="@@case_index" value="1" />
-		</event>
-		<event>
-			<int key="id_case" value="1" />
-			<string key="activity" value="A_DECLINED" />
-			<date key="enabled_time" value="2023-10-26T10:29:12.736507+00:00" />
-			<date key="start_time" value="2023-10-26T10:29:12.736507+00:00" />
-			<date key="end_time" value="2023-10-26T11:40:42.137499+00:00" />
+			<date key="enabled_time" value="2023-10-26T09:44:14.197870+00:00" />
+			<date key="start_time" value="2023-10-26T09:44:14.197870+00:00" />
+			<date key="end_time" value="2023-10-26T10:49:52.399847+00:00" />
 			<string key="role" value="Role 2" />
 			<string key="resource" value="Ellen" />
 			<int key="wip_wait" value="20" />
@@ -161,12 +43,222 @@
 			<string key="ro_total" value="[1.0, 0.5]" />
 			<float key="ro_single" value="0.5" />
 			<int key="queue" value="0" />
+			<string key="prefix" value="['A_SUBMITTED']" />
+			<string key="attribute_case" value="{'AMOUNT': 51957}" />
+			<string key="attribute_event" value="{'bank_branch': 'Eindhoven'}" />
+			<string key="concept:name" value="A_PARTLYSUBMITTED" />
+			<date key="time:timestamp" value="2023-10-26T10:49:52.399847+00:00" />
+			<int key="@@index" value="1" />
+			<int key="@@case_index" value="0" />
+		</event>
+		<event>
+			<int key="id_case" value="0" />
+			<string key="activity" value="A_DECLINED" />
+			<date key="enabled_time" value="2023-10-26T10:49:52.399847+00:00" />
+			<date key="start_time" value="2023-10-26T10:49:52.399847+00:00" />
+			<date key="end_time" value="2023-10-26T12:01:25.279515+00:00" />
+			<string key="role" value="Role 2" />
+			<string key="resource" value="Ellen" />
+			<int key="wip_wait" value="20" />
+			<int key="wip_start" value="20" />
+			<int key="wip_end" value="20" />
+			<int key="wip_activity" value="1" />
+			<string key="ro_total" value="[1.0, 1.0]" />
+			<float key="ro_single" value="1.0" />
+			<int key="queue" value="0" />
 			<string key="prefix" value="['A_SUBMITTED', 'A_PARTLYSUBMITTED']" />
-			<string key="attribute_case" value="{'AMOUNT': 761}" />
+			<string key="attribute_case" value="{'AMOUNT': 51957}" />
 			<string key="attribute_event" value="{'bank_branch': 'Eindhoven'}" />
 			<string key="concept:name" value="A_DECLINED" />
-			<date key="time:timestamp" value="2023-10-26T11:40:42.137499+00:00" />
+			<date key="time:timestamp" value="2023-10-26T12:01:25.279515+00:00" />
+			<int key="@@index" value="2" />
+			<int key="@@case_index" value="0" />
+		</event>
+	</trace>
+	<trace>
+		<string key="concept:name" value="1" />
+		<event>
+			<int key="id_case" value="1" />
+			<string key="activity" value="A_SUBMITTED" />
+			<date key="enabled_time" value="2023-10-26T08:26:25.255715+00:00" />
+			<date key="start_time" value="2023-10-26T08:26:25.255715+00:00" />
+			<date key="end_time" value="2023-10-26T10:02:33.430544+00:00" />
+			<string key="role" value="Role 1" />
+			<string key="resource" value="Mike" />
+			<int key="wip_wait" value="2" />
+			<int key="wip_start" value="2" />
+			<int key="wip_end" value="20" />
+			<int key="wip_activity" value="2" />
+			<string key="ro_total" value="[1.0, 0.0]" />
+			<float key="ro_single" value="1.0" />
+			<int key="queue" value="0" />
+			<string key="prefix" value="[]" />
+			<string key="attribute_case" value="{'AMOUNT': 9184}" />
+			<string key="attribute_event" value="{'bank_branch': 'Eindhoven'}" />
+			<string key="concept:name" value="A_SUBMITTED" />
+			<date key="time:timestamp" value="2023-10-26T10:02:33.430544+00:00" />
+			<int key="@@index" value="3" />
+			<int key="@@case_index" value="1" />
+		</event>
+		<event>
+			<int key="id_case" value="1" />
+			<string key="activity" value="A_PARTLYSUBMITTED" />
+			<date key="enabled_time" value="2023-10-26T10:02:33.430544+00:00" />
+			<date key="start_time" value="2023-10-26T10:02:33.430544+00:00" />
+			<date key="end_time" value="2023-10-26T11:34:35.049804+00:00" />
+			<string key="role" value="Role 2" />
+			<string key="resource" value="Sue" />
+			<int key="wip_wait" value="20" />
+			<int key="wip_start" value="20" />
+			<int key="wip_end" value="20" />
+			<int key="wip_activity" value="2" />
+			<string key="ro_total" value="[1.0, 1.0]" />
+			<float key="ro_single" value="1.0" />
+			<int key="queue" value="0" />
+			<string key="prefix" value="['A_SUBMITTED']" />
+			<string key="attribute_case" value="{'AMOUNT': 9184}" />
+			<string key="attribute_event" value="{'bank_branch': 'Eindhoven'}" />
+			<string key="concept:name" value="A_PARTLYSUBMITTED" />
+			<date key="time:timestamp" value="2023-10-26T11:34:35.049804+00:00" />
+			<int key="@@index" value="4" />
+			<int key="@@case_index" value="1" />
+		</event>
+		<event>
+			<int key="id_case" value="1" />
+			<string key="activity" value="A_PREACCEPTED" />
+			<date key="enabled_time" value="2023-10-26T11:34:35.049804+00:00" />
+			<date key="start_time" value="2023-10-27T13:48:41.420500+00:00" />
+			<date key="end_time" value="2023-10-27T14:17:46.921750+00:00" />
+			<string key="role" value="Role 1" />
+			<string key="resource" value="Mike" />
+			<int key="wip_wait" value="20" />
+			<int key="wip_start" value="18" />
+			<int key="wip_end" value="17" />
+			<int key="wip_activity" value="1" />
+			<string key="ro_total" value="[1.0, 1.0]" />
+			<float key="ro_single" value="1.0" />
+			<int key="queue" value="14" />
+			<string key="prefix" value="['A_SUBMITTED', 'A_PARTLYSUBMITTED']" />
+			<string key="attribute_case" value="{'AMOUNT': 9184}" />
+			<string key="attribute_event" value="{'bank_branch': 'Eindhoven'}" />
+			<string key="concept:name" value="A_PREACCEPTED" />
+			<date key="time:timestamp" value="2023-10-27T14:17:46.921750+00:00" />
+			<int key="@@index" value="5" />
+			<int key="@@case_index" value="1" />
+		</event>
+		<event>
+			<int key="id_case" value="1" />
+			<string key="activity" value="A_ACCEPTED" />
+			<date key="enabled_time" value="2023-10-27T14:17:46.921750+00:00" />
+			<date key="start_time" value="2023-10-28T09:02:51.972612+00:00" />
+			<date key="end_time" value="2023-10-28T09:26:08.972612+00:00" />
+			<string key="role" value="Role 1" />
+			<string key="resource" value="Mike" />
+			<int key="wip_wait" value="17" />
+			<int key="wip_start" value="12" />
+			<int key="wip_end" value="12" />
+			<int key="wip_activity" value="1" />
+			<string key="ro_total" value="[1.0, 1.0]" />
+			<float key="ro_single" value="1.0" />
+			<int key="queue" value="11" />
+			<string key="prefix" value="['A_SUBMITTED', 'A_PARTLYSUBMITTED', 'A_PREACCEPTED']" />
+			<string key="attribute_case" value="{'AMOUNT': 9184}" />
+			<string key="attribute_event" value="{'bank_branch': 'Utrecht'}" />
+			<string key="concept:name" value="A_ACCEPTED" />
+			<date key="time:timestamp" value="2023-10-28T09:26:08.972612+00:00" />
 			<int key="@@index" value="6" />
+			<int key="@@case_index" value="1" />
+		</event>
+		<event>
+			<int key="id_case" value="1" />
+			<string key="activity" value="A_FINALIZED" />
+			<date key="enabled_time" value="2023-10-28T09:26:08.972612+00:00" />
+			<date key="start_time" value="2023-10-28T10:18:19.233986+00:00" />
+			<date key="end_time" value="2023-10-28T11:53:38.305480+00:00" />
+			<string key="role" value="Role 2" />
+			<string key="resource" value="Sue" />
+			<int key="wip_wait" value="12" />
+			<int key="wip_start" value="11" />
+			<int key="wip_end" value="10" />
+			<int key="wip_activity" value="1" />
+			<string key="ro_total" value="[1.0, 1.0]" />
+			<float key="ro_single" value="1.0" />
+			<int key="queue" value="0" />
+			<string key="prefix" value="['A_SUBMITTED', 'A_PARTLYSUBMITTED', 'A_PREACCEPTED', 'A_ACCEPTED']" />
+			<string key="attribute_case" value="{'AMOUNT': 9184}" />
+			<string key="attribute_event" value="{'bank_branch': 'Utrecht'}" />
+			<string key="concept:name" value="A_FINALIZED" />
+			<date key="time:timestamp" value="2023-10-28T11:53:38.305480+00:00" />
+			<int key="@@index" value="7" />
+			<int key="@@case_index" value="1" />
+		</event>
+		<event>
+			<int key="id_case" value="1" />
+			<string key="activity" value="A_REGISTERED" />
+			<date key="enabled_time" value="2023-10-28T11:53:38.305480+00:00" />
+			<date key="start_time" value="2023-10-28T16:18:23.116150+00:00" />
+			<date key="end_time" value="2023-10-28T18:14:00.979282+00:00" />
+			<string key="role" value="Role 2" />
+			<string key="resource" value="Sue" />
+			<int key="wip_wait" value="10" />
+			<int key="wip_start" value="5" />
+			<int key="wip_end" value="5" />
+			<int key="wip_activity" value="1" />
+			<string key="ro_total" value="[0.0, 1.0]" />
+			<float key="ro_single" value="1.0" />
+			<int key="queue" value="8" />
+			<string key="prefix" value="['A_SUBMITTED', 'A_PARTLYSUBMITTED', 'A_PREACCEPTED', 'A_ACCEPTED', 'A_FINALIZED']" />
+			<string key="attribute_case" value="{'AMOUNT': 73767}" />
+			<string key="attribute_event" value="{'bank_branch': 'Utrecht'}" />
+			<string key="concept:name" value="A_REGISTERED" />
+			<date key="time:timestamp" value="2023-10-28T18:14:00.979282+00:00" />
+			<int key="@@index" value="8" />
+			<int key="@@case_index" value="1" />
+		</event>
+		<event>
+			<int key="id_case" value="1" />
+			<string key="activity" value="A_APPROVED" />
+			<date key="enabled_time" value="2023-10-28T11:53:38.305480+00:00" />
+			<date key="start_time" value="2023-10-28T17:08:05.687917+00:00" />
+			<date key="end_time" value="2023-10-28T18:32:04.598231+00:00" />
+			<string key="role" value="Role 2" />
+			<string key="resource" value="Ellen" />
+			<int key="wip_wait" value="10" />
+			<int key="wip_start" value="5" />
+			<int key="wip_end" value="5" />
+			<int key="wip_activity" value="1" />
+			<string key="ro_total" value="[0.0, 1.0]" />
+			<float key="ro_single" value="1.0" />
+			<int key="queue" value="8" />
+			<string key="prefix" value="['A_SUBMITTED', 'A_PARTLYSUBMITTED', 'A_PREACCEPTED', 'A_ACCEPTED', 'A_FINALIZED', 'A_REGISTERED']" />
+			<string key="attribute_case" value="{'AMOUNT': 45852}" />
+			<string key="attribute_event" value="{'bank_branch': 'Utrecht'}" />
+			<string key="concept:name" value="A_APPROVED" />
+			<date key="time:timestamp" value="2023-10-28T18:32:04.598231+00:00" />
+			<int key="@@index" value="9" />
+			<int key="@@case_index" value="1" />
+		</event>
+		<event>
+			<int key="id_case" value="1" />
+			<string key="activity" value="A_ACTIVATED" />
+			<date key="enabled_time" value="2023-10-28T11:53:38.305480+00:00" />
+			<date key="start_time" value="2023-10-28T18:14:00.979282+00:00" />
+			<date key="end_time" value="2023-10-28T20:10:14.470578+00:00" />
+			<string key="role" value="Role 2" />
+			<string key="resource" value="Sue" />
+			<int key="wip_wait" value="10" />
+			<int key="wip_start" value="5" />
+			<int key="wip_end" value="5" />
+			<int key="wip_activity" value="1" />
+			<string key="ro_total" value="[0.0, 1.0]" />
+			<float key="ro_single" value="1.0" />
+			<int key="queue" value="8" />
+			<string key="prefix" value="['A_SUBMITTED', 'A_PARTLYSUBMITTED', 'A_PREACCEPTED', 'A_ACCEPTED', 'A_FINALIZED', 'A_REGISTERED', 'A_APPROVED']" />
+			<string key="attribute_case" value="{'AMOUNT': 10274}" />
+			<string key="attribute_event" value="{'bank_branch': 'Utrecht'}" />
+			<string key="concept:name" value="A_ACTIVATED" />
+			<date key="time:timestamp" value="2023-10-28T20:10:14.470578+00:00" />
+			<int key="@@index" value="10" />
 			<int key="@@case_index" value="1" />
 		</event>
 	</trace>
@@ -175,11 +267,11 @@
 		<event>
 			<int key="id_case" value="10" />
 			<string key="activity" value="A_SUBMITTED" />
-			<date key="enabled_time" value="2023-10-26T09:06:33.632687+00:00" />
-			<date key="start_time" value="2023-10-26T14:57:23.845008+00:00" />
-			<date key="end_time" value="2023-10-26T16:19:03.403881+00:00" />
+			<date key="enabled_time" value="2023-10-26T09:04:14.900149+00:00" />
+			<date key="start_time" value="2023-10-26T15:57:01.656691+00:00" />
+			<date key="end_time" value="2023-10-26T16:58:13.384189+00:00" />
 			<string key="role" value="Role 1" />
-			<string key="resource" value="Mike" />
+			<string key="resource" value="Sara" />
 			<int key="wip_wait" value="11" />
 			<int key="wip_start" value="19" />
 			<int key="wip_end" value="19" />
@@ -188,171 +280,79 @@
 			<float key="ro_single" value="1.0" />
 			<int key="queue" value="8" />
 			<string key="prefix" value="[]" />
-			<string key="attribute_case" value="{'AMOUNT': 54785}" />
+			<string key="attribute_case" value="{'AMOUNT': 90166}" />
 			<string key="attribute_event" value="{'bank_branch': 'Eindhoven'}" />
 			<string key="concept:name" value="A_SUBMITTED" />
-			<date key="time:timestamp" value="2023-10-26T16:19:03.403881+00:00" />
-			<int key="@@index" value="7" />
-			<int key="@@case_index" value="2" />
-		</event>
-		<event>
-			<int key="id_case" value="10" />
-			<string key="activity" value="A_PARTLYSUBMITTED" />
-			<date key="enabled_time" value="2023-10-26T16:19:03.403881+00:00" />
-			<date key="start_time" value="2023-10-26T16:29:27.091253+00:00" />
-			<date key="end_time" value="2023-10-26T17:08:33.170171+00:00" />
-			<string key="role" value="Role 2" />
-			<string key="resource" value="Ellen" />
-			<int key="wip_wait" value="19" />
-			<int key="wip_start" value="19" />
-			<int key="wip_end" value="19" />
-			<int key="wip_activity" value="2" />
-			<string key="ro_total" value="[1.0, 1.0]" />
-			<float key="ro_single" value="1.0" />
-			<int key="queue" value="0" />
-			<string key="prefix" value="['A_SUBMITTED']" />
-			<string key="attribute_case" value="{'AMOUNT': 54785}" />
-			<string key="attribute_event" value="{'bank_branch': 'Eindhoven'}" />
-			<string key="concept:name" value="A_PARTLYSUBMITTED" />
-			<date key="time:timestamp" value="2023-10-26T17:08:33.170171+00:00" />
-			<int key="@@index" value="8" />
-			<int key="@@case_index" value="2" />
-		</event>
-		<event>
-			<int key="id_case" value="10" />
-			<string key="activity" value="A_PREACCEPTED" />
-			<date key="enabled_time" value="2023-10-26T17:08:33.170171+00:00" />
-			<date key="start_time" value="2023-10-28T08:00:00.871030+00:00" />
-			<date key="end_time" value="2023-10-28T08:30:11.200756+00:00" />
-			<string key="role" value="Role 1" />
-			<string key="resource" value="Mike" />
-			<int key="wip_wait" value="19" />
-			<int key="wip_start" value="16" />
-			<int key="wip_end" value="12" />
-			<int key="wip_activity" value="2" />
-			<string key="ro_total" value="[1.0, 1.0]" />
-			<float key="ro_single" value="1.0" />
-			<int key="queue" value="14" />
-			<string key="prefix" value="['A_SUBMITTED', 'A_PARTLYSUBMITTED']" />
-			<string key="attribute_case" value="{'AMOUNT': 54785}" />
-			<string key="attribute_event" value="{'bank_branch': 'Eindhoven'}" />
-			<string key="concept:name" value="A_PREACCEPTED" />
-			<date key="time:timestamp" value="2023-10-28T08:30:11.200756+00:00" />
-			<int key="@@index" value="9" />
-			<int key="@@case_index" value="2" />
-		</event>
-		<event>
-			<int key="id_case" value="10" />
-			<string key="activity" value="A_ACCEPTED" />
-			<date key="enabled_time" value="2023-10-28T08:30:11.200756+00:00" />
-			<date key="start_time" value="2023-10-28T10:25:30.197636+00:00" />
-			<date key="end_time" value="2023-10-28T10:48:24.197636+00:00" />
-			<string key="role" value="Role 1" />
-			<string key="resource" value="Sara" />
-			<int key="wip_wait" value="12" />
-			<int key="wip_start" value="8" />
-			<int key="wip_end" value="8" />
-			<int key="wip_activity" value="1" />
-			<string key="ro_total" value="[1.0, 1.0]" />
-			<float key="ro_single" value="1.0" />
-			<int key="queue" value="8" />
-			<string key="prefix" value="['A_SUBMITTED', 'A_PARTLYSUBMITTED', 'A_PREACCEPTED']" />
-			<string key="attribute_case" value="{'AMOUNT': 54785}" />
-			<string key="attribute_event" value="{'bank_branch': 'Utrecht'}" />
-			<string key="concept:name" value="A_ACCEPTED" />
-			<date key="time:timestamp" value="2023-10-28T10:48:24.197636+00:00" />
-			<int key="@@index" value="10" />
-			<int key="@@case_index" value="2" />
-		</event>
-		<event>
-			<int key="id_case" value="10" />
-			<string key="activity" value="A_FINALIZED" />
-			<date key="enabled_time" value="2023-10-28T10:48:24.197636+00:00" />
-			<date key="start_time" value="2023-10-28T12:04:51.242721+00:00" />
-			<date key="end_time" value="2023-10-28T13:54:39.261046+00:00" />
-			<string key="role" value="Role 2" />
-			<string key="resource" value="Sue" />
-			<int key="wip_wait" value="8" />
-			<int key="wip_start" value="7" />
-			<int key="wip_end" value="4" />
-			<int key="wip_activity" value="1" />
-			<string key="ro_total" value="[0.0, 1.0]" />
-			<float key="ro_single" value="1.0" />
-			<int key="queue" value="1" />
-			<string key="prefix" value="['A_SUBMITTED', 'A_PARTLYSUBMITTED', 'A_PREACCEPTED', 'A_ACCEPTED']" />
-			<string key="attribute_case" value="{'AMOUNT': 54785}" />
-			<string key="attribute_event" value="{'bank_branch': 'Utrecht'}" />
-			<string key="concept:name" value="A_FINALIZED" />
-			<date key="time:timestamp" value="2023-10-28T13:54:39.261046+00:00" />
+			<date key="time:timestamp" value="2023-10-26T16:58:13.384189+00:00" />
 			<int key="@@index" value="11" />
 			<int key="@@case_index" value="2" />
 		</event>
 		<event>
 			<int key="id_case" value="10" />
-			<string key="activity" value="A_REGISTERED" />
-			<date key="enabled_time" value="2023-10-28T13:54:39.261046+00:00" />
-			<date key="start_time" value="2023-10-28T18:18:44.628495+00:00" />
-			<date key="end_time" value="2023-10-28T19:50:07.518303+00:00" />
+			<string key="activity" value="A_PARTLYSUBMITTED" />
+			<date key="enabled_time" value="2023-10-26T16:58:13.384189+00:00" />
+			<date key="start_time" value="2023-10-26T17:53:32.185976+00:00" />
+			<date key="end_time" value="2023-10-26T19:52:56.801417+00:00" />
 			<string key="role" value="Role 2" />
-			<string key="resource" value="Sue" />
-			<int key="wip_wait" value="4" />
-			<int key="wip_start" value="3" />
-			<int key="wip_end" value="2" />
+			<string key="resource" value="Ellen" />
+			<int key="wip_wait" value="19" />
+			<int key="wip_start" value="19" />
+			<int key="wip_end" value="18" />
 			<int key="wip_activity" value="1" />
-			<string key="ro_total" value="[0.0, 1.0]" />
+			<string key="ro_total" value="[1.0, 1.0]" />
 			<float key="ro_single" value="1.0" />
-			<int key="queue" value="6" />
-			<string key="prefix" value="['A_SUBMITTED', 'A_PARTLYSUBMITTED', 'A_PREACCEPTED', 'A_ACCEPTED', 'A_FINALIZED']" />
-			<string key="attribute_case" value="{'AMOUNT': 72034}" />
-			<string key="attribute_event" value="{'bank_branch': 'Utrecht'}" />
-			<string key="concept:name" value="A_REGISTERED" />
-			<date key="time:timestamp" value="2023-10-28T19:50:07.518303+00:00" />
+			<int key="queue" value="0" />
+			<string key="prefix" value="['A_SUBMITTED']" />
+			<string key="attribute_case" value="{'AMOUNT': 90166}" />
+			<string key="attribute_event" value="{'bank_branch': 'Eindhoven'}" />
+			<string key="concept:name" value="A_PARTLYSUBMITTED" />
+			<date key="time:timestamp" value="2023-10-26T19:52:56.801417+00:00" />
 			<int key="@@index" value="12" />
 			<int key="@@case_index" value="2" />
 		</event>
 		<event>
 			<int key="id_case" value="10" />
-			<string key="activity" value="A_APPROVED" />
-			<date key="enabled_time" value="2023-10-28T13:54:39.261046+00:00" />
-			<date key="start_time" value="2023-10-28T18:50:18.389846+00:00" />
-			<date key="end_time" value="2023-10-28T19:51:14.071174+00:00" />
-			<string key="role" value="Role 2" />
-			<string key="resource" value="Ellen" />
-			<int key="wip_wait" value="4" />
-			<int key="wip_start" value="2" />
-			<int key="wip_end" value="2" />
-			<int key="wip_activity" value="1" />
-			<string key="ro_total" value="[0.0, 1.0]" />
+			<string key="activity" value="A_PREACCEPTED" />
+			<date key="enabled_time" value="2023-10-26T19:52:56.801417+00:00" />
+			<date key="start_time" value="2023-10-28T08:00:00.832346+00:00" />
+			<date key="end_time" value="2023-10-28T08:30:44.793797+00:00" />
+			<string key="role" value="Role 1" />
+			<string key="resource" value="Mike" />
+			<int key="wip_wait" value="18" />
+			<int key="wip_start" value="16" />
+			<int key="wip_end" value="12" />
+			<int key="wip_activity" value="2" />
+			<string key="ro_total" value="[1.0, 1.0]" />
 			<float key="ro_single" value="1.0" />
-			<int key="queue" value="6" />
-			<string key="prefix" value="['A_SUBMITTED', 'A_PARTLYSUBMITTED', 'A_PREACCEPTED', 'A_ACCEPTED', 'A_FINALIZED', 'A_REGISTERED']" />
-			<string key="attribute_case" value="{'AMOUNT': 28013}" />
-			<string key="attribute_event" value="{'bank_branch': 'Utrecht'}" />
-			<string key="concept:name" value="A_APPROVED" />
-			<date key="time:timestamp" value="2023-10-28T19:51:14.071174+00:00" />
+			<int key="queue" value="15" />
+			<string key="prefix" value="['A_SUBMITTED', 'A_PARTLYSUBMITTED']" />
+			<string key="attribute_case" value="{'AMOUNT': 90166}" />
+			<string key="attribute_event" value="{'bank_branch': 'Eindhoven'}" />
+			<string key="concept:name" value="A_PREACCEPTED" />
+			<date key="time:timestamp" value="2023-10-28T08:30:44.793797+00:00" />
 			<int key="@@index" value="13" />
 			<int key="@@case_index" value="2" />
 		</event>
 		<event>
 			<int key="id_case" value="10" />
-			<string key="activity" value="A_ACTIVATED" />
-			<date key="enabled_time" value="2023-10-28T13:54:39.261046+00:00" />
-			<date key="start_time" value="2023-10-29T08:00:00.518303+00:00" />
-			<date key="end_time" value="2023-10-29T09:01:49.894555+00:00" />
+			<string key="activity" value="A_DECLINED" />
+			<date key="enabled_time" value="2023-10-28T08:30:44.793797+00:00" />
+			<date key="start_time" value="2023-10-28T08:30:44.793797+00:00" />
+			<date key="end_time" value="2023-10-28T10:28:25.703382+00:00" />
 			<string key="role" value="Role 2" />
-			<string key="resource" value="Sue" />
-			<int key="wip_wait" value="4" />
-			<int key="wip_start" value="2" />
-			<int key="wip_end" value="2" />
+			<string key="resource" value="Ellen" />
+			<int key="wip_wait" value="12" />
+			<int key="wip_start" value="12" />
+			<int key="wip_end" value="11" />
 			<int key="wip_activity" value="1" />
-			<string key="ro_total" value="[0.0, 1.0]" />
-			<float key="ro_single" value="1.0" />
-			<int key="queue" value="6" />
-			<string key="prefix" value="['A_SUBMITTED', 'A_PARTLYSUBMITTED', 'A_PREACCEPTED', 'A_ACCEPTED', 'A_FINALIZED', 'A_REGISTERED', 'A_APPROVED']" />
-			<string key="attribute_case" value="{'AMOUNT': 52605}" />
+			<string key="ro_total" value="[1.0, 0.5]" />
+			<float key="ro_single" value="0.5" />
+			<int key="queue" value="0" />
+			<string key="prefix" value="['A_SUBMITTED', 'A_PARTLYSUBMITTED', 'A_PREACCEPTED']" />
+			<string key="attribute_case" value="{'AMOUNT': 90166}" />
 			<string key="attribute_event" value="{'bank_branch': 'Utrecht'}" />
-			<string key="concept:name" value="A_ACTIVATED" />
-			<date key="time:timestamp" value="2023-10-29T09:01:49.894555+00:00" />
+			<string key="concept:name" value="A_DECLINED" />
+			<date key="time:timestamp" value="2023-10-28T10:28:25.703382+00:00" />
 			<int key="@@index" value="14" />
 			<int key="@@case_index" value="2" />
 		</event>
@@ -362,93 +362,70 @@
 		<event>
 			<int key="id_case" value="11" />
 			<string key="activity" value="A_SUBMITTED" />
-			<date key="enabled_time" value="2023-10-26T09:17:31.401706+00:00" />
-			<date key="start_time" value="2023-10-26T15:20:08.799418+00:00" />
-			<date key="end_time" value="2023-10-26T17:11:11.016700+00:00" />
+			<date key="enabled_time" value="2023-10-26T09:06:42.875993+00:00" />
+			<date key="start_time" value="2023-10-27T08:00:00.194822+00:00" />
+			<date key="end_time" value="2023-10-27T09:36:10.213943+00:00" />
 			<string key="role" value="Role 1" />
-			<string key="resource" value="Sara" />
+			<string key="resource" value="Mike" />
 			<int key="wip_wait" value="12" />
 			<int key="wip_start" value="19" />
-			<int key="wip_end" value="19" />
+			<int key="wip_end" value="18" />
 			<int key="wip_activity" value="2" />
 			<string key="ro_total" value="[1.0, 1.0]" />
 			<float key="ro_single" value="1.0" />
 			<int key="queue" value="9" />
 			<string key="prefix" value="[]" />
-			<string key="attribute_case" value="{'AMOUNT': 56628}" />
+			<string key="attribute_case" value="{'AMOUNT': 52968}" />
 			<string key="attribute_event" value="{'bank_branch': 'Eindhoven'}" />
 			<string key="concept:name" value="A_SUBMITTED" />
-			<date key="time:timestamp" value="2023-10-26T17:11:11.016700+00:00" />
+			<date key="time:timestamp" value="2023-10-27T09:36:10.213943+00:00" />
 			<int key="@@index" value="15" />
 			<int key="@@case_index" value="3" />
 		</event>
 		<event>
 			<int key="id_case" value="11" />
 			<string key="activity" value="A_PARTLYSUBMITTED" />
-			<date key="enabled_time" value="2023-10-26T17:11:11.016700+00:00" />
-			<date key="start_time" value="2023-10-26T18:42:15.304252+00:00" />
-			<date key="end_time" value="2023-10-26T20:06:16.951169+00:00" />
+			<date key="enabled_time" value="2023-10-27T09:36:10.213943+00:00" />
+			<date key="start_time" value="2023-10-27T09:36:10.213943+00:00" />
+			<date key="end_time" value="2023-10-27T11:01:28.064126+00:00" />
 			<string key="role" value="Role 2" />
-			<string key="resource" value="Sue" />
-			<int key="wip_wait" value="19" />
+			<string key="resource" value="Ellen" />
+			<int key="wip_wait" value="18" />
 			<int key="wip_start" value="18" />
-			<int key="wip_end" value="17" />
-			<int key="wip_activity" value="1" />
+			<int key="wip_end" value="18" />
+			<int key="wip_activity" value="2" />
 			<string key="ro_total" value="[1.0, 1.0]" />
 			<float key="ro_single" value="1.0" />
 			<int key="queue" value="0" />
 			<string key="prefix" value="['A_SUBMITTED']" />
-			<string key="attribute_case" value="{'AMOUNT': 56628}" />
-			<string key="attribute_event" value="{'bank_branch': 'Eindhoven'}" />
+			<string key="attribute_case" value="{'AMOUNT': 52968}" />
+			<string key="attribute_event" value="{'bank_branch': 'Utrecht'}" />
 			<string key="concept:name" value="A_PARTLYSUBMITTED" />
-			<date key="time:timestamp" value="2023-10-26T20:06:16.951169+00:00" />
+			<date key="time:timestamp" value="2023-10-27T11:01:28.064126+00:00" />
 			<int key="@@index" value="16" />
 			<int key="@@case_index" value="3" />
 		</event>
 		<event>
 			<int key="id_case" value="11" />
-			<string key="activity" value="A_PREACCEPTED" />
-			<date key="enabled_time" value="2023-10-26T20:06:16.951169+00:00" />
-			<date key="start_time" value="2023-10-28T08:00:00.673719+00:00" />
-			<date key="end_time" value="2023-10-28T08:18:54.762027+00:00" />
-			<string key="role" value="Role 1" />
-			<string key="resource" value="Sara" />
-			<int key="wip_wait" value="17" />
-			<int key="wip_start" value="16" />
-			<int key="wip_end" value="12" />
-			<int key="wip_activity" value="2" />
-			<string key="ro_total" value="[1.0, 1.0]" />
-			<float key="ro_single" value="1.0" />
-			<int key="queue" value="14" />
-			<string key="prefix" value="['A_SUBMITTED', 'A_PARTLYSUBMITTED']" />
-			<string key="attribute_case" value="{'AMOUNT': 56628}" />
-			<string key="attribute_event" value="{'bank_branch': 'Eindhoven'}" />
-			<string key="concept:name" value="A_PREACCEPTED" />
-			<date key="time:timestamp" value="2023-10-28T08:18:54.762027+00:00" />
-			<int key="@@index" value="17" />
-			<int key="@@case_index" value="3" />
-		</event>
-		<event>
-			<int key="id_case" value="11" />
 			<string key="activity" value="A_DECLINED" />
-			<date key="enabled_time" value="2023-10-28T08:18:54.762027+00:00" />
-			<date key="start_time" value="2023-10-28T08:18:54.762027+00:00" />
-			<date key="end_time" value="2023-10-28T09:48:10.327775+00:00" />
+			<date key="enabled_time" value="2023-10-27T11:01:28.064126+00:00" />
+			<date key="start_time" value="2023-10-27T12:13:27.470765+00:00" />
+			<date key="end_time" value="2023-10-27T13:48:48.420108+00:00" />
 			<string key="role" value="Role 2" />
-			<string key="resource" value="Sue" />
-			<int key="wip_wait" value="12" />
-			<int key="wip_start" value="12" />
-			<int key="wip_end" value="10" />
-			<int key="wip_activity" value="2" />
+			<string key="resource" value="Ellen" />
+			<int key="wip_wait" value="18" />
+			<int key="wip_start" value="18" />
+			<int key="wip_end" value="18" />
+			<int key="wip_activity" value="1" />
 			<string key="ro_total" value="[1.0, 1.0]" />
 			<float key="ro_single" value="1.0" />
-			<int key="queue" value="0" />
-			<string key="prefix" value="['A_SUBMITTED', 'A_PARTLYSUBMITTED', 'A_PREACCEPTED']" />
-			<string key="attribute_case" value="{'AMOUNT': 56628}" />
+			<int key="queue" value="1" />
+			<string key="prefix" value="['A_SUBMITTED', 'A_PARTLYSUBMITTED']" />
+			<string key="attribute_case" value="{'AMOUNT': 52968}" />
 			<string key="attribute_event" value="{'bank_branch': 'Utrecht'}" />
 			<string key="concept:name" value="A_DECLINED" />
-			<date key="time:timestamp" value="2023-10-28T09:48:10.327775+00:00" />
-			<int key="@@index" value="18" />
+			<date key="time:timestamp" value="2023-10-27T13:48:48.420108+00:00" />
+			<int key="@@index" value="17" />
 			<int key="@@case_index" value="3" />
 		</event>
 	</trace>
@@ -457,116 +434,93 @@
 		<event>
 			<int key="id_case" value="12" />
 			<string key="activity" value="A_SUBMITTED" />
-			<date key="enabled_time" value="2023-10-26T09:25:40.248470+00:00" />
-			<date key="start_time" value="2023-10-27T08:00:00.403881+00:00" />
-			<date key="end_time" value="2023-10-27T09:30:23.719764+00:00" />
+			<date key="enabled_time" value="2023-10-26T09:08:42.465079+00:00" />
+			<date key="start_time" value="2023-10-27T08:00:00.384189+00:00" />
+			<date key="end_time" value="2023-10-27T09:29:18.135683+00:00" />
 			<string key="role" value="Role 1" />
-			<string key="resource" value="Mike" />
+			<string key="resource" value="Sara" />
 			<int key="wip_wait" value="13" />
 			<int key="wip_start" value="19" />
-			<int key="wip_end" value="17" />
+			<int key="wip_end" value="18" />
 			<int key="wip_activity" value="2" />
 			<string key="ro_total" value="[1.0, 1.0]" />
 			<float key="ro_single" value="1.0" />
-			<int key="queue" value="9" />
+			<int key="queue" value="10" />
 			<string key="prefix" value="[]" />
-			<string key="attribute_case" value="{'AMOUNT': 16231}" />
+			<string key="attribute_case" value="{'AMOUNT': 69584}" />
 			<string key="attribute_event" value="{'bank_branch': 'Eindhoven'}" />
 			<string key="concept:name" value="A_SUBMITTED" />
-			<date key="time:timestamp" value="2023-10-27T09:30:23.719764+00:00" />
-			<int key="@@index" value="19" />
+			<date key="time:timestamp" value="2023-10-27T09:29:18.135683+00:00" />
+			<int key="@@index" value="18" />
 			<int key="@@case_index" value="4" />
 		</event>
 		<event>
 			<int key="id_case" value="12" />
 			<string key="activity" value="A_PARTLYSUBMITTED" />
-			<date key="enabled_time" value="2023-10-27T09:30:23.719764+00:00" />
-			<date key="start_time" value="2023-10-27T09:30:23.719764+00:00" />
-			<date key="end_time" value="2023-10-27T11:05:18.129058+00:00" />
+			<date key="enabled_time" value="2023-10-27T09:29:18.135683+00:00" />
+			<date key="start_time" value="2023-10-27T09:29:18.135683+00:00" />
+			<date key="end_time" value="2023-10-27T10:33:34.447468+00:00" />
 			<string key="role" value="Role 2" />
-			<string key="resource" value="Ellen" />
-			<int key="wip_wait" value="17" />
-			<int key="wip_start" value="17" />
-			<int key="wip_end" value="17" />
+			<string key="resource" value="Sue" />
+			<int key="wip_wait" value="18" />
+			<int key="wip_start" value="18" />
+			<int key="wip_end" value="18" />
 			<int key="wip_activity" value="1" />
 			<string key="ro_total" value="[1.0, 0.5]" />
 			<float key="ro_single" value="0.5" />
 			<int key="queue" value="0" />
 			<string key="prefix" value="['A_SUBMITTED']" />
-			<string key="attribute_case" value="{'AMOUNT': 16231}" />
+			<string key="attribute_case" value="{'AMOUNT': 69584}" />
 			<string key="attribute_event" value="{'bank_branch': 'Utrecht'}" />
 			<string key="concept:name" value="A_PARTLYSUBMITTED" />
-			<date key="time:timestamp" value="2023-10-27T11:05:18.129058+00:00" />
-			<int key="@@index" value="20" />
+			<date key="time:timestamp" value="2023-10-27T10:33:34.447468+00:00" />
+			<int key="@@index" value="19" />
 			<int key="@@case_index" value="4" />
 		</event>
 		<event>
 			<int key="id_case" value="12" />
 			<string key="activity" value="A_PREACCEPTED" />
-			<date key="enabled_time" value="2023-10-27T11:05:18.129058+00:00" />
-			<date key="start_time" value="2023-10-28T08:18:54.762027+00:00" />
-			<date key="end_time" value="2023-10-28T08:46:22.828769+00:00" />
+			<date key="enabled_time" value="2023-10-27T10:33:34.447468+00:00" />
+			<date key="start_time" value="2023-10-28T08:23:42.624125+00:00" />
+			<date key="end_time" value="2023-10-28T08:55:15.790447+00:00" />
 			<string key="role" value="Role 1" />
 			<string key="resource" value="Sara" />
-			<int key="wip_wait" value="17" />
+			<int key="wip_wait" value="18" />
+			<int key="wip_start" value="12" />
+			<int key="wip_end" value="12" />
+			<int key="wip_activity" value="2" />
+			<string key="ro_total" value="[1.0, 0.0]" />
+			<float key="ro_single" value="1.0" />
+			<int key="queue" value="14" />
+			<string key="prefix" value="['A_SUBMITTED', 'A_PARTLYSUBMITTED']" />
+			<string key="attribute_case" value="{'AMOUNT': 69584}" />
+			<string key="attribute_event" value="{'bank_branch': 'Utrecht'}" />
+			<string key="concept:name" value="A_PREACCEPTED" />
+			<date key="time:timestamp" value="2023-10-28T08:55:15.790447+00:00" />
+			<int key="@@index" value="20" />
+			<int key="@@case_index" value="4" />
+		</event>
+		<event>
+			<int key="id_case" value="12" />
+			<string key="activity" value="A_DECLINED" />
+			<date key="enabled_time" value="2023-10-28T08:55:15.790447+00:00" />
+			<date key="start_time" value="2023-10-28T08:55:15.790447+00:00" />
+			<date key="end_time" value="2023-10-28T10:18:19.233986+00:00" />
+			<string key="role" value="Role 2" />
+			<string key="resource" value="Sue" />
+			<int key="wip_wait" value="12" />
 			<int key="wip_start" value="12" />
 			<int key="wip_end" value="12" />
 			<int key="wip_activity" value="2" />
 			<string key="ro_total" value="[1.0, 1.0]" />
 			<float key="ro_single" value="1.0" />
-			<int key="queue" value="13" />
-			<string key="prefix" value="['A_SUBMITTED', 'A_PARTLYSUBMITTED']" />
-			<string key="attribute_case" value="{'AMOUNT': 16231}" />
-			<string key="attribute_event" value="{'bank_branch': 'Utrecht'}" />
-			<string key="concept:name" value="A_PREACCEPTED" />
-			<date key="time:timestamp" value="2023-10-28T08:46:22.828769+00:00" />
-			<int key="@@index" value="21" />
-			<int key="@@case_index" value="4" />
-		</event>
-		<event>
-			<int key="id_case" value="12" />
-			<string key="activity" value="A_ACCEPTED" />
-			<date key="enabled_time" value="2023-10-28T08:46:22.828769+00:00" />
-			<date key="start_time" value="2023-10-28T10:28:32.201222+00:00" />
-			<date key="end_time" value="2023-10-28T10:51:26.201222+00:00" />
-			<string key="role" value="Role 1" />
-			<string key="resource" value="Mike" />
-			<int key="wip_wait" value="12" />
-			<int key="wip_start" value="8" />
-			<int key="wip_end" value="8" />
-			<int key="wip_activity" value="2" />
-			<string key="ro_total" value="[1.0, 1.0]" />
-			<float key="ro_single" value="1.0" />
-			<int key="queue" value="8" />
+			<int key="queue" value="0" />
 			<string key="prefix" value="['A_SUBMITTED', 'A_PARTLYSUBMITTED', 'A_PREACCEPTED']" />
-			<string key="attribute_case" value="{'AMOUNT': 16231}" />
+			<string key="attribute_case" value="{'AMOUNT': 69584}" />
 			<string key="attribute_event" value="{'bank_branch': 'Utrecht'}" />
-			<string key="concept:name" value="A_ACCEPTED" />
-			<date key="time:timestamp" value="2023-10-28T10:51:26.201222+00:00" />
-			<int key="@@index" value="22" />
-			<int key="@@case_index" value="4" />
-		</event>
-		<event>
-			<int key="id_case" value="12" />
-			<string key="activity" value="A_CANCELLED" />
-			<date key="enabled_time" value="2023-10-28T10:51:26.201222+00:00" />
-			<date key="start_time" value="2023-10-28T12:20:48.317491+00:00" />
-			<date key="end_time" value="2023-10-28T12:26:17.317491+00:00" />
-			<string key="role" value="Role 2" />
-			<string key="resource" value="Ellen" />
-			<int key="wip_wait" value="8" />
-			<int key="wip_start" value="6" />
-			<int key="wip_end" value="6" />
-			<int key="wip_activity" value="1" />
-			<string key="ro_total" value="[0.0, 1.0]" />
-			<float key="ro_single" value="1.0" />
-			<int key="queue" value="2" />
-			<string key="prefix" value="['A_SUBMITTED', 'A_PARTLYSUBMITTED', 'A_PREACCEPTED', 'A_ACCEPTED']" />
-			<string key="attribute_case" value="{'AMOUNT': 16231}" />
-			<string key="attribute_event" value="{'bank_branch': 'Utrecht'}" />
-			<string key="concept:name" value="A_CANCELLED" />
-			<date key="time:timestamp" value="2023-10-28T12:26:17.317491+00:00" />
-			<int key="@@index" value="23" />
+			<string key="concept:name" value="A_DECLINED" />
+			<date key="time:timestamp" value="2023-10-28T10:18:19.233986+00:00" />
+			<int key="@@index" value="21" />
 			<int key="@@case_index" value="4" />
 		</event>
 	</trace>
@@ -575,185 +529,185 @@
 		<event>
 			<int key="id_case" value="13" />
 			<string key="activity" value="A_SUBMITTED" />
-			<date key="enabled_time" value="2023-10-26T09:34:33.557876+00:00" />
-			<date key="start_time" value="2023-10-27T08:00:00.016700+00:00" />
-			<date key="end_time" value="2023-10-27T09:37:26.178092+00:00" />
+			<date key="enabled_time" value="2023-10-26T09:16:35.724355+00:00" />
+			<date key="start_time" value="2023-10-27T09:29:18.135683+00:00" />
+			<date key="end_time" value="2023-10-27T10:38:58.134301+00:00" />
 			<string key="role" value="Role 1" />
 			<string key="resource" value="Sara" />
 			<int key="wip_wait" value="14" />
-			<int key="wip_start" value="19" />
-			<int key="wip_end" value="17" />
+			<int key="wip_start" value="18" />
+			<int key="wip_end" value="18" />
 			<int key="wip_activity" value="2" />
-			<string key="ro_total" value="[1.0, 1.0]" />
+			<string key="ro_total" value="[1.0, 0.5]" />
 			<float key="ro_single" value="1.0" />
-			<int key="queue" value="9" />
+			<int key="queue" value="11" />
 			<string key="prefix" value="[]" />
-			<string key="attribute_case" value="{'AMOUNT': 40440}" />
+			<string key="attribute_case" value="{'AMOUNT': 78637}" />
 			<string key="attribute_event" value="{'bank_branch': 'Eindhoven'}" />
 			<string key="concept:name" value="A_SUBMITTED" />
-			<date key="time:timestamp" value="2023-10-27T09:37:26.178092+00:00" />
-			<int key="@@index" value="24" />
+			<date key="time:timestamp" value="2023-10-27T10:38:58.134301+00:00" />
+			<int key="@@index" value="22" />
 			<int key="@@case_index" value="5" />
 		</event>
 		<event>
 			<int key="id_case" value="13" />
 			<string key="activity" value="A_PARTLYSUBMITTED" />
-			<date key="enabled_time" value="2023-10-27T09:37:26.178092+00:00" />
-			<date key="start_time" value="2023-10-27T09:37:26.178092+00:00" />
-			<date key="end_time" value="2023-10-27T11:30:39.820307+00:00" />
+			<date key="enabled_time" value="2023-10-27T10:38:58.134301+00:00" />
+			<date key="start_time" value="2023-10-27T10:38:58.134301+00:00" />
+			<date key="end_time" value="2023-10-27T12:37:47.669255+00:00" />
 			<string key="role" value="Role 2" />
 			<string key="resource" value="Sue" />
-			<int key="wip_wait" value="17" />
-			<int key="wip_start" value="17" />
-			<int key="wip_end" value="17" />
+			<int key="wip_wait" value="18" />
+			<int key="wip_start" value="18" />
+			<int key="wip_end" value="18" />
 			<int key="wip_activity" value="2" />
 			<string key="ro_total" value="[1.0, 1.0]" />
 			<float key="ro_single" value="1.0" />
 			<int key="queue" value="0" />
 			<string key="prefix" value="['A_SUBMITTED']" />
-			<string key="attribute_case" value="{'AMOUNT': 40440}" />
+			<string key="attribute_case" value="{'AMOUNT': 78637}" />
 			<string key="attribute_event" value="{'bank_branch': 'Utrecht'}" />
 			<string key="concept:name" value="A_PARTLYSUBMITTED" />
-			<date key="time:timestamp" value="2023-10-27T11:30:39.820307+00:00" />
-			<int key="@@index" value="25" />
+			<date key="time:timestamp" value="2023-10-27T12:37:47.669255+00:00" />
+			<int key="@@index" value="23" />
 			<int key="@@case_index" value="5" />
 		</event>
 		<event>
 			<int key="id_case" value="13" />
 			<string key="activity" value="A_PREACCEPTED" />
-			<date key="enabled_time" value="2023-10-27T11:30:39.820307+00:00" />
-			<date key="start_time" value="2023-10-28T08:30:11.200756+00:00" />
-			<date key="end_time" value="2023-10-28T08:55:36.326028+00:00" />
+			<date key="enabled_time" value="2023-10-27T12:37:47.669255+00:00" />
+			<date key="start_time" value="2023-10-28T08:30:44.793797+00:00" />
+			<date key="end_time" value="2023-10-28T09:02:51.972612+00:00" />
 			<string key="role" value="Role 1" />
 			<string key="resource" value="Mike" />
-			<int key="wip_wait" value="17" />
+			<int key="wip_wait" value="18" />
 			<int key="wip_start" value="12" />
 			<int key="wip_end" value="12" />
 			<int key="wip_activity" value="2" />
-			<string key="ro_total" value="[1.0, 1.0]" />
+			<string key="ro_total" value="[1.0, 0.5]" />
 			<float key="ro_single" value="1.0" />
-			<int key="queue" value="12" />
+			<int key="queue" value="11" />
 			<string key="prefix" value="['A_SUBMITTED', 'A_PARTLYSUBMITTED']" />
-			<string key="attribute_case" value="{'AMOUNT': 40440}" />
+			<string key="attribute_case" value="{'AMOUNT': 78637}" />
 			<string key="attribute_event" value="{'bank_branch': 'Utrecht'}" />
 			<string key="concept:name" value="A_PREACCEPTED" />
-			<date key="time:timestamp" value="2023-10-28T08:55:36.326028+00:00" />
-			<int key="@@index" value="26" />
+			<date key="time:timestamp" value="2023-10-28T09:02:51.972612+00:00" />
+			<int key="@@index" value="24" />
 			<int key="@@case_index" value="5" />
 		</event>
 		<event>
 			<int key="id_case" value="13" />
 			<string key="activity" value="A_ACCEPTED" />
-			<date key="enabled_time" value="2023-10-28T08:55:36.326028+00:00" />
-			<date key="start_time" value="2023-10-28T10:48:24.197636+00:00" />
-			<date key="end_time" value="2023-10-28T11:11:18.197636+00:00" />
+			<date key="enabled_time" value="2023-10-28T09:02:51.972612+00:00" />
+			<date key="start_time" value="2023-10-28T10:57:12.878689+00:00" />
+			<date key="end_time" value="2023-10-28T11:20:29.878689+00:00" />
 			<string key="role" value="Role 1" />
 			<string key="resource" value="Sara" />
 			<int key="wip_wait" value="12" />
-			<int key="wip_start" value="8" />
-			<int key="wip_end" value="8" />
+			<int key="wip_start" value="10" />
+			<int key="wip_end" value="10" />
 			<int key="wip_activity" value="2" />
 			<string key="ro_total" value="[1.0, 1.0]" />
 			<float key="ro_single" value="1.0" />
 			<int key="queue" value="8" />
 			<string key="prefix" value="['A_SUBMITTED', 'A_PARTLYSUBMITTED', 'A_PREACCEPTED']" />
-			<string key="attribute_case" value="{'AMOUNT': 40440}" />
+			<string key="attribute_case" value="{'AMOUNT': 78637}" />
 			<string key="attribute_event" value="{'bank_branch': 'Utrecht'}" />
 			<string key="concept:name" value="A_ACCEPTED" />
-			<date key="time:timestamp" value="2023-10-28T11:11:18.197636+00:00" />
-			<int key="@@index" value="27" />
+			<date key="time:timestamp" value="2023-10-28T11:20:29.878689+00:00" />
+			<int key="@@index" value="25" />
 			<int key="@@case_index" value="5" />
 		</event>
 		<event>
 			<int key="id_case" value="13" />
 			<string key="activity" value="A_FINALIZED" />
-			<date key="enabled_time" value="2023-10-28T11:11:18.197636+00:00" />
-			<date key="start_time" value="2023-10-28T12:26:17.317491+00:00" />
-			<date key="end_time" value="2023-10-28T13:34:52.638196+00:00" />
+			<date key="enabled_time" value="2023-10-28T11:20:29.878689+00:00" />
+			<date key="start_time" value="2023-10-28T14:56:10.855314+00:00" />
+			<date key="end_time" value="2023-10-28T16:18:23.116150+00:00" />
 			<string key="role" value="Role 2" />
-			<string key="resource" value="Ellen" />
-			<int key="wip_wait" value="8" />
-			<int key="wip_start" value="5" />
+			<string key="resource" value="Sue" />
+			<int key="wip_wait" value="10" />
+			<int key="wip_start" value="6" />
 			<int key="wip_end" value="5" />
 			<int key="wip_activity" value="2" />
 			<string key="ro_total" value="[0.0, 1.0]" />
 			<float key="ro_single" value="1.0" />
-			<int key="queue" value="3" />
+			<int key="queue" value="5" />
 			<string key="prefix" value="['A_SUBMITTED', 'A_PARTLYSUBMITTED', 'A_PREACCEPTED', 'A_ACCEPTED']" />
-			<string key="attribute_case" value="{'AMOUNT': 40440}" />
+			<string key="attribute_case" value="{'AMOUNT': 78637}" />
 			<string key="attribute_event" value="{'bank_branch': 'Utrecht'}" />
 			<string key="concept:name" value="A_FINALIZED" />
-			<date key="time:timestamp" value="2023-10-28T13:34:52.638196+00:00" />
-			<int key="@@index" value="28" />
+			<date key="time:timestamp" value="2023-10-28T16:18:23.116150+00:00" />
+			<int key="@@index" value="26" />
 			<int key="@@case_index" value="5" />
 		</event>
 		<event>
 			<int key="id_case" value="13" />
 			<string key="activity" value="A_REGISTERED" />
-			<date key="enabled_time" value="2023-10-28T13:34:52.638196+00:00" />
-			<date key="start_time" value="2023-10-28T16:06:18.908310+00:00" />
-			<date key="end_time" value="2023-10-28T17:21:47.682100+00:00" />
-			<string key="role" value="Role 2" />
-			<string key="resource" value="Ellen" />
-			<int key="wip_wait" value="5" />
-			<int key="wip_start" value="3" />
-			<int key="wip_end" value="3" />
-			<int key="wip_activity" value="1" />
-			<string key="ro_total" value="[0.0, 1.0]" />
-			<float key="ro_single" value="1.0" />
-			<int key="queue" value="5" />
-			<string key="prefix" value="['A_SUBMITTED', 'A_PARTLYSUBMITTED', 'A_PREACCEPTED', 'A_ACCEPTED', 'A_FINALIZED']" />
-			<string key="attribute_case" value="{'AMOUNT': 45674}" />
-			<string key="attribute_event" value="{'bank_branch': 'Utrecht'}" />
-			<string key="concept:name" value="A_REGISTERED" />
-			<date key="time:timestamp" value="2023-10-28T17:21:47.682100+00:00" />
-			<int key="@@index" value="29" />
-			<int key="@@case_index" value="5" />
-		</event>
-		<event>
-			<int key="id_case" value="13" />
-			<string key="activity" value="A_APPROVED" />
-			<date key="enabled_time" value="2023-10-28T13:34:52.638196+00:00" />
-			<date key="start_time" value="2023-10-28T16:53:50.694295+00:00" />
-			<date key="end_time" value="2023-10-28T18:18:44.628495+00:00" />
+			<date key="enabled_time" value="2023-10-28T16:18:23.116150+00:00" />
+			<date key="start_time" value="2023-10-29T11:09:24.546794+00:00" />
+			<date key="end_time" value="2023-10-29T12:18:33.317656+00:00" />
 			<string key="role" value="Role 2" />
 			<string key="resource" value="Sue" />
 			<int key="wip_wait" value="5" />
 			<int key="wip_start" value="3" />
-			<int key="wip_end" value="3" />
+			<int key="wip_end" value="2" />
 			<int key="wip_activity" value="1" />
 			<string key="ro_total" value="[0.0, 1.0]" />
 			<float key="ro_single" value="1.0" />
-			<int key="queue" value="5" />
-			<string key="prefix" value="['A_SUBMITTED', 'A_PARTLYSUBMITTED', 'A_PREACCEPTED', 'A_ACCEPTED', 'A_FINALIZED', 'A_REGISTERED']" />
-			<string key="attribute_case" value="{'AMOUNT': 90653}" />
+			<int key="queue" value="9" />
+			<string key="prefix" value="['A_SUBMITTED', 'A_PARTLYSUBMITTED', 'A_PREACCEPTED', 'A_ACCEPTED', 'A_FINALIZED']" />
+			<string key="attribute_case" value="{'AMOUNT': 63956}" />
 			<string key="attribute_event" value="{'bank_branch': 'Utrecht'}" />
-			<string key="concept:name" value="A_APPROVED" />
-			<date key="time:timestamp" value="2023-10-28T18:18:44.628495+00:00" />
-			<int key="@@index" value="30" />
+			<string key="concept:name" value="A_REGISTERED" />
+			<date key="time:timestamp" value="2023-10-29T12:18:33.317656+00:00" />
+			<int key="@@index" value="27" />
 			<int key="@@case_index" value="5" />
 		</event>
 		<event>
 			<int key="id_case" value="13" />
 			<string key="activity" value="A_ACTIVATED" />
-			<date key="enabled_time" value="2023-10-28T13:34:52.638196+00:00" />
-			<date key="start_time" value="2023-10-28T17:21:47.682100+00:00" />
-			<date key="end_time" value="2023-10-28T18:50:18.389846+00:00" />
+			<date key="enabled_time" value="2023-10-28T16:18:23.116150+00:00" />
+			<date key="start_time" value="2023-10-29T12:18:33.317656+00:00" />
+			<date key="end_time" value="2023-10-29T13:27:42.005166+00:00" />
 			<string key="role" value="Role 2" />
-			<string key="resource" value="Ellen" />
+			<string key="resource" value="Sue" />
 			<int key="wip_wait" value="5" />
-			<int key="wip_start" value="3" />
-			<int key="wip_end" value="3" />
+			<int key="wip_start" value="2" />
+			<int key="wip_end" value="2" />
 			<int key="wip_activity" value="1" />
 			<string key="ro_total" value="[0.0, 1.0]" />
 			<float key="ro_single" value="1.0" />
-			<int key="queue" value="5" />
-			<string key="prefix" value="['A_SUBMITTED', 'A_PARTLYSUBMITTED', 'A_PREACCEPTED', 'A_ACCEPTED', 'A_FINALIZED', 'A_REGISTERED', 'A_APPROVED']" />
-			<string key="attribute_case" value="{'AMOUNT': 1661}" />
+			<int key="queue" value="9" />
+			<string key="prefix" value="['A_SUBMITTED', 'A_PARTLYSUBMITTED', 'A_PREACCEPTED', 'A_ACCEPTED', 'A_FINALIZED', 'A_REGISTERED']" />
+			<string key="attribute_case" value="{'AMOUNT': 98325}" />
 			<string key="attribute_event" value="{'bank_branch': 'Utrecht'}" />
 			<string key="concept:name" value="A_ACTIVATED" />
-			<date key="time:timestamp" value="2023-10-28T18:50:18.389846+00:00" />
-			<int key="@@index" value="31" />
+			<date key="time:timestamp" value="2023-10-29T13:27:42.005166+00:00" />
+			<int key="@@index" value="28" />
+			<int key="@@case_index" value="5" />
+		</event>
+		<event>
+			<int key="id_case" value="13" />
+			<string key="activity" value="A_APPROVED" />
+			<date key="enabled_time" value="2023-10-28T16:18:23.116150+00:00" />
+			<date key="start_time" value="2023-10-29T12:13:51.938025+00:00" />
+			<date key="end_time" value="2023-10-29T13:51:20.213864+00:00" />
+			<string key="role" value="Role 2" />
+			<string key="resource" value="Ellen" />
+			<int key="wip_wait" value="5" />
+			<int key="wip_start" value="2" />
+			<int key="wip_end" value="2" />
+			<int key="wip_activity" value="1" />
+			<string key="ro_total" value="[0.0, 1.0]" />
+			<float key="ro_single" value="1.0" />
+			<int key="queue" value="9" />
+			<string key="prefix" value="['A_SUBMITTED', 'A_PARTLYSUBMITTED', 'A_PREACCEPTED', 'A_ACCEPTED', 'A_FINALIZED', 'A_REGISTERED', 'A_ACTIVATED']" />
+			<string key="attribute_case" value="{'AMOUNT': 22771}" />
+			<string key="attribute_event" value="{'bank_branch': 'Utrecht'}" />
+			<string key="concept:name" value="A_APPROVED" />
+			<date key="time:timestamp" value="2023-10-29T13:51:20.213864+00:00" />
+			<int key="@@index" value="29" />
 			<int key="@@case_index" value="5" />
 		</event>
 	</trace>
@@ -762,116 +716,70 @@
 		<event>
 			<int key="id_case" value="14" />
 			<string key="activity" value="A_SUBMITTED" />
-			<date key="enabled_time" value="2023-10-26T09:49:47.880466+00:00" />
-			<date key="start_time" value="2023-10-27T09:30:23.719764+00:00" />
-			<date key="end_time" value="2023-10-27T11:05:56.858491+00:00" />
+			<date key="enabled_time" value="2023-10-26T09:17:39.260690+00:00" />
+			<date key="start_time" value="2023-10-27T09:36:10.213943+00:00" />
+			<date key="end_time" value="2023-10-27T10:47:59.468317+00:00" />
 			<string key="role" value="Role 1" />
 			<string key="resource" value="Mike" />
 			<int key="wip_wait" value="15" />
-			<int key="wip_start" value="17" />
-			<int key="wip_end" value="17" />
+			<int key="wip_start" value="18" />
+			<int key="wip_end" value="18" />
 			<int key="wip_activity" value="2" />
-			<string key="ro_total" value="[1.0, 0.5]" />
+			<string key="ro_total" value="[1.0, 1.0]" />
 			<float key="ro_single" value="1.0" />
-			<int key="queue" value="10" />
+			<int key="queue" value="12" />
 			<string key="prefix" value="[]" />
-			<string key="attribute_case" value="{'AMOUNT': 54720}" />
+			<string key="attribute_case" value="{'AMOUNT': 32419}" />
 			<string key="attribute_event" value="{'bank_branch': 'Eindhoven'}" />
 			<string key="concept:name" value="A_SUBMITTED" />
-			<date key="time:timestamp" value="2023-10-27T11:05:56.858491+00:00" />
-			<int key="@@index" value="32" />
+			<date key="time:timestamp" value="2023-10-27T10:47:59.468317+00:00" />
+			<int key="@@index" value="30" />
 			<int key="@@case_index" value="6" />
 		</event>
 		<event>
 			<int key="id_case" value="14" />
 			<string key="activity" value="A_PARTLYSUBMITTED" />
-			<date key="enabled_time" value="2023-10-27T11:05:56.858491+00:00" />
-			<date key="start_time" value="2023-10-27T11:30:39.820307+00:00" />
-			<date key="end_time" value="2023-10-27T13:30:38.318431+00:00" />
+			<date key="enabled_time" value="2023-10-27T10:47:59.468317+00:00" />
+			<date key="start_time" value="2023-10-27T11:01:28.064126+00:00" />
+			<date key="end_time" value="2023-10-27T12:13:27.470765+00:00" />
 			<string key="role" value="Role 2" />
-			<string key="resource" value="Sue" />
-			<int key="wip_wait" value="17" />
-			<int key="wip_start" value="17" />
-			<int key="wip_end" value="17" />
+			<string key="resource" value="Ellen" />
+			<int key="wip_wait" value="18" />
+			<int key="wip_start" value="18" />
+			<int key="wip_end" value="18" />
 			<int key="wip_activity" value="2" />
 			<string key="ro_total" value="[1.0, 1.0]" />
 			<float key="ro_single" value="1.0" />
 			<int key="queue" value="0" />
 			<string key="prefix" value="['A_SUBMITTED']" />
-			<string key="attribute_case" value="{'AMOUNT': 54720}" />
+			<string key="attribute_case" value="{'AMOUNT': 32419}" />
 			<string key="attribute_event" value="{'bank_branch': 'Utrecht'}" />
 			<string key="concept:name" value="A_PARTLYSUBMITTED" />
-			<date key="time:timestamp" value="2023-10-27T13:30:38.318431+00:00" />
-			<int key="@@index" value="33" />
+			<date key="time:timestamp" value="2023-10-27T12:13:27.470765+00:00" />
+			<int key="@@index" value="31" />
 			<int key="@@case_index" value="6" />
 		</event>
 		<event>
 			<int key="id_case" value="14" />
-			<string key="activity" value="A_PREACCEPTED" />
-			<date key="enabled_time" value="2023-10-27T13:30:38.318431+00:00" />
-			<date key="start_time" value="2023-10-28T08:46:22.828769+00:00" />
-			<date key="end_time" value="2023-10-28T09:13:44.694185+00:00" />
-			<string key="role" value="Role 1" />
-			<string key="resource" value="Sara" />
-			<int key="wip_wait" value="17" />
-			<int key="wip_start" value="12" />
-			<int key="wip_end" value="12" />
-			<int key="wip_activity" value="2" />
-			<string key="ro_total" value="[1.0, 1.0]" />
-			<float key="ro_single" value="1.0" />
-			<int key="queue" value="11" />
-			<string key="prefix" value="['A_SUBMITTED', 'A_PARTLYSUBMITTED']" />
-			<string key="attribute_case" value="{'AMOUNT': 54720}" />
-			<string key="attribute_event" value="{'bank_branch': 'Utrecht'}" />
-			<string key="concept:name" value="A_PREACCEPTED" />
-			<date key="time:timestamp" value="2023-10-28T09:13:44.694185+00:00" />
-			<int key="@@index" value="34" />
-			<int key="@@case_index" value="6" />
-		</event>
-		<event>
-			<int key="id_case" value="14" />
-			<string key="activity" value="A_ACCEPTED" />
-			<date key="enabled_time" value="2023-10-28T09:13:44.694185+00:00" />
-			<date key="start_time" value="2023-10-28T10:51:26.201222+00:00" />
-			<date key="end_time" value="2023-10-28T11:14:20.201222+00:00" />
-			<string key="role" value="Role 1" />
-			<string key="resource" value="Mike" />
-			<int key="wip_wait" value="12" />
-			<int key="wip_start" value="8" />
-			<int key="wip_end" value="8" />
-			<int key="wip_activity" value="2" />
-			<string key="ro_total" value="[1.0, 1.0]" />
-			<float key="ro_single" value="1.0" />
-			<int key="queue" value="8" />
-			<string key="prefix" value="['A_SUBMITTED', 'A_PARTLYSUBMITTED', 'A_PREACCEPTED']" />
-			<string key="attribute_case" value="{'AMOUNT': 54720}" />
-			<string key="attribute_event" value="{'bank_branch': 'Utrecht'}" />
-			<string key="concept:name" value="A_ACCEPTED" />
-			<date key="time:timestamp" value="2023-10-28T11:14:20.201222+00:00" />
-			<int key="@@index" value="35" />
-			<int key="@@case_index" value="6" />
-		</event>
-		<event>
-			<int key="id_case" value="14" />
-			<string key="activity" value="A_CANCELLED" />
-			<date key="enabled_time" value="2023-10-28T11:14:20.201222+00:00" />
-			<date key="start_time" value="2023-10-28T13:34:52.638196+00:00" />
-			<date key="end_time" value="2023-10-28T13:39:56.638196+00:00" />
+			<string key="activity" value="A_DECLINED" />
+			<date key="enabled_time" value="2023-10-27T12:13:27.470765+00:00" />
+			<date key="start_time" value="2023-10-27T13:48:48.420108+00:00" />
+			<date key="end_time" value="2023-10-27T15:13:49.318936+00:00" />
 			<string key="role" value="Role 2" />
 			<string key="resource" value="Ellen" />
-			<int key="wip_wait" value="8" />
-			<int key="wip_start" value="5" />
-			<int key="wip_end" value="5" />
+			<int key="wip_wait" value="18" />
+			<int key="wip_start" value="17" />
+			<int key="wip_end" value="17" />
 			<int key="wip_activity" value="1" />
-			<string key="ro_total" value="[0.0, 1.0]" />
+			<string key="ro_total" value="[1.0, 1.0]" />
 			<float key="ro_single" value="1.0" />
-			<int key="queue" value="4" />
-			<string key="prefix" value="['A_SUBMITTED', 'A_PARTLYSUBMITTED', 'A_PREACCEPTED', 'A_ACCEPTED']" />
-			<string key="attribute_case" value="{'AMOUNT': 54720}" />
+			<int key="queue" value="3" />
+			<string key="prefix" value="['A_SUBMITTED', 'A_PARTLYSUBMITTED']" />
+			<string key="attribute_case" value="{'AMOUNT': 32419}" />
 			<string key="attribute_event" value="{'bank_branch': 'Utrecht'}" />
-			<string key="concept:name" value="A_CANCELLED" />
-			<date key="time:timestamp" value="2023-10-28T13:39:56.638196+00:00" />
-			<int key="@@index" value="36" />
+			<string key="concept:name" value="A_DECLINED" />
+			<date key="time:timestamp" value="2023-10-27T15:13:49.318936+00:00" />
+			<int key="@@index" value="32" />
 			<int key="@@case_index" value="6" />
 		</event>
 	</trace>
@@ -880,70 +788,93 @@
 		<event>
 			<int key="id_case" value="15" />
 			<string key="activity" value="A_SUBMITTED" />
-			<date key="enabled_time" value="2023-10-26T10:01:20.693875+00:00" />
-			<date key="start_time" value="2023-10-27T09:37:26.178092+00:00" />
-			<date key="end_time" value="2023-10-27T11:05:47.510924+00:00" />
+			<date key="enabled_time" value="2023-10-26T09:20:35.939193+00:00" />
+			<date key="start_time" value="2023-10-27T10:38:58.134301+00:00" />
+			<date key="end_time" value="2023-10-27T12:00:57.975102+00:00" />
 			<string key="role" value="Role 1" />
 			<string key="resource" value="Sara" />
 			<int key="wip_wait" value="16" />
-			<int key="wip_start" value="17" />
-			<int key="wip_end" value="17" />
+			<int key="wip_start" value="18" />
+			<int key="wip_end" value="18" />
 			<int key="wip_activity" value="2" />
 			<string key="ro_total" value="[1.0, 1.0]" />
 			<float key="ro_single" value="1.0" />
-			<int key="queue" value="11" />
+			<int key="queue" value="13" />
 			<string key="prefix" value="[]" />
-			<string key="attribute_case" value="{'AMOUNT': 94605}" />
+			<string key="attribute_case" value="{'AMOUNT': 16092}" />
 			<string key="attribute_event" value="{'bank_branch': 'Eindhoven'}" />
 			<string key="concept:name" value="A_SUBMITTED" />
-			<date key="time:timestamp" value="2023-10-27T11:05:47.510924+00:00" />
-			<int key="@@index" value="37" />
+			<date key="time:timestamp" value="2023-10-27T12:00:57.975102+00:00" />
+			<int key="@@index" value="33" />
 			<int key="@@case_index" value="7" />
 		</event>
 		<event>
 			<int key="id_case" value="15" />
 			<string key="activity" value="A_PARTLYSUBMITTED" />
-			<date key="enabled_time" value="2023-10-27T11:05:47.510924+00:00" />
-			<date key="start_time" value="2023-10-27T11:05:47.510924+00:00" />
-			<date key="end_time" value="2023-10-27T12:31:49.499404+00:00" />
+			<date key="enabled_time" value="2023-10-27T12:00:57.975102+00:00" />
+			<date key="start_time" value="2023-10-27T13:45:23.780375+00:00" />
+			<date key="end_time" value="2023-10-27T14:52:02.943150+00:00" />
 			<string key="role" value="Role 2" />
-			<string key="resource" value="Ellen" />
-			<int key="wip_wait" value="17" />
-			<int key="wip_start" value="17" />
+			<string key="resource" value="Sue" />
+			<int key="wip_wait" value="18" />
+			<int key="wip_start" value="18" />
 			<int key="wip_end" value="17" />
+			<int key="wip_activity" value="1" />
+			<string key="ro_total" value="[1.0, 1.0]" />
+			<float key="ro_single" value="1.0" />
+			<int key="queue" value="2" />
+			<string key="prefix" value="['A_SUBMITTED']" />
+			<string key="attribute_case" value="{'AMOUNT': 16092}" />
+			<string key="attribute_event" value="{'bank_branch': 'Utrecht'}" />
+			<string key="concept:name" value="A_PARTLYSUBMITTED" />
+			<date key="time:timestamp" value="2023-10-27T14:52:02.943150+00:00" />
+			<int key="@@index" value="34" />
+			<int key="@@case_index" value="7" />
+		</event>
+		<event>
+			<int key="id_case" value="15" />
+			<string key="activity" value="A_PREACCEPTED" />
+			<date key="enabled_time" value="2023-10-27T14:52:02.943150+00:00" />
+			<date key="start_time" value="2023-10-28T09:26:08.972612+00:00" />
+			<date key="end_time" value="2023-10-28T10:01:32.151381+00:00" />
+			<string key="role" value="Role 1" />
+			<string key="resource" value="Mike" />
+			<int key="wip_wait" value="17" />
+			<int key="wip_start" value="12" />
+			<int key="wip_end" value="12" />
 			<int key="wip_activity" value="2" />
 			<string key="ro_total" value="[1.0, 1.0]" />
 			<float key="ro_single" value="1.0" />
-			<int key="queue" value="0" />
-			<string key="prefix" value="['A_SUBMITTED']" />
-			<string key="attribute_case" value="{'AMOUNT': 94605}" />
+			<int key="queue" value="10" />
+			<string key="prefix" value="['A_SUBMITTED', 'A_PARTLYSUBMITTED']" />
+			<string key="attribute_case" value="{'AMOUNT': 16092}" />
 			<string key="attribute_event" value="{'bank_branch': 'Utrecht'}" />
-			<string key="concept:name" value="A_PARTLYSUBMITTED" />
-			<date key="time:timestamp" value="2023-10-27T12:31:49.499404+00:00" />
-			<int key="@@index" value="38" />
+			<string key="concept:name" value="A_PREACCEPTED" />
+			<date key="time:timestamp" value="2023-10-28T10:01:32.151381+00:00" />
+			<int key="@@index" value="35" />
 			<int key="@@case_index" value="7" />
 		</event>
 		<event>
 			<int key="id_case" value="15" />
 			<string key="activity" value="A_DECLINED" />
-			<date key="enabled_time" value="2023-10-27T12:31:49.499404+00:00" />
-			<date key="start_time" value="2023-10-27T13:30:38.318431+00:00" />
-			<date key="end_time" value="2023-10-27T15:29:36.830957+00:00" />
+			<date key="enabled_time" value="2023-10-28T10:01:32.151381+00:00" />
+			<date key="start_time" value="2023-10-28T10:28:25.703382+00:00" />
+			<date key="end_time" value="2023-10-28T12:14:31.543387+00:00" />
 			<string key="role" value="Role 2" />
-			<string key="resource" value="Sue" />
-			<int key="wip_wait" value="17" />
-			<int key="wip_start" value="17" />
-			<int key="wip_end" value="17" />
+			<string key="resource" value="Ellen" />
+			<int key="wip_wait" value="12" />
+			<int key="wip_start" value="10" />
+			<int key="wip_end" value="9" />
 			<int key="wip_activity" value="1" />
 			<string key="ro_total" value="[1.0, 1.0]" />
 			<float key="ro_single" value="1.0" />
 			<int key="queue" value="1" />
-			<string key="prefix" value="['A_SUBMITTED', 'A_PARTLYSUBMITTED']" />
-			<string key="attribute_case" value="{'AMOUNT': 94605}" />
+			<string key="prefix" value="['A_SUBMITTED', 'A_PARTLYSUBMITTED', 'A_PREACCEPTED']" />
+			<string key="attribute_case" value="{'AMOUNT': 16092}" />
 			<string key="attribute_event" value="{'bank_branch': 'Utrecht'}" />
 			<string key="concept:name" value="A_DECLINED" />
-			<date key="time:timestamp" value="2023-10-27T15:29:36.830957+00:00" />
-			<int key="@@index" value="39" />
+			<date key="time:timestamp" value="2023-10-28T12:14:31.543387+00:00" />
+			<int key="@@index" value="36" />
 			<int key="@@case_index" value="7" />
 		</event>
 	</trace>
@@ -952,70 +883,116 @@
 		<event>
 			<int key="id_case" value="16" />
 			<string key="activity" value="A_SUBMITTED" />
-			<date key="enabled_time" value="2023-10-26T10:02:31.344598+00:00" />
-			<date key="start_time" value="2023-10-27T11:05:47.510924+00:00" />
-			<date key="end_time" value="2023-10-27T12:24:27.999479+00:00" />
+			<date key="enabled_time" value="2023-10-26T09:26:31.091716+00:00" />
+			<date key="start_time" value="2023-10-27T10:47:59.468317+00:00" />
+			<date key="end_time" value="2023-10-27T11:59:39.564810+00:00" />
 			<string key="role" value="Role 1" />
-			<string key="resource" value="Sara" />
+			<string key="resource" value="Mike" />
 			<int key="wip_wait" value="17" />
-			<int key="wip_start" value="17" />
-			<int key="wip_end" value="17" />
+			<int key="wip_start" value="18" />
+			<int key="wip_end" value="18" />
 			<int key="wip_activity" value="2" />
 			<string key="ro_total" value="[1.0, 1.0]" />
 			<float key="ro_single" value="1.0" />
-			<int key="queue" value="12" />
+			<int key="queue" value="14" />
 			<string key="prefix" value="[]" />
-			<string key="attribute_case" value="{'AMOUNT': 28717}" />
+			<string key="attribute_case" value="{'AMOUNT': 36416}" />
 			<string key="attribute_event" value="{'bank_branch': 'Eindhoven'}" />
 			<string key="concept:name" value="A_SUBMITTED" />
-			<date key="time:timestamp" value="2023-10-27T12:24:27.999479+00:00" />
-			<int key="@@index" value="40" />
+			<date key="time:timestamp" value="2023-10-27T11:59:39.564810+00:00" />
+			<int key="@@index" value="37" />
 			<int key="@@case_index" value="8" />
 		</event>
 		<event>
 			<int key="id_case" value="16" />
 			<string key="activity" value="A_PARTLYSUBMITTED" />
-			<date key="enabled_time" value="2023-10-27T12:24:27.999479+00:00" />
-			<date key="start_time" value="2023-10-27T12:31:49.499404+00:00" />
-			<date key="end_time" value="2023-10-27T13:44:55.646789+00:00" />
+			<date key="enabled_time" value="2023-10-27T11:59:39.564810+00:00" />
+			<date key="start_time" value="2023-10-27T12:37:47.669255+00:00" />
+			<date key="end_time" value="2023-10-27T13:45:23.780375+00:00" />
 			<string key="role" value="Role 2" />
-			<string key="resource" value="Ellen" />
-			<int key="wip_wait" value="17" />
-			<int key="wip_start" value="17" />
-			<int key="wip_end" value="17" />
-			<int key="wip_activity" value="2" />
+			<string key="resource" value="Sue" />
+			<int key="wip_wait" value="18" />
+			<int key="wip_start" value="18" />
+			<int key="wip_end" value="18" />
+			<int key="wip_activity" value="1" />
 			<string key="ro_total" value="[1.0, 1.0]" />
 			<float key="ro_single" value="1.0" />
-			<int key="queue" value="0" />
+			<int key="queue" value="1" />
 			<string key="prefix" value="['A_SUBMITTED']" />
-			<string key="attribute_case" value="{'AMOUNT': 28717}" />
+			<string key="attribute_case" value="{'AMOUNT': 36416}" />
 			<string key="attribute_event" value="{'bank_branch': 'Utrecht'}" />
 			<string key="concept:name" value="A_PARTLYSUBMITTED" />
-			<date key="time:timestamp" value="2023-10-27T13:44:55.646789+00:00" />
-			<int key="@@index" value="41" />
+			<date key="time:timestamp" value="2023-10-27T13:45:23.780375+00:00" />
+			<int key="@@index" value="38" />
 			<int key="@@case_index" value="8" />
 		</event>
 		<event>
 			<int key="id_case" value="16" />
-			<string key="activity" value="A_DECLINED" />
-			<date key="enabled_time" value="2023-10-27T13:44:55.646789+00:00" />
-			<date key="start_time" value="2023-10-27T15:19:14.625638+00:00" />
-			<date key="end_time" value="2023-10-27T17:07:15.919456+00:00" />
-			<string key="role" value="Role 2" />
-			<string key="resource" value="Ellen" />
-			<int key="wip_wait" value="17" />
-			<int key="wip_start" value="17" />
-			<int key="wip_end" value="16" />
+			<string key="activity" value="A_PREACCEPTED" />
+			<date key="enabled_time" value="2023-10-27T13:45:23.780375+00:00" />
+			<date key="start_time" value="2023-10-28T08:55:15.790447+00:00" />
+			<date key="end_time" value="2023-10-28T09:32:07.474095+00:00" />
+			<string key="role" value="Role 1" />
+			<string key="resource" value="Sara" />
+			<int key="wip_wait" value="18" />
+			<int key="wip_start" value="12" />
+			<int key="wip_end" value="12" />
 			<int key="wip_activity" value="2" />
 			<string key="ro_total" value="[1.0, 1.0]" />
 			<float key="ro_single" value="1.0" />
-			<int key="queue" value="1" />
+			<int key="queue" value="11" />
 			<string key="prefix" value="['A_SUBMITTED', 'A_PARTLYSUBMITTED']" />
-			<string key="attribute_case" value="{'AMOUNT': 28717}" />
+			<string key="attribute_case" value="{'AMOUNT': 36416}" />
 			<string key="attribute_event" value="{'bank_branch': 'Utrecht'}" />
-			<string key="concept:name" value="A_DECLINED" />
-			<date key="time:timestamp" value="2023-10-27T17:07:15.919456+00:00" />
-			<int key="@@index" value="42" />
+			<string key="concept:name" value="A_PREACCEPTED" />
+			<date key="time:timestamp" value="2023-10-28T09:32:07.474095+00:00" />
+			<int key="@@index" value="39" />
+			<int key="@@case_index" value="8" />
+		</event>
+		<event>
+			<int key="id_case" value="16" />
+			<string key="activity" value="A_ACCEPTED" />
+			<date key="enabled_time" value="2023-10-28T09:32:07.474095+00:00" />
+			<date key="start_time" value="2023-10-28T11:11:23.151381+00:00" />
+			<date key="end_time" value="2023-10-28T11:34:28.151381+00:00" />
+			<string key="role" value="Role 1" />
+			<string key="resource" value="Mike" />
+			<int key="wip_wait" value="12" />
+			<int key="wip_start" value="10" />
+			<int key="wip_end" value="10" />
+			<int key="wip_activity" value="2" />
+			<string key="ro_total" value="[1.0, 1.0]" />
+			<float key="ro_single" value="1.0" />
+			<int key="queue" value="7" />
+			<string key="prefix" value="['A_SUBMITTED', 'A_PARTLYSUBMITTED', 'A_PREACCEPTED']" />
+			<string key="attribute_case" value="{'AMOUNT': 36416}" />
+			<string key="attribute_event" value="{'bank_branch': 'Utrecht'}" />
+			<string key="concept:name" value="A_ACCEPTED" />
+			<date key="time:timestamp" value="2023-10-28T11:34:28.151381+00:00" />
+			<int key="@@index" value="40" />
+			<int key="@@case_index" value="8" />
+		</event>
+		<event>
+			<int key="id_case" value="16" />
+			<string key="activity" value="A_CANCELLED" />
+			<date key="enabled_time" value="2023-10-28T11:34:28.151381+00:00" />
+			<date key="start_time" value="2023-10-28T15:36:37.296602+00:00" />
+			<date key="end_time" value="2023-10-28T15:41:47.296602+00:00" />
+			<string key="role" value="Role 2" />
+			<string key="resource" value="Ellen" />
+			<int key="wip_wait" value="10" />
+			<int key="wip_start" value="6" />
+			<int key="wip_end" value="6" />
+			<int key="wip_activity" value="1" />
+			<string key="ro_total" value="[0.0, 1.0]" />
+			<float key="ro_single" value="1.0" />
+			<int key="queue" value="6" />
+			<string key="prefix" value="['A_SUBMITTED', 'A_PARTLYSUBMITTED', 'A_PREACCEPTED', 'A_ACCEPTED']" />
+			<string key="attribute_case" value="{'AMOUNT': 36416}" />
+			<string key="attribute_event" value="{'bank_branch': 'Utrecht'}" />
+			<string key="concept:name" value="A_CANCELLED" />
+			<date key="time:timestamp" value="2023-10-28T15:41:47.296602+00:00" />
+			<int key="@@index" value="41" />
 			<int key="@@case_index" value="8" />
 		</event>
 	</trace>
@@ -1024,185 +1001,93 @@
 		<event>
 			<int key="id_case" value="17" />
 			<string key="activity" value="A_SUBMITTED" />
-			<date key="enabled_time" value="2023-10-26T10:08:02.627400+00:00" />
-			<date key="start_time" value="2023-10-27T11:05:56.858491+00:00" />
-			<date key="end_time" value="2023-10-27T12:50:43.360783+00:00" />
+			<date key="enabled_time" value="2023-10-26T09:27:01.686955+00:00" />
+			<date key="start_time" value="2023-10-27T11:59:39.564810+00:00" />
+			<date key="end_time" value="2023-10-27T13:48:41.420500+00:00" />
 			<string key="role" value="Role 1" />
 			<string key="resource" value="Mike" />
 			<int key="wip_wait" value="18" />
-			<int key="wip_start" value="17" />
-			<int key="wip_end" value="17" />
+			<int key="wip_start" value="18" />
+			<int key="wip_end" value="18" />
 			<int key="wip_activity" value="2" />
 			<string key="ro_total" value="[1.0, 1.0]" />
 			<float key="ro_single" value="1.0" />
-			<int key="queue" value="13" />
+			<int key="queue" value="15" />
 			<string key="prefix" value="[]" />
-			<string key="attribute_case" value="{'AMOUNT': 28304}" />
+			<string key="attribute_case" value="{'AMOUNT': 96553}" />
 			<string key="attribute_event" value="{'bank_branch': 'Eindhoven'}" />
 			<string key="concept:name" value="A_SUBMITTED" />
-			<date key="time:timestamp" value="2023-10-27T12:50:43.360783+00:00" />
-			<int key="@@index" value="43" />
+			<date key="time:timestamp" value="2023-10-27T13:48:41.420500+00:00" />
+			<int key="@@index" value="42" />
 			<int key="@@case_index" value="9" />
 		</event>
 		<event>
 			<int key="id_case" value="17" />
 			<string key="activity" value="A_PARTLYSUBMITTED" />
-			<date key="enabled_time" value="2023-10-27T12:50:43.360783+00:00" />
-			<date key="start_time" value="2023-10-27T13:44:55.646789+00:00" />
-			<date key="end_time" value="2023-10-27T15:19:14.625638+00:00" />
+			<date key="enabled_time" value="2023-10-27T13:48:41.420500+00:00" />
+			<date key="start_time" value="2023-10-27T15:13:49.318936+00:00" />
+			<date key="end_time" value="2023-10-27T15:44:26.329325+00:00" />
 			<string key="role" value="Role 2" />
 			<string key="resource" value="Ellen" />
-			<int key="wip_wait" value="17" />
-			<int key="wip_start" value="17" />
-			<int key="wip_end" value="17" />
-			<int key="wip_activity" value="1" />
+			<int key="wip_wait" value="18" />
+			<int key="wip_start" value="16" />
+			<int key="wip_end" value="16" />
+			<int key="wip_activity" value="2" />
 			<string key="ro_total" value="[1.0, 1.0]" />
 			<float key="ro_single" value="1.0" />
-			<int key="queue" value="1" />
+			<int key="queue" value="2" />
 			<string key="prefix" value="['A_SUBMITTED']" />
-			<string key="attribute_case" value="{'AMOUNT': 28304}" />
+			<string key="attribute_case" value="{'AMOUNT': 96553}" />
 			<string key="attribute_event" value="{'bank_branch': 'Utrecht'}" />
 			<string key="concept:name" value="A_PARTLYSUBMITTED" />
-			<date key="time:timestamp" value="2023-10-27T15:19:14.625638+00:00" />
-			<int key="@@index" value="44" />
+			<date key="time:timestamp" value="2023-10-27T15:44:26.329325+00:00" />
+			<int key="@@index" value="43" />
 			<int key="@@case_index" value="9" />
 		</event>
 		<event>
 			<int key="id_case" value="17" />
 			<string key="activity" value="A_PREACCEPTED" />
-			<date key="enabled_time" value="2023-10-27T15:19:14.625638+00:00" />
-			<date key="start_time" value="2023-10-28T08:55:36.326028+00:00" />
-			<date key="end_time" value="2023-10-28T09:37:00.716331+00:00" />
+			<date key="enabled_time" value="2023-10-27T15:44:26.329325+00:00" />
+			<date key="start_time" value="2023-10-28T09:59:00.556211+00:00" />
+			<date key="end_time" value="2023-10-28T10:29:54.246320+00:00" />
 			<string key="role" value="Role 1" />
-			<string key="resource" value="Mike" />
-			<int key="wip_wait" value="17" />
+			<string key="resource" value="Sara" />
+			<int key="wip_wait" value="16" />
 			<int key="wip_start" value="12" />
-			<int key="wip_end" value="11" />
+			<int key="wip_end" value="10" />
 			<int key="wip_activity" value="2" />
 			<string key="ro_total" value="[1.0, 1.0]" />
 			<float key="ro_single" value="1.0" />
 			<int key="queue" value="9" />
 			<string key="prefix" value="['A_SUBMITTED', 'A_PARTLYSUBMITTED']" />
-			<string key="attribute_case" value="{'AMOUNT': 28304}" />
+			<string key="attribute_case" value="{'AMOUNT': 96553}" />
 			<string key="attribute_event" value="{'bank_branch': 'Utrecht'}" />
 			<string key="concept:name" value="A_PREACCEPTED" />
-			<date key="time:timestamp" value="2023-10-28T09:37:00.716331+00:00" />
-			<int key="@@index" value="45" />
+			<date key="time:timestamp" value="2023-10-28T10:29:54.246320+00:00" />
+			<int key="@@index" value="44" />
 			<int key="@@case_index" value="9" />
 		</event>
 		<event>
 			<int key="id_case" value="17" />
-			<string key="activity" value="A_ACCEPTED" />
-			<date key="enabled_time" value="2023-10-28T09:37:00.716331+00:00" />
-			<date key="start_time" value="2023-10-28T11:11:18.197636+00:00" />
-			<date key="end_time" value="2023-10-28T11:34:00.197636+00:00" />
-			<string key="role" value="Role 1" />
-			<string key="resource" value="Sara" />
-			<int key="wip_wait" value="11" />
-			<int key="wip_start" value="8" />
+			<string key="activity" value="A_DECLINED" />
+			<date key="enabled_time" value="2023-10-28T10:29:54.246320+00:00" />
+			<date key="start_time" value="2023-10-28T11:58:54.305480+00:00" />
+			<date key="end_time" value="2023-10-28T13:39:34.004896+00:00" />
+			<string key="role" value="Role 2" />
+			<string key="resource" value="Sue" />
+			<int key="wip_wait" value="10" />
+			<int key="wip_start" value="9" />
 			<int key="wip_end" value="8" />
 			<int key="wip_activity" value="2" />
-			<string key="ro_total" value="[1.0, 1.0]" />
+			<string key="ro_total" value="[0.0, 1.0]" />
 			<float key="ro_single" value="1.0" />
-			<int key="queue" value="8" />
+			<int key="queue" value="1" />
 			<string key="prefix" value="['A_SUBMITTED', 'A_PARTLYSUBMITTED', 'A_PREACCEPTED']" />
-			<string key="attribute_case" value="{'AMOUNT': 28304}" />
+			<string key="attribute_case" value="{'AMOUNT': 96553}" />
 			<string key="attribute_event" value="{'bank_branch': 'Utrecht'}" />
-			<string key="concept:name" value="A_ACCEPTED" />
-			<date key="time:timestamp" value="2023-10-28T11:34:00.197636+00:00" />
-			<int key="@@index" value="46" />
-			<int key="@@case_index" value="9" />
-		</event>
-		<event>
-			<int key="id_case" value="17" />
-			<string key="activity" value="A_FINALIZED" />
-			<date key="enabled_time" value="2023-10-28T11:34:00.197636+00:00" />
-			<date key="start_time" value="2023-10-28T15:27:01.677049+00:00" />
-			<date key="end_time" value="2023-10-28T16:53:50.694295+00:00" />
-			<string key="role" value="Role 2" />
-			<string key="resource" value="Sue" />
-			<int key="wip_wait" value="8" />
-			<int key="wip_start" value="4" />
-			<int key="wip_end" value="3" />
-			<int key="wip_activity" value="1" />
-			<string key="ro_total" value="[0.0, 1.0]" />
-			<float key="ro_single" value="1.0" />
-			<int key="queue" value="7" />
-			<string key="prefix" value="['A_SUBMITTED', 'A_PARTLYSUBMITTED', 'A_PREACCEPTED', 'A_ACCEPTED']" />
-			<string key="attribute_case" value="{'AMOUNT': 28304}" />
-			<string key="attribute_event" value="{'bank_branch': 'Utrecht'}" />
-			<string key="concept:name" value="A_FINALIZED" />
-			<date key="time:timestamp" value="2023-10-28T16:53:50.694295+00:00" />
-			<int key="@@index" value="47" />
-			<int key="@@case_index" value="9" />
-		</event>
-		<event>
-			<int key="id_case" value="17" />
-			<string key="activity" value="A_REGISTERED" />
-			<date key="enabled_time" value="2023-10-28T16:53:50.694295+00:00" />
-			<date key="start_time" value="2023-10-29T08:00:00.071174+00:00" />
-			<date key="end_time" value="2023-10-29T09:15:29.124776+00:00" />
-			<string key="role" value="Role 2" />
-			<string key="resource" value="Ellen" />
-			<int key="wip_wait" value="3" />
-			<int key="wip_start" value="2" />
-			<int key="wip_end" value="1" />
-			<int key="wip_activity" value="1" />
-			<string key="ro_total" value="[0.0, 1.0]" />
-			<float key="ro_single" value="1.0" />
-			<int key="queue" value="5" />
-			<string key="prefix" value="['A_SUBMITTED', 'A_PARTLYSUBMITTED', 'A_PREACCEPTED', 'A_ACCEPTED', 'A_FINALIZED']" />
-			<string key="attribute_case" value="{'AMOUNT': 10990}" />
-			<string key="attribute_event" value="{'bank_branch': 'Utrecht'}" />
-			<string key="concept:name" value="A_REGISTERED" />
-			<date key="time:timestamp" value="2023-10-29T09:15:29.124776+00:00" />
-			<int key="@@index" value="48" />
-			<int key="@@case_index" value="9" />
-		</event>
-		<event>
-			<int key="id_case" value="17" />
-			<string key="activity" value="A_APPROVED" />
-			<date key="enabled_time" value="2023-10-28T16:53:50.694295+00:00" />
-			<date key="start_time" value="2023-10-29T09:01:49.894555+00:00" />
-			<date key="end_time" value="2023-10-29T10:41:58.154880+00:00" />
-			<string key="role" value="Role 2" />
-			<string key="resource" value="Sue" />
-			<int key="wip_wait" value="3" />
-			<int key="wip_start" value="1" />
-			<int key="wip_end" value="1" />
-			<int key="wip_activity" value="1" />
-			<string key="ro_total" value="[0.0, 1.0]" />
-			<float key="ro_single" value="1.0" />
-			<int key="queue" value="5" />
-			<string key="prefix" value="['A_SUBMITTED', 'A_PARTLYSUBMITTED', 'A_PREACCEPTED', 'A_ACCEPTED', 'A_FINALIZED', 'A_REGISTERED']" />
-			<string key="attribute_case" value="{'AMOUNT': 33344}" />
-			<string key="attribute_event" value="{'bank_branch': 'Utrecht'}" />
-			<string key="concept:name" value="A_APPROVED" />
-			<date key="time:timestamp" value="2023-10-29T10:41:58.154880+00:00" />
-			<int key="@@index" value="49" />
-			<int key="@@case_index" value="9" />
-		</event>
-		<event>
-			<int key="id_case" value="17" />
-			<string key="activity" value="A_ACTIVATED" />
-			<date key="enabled_time" value="2023-10-28T16:53:50.694295+00:00" />
-			<date key="start_time" value="2023-10-29T09:15:29.124776+00:00" />
-			<date key="end_time" value="2023-10-29T11:04:02.223789+00:00" />
-			<string key="role" value="Role 2" />
-			<string key="resource" value="Ellen" />
-			<int key="wip_wait" value="3" />
-			<int key="wip_start" value="1" />
-			<int key="wip_end" value="1" />
-			<int key="wip_activity" value="1" />
-			<string key="ro_total" value="[0.0, 1.0]" />
-			<float key="ro_single" value="1.0" />
-			<int key="queue" value="5" />
-			<string key="prefix" value="['A_SUBMITTED', 'A_PARTLYSUBMITTED', 'A_PREACCEPTED', 'A_ACCEPTED', 'A_FINALIZED', 'A_REGISTERED', 'A_APPROVED']" />
-			<string key="attribute_case" value="{'AMOUNT': 21281}" />
-			<string key="attribute_event" value="{'bank_branch': 'Utrecht'}" />
-			<string key="concept:name" value="A_ACTIVATED" />
-			<date key="time:timestamp" value="2023-10-29T11:04:02.223789+00:00" />
-			<int key="@@index" value="50" />
+			<string key="concept:name" value="A_DECLINED" />
+			<date key="time:timestamp" value="2023-10-28T13:39:34.004896+00:00" />
+			<int key="@@index" value="45" />
 			<int key="@@case_index" value="9" />
 		</event>
 	</trace>
@@ -1211,93 +1096,185 @@
 		<event>
 			<int key="id_case" value="18" />
 			<string key="activity" value="A_SUBMITTED" />
-			<date key="enabled_time" value="2023-10-26T10:08:15.740806+00:00" />
-			<date key="start_time" value="2023-10-27T12:24:27.999479+00:00" />
-			<date key="end_time" value="2023-10-27T14:19:05.744475+00:00" />
+			<date key="enabled_time" value="2023-10-26T09:29:38.983240+00:00" />
+			<date key="start_time" value="2023-10-27T12:00:57.975102+00:00" />
+			<date key="end_time" value="2023-10-27T13:43:32.295688+00:00" />
 			<string key="role" value="Role 1" />
 			<string key="resource" value="Sara" />
 			<int key="wip_wait" value="19" />
-			<int key="wip_start" value="17" />
-			<int key="wip_end" value="17" />
+			<int key="wip_start" value="18" />
+			<int key="wip_end" value="18" />
 			<int key="wip_activity" value="2" />
 			<string key="ro_total" value="[1.0, 1.0]" />
 			<float key="ro_single" value="1.0" />
-			<int key="queue" value="14" />
+			<int key="queue" value="16" />
 			<string key="prefix" value="[]" />
-			<string key="attribute_case" value="{'AMOUNT': 10376}" />
+			<string key="attribute_case" value="{'AMOUNT': 50384}" />
 			<string key="attribute_event" value="{'bank_branch': 'Eindhoven'}" />
 			<string key="concept:name" value="A_SUBMITTED" />
-			<date key="time:timestamp" value="2023-10-27T14:19:05.744475+00:00" />
-			<int key="@@index" value="51" />
+			<date key="time:timestamp" value="2023-10-27T13:43:32.295688+00:00" />
+			<int key="@@index" value="46" />
 			<int key="@@case_index" value="10" />
 		</event>
 		<event>
 			<int key="id_case" value="18" />
 			<string key="activity" value="A_PARTLYSUBMITTED" />
-			<date key="enabled_time" value="2023-10-27T14:19:05.744475+00:00" />
-			<date key="start_time" value="2023-10-27T15:29:36.830957+00:00" />
-			<date key="end_time" value="2023-10-27T17:28:34.065360+00:00" />
+			<date key="enabled_time" value="2023-10-27T13:43:32.295688+00:00" />
+			<date key="start_time" value="2023-10-27T14:52:02.943150+00:00" />
+			<date key="end_time" value="2023-10-27T15:33:12.712207+00:00" />
 			<string key="role" value="Role 2" />
 			<string key="resource" value="Sue" />
-			<int key="wip_wait" value="17" />
-			<int key="wip_start" value="16" />
-			<int key="wip_end" value="15" />
+			<int key="wip_wait" value="18" />
+			<int key="wip_start" value="17" />
+			<int key="wip_end" value="16" />
 			<int key="wip_activity" value="1" />
 			<string key="ro_total" value="[1.0, 1.0]" />
 			<float key="ro_single" value="1.0" />
-			<int key="queue" value="1" />
+			<int key="queue" value="2" />
 			<string key="prefix" value="['A_SUBMITTED']" />
-			<string key="attribute_case" value="{'AMOUNT': 10376}" />
+			<string key="attribute_case" value="{'AMOUNT': 50384}" />
 			<string key="attribute_event" value="{'bank_branch': 'Utrecht'}" />
 			<string key="concept:name" value="A_PARTLYSUBMITTED" />
-			<date key="time:timestamp" value="2023-10-27T17:28:34.065360+00:00" />
-			<int key="@@index" value="52" />
+			<date key="time:timestamp" value="2023-10-27T15:33:12.712207+00:00" />
+			<int key="@@index" value="47" />
 			<int key="@@case_index" value="10" />
 		</event>
 		<event>
 			<int key="id_case" value="18" />
 			<string key="activity" value="A_PREACCEPTED" />
-			<date key="enabled_time" value="2023-10-27T17:28:34.065360+00:00" />
-			<date key="start_time" value="2023-10-28T10:00:17.716331+00:00" />
-			<date key="end_time" value="2023-10-28T10:28:32.201222+00:00" />
+			<date key="enabled_time" value="2023-10-27T15:33:12.712207+00:00" />
+			<date key="start_time" value="2023-10-28T09:32:07.474095+00:00" />
+			<date key="end_time" value="2023-10-28T09:59:00.556211+00:00" />
 			<string key="role" value="Role 1" />
-			<string key="resource" value="Mike" />
-			<int key="wip_wait" value="15" />
-			<int key="wip_start" value="9" />
-			<int key="wip_end" value="8" />
-			<int key="wip_activity" value="1" />
-			<string key="ro_total" value="[1.0, 0.5]" />
+			<string key="resource" value="Sara" />
+			<int key="wip_wait" value="16" />
+			<int key="wip_start" value="12" />
+			<int key="wip_end" value="12" />
+			<int key="wip_activity" value="2" />
+			<string key="ro_total" value="[1.0, 1.0]" />
 			<float key="ro_single" value="1.0" />
-			<int key="queue" value="7" />
+			<int key="queue" value="9" />
 			<string key="prefix" value="['A_SUBMITTED', 'A_PARTLYSUBMITTED']" />
-			<string key="attribute_case" value="{'AMOUNT': 10376}" />
+			<string key="attribute_case" value="{'AMOUNT': 50384}" />
 			<string key="attribute_event" value="{'bank_branch': 'Utrecht'}" />
 			<string key="concept:name" value="A_PREACCEPTED" />
-			<date key="time:timestamp" value="2023-10-28T10:28:32.201222+00:00" />
-			<int key="@@index" value="53" />
+			<date key="time:timestamp" value="2023-10-28T09:59:00.556211+00:00" />
+			<int key="@@index" value="48" />
 			<int key="@@case_index" value="10" />
 		</event>
 		<event>
 			<int key="id_case" value="18" />
-			<string key="activity" value="A_DECLINED" />
-			<date key="enabled_time" value="2023-10-28T10:28:32.201222+00:00" />
-			<date key="start_time" value="2023-10-28T11:19:33.592615+00:00" />
-			<date key="end_time" value="2023-10-28T12:20:48.317491+00:00" />
+			<string key="activity" value="A_ACCEPTED" />
+			<date key="enabled_time" value="2023-10-28T09:59:00.556211+00:00" />
+			<date key="start_time" value="2023-10-28T11:20:29.878689+00:00" />
+			<date key="end_time" value="2023-10-28T11:43:34.878689+00:00" />
+			<string key="role" value="Role 1" />
+			<string key="resource" value="Sara" />
+			<int key="wip_wait" value="12" />
+			<int key="wip_start" value="10" />
+			<int key="wip_end" value="10" />
+			<int key="wip_activity" value="2" />
+			<string key="ro_total" value="[1.0, 1.0]" />
+			<float key="ro_single" value="1.0" />
+			<int key="queue" value="7" />
+			<string key="prefix" value="['A_SUBMITTED', 'A_PARTLYSUBMITTED', 'A_PREACCEPTED']" />
+			<string key="attribute_case" value="{'AMOUNT': 50384}" />
+			<string key="attribute_event" value="{'bank_branch': 'Utrecht'}" />
+			<string key="concept:name" value="A_ACCEPTED" />
+			<date key="time:timestamp" value="2023-10-28T11:43:34.878689+00:00" />
+			<int key="@@index" value="49" />
+			<int key="@@case_index" value="10" />
+		</event>
+		<event>
+			<int key="id_case" value="18" />
+			<string key="activity" value="A_FINALIZED" />
+			<date key="enabled_time" value="2023-10-28T11:43:34.878689+00:00" />
+			<date key="start_time" value="2023-10-28T15:41:47.296602+00:00" />
+			<date key="end_time" value="2023-10-28T17:08:05.687917+00:00" />
 			<string key="role" value="Role 2" />
 			<string key="resource" value="Ellen" />
-			<int key="wip_wait" value="8" />
-			<int key="wip_start" value="8" />
-			<int key="wip_end" value="7" />
+			<int key="wip_wait" value="10" />
+			<int key="wip_start" value="5" />
+			<int key="wip_end" value="5" />
 			<int key="wip_activity" value="2" />
-			<string key="ro_total" value="[0.5, 1.0]" />
+			<string key="ro_total" value="[0.0, 1.0]" />
 			<float key="ro_single" value="1.0" />
-			<int key="queue" value="0" />
-			<string key="prefix" value="['A_SUBMITTED', 'A_PARTLYSUBMITTED', 'A_PREACCEPTED']" />
-			<string key="attribute_case" value="{'AMOUNT': 10376}" />
+			<int key="queue" value="7" />
+			<string key="prefix" value="['A_SUBMITTED', 'A_PARTLYSUBMITTED', 'A_PREACCEPTED', 'A_ACCEPTED']" />
+			<string key="attribute_case" value="{'AMOUNT': 50384}" />
 			<string key="attribute_event" value="{'bank_branch': 'Utrecht'}" />
-			<string key="concept:name" value="A_DECLINED" />
-			<date key="time:timestamp" value="2023-10-28T12:20:48.317491+00:00" />
-			<int key="@@index" value="54" />
+			<string key="concept:name" value="A_FINALIZED" />
+			<date key="time:timestamp" value="2023-10-28T17:08:05.687917+00:00" />
+			<int key="@@index" value="50" />
+			<int key="@@case_index" value="10" />
+		</event>
+		<event>
+			<int key="id_case" value="18" />
+			<string key="activity" value="A_REGISTERED" />
+			<date key="enabled_time" value="2023-10-28T17:08:05.687917+00:00" />
+			<date key="start_time" value="2023-10-29T13:27:42.005166+00:00" />
+			<date key="end_time" value="2023-10-29T14:35:46.175379+00:00" />
+			<string key="role" value="Role 2" />
+			<string key="resource" value="Sue" />
+			<int key="wip_wait" value="5" />
+			<int key="wip_start" value="2" />
+			<int key="wip_end" value="1" />
+			<int key="wip_activity" value="1" />
+			<string key="ro_total" value="[0.0, 1.0]" />
+			<float key="ro_single" value="1.0" />
+			<int key="queue" value="11" />
+			<string key="prefix" value="['A_SUBMITTED', 'A_PARTLYSUBMITTED', 'A_PREACCEPTED', 'A_ACCEPTED', 'A_FINALIZED']" />
+			<string key="attribute_case" value="{'AMOUNT': 21732}" />
+			<string key="attribute_event" value="{'bank_branch': 'Utrecht'}" />
+			<string key="concept:name" value="A_REGISTERED" />
+			<date key="time:timestamp" value="2023-10-29T14:35:46.175379+00:00" />
+			<int key="@@index" value="51" />
+			<int key="@@case_index" value="10" />
+		</event>
+		<event>
+			<int key="id_case" value="18" />
+			<string key="activity" value="A_APPROVED" />
+			<date key="enabled_time" value="2023-10-28T17:08:05.687917+00:00" />
+			<date key="start_time" value="2023-10-29T13:51:20.213864+00:00" />
+			<date key="end_time" value="2023-10-29T15:26:14.599024+00:00" />
+			<string key="role" value="Role 2" />
+			<string key="resource" value="Ellen" />
+			<int key="wip_wait" value="5" />
+			<int key="wip_start" value="1" />
+			<int key="wip_end" value="1" />
+			<int key="wip_activity" value="1" />
+			<string key="ro_total" value="[0.0, 1.0]" />
+			<float key="ro_single" value="1.0" />
+			<int key="queue" value="11" />
+			<string key="prefix" value="['A_SUBMITTED', 'A_PARTLYSUBMITTED', 'A_PREACCEPTED', 'A_ACCEPTED', 'A_FINALIZED', 'A_REGISTERED']" />
+			<string key="attribute_case" value="{'AMOUNT': 5562}" />
+			<string key="attribute_event" value="{'bank_branch': 'Utrecht'}" />
+			<string key="concept:name" value="A_APPROVED" />
+			<date key="time:timestamp" value="2023-10-29T15:26:14.599024+00:00" />
+			<int key="@@index" value="52" />
+			<int key="@@case_index" value="10" />
+		</event>
+		<event>
+			<int key="id_case" value="18" />
+			<string key="activity" value="A_ACTIVATED" />
+			<date key="enabled_time" value="2023-10-28T17:08:05.687917+00:00" />
+			<date key="start_time" value="2023-10-29T14:35:46.175379+00:00" />
+			<date key="end_time" value="2023-10-29T16:20:17.330556+00:00" />
+			<string key="role" value="Role 2" />
+			<string key="resource" value="Sue" />
+			<int key="wip_wait" value="5" />
+			<int key="wip_start" value="1" />
+			<int key="wip_end" value="1" />
+			<int key="wip_activity" value="1" />
+			<string key="ro_total" value="[0.0, 1.0]" />
+			<float key="ro_single" value="1.0" />
+			<int key="queue" value="11" />
+			<string key="prefix" value="['A_SUBMITTED', 'A_PARTLYSUBMITTED', 'A_PREACCEPTED', 'A_ACCEPTED', 'A_FINALIZED', 'A_REGISTERED', 'A_APPROVED']" />
+			<string key="attribute_case" value="{'AMOUNT': 35922}" />
+			<string key="attribute_event" value="{'bank_branch': 'Utrecht'}" />
+			<string key="concept:name" value="A_ACTIVATED" />
+			<date key="time:timestamp" value="2023-10-29T16:20:17.330556+00:00" />
+			<int key="@@index" value="53" />
 			<int key="@@case_index" value="10" />
 		</event>
 	</trace>
@@ -1306,93 +1283,93 @@
 		<event>
 			<int key="id_case" value="19" />
 			<string key="activity" value="A_SUBMITTED" />
-			<date key="enabled_time" value="2023-10-26T10:11:51.626123+00:00" />
-			<date key="start_time" value="2023-10-27T12:50:43.360783+00:00" />
-			<date key="end_time" value="2023-10-27T14:47:59.456803+00:00" />
+			<date key="enabled_time" value="2023-10-26T09:35:09.978205+00:00" />
+			<date key="start_time" value="2023-10-27T13:43:32.295688+00:00" />
+			<date key="end_time" value="2023-10-27T15:05:15.696252+00:00" />
 			<string key="role" value="Role 1" />
-			<string key="resource" value="Mike" />
+			<string key="resource" value="Sara" />
 			<int key="wip_wait" value="20" />
-			<int key="wip_start" value="17" />
+			<int key="wip_start" value="18" />
 			<int key="wip_end" value="17" />
 			<int key="wip_activity" value="2" />
 			<string key="ro_total" value="[1.0, 1.0]" />
 			<float key="ro_single" value="1.0" />
-			<int key="queue" value="15" />
+			<int key="queue" value="17" />
 			<string key="prefix" value="[]" />
-			<string key="attribute_case" value="{'AMOUNT': 79489}" />
+			<string key="attribute_case" value="{'AMOUNT': 15386}" />
 			<string key="attribute_event" value="{'bank_branch': 'Eindhoven'}" />
 			<string key="concept:name" value="A_SUBMITTED" />
-			<date key="time:timestamp" value="2023-10-27T14:47:59.456803+00:00" />
-			<int key="@@index" value="55" />
+			<date key="time:timestamp" value="2023-10-27T15:05:15.696252+00:00" />
+			<int key="@@index" value="54" />
 			<int key="@@case_index" value="11" />
 		</event>
 		<event>
 			<int key="id_case" value="19" />
 			<string key="activity" value="A_PARTLYSUBMITTED" />
-			<date key="enabled_time" value="2023-10-27T14:47:59.456803+00:00" />
-			<date key="start_time" value="2023-10-27T17:07:15.919456+00:00" />
-			<date key="end_time" value="2023-10-27T18:17:58.149006+00:00" />
+			<date key="enabled_time" value="2023-10-27T15:05:15.696252+00:00" />
+			<date key="start_time" value="2023-10-27T15:44:26.329325+00:00" />
+			<date key="end_time" value="2023-10-27T16:33:13.303304+00:00" />
 			<string key="role" value="Role 2" />
 			<string key="resource" value="Ellen" />
 			<int key="wip_wait" value="17" />
-			<int key="wip_start" value="15" />
-			<int key="wip_end" value="15" />
-			<int key="wip_activity" value="2" />
+			<int key="wip_start" value="16" />
+			<int key="wip_end" value="16" />
+			<int key="wip_activity" value="1" />
 			<string key="ro_total" value="[1.0, 1.0]" />
 			<float key="ro_single" value="1.0" />
 			<int key="queue" value="2" />
 			<string key="prefix" value="['A_SUBMITTED']" />
-			<string key="attribute_case" value="{'AMOUNT': 79489}" />
+			<string key="attribute_case" value="{'AMOUNT': 15386}" />
 			<string key="attribute_event" value="{'bank_branch': 'Utrecht'}" />
 			<string key="concept:name" value="A_PARTLYSUBMITTED" />
-			<date key="time:timestamp" value="2023-10-27T18:17:58.149006+00:00" />
-			<int key="@@index" value="56" />
+			<date key="time:timestamp" value="2023-10-27T16:33:13.303304+00:00" />
+			<int key="@@index" value="55" />
 			<int key="@@case_index" value="11" />
 		</event>
 		<event>
 			<int key="id_case" value="19" />
 			<string key="activity" value="A_PREACCEPTED" />
-			<date key="enabled_time" value="2023-10-27T18:17:58.149006+00:00" />
-			<date key="start_time" value="2023-10-28T10:00:18.694185+00:00" />
-			<date key="end_time" value="2023-10-28T10:25:30.197636+00:00" />
+			<date key="enabled_time" value="2023-10-27T16:33:13.303304+00:00" />
+			<date key="start_time" value="2023-10-28T10:29:54.246320+00:00" />
+			<date key="end_time" value="2023-10-28T10:57:12.878689+00:00" />
 			<string key="role" value="Role 1" />
 			<string key="resource" value="Sara" />
-			<int key="wip_wait" value="15" />
-			<int key="wip_start" value="9" />
-			<int key="wip_end" value="8" />
-			<int key="wip_activity" value="2" />
+			<int key="wip_wait" value="16" />
+			<int key="wip_start" value="10" />
+			<int key="wip_end" value="10" />
+			<int key="wip_activity" value="1" />
 			<string key="ro_total" value="[1.0, 1.0]" />
 			<float key="ro_single" value="1.0" />
-			<int key="queue" value="8" />
+			<int key="queue" value="9" />
 			<string key="prefix" value="['A_SUBMITTED', 'A_PARTLYSUBMITTED']" />
-			<string key="attribute_case" value="{'AMOUNT': 79489}" />
+			<string key="attribute_case" value="{'AMOUNT': 15386}" />
 			<string key="attribute_event" value="{'bank_branch': 'Utrecht'}" />
 			<string key="concept:name" value="A_PREACCEPTED" />
-			<date key="time:timestamp" value="2023-10-28T10:25:30.197636+00:00" />
-			<int key="@@index" value="57" />
+			<date key="time:timestamp" value="2023-10-28T10:57:12.878689+00:00" />
+			<int key="@@index" value="56" />
 			<int key="@@case_index" value="11" />
 		</event>
 		<event>
 			<int key="id_case" value="19" />
 			<string key="activity" value="A_DECLINED" />
-			<date key="enabled_time" value="2023-10-28T10:25:30.197636+00:00" />
-			<date key="start_time" value="2023-10-28T10:25:30.197636+00:00" />
-			<date key="end_time" value="2023-10-28T12:04:51.242721+00:00" />
+			<date key="enabled_time" value="2023-10-28T10:57:12.878689+00:00" />
+			<date key="start_time" value="2023-10-28T13:39:34.004896+00:00" />
+			<date key="end_time" value="2023-10-28T14:56:10.855314+00:00" />
 			<string key="role" value="Role 2" />
 			<string key="resource" value="Sue" />
-			<int key="wip_wait" value="8" />
-			<int key="wip_start" value="8" />
-			<int key="wip_end" value="8" />
+			<int key="wip_wait" value="10" />
+			<int key="wip_start" value="7" />
+			<int key="wip_end" value="7" />
 			<int key="wip_activity" value="1" />
-			<string key="ro_total" value="[1.0, 1.0]" />
+			<string key="ro_total" value="[0.0, 1.0]" />
 			<float key="ro_single" value="1.0" />
-			<int key="queue" value="0" />
+			<int key="queue" value="3" />
 			<string key="prefix" value="['A_SUBMITTED', 'A_PARTLYSUBMITTED', 'A_PREACCEPTED']" />
-			<string key="attribute_case" value="{'AMOUNT': 79489}" />
+			<string key="attribute_case" value="{'AMOUNT': 15386}" />
 			<string key="attribute_event" value="{'bank_branch': 'Utrecht'}" />
 			<string key="concept:name" value="A_DECLINED" />
-			<date key="time:timestamp" value="2023-10-28T12:04:51.242721+00:00" />
-			<int key="@@index" value="58" />
+			<date key="time:timestamp" value="2023-10-28T14:56:10.855314+00:00" />
+			<int key="@@index" value="57" />
 			<int key="@@case_index" value="11" />
 		</event>
 	</trace>
@@ -1401,32 +1378,32 @@
 		<event>
 			<int key="id_case" value="2" />
 			<string key="activity" value="A_SUBMITTED" />
-			<date key="enabled_time" value="2023-10-26T08:25:09.389103+00:00" />
-			<date key="start_time" value="2023-10-26T09:23:22.358657+00:00" />
-			<date key="end_time" value="2023-10-26T11:09:48.820018+00:00" />
+			<date key="enabled_time" value="2023-10-26T08:26:43.142018+00:00" />
+			<date key="start_time" value="2023-10-26T09:44:14.197870+00:00" />
+			<date key="end_time" value="2023-10-26T11:25:12.599694+00:00" />
 			<string key="role" value="Role 1" />
 			<string key="resource" value="Sara" />
 			<int key="wip_wait" value="3" />
-			<int key="wip_start" value="12" />
+			<int key="wip_start" value="20" />
 			<int key="wip_end" value="20" />
 			<int key="wip_activity" value="2" />
 			<string key="ro_total" value="[1.0, 0.5]" />
 			<float key="ro_single" value="1.0" />
 			<int key="queue" value="0" />
 			<string key="prefix" value="[]" />
-			<string key="attribute_case" value="{'AMOUNT': 76208}" />
+			<string key="attribute_case" value="{'AMOUNT': 89564}" />
 			<string key="attribute_event" value="{'bank_branch': 'Eindhoven'}" />
 			<string key="concept:name" value="A_SUBMITTED" />
-			<date key="time:timestamp" value="2023-10-26T11:09:48.820018+00:00" />
-			<int key="@@index" value="59" />
+			<date key="time:timestamp" value="2023-10-26T11:25:12.599694+00:00" />
+			<int key="@@index" value="58" />
 			<int key="@@case_index" value="12" />
 		</event>
 		<event>
 			<int key="id_case" value="2" />
 			<string key="activity" value="A_PARTLYSUBMITTED" />
-			<date key="enabled_time" value="2023-10-26T11:09:48.820018+00:00" />
-			<date key="start_time" value="2023-10-26T11:40:42.137499+00:00" />
-			<date key="end_time" value="2023-10-26T12:48:09.079057+00:00" />
+			<date key="enabled_time" value="2023-10-26T11:25:12.599694+00:00" />
+			<date key="start_time" value="2023-10-26T12:01:25.279515+00:00" />
+			<date key="end_time" value="2023-10-26T13:22:17.497617+00:00" />
 			<string key="role" value="Role 2" />
 			<string key="resource" value="Ellen" />
 			<int key="wip_wait" value="20" />
@@ -1435,82 +1412,59 @@
 			<int key="wip_activity" value="2" />
 			<string key="ro_total" value="[1.0, 1.0]" />
 			<float key="ro_single" value="1.0" />
-			<int key="queue" value="0" />
+			<int key="queue" value="1" />
 			<string key="prefix" value="['A_SUBMITTED']" />
-			<string key="attribute_case" value="{'AMOUNT': 76208}" />
+			<string key="attribute_case" value="{'AMOUNT': 89564}" />
 			<string key="attribute_event" value="{'bank_branch': 'Eindhoven'}" />
 			<string key="concept:name" value="A_PARTLYSUBMITTED" />
-			<date key="time:timestamp" value="2023-10-26T12:48:09.079057+00:00" />
-			<int key="@@index" value="60" />
+			<date key="time:timestamp" value="2023-10-26T13:22:17.497617+00:00" />
+			<int key="@@index" value="59" />
 			<int key="@@case_index" value="12" />
 		</event>
 		<event>
 			<int key="id_case" value="2" />
 			<string key="activity" value="A_PREACCEPTED" />
-			<date key="enabled_time" value="2023-10-26T12:48:09.079057+00:00" />
-			<date key="start_time" value="2023-10-27T14:50:41.522916+00:00" />
-			<date key="end_time" value="2023-10-27T15:23:57.806481+00:00" />
+			<date key="enabled_time" value="2023-10-26T13:22:17.497617+00:00" />
+			<date key="start_time" value="2023-10-27T14:48:55.181429+00:00" />
+			<date key="end_time" value="2023-10-27T15:19:49.035675+00:00" />
 			<string key="role" value="Role 1" />
-			<string key="resource" value="Sara" />
+			<string key="resource" value="Mike" />
 			<int key="wip_wait" value="19" />
 			<int key="wip_start" value="17" />
-			<int key="wip_end" value="17" />
-			<int key="wip_activity" value="2" />
+			<int key="wip_end" value="16" />
+			<int key="wip_activity" value="1" />
 			<string key="ro_total" value="[1.0, 1.0]" />
 			<float key="ro_single" value="1.0" />
 			<int key="queue" value="14" />
 			<string key="prefix" value="['A_SUBMITTED', 'A_PARTLYSUBMITTED']" />
-			<string key="attribute_case" value="{'AMOUNT': 76208}" />
+			<string key="attribute_case" value="{'AMOUNT': 89564}" />
 			<string key="attribute_event" value="{'bank_branch': 'Eindhoven'}" />
 			<string key="concept:name" value="A_PREACCEPTED" />
-			<date key="time:timestamp" value="2023-10-27T15:23:57.806481+00:00" />
-			<int key="@@index" value="61" />
+			<date key="time:timestamp" value="2023-10-27T15:19:49.035675+00:00" />
+			<int key="@@index" value="60" />
 			<int key="@@case_index" value="12" />
 		</event>
 		<event>
 			<int key="id_case" value="2" />
-			<string key="activity" value="A_ACCEPTED" />
-			<date key="enabled_time" value="2023-10-27T15:23:57.806481+00:00" />
-			<date key="start_time" value="2023-10-28T09:13:44.694185+00:00" />
-			<date key="end_time" value="2023-10-28T09:37:01.694185+00:00" />
-			<string key="role" value="Role 1" />
-			<string key="resource" value="Sara" />
-			<int key="wip_wait" value="17" />
-			<int key="wip_start" value="12" />
-			<int key="wip_end" value="11" />
-			<int key="wip_activity" value="1" />
-			<string key="ro_total" value="[1.0, 1.0]" />
-			<float key="ro_single" value="1.0" />
-			<int key="queue" value="9" />
-			<string key="prefix" value="['A_SUBMITTED', 'A_PARTLYSUBMITTED', 'A_PREACCEPTED']" />
-			<string key="attribute_case" value="{'AMOUNT': 76208}" />
-			<string key="attribute_event" value="{'bank_branch': 'Utrecht'}" />
-			<string key="concept:name" value="A_ACCEPTED" />
-			<date key="time:timestamp" value="2023-10-28T09:37:01.694185+00:00" />
-			<int key="@@index" value="62" />
-			<int key="@@case_index" value="12" />
-		</event>
-		<event>
-			<int key="id_case" value="2" />
-			<string key="activity" value="A_CANCELLED" />
-			<date key="enabled_time" value="2023-10-28T09:37:01.694185+00:00" />
-			<date key="start_time" value="2023-10-28T09:37:01.694185+00:00" />
-			<date key="end_time" value="2023-10-28T09:41:56.694185+00:00" />
+			<string key="activity" value="A_DECLINED" />
+			<date key="enabled_time" value="2023-10-27T15:19:49.035675+00:00" />
+			<date key="start_time" value="2023-10-27T16:33:13.303304+00:00" />
+			<date key="end_time" value="2023-10-27T18:31:15.592677+00:00" />
 			<string key="role" value="Role 2" />
 			<string key="resource" value="Ellen" />
-			<int key="wip_wait" value="11" />
-			<int key="wip_start" value="11" />
-			<int key="wip_end" value="11" />
-			<int key="wip_activity" value="1" />
+			<int key="wip_wait" value="16" />
+			<int key="wip_start" value="16" />
+			<int key="wip_end" value="14" />
+			<int key="wip_activity" value="2" />
 			<string key="ro_total" value="[1.0, 1.0]" />
 			<float key="ro_single" value="1.0" />
-			<int key="queue" value="0" />
-			<string key="prefix" value="['A_SUBMITTED', 'A_PARTLYSUBMITTED', 'A_PREACCEPTED', 'A_ACCEPTED']" />
-			<string key="attribute_case" value="{'AMOUNT': 76208}" />
+			<int key="queue" value="2" />
+			<string key="prefix" value="['A_SUBMITTED', 'A_PARTLYSUBMITTED', 'A_PREACCEPTED']" />
+			<string key="attribute_case" value="{'AMOUNT': 89564}" />
 			<string key="attribute_event" value="{'bank_branch': 'Utrecht'}" />
-			<string key="concept:name" value="A_CANCELLED" />
-			<date key="time:timestamp" value="2023-10-28T09:41:56.694185+00:00" />
-			<int key="@@index" value="63" />
+			<string key="concept:name" value="A_DECLINED" />
+			<date key="time:timestamp" value="2023-10-27T18:31:15.592677+00:00" />
+			<int key="@@index" value="61" />
 			<int key="@@case_index" value="12" />
 		</event>
 	</trace>
@@ -1519,32 +1473,32 @@
 		<event>
 			<int key="id_case" value="3" />
 			<string key="activity" value="A_SUBMITTED" />
-			<date key="enabled_time" value="2023-10-26T08:26:42.360086+00:00" />
-			<date key="start_time" value="2023-10-26T09:33:41.108765+00:00" />
-			<date key="end_time" value="2023-10-26T10:37:27.354046+00:00" />
+			<date key="enabled_time" value="2023-10-26T08:27:15.618645+00:00" />
+			<date key="start_time" value="2023-10-26T10:02:33.430544+00:00" />
+			<date key="end_time" value="2023-10-26T11:18:11.466053+00:00" />
 			<string key="role" value="Role 1" />
 			<string key="resource" value="Mike" />
 			<int key="wip_wait" value="4" />
-			<int key="wip_start" value="13" />
+			<int key="wip_start" value="20" />
 			<int key="wip_end" value="20" />
 			<int key="wip_activity" value="2" />
 			<string key="ro_total" value="[1.0, 1.0]" />
 			<float key="ro_single" value="1.0" />
 			<int key="queue" value="1" />
 			<string key="prefix" value="[]" />
-			<string key="attribute_case" value="{'AMOUNT': 26955}" />
+			<string key="attribute_case" value="{'AMOUNT': 65211}" />
 			<string key="attribute_event" value="{'bank_branch': 'Eindhoven'}" />
 			<string key="concept:name" value="A_SUBMITTED" />
-			<date key="time:timestamp" value="2023-10-26T10:37:27.354046+00:00" />
-			<int key="@@index" value="64" />
+			<date key="time:timestamp" value="2023-10-26T11:18:11.466053+00:00" />
+			<int key="@@index" value="62" />
 			<int key="@@case_index" value="13" />
 		</event>
 		<event>
 			<int key="id_case" value="3" />
 			<string key="activity" value="A_PARTLYSUBMITTED" />
-			<date key="enabled_time" value="2023-10-26T10:37:27.354046+00:00" />
-			<date key="start_time" value="2023-10-26T10:37:27.354046+00:00" />
-			<date key="end_time" value="2023-10-26T11:57:07.945988+00:00" />
+			<date key="enabled_time" value="2023-10-26T11:18:11.466053+00:00" />
+			<date key="start_time" value="2023-10-26T11:34:35.049804+00:00" />
+			<date key="end_time" value="2023-10-26T12:28:58.953692+00:00" />
 			<string key="role" value="Role 2" />
 			<string key="resource" value="Sue" />
 			<int key="wip_wait" value="20" />
@@ -1555,57 +1509,57 @@
 			<float key="ro_single" value="1.0" />
 			<int key="queue" value="0" />
 			<string key="prefix" value="['A_SUBMITTED']" />
-			<string key="attribute_case" value="{'AMOUNT': 26955}" />
+			<string key="attribute_case" value="{'AMOUNT': 65211}" />
 			<string key="attribute_event" value="{'bank_branch': 'Eindhoven'}" />
 			<string key="concept:name" value="A_PARTLYSUBMITTED" />
-			<date key="time:timestamp" value="2023-10-26T11:57:07.945988+00:00" />
-			<int key="@@index" value="65" />
+			<date key="time:timestamp" value="2023-10-26T12:28:58.953692+00:00" />
+			<int key="@@index" value="63" />
 			<int key="@@case_index" value="13" />
 		</event>
 		<event>
 			<int key="id_case" value="3" />
 			<string key="activity" value="A_PREACCEPTED" />
-			<date key="enabled_time" value="2023-10-26T11:57:07.945988+00:00" />
-			<date key="start_time" value="2023-10-27T14:47:59.456803+00:00" />
-			<date key="end_time" value="2023-10-27T15:23:19.081777+00:00" />
+			<date key="enabled_time" value="2023-10-26T12:28:58.953692+00:00" />
+			<date key="start_time" value="2023-10-27T14:17:46.921750+00:00" />
+			<date key="end_time" value="2023-10-27T14:48:55.181429+00:00" />
 			<string key="role" value="Role 1" />
 			<string key="resource" value="Mike" />
 			<int key="wip_wait" value="19" />
 			<int key="wip_start" value="17" />
 			<int key="wip_end" value="17" />
-			<int key="wip_activity" value="2" />
+			<int key="wip_activity" value="1" />
 			<string key="ro_total" value="[1.0, 1.0]" />
 			<float key="ro_single" value="1.0" />
-			<int key="queue" value="14" />
+			<int key="queue" value="15" />
 			<string key="prefix" value="['A_SUBMITTED', 'A_PARTLYSUBMITTED']" />
-			<string key="attribute_case" value="{'AMOUNT': 26955}" />
+			<string key="attribute_case" value="{'AMOUNT': 65211}" />
 			<string key="attribute_event" value="{'bank_branch': 'Eindhoven'}" />
 			<string key="concept:name" value="A_PREACCEPTED" />
-			<date key="time:timestamp" value="2023-10-27T15:23:19.081777+00:00" />
-			<int key="@@index" value="66" />
+			<date key="time:timestamp" value="2023-10-27T14:48:55.181429+00:00" />
+			<int key="@@index" value="64" />
 			<int key="@@case_index" value="13" />
 		</event>
 		<event>
 			<int key="id_case" value="3" />
 			<string key="activity" value="A_DECLINED" />
-			<date key="enabled_time" value="2023-10-27T15:23:19.081777+00:00" />
-			<date key="start_time" value="2023-10-27T18:17:58.149006+00:00" />
-			<date key="end_time" value="2023-10-27T19:24:19.370511+00:00" />
+			<date key="enabled_time" value="2023-10-27T14:48:55.181429+00:00" />
+			<date key="start_time" value="2023-10-27T15:33:12.712207+00:00" />
+			<date key="end_time" value="2023-10-27T16:38:17.234832+00:00" />
 			<string key="role" value="Role 2" />
-			<string key="resource" value="Ellen" />
+			<string key="resource" value="Sue" />
 			<int key="wip_wait" value="17" />
-			<int key="wip_start" value="15" />
-			<int key="wip_end" value="14" />
-			<int key="wip_activity" value="2" />
+			<int key="wip_start" value="16" />
+			<int key="wip_end" value="16" />
+			<int key="wip_activity" value="1" />
 			<string key="ro_total" value="[1.0, 1.0]" />
 			<float key="ro_single" value="1.0" />
-			<int key="queue" value="3" />
+			<int key="queue" value="2" />
 			<string key="prefix" value="['A_SUBMITTED', 'A_PARTLYSUBMITTED', 'A_PREACCEPTED']" />
-			<string key="attribute_case" value="{'AMOUNT': 26955}" />
+			<string key="attribute_case" value="{'AMOUNT': 65211}" />
 			<string key="attribute_event" value="{'bank_branch': 'Utrecht'}" />
 			<string key="concept:name" value="A_DECLINED" />
-			<date key="time:timestamp" value="2023-10-27T19:24:19.370511+00:00" />
-			<int key="@@index" value="67" />
+			<date key="time:timestamp" value="2023-10-27T16:38:17.234832+00:00" />
+			<int key="@@index" value="65" />
 			<int key="@@case_index" value="13" />
 		</event>
 	</trace>
@@ -1614,9 +1568,9 @@
 		<event>
 			<int key="id_case" value="4" />
 			<string key="activity" value="A_SUBMITTED" />
-			<date key="enabled_time" value="2023-10-26T08:29:08.710178+00:00" />
-			<date key="start_time" value="2023-10-26T10:37:27.354046+00:00" />
-			<date key="end_time" value="2023-10-26T11:53:30.359137+00:00" />
+			<date key="enabled_time" value="2023-10-26T08:28:16.418315+00:00" />
+			<date key="start_time" value="2023-10-26T11:18:11.466053+00:00" />
+			<date key="end_time" value="2023-10-26T12:59:32.659563+00:00" />
 			<string key="role" value="Role 1" />
 			<string key="resource" value="Mike" />
 			<int key="wip_wait" value="5" />
@@ -1627,21 +1581,21 @@
 			<float key="ro_single" value="1.0" />
 			<int key="queue" value="2" />
 			<string key="prefix" value="[]" />
-			<string key="attribute_case" value="{'AMOUNT': 87589}" />
+			<string key="attribute_case" value="{'AMOUNT': 46049}" />
 			<string key="attribute_event" value="{'bank_branch': 'Eindhoven'}" />
 			<string key="concept:name" value="A_SUBMITTED" />
-			<date key="time:timestamp" value="2023-10-26T11:53:30.359137+00:00" />
-			<int key="@@index" value="68" />
+			<date key="time:timestamp" value="2023-10-26T12:59:32.659563+00:00" />
+			<int key="@@index" value="66" />
 			<int key="@@case_index" value="14" />
 		</event>
 		<event>
 			<int key="id_case" value="4" />
 			<string key="activity" value="A_PARTLYSUBMITTED" />
-			<date key="enabled_time" value="2023-10-26T11:53:30.359137+00:00" />
-			<date key="start_time" value="2023-10-26T11:57:07.945988+00:00" />
-			<date key="end_time" value="2023-10-26T13:53:36.549408+00:00" />
+			<date key="enabled_time" value="2023-10-26T12:59:32.659563+00:00" />
+			<date key="start_time" value="2023-10-26T13:22:17.497617+00:00" />
+			<date key="end_time" value="2023-10-26T14:49:50.642654+00:00" />
 			<string key="role" value="Role 2" />
-			<string key="resource" value="Sue" />
+			<string key="resource" value="Ellen" />
 			<int key="wip_wait" value="19" />
 			<int key="wip_start" value="19" />
 			<int key="wip_end" value="19" />
@@ -1650,57 +1604,80 @@
 			<float key="ro_single" value="1.0" />
 			<int key="queue" value="0" />
 			<string key="prefix" value="['A_SUBMITTED']" />
-			<string key="attribute_case" value="{'AMOUNT': 87589}" />
+			<string key="attribute_case" value="{'AMOUNT': 46049}" />
 			<string key="attribute_event" value="{'bank_branch': 'Eindhoven'}" />
 			<string key="concept:name" value="A_PARTLYSUBMITTED" />
-			<date key="time:timestamp" value="2023-10-26T13:53:36.549408+00:00" />
-			<int key="@@index" value="69" />
+			<date key="time:timestamp" value="2023-10-26T14:49:50.642654+00:00" />
+			<int key="@@index" value="67" />
 			<int key="@@case_index" value="14" />
 		</event>
 		<event>
 			<int key="id_case" value="4" />
 			<string key="activity" value="A_PREACCEPTED" />
-			<date key="enabled_time" value="2023-10-26T13:53:36.549408+00:00" />
-			<date key="start_time" value="2023-10-27T15:23:57.806481+00:00" />
-			<date key="end_time" value="2023-10-27T15:50:25.926965+00:00" />
+			<date key="enabled_time" value="2023-10-26T14:49:50.642654+00:00" />
+			<date key="start_time" value="2023-10-27T15:19:49.035675+00:00" />
+			<date key="end_time" value="2023-10-27T15:48:38.842577+00:00" />
 			<string key="role" value="Role 1" />
-			<string key="resource" value="Sara" />
+			<string key="resource" value="Mike" />
 			<int key="wip_wait" value="19" />
-			<int key="wip_start" value="17" />
+			<int key="wip_start" value="16" />
 			<int key="wip_end" value="16" />
 			<int key="wip_activity" value="2" />
 			<string key="ro_total" value="[1.0, 1.0]" />
 			<float key="ro_single" value="1.0" />
 			<int key="queue" value="15" />
 			<string key="prefix" value="['A_SUBMITTED', 'A_PARTLYSUBMITTED']" />
-			<string key="attribute_case" value="{'AMOUNT': 87589}" />
+			<string key="attribute_case" value="{'AMOUNT': 46049}" />
 			<string key="attribute_event" value="{'bank_branch': 'Eindhoven'}" />
 			<string key="concept:name" value="A_PREACCEPTED" />
-			<date key="time:timestamp" value="2023-10-27T15:50:25.926965+00:00" />
-			<int key="@@index" value="70" />
+			<date key="time:timestamp" value="2023-10-27T15:48:38.842577+00:00" />
+			<int key="@@index" value="68" />
 			<int key="@@case_index" value="14" />
 		</event>
 		<event>
 			<int key="id_case" value="4" />
-			<string key="activity" value="A_DECLINED" />
-			<date key="enabled_time" value="2023-10-27T15:50:25.926965+00:00" />
-			<date key="start_time" value="2023-10-27T18:46:31.623538+00:00" />
-			<date key="end_time" value="2023-10-27T19:54:10.290139+00:00" />
-			<string key="role" value="Role 2" />
-			<string key="resource" value="Sue" />
+			<string key="activity" value="A_ACCEPTED" />
+			<date key="enabled_time" value="2023-10-27T15:48:38.842577+00:00" />
+			<date key="start_time" value="2023-10-28T10:01:32.151381+00:00" />
+			<date key="end_time" value="2023-10-28T10:24:49.151381+00:00" />
+			<string key="role" value="Role 1" />
+			<string key="resource" value="Mike" />
 			<int key="wip_wait" value="16" />
-			<int key="wip_start" value="14" />
-			<int key="wip_end" value="13" />
-			<int key="wip_activity" value="2" />
+			<int key="wip_start" value="12" />
+			<int key="wip_end" value="11" />
+			<int key="wip_activity" value="1" />
 			<string key="ro_total" value="[1.0, 1.0]" />
 			<float key="ro_single" value="1.0" />
-			<int key="queue" value="3" />
+			<int key="queue" value="10" />
 			<string key="prefix" value="['A_SUBMITTED', 'A_PARTLYSUBMITTED', 'A_PREACCEPTED']" />
-			<string key="attribute_case" value="{'AMOUNT': 87589}" />
+			<string key="attribute_case" value="{'AMOUNT': 46049}" />
 			<string key="attribute_event" value="{'bank_branch': 'Utrecht'}" />
-			<string key="concept:name" value="A_DECLINED" />
-			<date key="time:timestamp" value="2023-10-27T19:54:10.290139+00:00" />
-			<int key="@@index" value="71" />
+			<string key="concept:name" value="A_ACCEPTED" />
+			<date key="time:timestamp" value="2023-10-28T10:24:49.151381+00:00" />
+			<int key="@@index" value="69" />
+			<int key="@@case_index" value="14" />
+		</event>
+		<event>
+			<int key="id_case" value="4" />
+			<string key="activity" value="A_CANCELLED" />
+			<date key="enabled_time" value="2023-10-28T10:24:49.151381+00:00" />
+			<date key="start_time" value="2023-10-28T11:53:38.305480+00:00" />
+			<date key="end_time" value="2023-10-28T11:58:54.305480+00:00" />
+			<string key="role" value="Role 2" />
+			<string key="resource" value="Sue" />
+			<int key="wip_wait" value="11" />
+			<int key="wip_start" value="10" />
+			<int key="wip_end" value="10" />
+			<int key="wip_activity" value="1" />
+			<string key="ro_total" value="[0.0, 1.0]" />
+			<float key="ro_single" value="1.0" />
+			<int key="queue" value="1" />
+			<string key="prefix" value="['A_SUBMITTED', 'A_PARTLYSUBMITTED', 'A_PREACCEPTED', 'A_ACCEPTED']" />
+			<string key="attribute_case" value="{'AMOUNT': 46049}" />
+			<string key="attribute_event" value="{'bank_branch': 'Utrecht'}" />
+			<string key="concept:name" value="A_CANCELLED" />
+			<date key="time:timestamp" value="2023-10-28T11:58:54.305480+00:00" />
+			<int key="@@index" value="70" />
 			<int key="@@case_index" value="14" />
 		</event>
 	</trace>
@@ -1709,9 +1686,9 @@
 		<event>
 			<int key="id_case" value="5" />
 			<string key="activity" value="A_SUBMITTED" />
-			<date key="enabled_time" value="2023-10-26T08:32:56.021158+00:00" />
-			<date key="start_time" value="2023-10-26T11:09:48.820018+00:00" />
-			<date key="end_time" value="2023-10-26T12:32:12.960030+00:00" />
+			<date key="enabled_time" value="2023-10-26T08:28:51.539675+00:00" />
+			<date key="start_time" value="2023-10-26T11:25:12.599694+00:00" />
+			<date key="end_time" value="2023-10-26T12:45:06.284203+00:00" />
 			<string key="role" value="Role 1" />
 			<string key="resource" value="Sara" />
 			<int key="wip_wait" value="6" />
@@ -1722,21 +1699,21 @@
 			<float key="ro_single" value="1.0" />
 			<int key="queue" value="3" />
 			<string key="prefix" value="[]" />
-			<string key="attribute_case" value="{'AMOUNT': 75894}" />
+			<string key="attribute_case" value="{'AMOUNT': 64429}" />
 			<string key="attribute_event" value="{'bank_branch': 'Eindhoven'}" />
 			<string key="concept:name" value="A_SUBMITTED" />
-			<date key="time:timestamp" value="2023-10-26T12:32:12.960030+00:00" />
-			<int key="@@index" value="72" />
+			<date key="time:timestamp" value="2023-10-26T12:45:06.284203+00:00" />
+			<int key="@@index" value="71" />
 			<int key="@@case_index" value="15" />
 		</event>
 		<event>
 			<int key="id_case" value="5" />
 			<string key="activity" value="A_PARTLYSUBMITTED" />
-			<date key="enabled_time" value="2023-10-26T12:32:12.960030+00:00" />
-			<date key="start_time" value="2023-10-26T12:48:09.079057+00:00" />
-			<date key="end_time" value="2023-10-26T13:26:47.028581+00:00" />
+			<date key="enabled_time" value="2023-10-26T12:45:06.284203+00:00" />
+			<date key="start_time" value="2023-10-26T12:45:06.284203+00:00" />
+			<date key="end_time" value="2023-10-26T13:42:18.625281+00:00" />
 			<string key="role" value="Role 2" />
-			<string key="resource" value="Ellen" />
+			<string key="resource" value="Sue" />
 			<int key="wip_wait" value="19" />
 			<int key="wip_start" value="19" />
 			<int key="wip_end" value="19" />
@@ -1745,149 +1722,57 @@
 			<float key="ro_single" value="1.0" />
 			<int key="queue" value="0" />
 			<string key="prefix" value="['A_SUBMITTED']" />
-			<string key="attribute_case" value="{'AMOUNT': 75894}" />
+			<string key="attribute_case" value="{'AMOUNT': 64429}" />
 			<string key="attribute_event" value="{'bank_branch': 'Eindhoven'}" />
 			<string key="concept:name" value="A_PARTLYSUBMITTED" />
-			<date key="time:timestamp" value="2023-10-26T13:26:47.028581+00:00" />
-			<int key="@@index" value="73" />
+			<date key="time:timestamp" value="2023-10-26T13:42:18.625281+00:00" />
+			<int key="@@index" value="72" />
 			<int key="@@case_index" value="15" />
 		</event>
 		<event>
 			<int key="id_case" value="5" />
 			<string key="activity" value="A_PREACCEPTED" />
-			<date key="enabled_time" value="2023-10-26T13:26:47.028581+00:00" />
-			<date key="start_time" value="2023-10-27T15:23:19.081777+00:00" />
-			<date key="end_time" value="2023-10-27T15:47:46.308062+00:00" />
+			<date key="enabled_time" value="2023-10-26T13:42:18.625281+00:00" />
+			<date key="start_time" value="2023-10-27T15:05:15.696252+00:00" />
+			<date key="end_time" value="2023-10-27T15:38:47.736667+00:00" />
 			<string key="role" value="Role 1" />
-			<string key="resource" value="Mike" />
+			<string key="resource" value="Sara" />
 			<int key="wip_wait" value="19" />
 			<int key="wip_start" value="17" />
 			<int key="wip_end" value="16" />
 			<int key="wip_activity" value="2" />
 			<string key="ro_total" value="[1.0, 1.0]" />
 			<float key="ro_single" value="1.0" />
-			<int key="queue" value="14" />
+			<int key="queue" value="15" />
 			<string key="prefix" value="['A_SUBMITTED', 'A_PARTLYSUBMITTED']" />
-			<string key="attribute_case" value="{'AMOUNT': 75894}" />
+			<string key="attribute_case" value="{'AMOUNT': 64429}" />
 			<string key="attribute_event" value="{'bank_branch': 'Eindhoven'}" />
 			<string key="concept:name" value="A_PREACCEPTED" />
-			<date key="time:timestamp" value="2023-10-27T15:47:46.308062+00:00" />
-			<int key="@@index" value="74" />
+			<date key="time:timestamp" value="2023-10-27T15:38:47.736667+00:00" />
+			<int key="@@index" value="73" />
 			<int key="@@case_index" value="15" />
 		</event>
 		<event>
 			<int key="id_case" value="5" />
-			<string key="activity" value="A_ACCEPTED" />
-			<date key="enabled_time" value="2023-10-27T15:47:46.308062+00:00" />
-			<date key="start_time" value="2023-10-28T09:37:00.716331+00:00" />
-			<date key="end_time" value="2023-10-28T10:00:17.716331+00:00" />
-			<string key="role" value="Role 1" />
-			<string key="resource" value="Mike" />
-			<int key="wip_wait" value="16" />
-			<int key="wip_start" value="11" />
-			<int key="wip_end" value="9" />
-			<int key="wip_activity" value="2" />
-			<string key="ro_total" value="[1.0, 0.5]" />
-			<float key="ro_single" value="1.0" />
-			<int key="queue" value="9" />
-			<string key="prefix" value="['A_SUBMITTED', 'A_PARTLYSUBMITTED', 'A_PREACCEPTED']" />
-			<string key="attribute_case" value="{'AMOUNT': 75894}" />
-			<string key="attribute_event" value="{'bank_branch': 'Utrecht'}" />
-			<string key="concept:name" value="A_ACCEPTED" />
-			<date key="time:timestamp" value="2023-10-28T10:00:17.716331+00:00" />
-			<int key="@@index" value="75" />
-			<int key="@@case_index" value="15" />
-		</event>
-		<event>
-			<int key="id_case" value="5" />
-			<string key="activity" value="A_FINALIZED" />
-			<date key="enabled_time" value="2023-10-28T10:00:17.716331+00:00" />
-			<date key="start_time" value="2023-10-28T10:00:17.716331+00:00" />
-			<date key="end_time" value="2023-10-28T11:19:33.592615+00:00" />
-			<string key="role" value="Role 2" />
-			<string key="resource" value="Ellen" />
-			<int key="wip_wait" value="9" />
-			<int key="wip_start" value="9" />
-			<int key="wip_end" value="8" />
-			<int key="wip_activity" value="1" />
-			<string key="ro_total" value="[1.0, 0.5]" />
-			<float key="ro_single" value="0.5" />
-			<int key="queue" value="0" />
-			<string key="prefix" value="['A_SUBMITTED', 'A_PARTLYSUBMITTED', 'A_PREACCEPTED', 'A_ACCEPTED']" />
-			<string key="attribute_case" value="{'AMOUNT': 75894}" />
-			<string key="attribute_event" value="{'bank_branch': 'Utrecht'}" />
-			<string key="concept:name" value="A_FINALIZED" />
-			<date key="time:timestamp" value="2023-10-28T11:19:33.592615+00:00" />
-			<int key="@@index" value="76" />
-			<int key="@@case_index" value="15" />
-		</event>
-		<event>
-			<int key="id_case" value="5" />
-			<string key="activity" value="A_REGISTERED" />
-			<date key="enabled_time" value="2023-10-28T11:19:33.592615+00:00" />
-			<date key="start_time" value="2023-10-28T13:39:56.638196+00:00" />
-			<date key="end_time" value="2023-10-28T14:57:09.683195+00:00" />
-			<string key="role" value="Role 2" />
-			<string key="resource" value="Ellen" />
-			<int key="wip_wait" value="8" />
-			<int key="wip_start" value="4" />
-			<int key="wip_end" value="4" />
-			<int key="wip_activity" value="1" />
-			<string key="ro_total" value="[0.0, 1.0]" />
-			<float key="ro_single" value="1.0" />
-			<int key="queue" value="5" />
-			<string key="prefix" value="['A_SUBMITTED', 'A_PARTLYSUBMITTED', 'A_PREACCEPTED', 'A_ACCEPTED', 'A_FINALIZED']" />
-			<string key="attribute_case" value="{'AMOUNT': 34559}" />
-			<string key="attribute_event" value="{'bank_branch': 'Utrecht'}" />
-			<string key="concept:name" value="A_REGISTERED" />
-			<date key="time:timestamp" value="2023-10-28T14:57:09.683195+00:00" />
-			<int key="@@index" value="77" />
-			<int key="@@case_index" value="15" />
-		</event>
-		<event>
-			<int key="id_case" value="5" />
-			<string key="activity" value="A_APPROVED" />
-			<date key="enabled_time" value="2023-10-28T11:19:33.592615+00:00" />
-			<date key="start_time" value="2023-10-28T13:54:39.261046+00:00" />
-			<date key="end_time" value="2023-10-28T15:27:01.677049+00:00" />
+			<string key="activity" value="A_DECLINED" />
+			<date key="enabled_time" value="2023-10-27T15:38:47.736667+00:00" />
+			<date key="start_time" value="2023-10-27T16:38:17.234832+00:00" />
+			<date key="end_time" value="2023-10-27T17:45:43.076058+00:00" />
 			<string key="role" value="Role 2" />
 			<string key="resource" value="Sue" />
-			<int key="wip_wait" value="8" />
-			<int key="wip_start" value="4" />
-			<int key="wip_end" value="4" />
-			<int key="wip_activity" value="1" />
-			<string key="ro_total" value="[0.0, 1.0]" />
+			<int key="wip_wait" value="16" />
+			<int key="wip_start" value="15" />
+			<int key="wip_end" value="15" />
+			<int key="wip_activity" value="2" />
+			<string key="ro_total" value="[1.0, 1.0]" />
 			<float key="ro_single" value="1.0" />
-			<int key="queue" value="5" />
-			<string key="prefix" value="['A_SUBMITTED', 'A_PARTLYSUBMITTED', 'A_PREACCEPTED', 'A_ACCEPTED', 'A_FINALIZED', 'A_REGISTERED']" />
-			<string key="attribute_case" value="{'AMOUNT': 40124}" />
+			<int key="queue" value="2" />
+			<string key="prefix" value="['A_SUBMITTED', 'A_PARTLYSUBMITTED', 'A_PREACCEPTED']" />
+			<string key="attribute_case" value="{'AMOUNT': 64429}" />
 			<string key="attribute_event" value="{'bank_branch': 'Utrecht'}" />
-			<string key="concept:name" value="A_APPROVED" />
-			<date key="time:timestamp" value="2023-10-28T15:27:01.677049+00:00" />
-			<int key="@@index" value="78" />
-			<int key="@@case_index" value="15" />
-		</event>
-		<event>
-			<int key="id_case" value="5" />
-			<string key="activity" value="A_ACTIVATED" />
-			<date key="enabled_time" value="2023-10-28T11:19:33.592615+00:00" />
-			<date key="start_time" value="2023-10-28T14:57:09.683195+00:00" />
-			<date key="end_time" value="2023-10-28T16:06:18.908310+00:00" />
-			<string key="role" value="Role 2" />
-			<string key="resource" value="Ellen" />
-			<int key="wip_wait" value="8" />
-			<int key="wip_start" value="4" />
-			<int key="wip_end" value="4" />
-			<int key="wip_activity" value="1" />
-			<string key="ro_total" value="[0.0, 1.0]" />
-			<float key="ro_single" value="1.0" />
-			<int key="queue" value="5" />
-			<string key="prefix" value="['A_SUBMITTED', 'A_PARTLYSUBMITTED', 'A_PREACCEPTED', 'A_ACCEPTED', 'A_FINALIZED', 'A_REGISTERED', 'A_APPROVED']" />
-			<string key="attribute_case" value="{'AMOUNT': 64072}" />
-			<string key="attribute_event" value="{'bank_branch': 'Utrecht'}" />
-			<string key="concept:name" value="A_ACTIVATED" />
-			<date key="time:timestamp" value="2023-10-28T16:06:18.908310+00:00" />
-			<int key="@@index" value="79" />
+			<string key="concept:name" value="A_DECLINED" />
+			<date key="time:timestamp" value="2023-10-27T17:45:43.076058+00:00" />
+			<int key="@@index" value="74" />
 			<int key="@@case_index" value="15" />
 		</event>
 	</trace>
@@ -1896,11 +1781,11 @@
 		<event>
 			<int key="id_case" value="6" />
 			<string key="activity" value="A_SUBMITTED" />
-			<date key="enabled_time" value="2023-10-26T08:41:23.876361+00:00" />
-			<date key="start_time" value="2023-10-26T11:53:30.359137+00:00" />
-			<date key="end_time" value="2023-10-26T13:13:37.081189+00:00" />
+			<date key="enabled_time" value="2023-10-26T08:31:38.679803+00:00" />
+			<date key="start_time" value="2023-10-26T12:45:06.284203+00:00" />
+			<date key="end_time" value="2023-10-26T14:03:19.854821+00:00" />
 			<string key="role" value="Role 1" />
-			<string key="resource" value="Mike" />
+			<string key="resource" value="Sara" />
 			<int key="wip_wait" value="7" />
 			<int key="wip_start" value="19" />
 			<int key="wip_end" value="19" />
@@ -1909,21 +1794,21 @@
 			<float key="ro_single" value="1.0" />
 			<int key="queue" value="4" />
 			<string key="prefix" value="[]" />
-			<string key="attribute_case" value="{'AMOUNT': 17070}" />
+			<string key="attribute_case" value="{'AMOUNT': 95243}" />
 			<string key="attribute_event" value="{'bank_branch': 'Eindhoven'}" />
 			<string key="concept:name" value="A_SUBMITTED" />
-			<date key="time:timestamp" value="2023-10-26T13:13:37.081189+00:00" />
-			<int key="@@index" value="80" />
+			<date key="time:timestamp" value="2023-10-26T14:03:19.854821+00:00" />
+			<int key="@@index" value="75" />
 			<int key="@@case_index" value="16" />
 		</event>
 		<event>
 			<int key="id_case" value="6" />
 			<string key="activity" value="A_PARTLYSUBMITTED" />
-			<date key="enabled_time" value="2023-10-26T13:13:37.081189+00:00" />
-			<date key="start_time" value="2023-10-26T13:26:47.028581+00:00" />
-			<date key="end_time" value="2023-10-26T14:30:54.142045+00:00" />
+			<date key="enabled_time" value="2023-10-26T14:03:19.854821+00:00" />
+			<date key="start_time" value="2023-10-26T14:03:19.854821+00:00" />
+			<date key="end_time" value="2023-10-26T15:56:18.427361+00:00" />
 			<string key="role" value="Role 2" />
-			<string key="resource" value="Ellen" />
+			<string key="resource" value="Sue" />
 			<int key="wip_wait" value="19" />
 			<int key="wip_start" value="19" />
 			<int key="wip_end" value="19" />
@@ -1932,21 +1817,21 @@
 			<float key="ro_single" value="1.0" />
 			<int key="queue" value="0" />
 			<string key="prefix" value="['A_SUBMITTED']" />
-			<string key="attribute_case" value="{'AMOUNT': 17070}" />
+			<string key="attribute_case" value="{'AMOUNT': 95243}" />
 			<string key="attribute_event" value="{'bank_branch': 'Eindhoven'}" />
 			<string key="concept:name" value="A_PARTLYSUBMITTED" />
-			<date key="time:timestamp" value="2023-10-26T14:30:54.142045+00:00" />
-			<int key="@@index" value="81" />
+			<date key="time:timestamp" value="2023-10-26T15:56:18.427361+00:00" />
+			<int key="@@index" value="76" />
 			<int key="@@case_index" value="16" />
 		</event>
 		<event>
 			<int key="id_case" value="6" />
 			<string key="activity" value="A_PREACCEPTED" />
-			<date key="enabled_time" value="2023-10-26T14:30:54.142045+00:00" />
-			<date key="start_time" value="2023-10-27T15:47:46.308062+00:00" />
-			<date key="end_time" value="2023-10-27T16:24:48.871030+00:00" />
+			<date key="enabled_time" value="2023-10-26T15:56:18.427361+00:00" />
+			<date key="start_time" value="2023-10-27T15:38:47.736667+00:00" />
+			<date key="end_time" value="2023-10-27T16:08:04.667859+00:00" />
 			<string key="role" value="Role 1" />
-			<string key="resource" value="Mike" />
+			<string key="resource" value="Sara" />
 			<int key="wip_wait" value="19" />
 			<int key="wip_start" value="16" />
 			<int key="wip_end" value="16" />
@@ -1955,57 +1840,126 @@
 			<float key="ro_single" value="1.0" />
 			<int key="queue" value="15" />
 			<string key="prefix" value="['A_SUBMITTED', 'A_PARTLYSUBMITTED']" />
-			<string key="attribute_case" value="{'AMOUNT': 17070}" />
+			<string key="attribute_case" value="{'AMOUNT': 95243}" />
 			<string key="attribute_event" value="{'bank_branch': 'Eindhoven'}" />
 			<string key="concept:name" value="A_PREACCEPTED" />
-			<date key="time:timestamp" value="2023-10-27T16:24:48.871030+00:00" />
-			<int key="@@index" value="82" />
+			<date key="time:timestamp" value="2023-10-27T16:08:04.667859+00:00" />
+			<int key="@@index" value="77" />
 			<int key="@@case_index" value="16" />
 		</event>
 		<event>
 			<int key="id_case" value="6" />
 			<string key="activity" value="A_ACCEPTED" />
-			<date key="enabled_time" value="2023-10-27T16:24:48.871030+00:00" />
-			<date key="start_time" value="2023-10-28T09:37:01.694185+00:00" />
-			<date key="end_time" value="2023-10-28T10:00:18.694185+00:00" />
+			<date key="enabled_time" value="2023-10-27T16:08:04.667859+00:00" />
+			<date key="start_time" value="2023-10-28T10:24:49.151381+00:00" />
+			<date key="end_time" value="2023-10-28T10:48:06.151381+00:00" />
 			<string key="role" value="Role 1" />
-			<string key="resource" value="Sara" />
+			<string key="resource" value="Mike" />
 			<int key="wip_wait" value="16" />
 			<int key="wip_start" value="11" />
-			<int key="wip_end" value="9" />
-			<int key="wip_activity" value="2" />
+			<int key="wip_end" value="10" />
+			<int key="wip_activity" value="1" />
 			<string key="ro_total" value="[1.0, 1.0]" />
 			<float key="ro_single" value="1.0" />
-			<int key="queue" value="8" />
+			<int key="queue" value="10" />
 			<string key="prefix" value="['A_SUBMITTED', 'A_PARTLYSUBMITTED', 'A_PREACCEPTED']" />
-			<string key="attribute_case" value="{'AMOUNT': 17070}" />
+			<string key="attribute_case" value="{'AMOUNT': 95243}" />
 			<string key="attribute_event" value="{'bank_branch': 'Utrecht'}" />
 			<string key="concept:name" value="A_ACCEPTED" />
-			<date key="time:timestamp" value="2023-10-28T10:00:18.694185+00:00" />
-			<int key="@@index" value="83" />
+			<date key="time:timestamp" value="2023-10-28T10:48:06.151381+00:00" />
+			<int key="@@index" value="78" />
 			<int key="@@case_index" value="16" />
 		</event>
 		<event>
 			<int key="id_case" value="6" />
-			<string key="activity" value="A_CANCELLED" />
-			<date key="enabled_time" value="2023-10-28T10:00:18.694185+00:00" />
-			<date key="start_time" value="2023-10-28T10:00:18.694185+00:00" />
-			<date key="end_time" value="2023-10-28T10:04:59.694185+00:00" />
+			<string key="activity" value="A_FINALIZED" />
+			<date key="enabled_time" value="2023-10-28T10:48:06.151381+00:00" />
+			<date key="start_time" value="2023-10-28T12:14:31.543387+00:00" />
+			<date key="end_time" value="2023-10-28T13:40:40.027898+00:00" />
+			<string key="role" value="Role 2" />
+			<string key="resource" value="Ellen" />
+			<int key="wip_wait" value="10" />
+			<int key="wip_start" value="8" />
+			<int key="wip_end" value="7" />
+			<int key="wip_activity" value="1" />
+			<string key="ro_total" value="[0.0, 1.0]" />
+			<float key="ro_single" value="1.0" />
+			<int key="queue" value="2" />
+			<string key="prefix" value="['A_SUBMITTED', 'A_PARTLYSUBMITTED', 'A_PREACCEPTED', 'A_ACCEPTED']" />
+			<string key="attribute_case" value="{'AMOUNT': 95243}" />
+			<string key="attribute_event" value="{'bank_branch': 'Utrecht'}" />
+			<string key="concept:name" value="A_FINALIZED" />
+			<date key="time:timestamp" value="2023-10-28T13:40:40.027898+00:00" />
+			<int key="@@index" value="79" />
+			<int key="@@case_index" value="16" />
+		</event>
+		<event>
+			<int key="id_case" value="6" />
+			<string key="activity" value="A_REGISTERED" />
+			<date key="enabled_time" value="2023-10-28T13:40:40.027898+00:00" />
+			<date key="start_time" value="2023-10-28T18:32:04.598231+00:00" />
+			<date key="end_time" value="2023-10-28T19:56:49.962488+00:00" />
+			<string key="role" value="Role 2" />
+			<string key="resource" value="Ellen" />
+			<int key="wip_wait" value="7" />
+			<int key="wip_start" value="5" />
+			<int key="wip_end" value="5" />
+			<int key="wip_activity" value="1" />
+			<string key="ro_total" value="[0.0, 1.0]" />
+			<float key="ro_single" value="1.0" />
+			<int key="queue" value="7" />
+			<string key="prefix" value="['A_SUBMITTED', 'A_PARTLYSUBMITTED', 'A_PREACCEPTED', 'A_ACCEPTED', 'A_FINALIZED']" />
+			<string key="attribute_case" value="{'AMOUNT': 12556}" />
+			<string key="attribute_event" value="{'bank_branch': 'Utrecht'}" />
+			<string key="concept:name" value="A_REGISTERED" />
+			<date key="time:timestamp" value="2023-10-28T19:56:49.962488+00:00" />
+			<int key="@@index" value="80" />
+			<int key="@@case_index" value="16" />
+		</event>
+		<event>
+			<int key="id_case" value="6" />
+			<string key="activity" value="A_ACTIVATED" />
+			<date key="enabled_time" value="2023-10-28T13:40:40.027898+00:00" />
+			<date key="start_time" value="2023-10-29T08:00:00.470578+00:00" />
+			<date key="end_time" value="2023-10-29T09:16:23.761801+00:00" />
 			<string key="role" value="Role 2" />
 			<string key="resource" value="Sue" />
-			<int key="wip_wait" value="9" />
-			<int key="wip_start" value="9" />
-			<int key="wip_end" value="9" />
+			<int key="wip_wait" value="7" />
+			<int key="wip_start" value="4" />
+			<int key="wip_end" value="4" />
 			<int key="wip_activity" value="1" />
-			<string key="ro_total" value="[1.0, 1.0]" />
+			<string key="ro_total" value="[0.0, 1.0]" />
 			<float key="ro_single" value="1.0" />
-			<int key="queue" value="0" />
-			<string key="prefix" value="['A_SUBMITTED', 'A_PARTLYSUBMITTED', 'A_PREACCEPTED', 'A_ACCEPTED']" />
-			<string key="attribute_case" value="{'AMOUNT': 17070}" />
+			<int key="queue" value="7" />
+			<string key="prefix" value="['A_SUBMITTED', 'A_PARTLYSUBMITTED', 'A_PREACCEPTED', 'A_ACCEPTED', 'A_FINALIZED', 'A_REGISTERED']" />
+			<string key="attribute_case" value="{'AMOUNT': 69004}" />
 			<string key="attribute_event" value="{'bank_branch': 'Utrecht'}" />
-			<string key="concept:name" value="A_CANCELLED" />
-			<date key="time:timestamp" value="2023-10-28T10:04:59.694185+00:00" />
-			<int key="@@index" value="84" />
+			<string key="concept:name" value="A_ACTIVATED" />
+			<date key="time:timestamp" value="2023-10-29T09:16:23.761801+00:00" />
+			<int key="@@index" value="81" />
+			<int key="@@case_index" value="16" />
+		</event>
+		<event>
+			<int key="id_case" value="6" />
+			<string key="activity" value="A_APPROVED" />
+			<date key="enabled_time" value="2023-10-28T13:40:40.027898+00:00" />
+			<date key="start_time" value="2023-10-29T08:00:00.962488+00:00" />
+			<date key="end_time" value="2023-10-29T09:37:20.481473+00:00" />
+			<string key="role" value="Role 2" />
+			<string key="resource" value="Ellen" />
+			<int key="wip_wait" value="7" />
+			<int key="wip_start" value="5" />
+			<int key="wip_end" value="4" />
+			<int key="wip_activity" value="1" />
+			<string key="ro_total" value="[0.0, 1.0]" />
+			<float key="ro_single" value="1.0" />
+			<int key="queue" value="7" />
+			<string key="prefix" value="['A_SUBMITTED', 'A_PARTLYSUBMITTED', 'A_PREACCEPTED', 'A_ACCEPTED', 'A_FINALIZED', 'A_REGISTERED', 'A_ACTIVATED']" />
+			<string key="attribute_case" value="{'AMOUNT': 4486}" />
+			<string key="attribute_event" value="{'bank_branch': 'Utrecht'}" />
+			<string key="concept:name" value="A_APPROVED" />
+			<date key="time:timestamp" value="2023-10-29T09:37:20.481473+00:00" />
+			<int key="@@index" value="82" />
 			<int key="@@case_index" value="16" />
 		</event>
 	</trace>
@@ -2014,11 +1968,11 @@
 		<event>
 			<int key="id_case" value="7" />
 			<string key="activity" value="A_SUBMITTED" />
-			<date key="enabled_time" value="2023-10-26T08:43:27.745153+00:00" />
-			<date key="start_time" value="2023-10-26T12:32:12.960030+00:00" />
-			<date key="end_time" value="2023-10-26T14:16:02.310097+00:00" />
+			<date key="enabled_time" value="2023-10-26T08:33:20.509403+00:00" />
+			<date key="start_time" value="2023-10-26T12:59:32.659563+00:00" />
+			<date key="end_time" value="2023-10-26T14:50:16.884775+00:00" />
 			<string key="role" value="Role 1" />
-			<string key="resource" value="Sara" />
+			<string key="resource" value="Mike" />
 			<int key="wip_wait" value="8" />
 			<int key="wip_start" value="19" />
 			<int key="wip_end" value="19" />
@@ -2027,114 +1981,19 @@
 			<float key="ro_single" value="1.0" />
 			<int key="queue" value="5" />
 			<string key="prefix" value="[]" />
-			<string key="attribute_case" value="{'AMOUNT': 86874}" />
+			<string key="attribute_case" value="{'AMOUNT': 69178}" />
 			<string key="attribute_event" value="{'bank_branch': 'Eindhoven'}" />
 			<string key="concept:name" value="A_SUBMITTED" />
-			<date key="time:timestamp" value="2023-10-26T14:16:02.310097+00:00" />
-			<int key="@@index" value="85" />
+			<date key="time:timestamp" value="2023-10-26T14:50:16.884775+00:00" />
+			<int key="@@index" value="83" />
 			<int key="@@case_index" value="17" />
 		</event>
 		<event>
 			<int key="id_case" value="7" />
 			<string key="activity" value="A_PARTLYSUBMITTED" />
-			<date key="enabled_time" value="2023-10-26T14:16:02.310097+00:00" />
-			<date key="start_time" value="2023-10-26T14:16:02.310097+00:00" />
-			<date key="end_time" value="2023-10-26T15:59:41.109540+00:00" />
-			<string key="role" value="Role 2" />
-			<string key="resource" value="Sue" />
-			<int key="wip_wait" value="19" />
-			<int key="wip_start" value="19" />
-			<int key="wip_end" value="19" />
-			<int key="wip_activity" value="2" />
-			<string key="ro_total" value="[1.0, 1.0]" />
-			<float key="ro_single" value="1.0" />
-			<int key="queue" value="0" />
-			<string key="prefix" value="['A_SUBMITTED']" />
-			<string key="attribute_case" value="{'AMOUNT': 86874}" />
-			<string key="attribute_event" value="{'bank_branch': 'Eindhoven'}" />
-			<string key="concept:name" value="A_PARTLYSUBMITTED" />
-			<date key="time:timestamp" value="2023-10-26T15:59:41.109540+00:00" />
-			<int key="@@index" value="86" />
-			<int key="@@case_index" value="17" />
-		</event>
-		<event>
-			<int key="id_case" value="7" />
-			<string key="activity" value="A_PREACCEPTED" />
-			<date key="enabled_time" value="2023-10-26T15:59:41.109540+00:00" />
-			<date key="start_time" value="2023-10-27T15:50:25.926965+00:00" />
-			<date key="end_time" value="2023-10-27T16:26:27.673719+00:00" />
-			<string key="role" value="Role 1" />
-			<string key="resource" value="Sara" />
-			<int key="wip_wait" value="19" />
-			<int key="wip_start" value="16" />
-			<int key="wip_end" value="16" />
-			<int key="wip_activity" value="2" />
-			<string key="ro_total" value="[1.0, 1.0]" />
-			<float key="ro_single" value="1.0" />
-			<int key="queue" value="14" />
-			<string key="prefix" value="['A_SUBMITTED', 'A_PARTLYSUBMITTED']" />
-			<string key="attribute_case" value="{'AMOUNT': 86874}" />
-			<string key="attribute_event" value="{'bank_branch': 'Eindhoven'}" />
-			<string key="concept:name" value="A_PREACCEPTED" />
-			<date key="time:timestamp" value="2023-10-27T16:26:27.673719+00:00" />
-			<int key="@@index" value="87" />
-			<int key="@@case_index" value="17" />
-		</event>
-		<event>
-			<int key="id_case" value="7" />
-			<string key="activity" value="A_DECLINED" />
-			<date key="enabled_time" value="2023-10-27T16:26:27.673719+00:00" />
-			<date key="start_time" value="2023-10-28T08:00:00.370511+00:00" />
-			<date key="end_time" value="2023-10-28T09:29:31.330695+00:00" />
-			<string key="role" value="Role 2" />
-			<string key="resource" value="Ellen" />
-			<int key="wip_wait" value="16" />
-			<int key="wip_start" value="13" />
-			<int key="wip_end" value="12" />
-			<int key="wip_activity" value="2" />
-			<string key="ro_total" value="[1.0, 1.0]" />
-			<float key="ro_single" value="1.0" />
-			<int key="queue" value="4" />
-			<string key="prefix" value="['A_SUBMITTED', 'A_PARTLYSUBMITTED', 'A_PREACCEPTED']" />
-			<string key="attribute_case" value="{'AMOUNT': 86874}" />
-			<string key="attribute_event" value="{'bank_branch': 'Utrecht'}" />
-			<string key="concept:name" value="A_DECLINED" />
-			<date key="time:timestamp" value="2023-10-28T09:29:31.330695+00:00" />
-			<int key="@@index" value="88" />
-			<int key="@@case_index" value="17" />
-		</event>
-	</trace>
-	<trace>
-		<string key="concept:name" value="8" />
-		<event>
-			<int key="id_case" value="8" />
-			<string key="activity" value="A_SUBMITTED" />
-			<date key="enabled_time" value="2023-10-26T08:45:12.561869+00:00" />
-			<date key="start_time" value="2023-10-26T13:13:37.081189+00:00" />
-			<date key="end_time" value="2023-10-26T14:57:23.845008+00:00" />
-			<string key="role" value="Role 1" />
-			<string key="resource" value="Mike" />
-			<int key="wip_wait" value="9" />
-			<int key="wip_start" value="19" />
-			<int key="wip_end" value="19" />
-			<int key="wip_activity" value="2" />
-			<string key="ro_total" value="[1.0, 1.0]" />
-			<float key="ro_single" value="1.0" />
-			<int key="queue" value="6" />
-			<string key="prefix" value="[]" />
-			<string key="attribute_case" value="{'AMOUNT': 43041}" />
-			<string key="attribute_event" value="{'bank_branch': 'Eindhoven'}" />
-			<string key="concept:name" value="A_SUBMITTED" />
-			<date key="time:timestamp" value="2023-10-26T14:57:23.845008+00:00" />
-			<int key="@@index" value="89" />
-			<int key="@@case_index" value="18" />
-		</event>
-		<event>
-			<int key="id_case" value="8" />
-			<string key="activity" value="A_PARTLYSUBMITTED" />
-			<date key="enabled_time" value="2023-10-26T14:57:23.845008+00:00" />
-			<date key="start_time" value="2023-10-26T14:57:23.845008+00:00" />
-			<date key="end_time" value="2023-10-26T16:29:27.091253+00:00" />
+			<date key="enabled_time" value="2023-10-26T14:50:16.884775+00:00" />
+			<date key="start_time" value="2023-10-26T14:50:16.884775+00:00" />
+			<date key="end_time" value="2023-10-26T16:37:15.549273+00:00" />
 			<string key="role" value="Role 2" />
 			<string key="resource" value="Ellen" />
 			<int key="wip_wait" value="19" />
@@ -2145,19 +2004,19 @@
 			<float key="ro_single" value="1.0" />
 			<int key="queue" value="0" />
 			<string key="prefix" value="['A_SUBMITTED']" />
-			<string key="attribute_case" value="{'AMOUNT': 43041}" />
+			<string key="attribute_case" value="{'AMOUNT': 69178}" />
 			<string key="attribute_event" value="{'bank_branch': 'Eindhoven'}" />
 			<string key="concept:name" value="A_PARTLYSUBMITTED" />
-			<date key="time:timestamp" value="2023-10-26T16:29:27.091253+00:00" />
-			<int key="@@index" value="90" />
-			<int key="@@case_index" value="18" />
+			<date key="time:timestamp" value="2023-10-26T16:37:15.549273+00:00" />
+			<int key="@@index" value="84" />
+			<int key="@@case_index" value="17" />
 		</event>
 		<event>
-			<int key="id_case" value="8" />
+			<int key="id_case" value="7" />
 			<string key="activity" value="A_DECLINED" />
-			<date key="enabled_time" value="2023-10-26T16:29:27.091253+00:00" />
-			<date key="start_time" value="2023-10-26T16:45:14.548172+00:00" />
-			<date key="end_time" value="2023-10-26T18:42:15.304252+00:00" />
+			<date key="enabled_time" value="2023-10-26T16:37:15.549273+00:00" />
+			<date key="start_time" value="2023-10-26T16:42:11.566377+00:00" />
+			<date key="end_time" value="2023-10-26T18:15:08.024050+00:00" />
 			<string key="role" value="Role 2" />
 			<string key="resource" value="Sue" />
 			<int key="wip_wait" value="19" />
@@ -2168,45 +2027,45 @@
 			<float key="ro_single" value="1.0" />
 			<int key="queue" value="1" />
 			<string key="prefix" value="['A_SUBMITTED', 'A_PARTLYSUBMITTED']" />
-			<string key="attribute_case" value="{'AMOUNT': 43041}" />
+			<string key="attribute_case" value="{'AMOUNT': 69178}" />
 			<string key="attribute_event" value="{'bank_branch': 'Eindhoven'}" />
 			<string key="concept:name" value="A_DECLINED" />
-			<date key="time:timestamp" value="2023-10-26T18:42:15.304252+00:00" />
-			<int key="@@index" value="91" />
-			<int key="@@case_index" value="18" />
+			<date key="time:timestamp" value="2023-10-26T18:15:08.024050+00:00" />
+			<int key="@@index" value="85" />
+			<int key="@@case_index" value="17" />
 		</event>
 	</trace>
 	<trace>
-		<string key="concept:name" value="9" />
+		<string key="concept:name" value="8" />
 		<event>
-			<int key="id_case" value="9" />
+			<int key="id_case" value="8" />
 			<string key="activity" value="A_SUBMITTED" />
-			<date key="enabled_time" value="2023-10-26T08:52:17.348805+00:00" />
-			<date key="start_time" value="2023-10-26T14:16:02.310097+00:00" />
-			<date key="end_time" value="2023-10-26T15:20:08.799418+00:00" />
+			<date key="enabled_time" value="2023-10-26T08:42:49.550309+00:00" />
+			<date key="start_time" value="2023-10-26T14:03:19.854821+00:00" />
+			<date key="end_time" value="2023-10-26T15:57:01.656691+00:00" />
 			<string key="role" value="Role 1" />
 			<string key="resource" value="Sara" />
-			<int key="wip_wait" value="10" />
+			<int key="wip_wait" value="9" />
 			<int key="wip_start" value="19" />
 			<int key="wip_end" value="19" />
 			<int key="wip_activity" value="2" />
 			<string key="ro_total" value="[1.0, 1.0]" />
 			<float key="ro_single" value="1.0" />
-			<int key="queue" value="7" />
+			<int key="queue" value="6" />
 			<string key="prefix" value="[]" />
-			<string key="attribute_case" value="{'AMOUNT': 15150}" />
+			<string key="attribute_case" value="{'AMOUNT': 97493}" />
 			<string key="attribute_event" value="{'bank_branch': 'Eindhoven'}" />
 			<string key="concept:name" value="A_SUBMITTED" />
-			<date key="time:timestamp" value="2023-10-26T15:20:08.799418+00:00" />
-			<int key="@@index" value="92" />
-			<int key="@@case_index" value="19" />
+			<date key="time:timestamp" value="2023-10-26T15:57:01.656691+00:00" />
+			<int key="@@index" value="86" />
+			<int key="@@case_index" value="18" />
 		</event>
 		<event>
-			<int key="id_case" value="9" />
+			<int key="id_case" value="8" />
 			<string key="activity" value="A_PARTLYSUBMITTED" />
-			<date key="enabled_time" value="2023-10-26T15:20:08.799418+00:00" />
-			<date key="start_time" value="2023-10-26T15:59:41.109540+00:00" />
-			<date key="end_time" value="2023-10-26T16:45:14.548172+00:00" />
+			<date key="enabled_time" value="2023-10-26T15:57:01.656691+00:00" />
+			<date key="start_time" value="2023-10-26T15:57:01.656691+00:00" />
+			<date key="end_time" value="2023-10-26T16:42:11.566377+00:00" />
 			<string key="role" value="Role 2" />
 			<string key="resource" value="Sue" />
 			<int key="wip_wait" value="19" />
@@ -2217,34 +2076,244 @@
 			<float key="ro_single" value="1.0" />
 			<int key="queue" value="0" />
 			<string key="prefix" value="['A_SUBMITTED']" />
-			<string key="attribute_case" value="{'AMOUNT': 15150}" />
+			<string key="attribute_case" value="{'AMOUNT': 97493}" />
 			<string key="attribute_event" value="{'bank_branch': 'Eindhoven'}" />
 			<string key="concept:name" value="A_PARTLYSUBMITTED" />
-			<date key="time:timestamp" value="2023-10-26T16:45:14.548172+00:00" />
+			<date key="time:timestamp" value="2023-10-26T16:42:11.566377+00:00" />
+			<int key="@@index" value="87" />
+			<int key="@@case_index" value="18" />
+		</event>
+		<event>
+			<int key="id_case" value="8" />
+			<string key="activity" value="A_PREACCEPTED" />
+			<date key="enabled_time" value="2023-10-26T16:42:11.566377+00:00" />
+			<date key="start_time" value="2023-10-27T15:48:38.842577+00:00" />
+			<date key="end_time" value="2023-10-27T16:21:31.832346+00:00" />
+			<string key="role" value="Role 1" />
+			<string key="resource" value="Mike" />
+			<int key="wip_wait" value="19" />
+			<int key="wip_start" value="16" />
+			<int key="wip_end" value="16" />
+			<int key="wip_activity" value="2" />
+			<string key="ro_total" value="[1.0, 1.0]" />
+			<float key="ro_single" value="1.0" />
+			<int key="queue" value="14" />
+			<string key="prefix" value="['A_SUBMITTED', 'A_PARTLYSUBMITTED']" />
+			<string key="attribute_case" value="{'AMOUNT': 97493}" />
+			<string key="attribute_event" value="{'bank_branch': 'Eindhoven'}" />
+			<string key="concept:name" value="A_PREACCEPTED" />
+			<date key="time:timestamp" value="2023-10-27T16:21:31.832346+00:00" />
+			<int key="@@index" value="88" />
+			<int key="@@case_index" value="18" />
+		</event>
+		<event>
+			<int key="id_case" value="8" />
+			<string key="activity" value="A_DECLINED" />
+			<date key="enabled_time" value="2023-10-27T16:21:31.832346+00:00" />
+			<date key="start_time" value="2023-10-27T17:45:43.076058+00:00" />
+			<date key="end_time" value="2023-10-27T19:04:02.980217+00:00" />
+			<string key="role" value="Role 2" />
+			<string key="resource" value="Sue" />
+			<int key="wip_wait" value="16" />
+			<int key="wip_start" value="14" />
+			<int key="wip_end" value="13" />
+			<int key="wip_activity" value="2" />
+			<string key="ro_total" value="[1.0, 1.0]" />
+			<float key="ro_single" value="1.0" />
+			<int key="queue" value="2" />
+			<string key="prefix" value="['A_SUBMITTED', 'A_PARTLYSUBMITTED', 'A_PREACCEPTED']" />
+			<string key="attribute_case" value="{'AMOUNT': 97493}" />
+			<string key="attribute_event" value="{'bank_branch': 'Utrecht'}" />
+			<string key="concept:name" value="A_DECLINED" />
+			<date key="time:timestamp" value="2023-10-27T19:04:02.980217+00:00" />
+			<int key="@@index" value="89" />
+			<int key="@@case_index" value="18" />
+		</event>
+	</trace>
+	<trace>
+		<string key="concept:name" value="9" />
+		<event>
+			<int key="id_case" value="9" />
+			<string key="activity" value="A_SUBMITTED" />
+			<date key="enabled_time" value="2023-10-26T08:57:48.357382+00:00" />
+			<date key="start_time" value="2023-10-26T14:50:16.884775+00:00" />
+			<date key="end_time" value="2023-10-26T16:17:35.194822+00:00" />
+			<string key="role" value="Role 1" />
+			<string key="resource" value="Mike" />
+			<int key="wip_wait" value="10" />
+			<int key="wip_start" value="19" />
+			<int key="wip_end" value="19" />
+			<int key="wip_activity" value="2" />
+			<string key="ro_total" value="[1.0, 1.0]" />
+			<float key="ro_single" value="1.0" />
+			<int key="queue" value="7" />
+			<string key="prefix" value="[]" />
+			<string key="attribute_case" value="{'AMOUNT': 29078}" />
+			<string key="attribute_event" value="{'bank_branch': 'Eindhoven'}" />
+			<string key="concept:name" value="A_SUBMITTED" />
+			<date key="time:timestamp" value="2023-10-26T16:17:35.194822+00:00" />
+			<int key="@@index" value="90" />
+			<int key="@@case_index" value="19" />
+		</event>
+		<event>
+			<int key="id_case" value="9" />
+			<string key="activity" value="A_PARTLYSUBMITTED" />
+			<date key="enabled_time" value="2023-10-26T16:17:35.194822+00:00" />
+			<date key="start_time" value="2023-10-26T16:37:15.549273+00:00" />
+			<date key="end_time" value="2023-10-26T17:53:32.185976+00:00" />
+			<string key="role" value="Role 2" />
+			<string key="resource" value="Ellen" />
+			<int key="wip_wait" value="19" />
+			<int key="wip_start" value="19" />
+			<int key="wip_end" value="19" />
+			<int key="wip_activity" value="2" />
+			<string key="ro_total" value="[1.0, 1.0]" />
+			<float key="ro_single" value="1.0" />
+			<int key="queue" value="0" />
+			<string key="prefix" value="['A_SUBMITTED']" />
+			<string key="attribute_case" value="{'AMOUNT': 29078}" />
+			<string key="attribute_event" value="{'bank_branch': 'Eindhoven'}" />
+			<string key="concept:name" value="A_PARTLYSUBMITTED" />
+			<date key="time:timestamp" value="2023-10-26T17:53:32.185976+00:00" />
+			<int key="@@index" value="91" />
+			<int key="@@case_index" value="19" />
+		</event>
+		<event>
+			<int key="id_case" value="9" />
+			<string key="activity" value="A_PREACCEPTED" />
+			<date key="enabled_time" value="2023-10-26T17:53:32.185976+00:00" />
+			<date key="start_time" value="2023-10-28T08:00:00.667859+00:00" />
+			<date key="end_time" value="2023-10-28T08:23:42.624125+00:00" />
+			<string key="role" value="Role 1" />
+			<string key="resource" value="Sara" />
+			<int key="wip_wait" value="19" />
+			<int key="wip_start" value="16" />
+			<int key="wip_end" value="12" />
+			<int key="wip_activity" value="2" />
+			<string key="ro_total" value="[1.0, 1.0]" />
+			<float key="ro_single" value="1.0" />
+			<int key="queue" value="14" />
+			<string key="prefix" value="['A_SUBMITTED', 'A_PARTLYSUBMITTED']" />
+			<string key="attribute_case" value="{'AMOUNT': 29078}" />
+			<string key="attribute_event" value="{'bank_branch': 'Eindhoven'}" />
+			<string key="concept:name" value="A_PREACCEPTED" />
+			<date key="time:timestamp" value="2023-10-28T08:23:42.624125+00:00" />
+			<int key="@@index" value="92" />
+			<int key="@@case_index" value="19" />
+		</event>
+		<event>
+			<int key="id_case" value="9" />
+			<string key="activity" value="A_ACCEPTED" />
+			<date key="enabled_time" value="2023-10-28T08:23:42.624125+00:00" />
+			<date key="start_time" value="2023-10-28T10:48:06.151381+00:00" />
+			<date key="end_time" value="2023-10-28T11:11:23.151381+00:00" />
+			<string key="role" value="Role 1" />
+			<string key="resource" value="Mike" />
+			<int key="wip_wait" value="12" />
+			<int key="wip_start" value="10" />
+			<int key="wip_end" value="10" />
+			<int key="wip_activity" value="1" />
+			<string key="ro_total" value="[1.0, 1.0]" />
+			<float key="ro_single" value="1.0" />
+			<int key="queue" value="10" />
+			<string key="prefix" value="['A_SUBMITTED', 'A_PARTLYSUBMITTED', 'A_PREACCEPTED']" />
+			<string key="attribute_case" value="{'AMOUNT': 29078}" />
+			<string key="attribute_event" value="{'bank_branch': 'Utrecht'}" />
+			<string key="concept:name" value="A_ACCEPTED" />
+			<date key="time:timestamp" value="2023-10-28T11:11:23.151381+00:00" />
 			<int key="@@index" value="93" />
 			<int key="@@case_index" value="19" />
 		</event>
 		<event>
 			<int key="id_case" value="9" />
-			<string key="activity" value="A_DECLINED" />
-			<date key="enabled_time" value="2023-10-26T16:45:14.548172+00:00" />
-			<date key="start_time" value="2023-10-26T17:08:33.170171+00:00" />
-			<date key="end_time" value="2023-10-26T18:50:26.038786+00:00" />
+			<string key="activity" value="A_FINALIZED" />
+			<date key="enabled_time" value="2023-10-28T11:11:23.151381+00:00" />
+			<date key="start_time" value="2023-10-28T13:40:40.027898+00:00" />
+			<date key="end_time" value="2023-10-28T15:36:37.296602+00:00" />
 			<string key="role" value="Role 2" />
 			<string key="resource" value="Ellen" />
-			<int key="wip_wait" value="19" />
-			<int key="wip_start" value="19" />
-			<int key="wip_end" value="18" />
-			<int key="wip_activity" value="2" />
-			<string key="ro_total" value="[1.0, 1.0]" />
+			<int key="wip_wait" value="10" />
+			<int key="wip_start" value="7" />
+			<int key="wip_end" value="6" />
+			<int key="wip_activity" value="1" />
+			<string key="ro_total" value="[0.0, 1.0]" />
 			<float key="ro_single" value="1.0" />
-			<int key="queue" value="1" />
-			<string key="prefix" value="['A_SUBMITTED', 'A_PARTLYSUBMITTED']" />
-			<string key="attribute_case" value="{'AMOUNT': 15150}" />
-			<string key="attribute_event" value="{'bank_branch': 'Eindhoven'}" />
-			<string key="concept:name" value="A_DECLINED" />
-			<date key="time:timestamp" value="2023-10-26T18:50:26.038786+00:00" />
+			<int key="queue" value="4" />
+			<string key="prefix" value="['A_SUBMITTED', 'A_PARTLYSUBMITTED', 'A_PREACCEPTED', 'A_ACCEPTED']" />
+			<string key="attribute_case" value="{'AMOUNT': 29078}" />
+			<string key="attribute_event" value="{'bank_branch': 'Utrecht'}" />
+			<string key="concept:name" value="A_FINALIZED" />
+			<date key="time:timestamp" value="2023-10-28T15:36:37.296602+00:00" />
 			<int key="@@index" value="94" />
+			<int key="@@case_index" value="19" />
+		</event>
+		<event>
+			<int key="id_case" value="9" />
+			<string key="activity" value="A_APPROVED" />
+			<date key="enabled_time" value="2023-10-28T15:36:37.296602+00:00" />
+			<date key="start_time" value="2023-10-29T09:37:20.481473+00:00" />
+			<date key="end_time" value="2023-10-29T10:39:59.552153+00:00" />
+			<string key="role" value="Role 2" />
+			<string key="resource" value="Ellen" />
+			<int key="wip_wait" value="6" />
+			<int key="wip_start" value="3" />
+			<int key="wip_end" value="3" />
+			<int key="wip_activity" value="1" />
+			<string key="ro_total" value="[0.0, 1.0]" />
+			<float key="ro_single" value="1.0" />
+			<int key="queue" value="8" />
+			<string key="prefix" value="['A_SUBMITTED', 'A_PARTLYSUBMITTED', 'A_PREACCEPTED', 'A_ACCEPTED', 'A_FINALIZED']" />
+			<string key="attribute_case" value="{'AMOUNT': 20596}" />
+			<string key="attribute_event" value="{'bank_branch': 'Utrecht'}" />
+			<string key="concept:name" value="A_APPROVED" />
+			<date key="time:timestamp" value="2023-10-29T10:39:59.552153+00:00" />
+			<int key="@@index" value="95" />
+			<int key="@@case_index" value="19" />
+		</event>
+		<event>
+			<int key="id_case" value="9" />
+			<string key="activity" value="A_REGISTERED" />
+			<date key="enabled_time" value="2023-10-28T15:36:37.296602+00:00" />
+			<date key="start_time" value="2023-10-29T09:16:23.761801+00:00" />
+			<date key="end_time" value="2023-10-29T11:09:24.546794+00:00" />
+			<string key="role" value="Role 2" />
+			<string key="resource" value="Sue" />
+			<int key="wip_wait" value="6" />
+			<int key="wip_start" value="4" />
+			<int key="wip_end" value="3" />
+			<int key="wip_activity" value="1" />
+			<string key="ro_total" value="[0.0, 1.0]" />
+			<float key="ro_single" value="1.0" />
+			<int key="queue" value="8" />
+			<string key="prefix" value="['A_SUBMITTED', 'A_PARTLYSUBMITTED', 'A_PREACCEPTED', 'A_ACCEPTED', 'A_FINALIZED', 'A_APPROVED']" />
+			<string key="attribute_case" value="{'AMOUNT': 12120}" />
+			<string key="attribute_event" value="{'bank_branch': 'Utrecht'}" />
+			<string key="concept:name" value="A_REGISTERED" />
+			<date key="time:timestamp" value="2023-10-29T11:09:24.546794+00:00" />
+			<int key="@@index" value="96" />
+			<int key="@@case_index" value="19" />
+		</event>
+		<event>
+			<int key="id_case" value="9" />
+			<string key="activity" value="A_ACTIVATED" />
+			<date key="enabled_time" value="2023-10-28T15:36:37.296602+00:00" />
+			<date key="start_time" value="2023-10-29T10:39:59.552153+00:00" />
+			<date key="end_time" value="2023-10-29T12:13:51.938025+00:00" />
+			<string key="role" value="Role 2" />
+			<string key="resource" value="Ellen" />
+			<int key="wip_wait" value="6" />
+			<int key="wip_start" value="3" />
+			<int key="wip_end" value="3" />
+			<int key="wip_activity" value="1" />
+			<string key="ro_total" value="[0.0, 1.0]" />
+			<float key="ro_single" value="1.0" />
+			<int key="queue" value="8" />
+			<string key="prefix" value="['A_SUBMITTED', 'A_PARTLYSUBMITTED', 'A_PREACCEPTED', 'A_ACCEPTED', 'A_FINALIZED', 'A_APPROVED', 'A_REGISTERED']" />
+			<string key="attribute_case" value="{'AMOUNT': 52153}" />
+			<string key="attribute_event" value="{'bank_branch': 'Utrecht'}" />
+			<string key="concept:name" value="A_ACTIVATED" />
+			<date key="time:timestamp" value="2023-10-29T12:13:51.938025+00:00" />
+			<int key="@@index" value="97" />
 			<int key="@@case_index" value="19" />
 		</event>
 	</trace>

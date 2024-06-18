@@ -1,27 +1,27 @@
 {
-                 "total_events": 101,
+                 "total_events": 112,
                  "total_traces": 20,
                  "A_SUBMITTED_frequency": 20,
                  "A_PARTLYSUBMITTED_frequency": 20,
-                 "A_PREACCEPTED_frequency": 14,
+                 "A_PREACCEPTED_frequency": 16,
                  "A_ACCEPTED_frequency": 18,
-                 "A_FINALIZED_frequency": 3,
-                 "A_CANCELLED_frequency": 6,
+                 "A_FINALIZED_frequency": 6,
+                 "A_CANCELLED_frequency": 3,
                  "A_DECLINED_frequency": 11,
-                 "A_APPROVED_frequency": 3,
-                 "A_REGISTERED_frequency": 3,
-                 "A_ACTIVATED_frequency": 3,
-                 "duration": "209586.548167",
-                 "start_simulation": "2023-10-26 08:25:16.067766",
-                 "end_simulation": "2023-10-28 18:38:22.615933",
+                 "A_APPROVED_frequency": 6,
+                 "A_REGISTERED_frequency": 6,
+                 "A_ACTIVATED_frequency": 6,
+                 "duration": "301107.326888",
+                 "start_simulation": "2023-10-26 08:16:07.159752",
+                 "end_simulation": "2023-10-29 19:54:34.486640",
                  "Role 1": {
-                                  "total": 52,
-                                  "Sara": 28,
-                                  "Mike": 24
+                                  "total": 54,
+                                  "Sara": 26,
+                                  "Mike": 28
                  },
                  "Role 2": {
-                                  "total": 49,
-                                  "Ellen": 23,
-                                  "Sue": 26
+                                  "total": 58,
+                                  "Ellen": 30,
+                                  "Sue": 28
                  }
 }

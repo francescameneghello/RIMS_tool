@@ -9,3 +9,6 @@
 
 __pycache__/
 *.py[cod]
+/core/employee-onboarding
+/core/example/example_EY
+/core/output/output_employee
