@@ -24,6 +24,5 @@ class Parameters(object):
             with open(self.PATH_PARAMETERS) as file:
                 data = json.load(file)
                 self.MACHINES = data['machines']
-                #self.SCHEDULE = data['schedule']
                 self.N_JOBS = len(data["jobs"])
                 self.JOBS = data["jobs"]

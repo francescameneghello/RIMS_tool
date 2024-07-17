@@ -11,7 +11,8 @@ import numpy as np
 import copy
 import csv
 from utility import Buffer, ParallelObject
-
+from scipy.stats import truncnorm
+import math
 
 class Token(object):
 
@@ -91,9 +92,7 @@ class Token(object):
             trans = self.next_transition_jsp()
 
     def define_processing_time_jsp(self, operation):
-        distribution = "normal"
-        parameters = {"loc": self._times_operations[operation][0], "scale": self._times_operations[operation][1]}
-        duration = getattr(np.random, distribution)(**parameters, size=1)[0]
+        duration = truncnorm.rvs(0, math.inf,self._times_operations[operation][0], self._times_operations[operation][1], size=1)[0]
         if duration < 0:
             print("WARNING: Negative processing time",  duration)
             duration = 0

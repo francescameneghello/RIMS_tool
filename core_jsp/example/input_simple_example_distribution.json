@@ -19,11 +19,5 @@
         "machine_2",
         "machine_3",
         "machine_4"
-    ],
-    "schedule": {
-        "machine_1": ["job1", "job3", "job2"],
-        "machine_2": ["job2", "job1", "job3"],
-        "machine_3": ["job1", "job2"],
-        "machine_4": ["job2", "job3"]
-    }
+    ]
 }

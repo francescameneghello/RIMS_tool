@@ -54,6 +54,8 @@ def check_results(makespans, D_star):
     if D_star:
         prob = [dur < D_star for dur in makespans]
         if sum(prob)/len(prob) >= 0.95:
+            print('Probability makespan Pr(make(s) <= ', D_star, ')= ', sum(prob)/len(prob))
+            print('Mean of makespans', np.mean(makespans), 'N_Trials ', len(makespans))
             return True
         else:
             return False
@@ -74,7 +76,7 @@ def main(schedule, N, D_star=None):
         elif opt == "-i":
             N_SIMULATION = int(arg)
     '''
-    PATH_PARAMETERS = '/Users/francescameneghello/Documents/GitHub/RIMS_tool/core_jsp/example/input_simple_example_distribution_2.json'
+    PATH_PARAMETERS = '/Users/francescameneghello/Documents/GitHub/RIMS_tool/core_jsp/example/input_simple_example_distribution.json'
     N_SIMULATION = N
     #print(PATH_PARAMETERS, N_SIMULATION)
     return run_simulation(PATH_PARAMETERS, N_SIMULATION, schedule, D_star)

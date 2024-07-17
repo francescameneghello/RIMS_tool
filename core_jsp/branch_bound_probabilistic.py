@@ -35,32 +35,47 @@ MACHINES = ['machine_1', 'machine_2', 'machine_3', 'machine_4']
 
 def simulate_schedule(s, N, D_start=None):
     schedule = pd.DataFrame(s)
-    print('\nSchedule by Machine')
+    #print('\nSchedule by Machine')
     schedule = schedule.sort_values(by=['Machine', 'Start'])
     schedule_sim = {m: [] for m in MACHINES}
     for index, row in schedule.iterrows():
         schedule_sim[row['Machine']].append(row['Job'])
-    print(schedule_sim)
+    #print(schedule_sim)
     makespan_simulation = main(schedule_sim, N, D_start)
     return makespan_simulation
 
-Q = 0
-q_dec = 0.05
-N = 10
-#### first iteration
-BB = BBdeterministic(TASKS)
-s_star, D_star = BB.jobshop(Q)
-D_sim = simulate_schedule(s_star, N, D_star)
-print('######### FIRST ITERATION #########')
-print('D_star', D_star, 'D_simulate', D_sim)
-Q = 1.25
-while Q >= 0:
-    s, D = BB.jobshop(Q)
-    makespan_alpha = simulate_schedule(s, N, D_star)
-    if makespan_alpha:
-        s_star = s
-        D_star = D
-    print('######### ITERATION #########')
-    print('Q', Q, 'D_star', D_star, 's_start', s_star)
-    Q = round(Q-q_dec, 3)
 
+def CP_DQL():
+    Q = 0
+    q_dec = 0.05
+    N = 1000
+    #### first iteration
+    BB = BBdeterministic(TASKS)
+    s_star, D_star = BB.jobshop(Q)
+    D_sim = simulate_schedule(s_star, N, D_star)
+    print('######### FIRST ITERATION #########')
+    print('D_star', D_star, 'D_simulate', D_sim)
+    Q = 1.25
+    while Q >= 0:
+        s, D = BB.jobshop(Q)
+        makespan_alpha = simulate_schedule(s, N, D_star)
+        if makespan_alpha:
+            s_star = s
+            D_star = D
+        print('######### ITERATION #########')
+        print('Q', Q, 'D_star', D_star, 's_start', s_star)
+        Q = round(Q-q_dec, 3)
+
+def CP_BetterSolution(Q):
+    Q = 0.3678
+    N = 1000
+    #### first iteration
+    BB = BBdeterministic(TASKS)
+    s_star, D_star = BB.jobshop(Q)
+    D_sim = simulate_schedule(s_star, N, D_star)
+    print('Makespan simulated', D_sim)
+    print('Solution', s_star)
+    print('Deterministic Makespan', D_star)
+
+
+CP_DQL()
