@@ -87,17 +87,17 @@ def main(schedule, N, D_star=None):
     return run_simulation(PATH_PARAMETERS, N_SIMULATION, schedule, D_star)
 
 
-def find_critical_path(simulated_path):
+def find_critical_path(simulated_path, params):
+    job = params.JOBS
     data = pd.read_csv(simulated_path)
     data = {
         'id_job': list(data['id_job']),
         'resource': list(data['resource']),
         'start_time': list(data['start_time']),
-        'end_time': list(data['end_time'])
+        'end_time': list(data['end_time']),
+        'std': list(data['wip_start'])
     }
     df = pd.DataFrame(data)
-
-    # Create a directed graph
     G = nx.DiGraph()
 
     # Add nodes and edges with weights
@@ -106,7 +106,7 @@ def find_critical_path(simulated_path):
         finish_node = (row['id_job'], row['resource'], 'finish')
         duration = row['end_time'] - row['start_time']
 
-        G.add_node(start_node, weight=0)
+        G.add_node(start_node, weight=0, std=row['std'])
         G.add_node(finish_node, weight=duration)
         G.add_edge(start_node, finish_node, weight=duration)
 
@@ -121,14 +121,17 @@ def find_critical_path(simulated_path):
     length, path = nx.algorithms.dag.dag_longest_path_length(G, weight='weight'), nx.algorithms.dag.dag_longest_path(G,
                                                                                                                      weight='weight')
 
-    # Extract the critical path
+    # Extract the critical path and retrieve attributes
     critical_path = []
+    critical_path_attributes = []
     for i in range(0, len(path) - 1, 2):
         critical_path.append(path[i][0])
+        attributes = G.nodes[path[i]]
+        critical_path_attributes.append(attributes)
 
-    print("Critical Path:", ' -> '.join(critical_path))
-    print("Critical Path Length:", length)
-
+    print('CRITICAL_PATH', critical_path)
+    stds = [act['std'] for act in critical_path_attributes]
+    print(stds)
 
 #if __name__ == "__main__":
 #    warnings.filterwarnings("ignore")

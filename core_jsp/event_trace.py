@@ -91,7 +91,9 @@ class Token(object):
             trans = self.next_transition_jsp()
 
     def define_processing_time_jsp(self, operation):
-        duration = truncnorm.rvs(0, math.inf,self._times_operations[operation][0], self._times_operations[operation][1], size=1)[0]
+        operation = len(self._prefix.get_prefix())-1
+        duration = truncnorm.rvs(0, math.inf, self._times_operations[operation][0], self._times_operations[operation][1], size=1)[0]
+        self._buffer.set_feature("wip_start", self._times_operations[operation][1])
         if duration < 0:
             print("WARNING: Negative processing time",  duration)
             duration = 0
