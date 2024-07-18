@@ -1,17 +1,17 @@
 {
     "start_timestamp":  "2023-08-22 7:45:00",
     "jobs": {
+        "job3":  {
+            "machine_seq":  ["machine_1", "machine_2", "machine_4"],
+            "times":  [[4, 1], [7, 2], [3, 3]]
+        },
         "job1": {
             "machine_seq":  ["machine_1", "machine_2", "machine_3"],
-            "times":  {"machine_1": [10, 2], "machine_2": [8, 1], "machine_3": [4, 1]}
+            "times":  [[10, 2], [8, 1], [4, 1]]
         },
         "job2": {
             "machine_seq":  ["machine_2", "machine_1", "machine_4", "machine_3"],
-            "times":  {"machine_2": [8, 3], "machine_1": [3, 2], "machine_4": [5, 7], "machine_3": [6, 0]}
-        },
-        "job3":  {
-            "machine_seq":  ["machine_1", "machine_2", "machine_4"],
-            "times":  {"machine_1": [4, 1], "machine_2": [7, 2], "machine_4": [3, 3]}
+            "times":  [[8, 3], [3, 2], [5, 7],[6, 0]]
         }
     },
     "machines": [

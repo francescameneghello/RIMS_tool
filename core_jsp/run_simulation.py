@@ -17,6 +17,8 @@ import pm4py
 from datetime import timedelta
 import warnings
 import numpy as np
+import pandas as pd
+import networkx as nx
 
 
 def setup(env: simpy.Environment, params, i, NAME, f):
@@ -33,6 +35,7 @@ def setup(env: simpy.Environment, params, i, NAME, f):
         #parallel_object = utility.ParallelObject()
         #time_trace = params.START_SIMULATION + timedelta(seconds=env.now)
         machine_id = list(params.JOBS.keys())[i]
+        print(machine_id)
         env.process(Token(machine_id, params, simulation_process, prefix, writer).simulation(env))
 
 
@@ -40,13 +43,15 @@ def run_simulation(PATH_PARAMETERS, N_SIMULATION, schedule, D_start):
     NAME = 'simple_example'
     makespans = []
     for i in range(0, N_SIMULATION):
-        with open("output/output_{}/simulated_log_{}_{}".format(NAME, NAME, i) + ".csv", 'w') as f:
+        path = "output/output_{}/simulated_log_{}".format(NAME, NAME) + ".csv"
+        with open(path, 'w') as f:
             params = Parameters(PATH_PARAMETERS, schedule)
             env = simpy.Environment()
             env.process(setup(env, params, i, NAME, f))
             env.run()
-        #print('MAKESPAN SIM', i, env.now)
         makespans.append(env.now)
+        find_critical_path(path, params)
+        print('N_SIMULATION ', len(makespans), 'MAX makespan', max(makespans))
     return check_results(makespans, D_start)
 
 
@@ -80,6 +85,49 @@ def main(schedule, N, D_star=None):
     N_SIMULATION = N
     #print(PATH_PARAMETERS, N_SIMULATION)
     return run_simulation(PATH_PARAMETERS, N_SIMULATION, schedule, D_star)
+
+
+def find_critical_path(simulated_path):
+    data = pd.read_csv(simulated_path)
+    data = {
+        'id_job': list(data['id_job']),
+        'resource': list(data['resource']),
+        'start_time': list(data['start_time']),
+        'end_time': list(data['end_time'])
+    }
+    df = pd.DataFrame(data)
+
+    # Create a directed graph
+    G = nx.DiGraph()
+
+    # Add nodes and edges with weights
+    for index, row in df.iterrows():
+        start_node = (row['id_job'], row['resource'], 'start')
+        finish_node = (row['id_job'], row['resource'], 'finish')
+        duration = row['end_time'] - row['start_time']
+
+        G.add_node(start_node, weight=0)
+        G.add_node(finish_node, weight=duration)
+        G.add_edge(start_node, finish_node, weight=duration)
+
+        # Create dependencies between tasks
+        for other_index, other_row in df.iterrows():
+            if row['end_time'] <= other_row['start_time']:
+                finish_node = (row['id_job'], row['resource'], 'finish')
+                other_start_node = (other_row['id_job'], other_row['resource'], 'start')
+                G.add_edge(finish_node, other_start_node, weight=0)
+
+    # Calculate the longest path
+    length, path = nx.algorithms.dag.dag_longest_path_length(G, weight='weight'), nx.algorithms.dag.dag_longest_path(G,
+                                                                                                                     weight='weight')
+
+    # Extract the critical path
+    critical_path = []
+    for i in range(0, len(path) - 1, 2):
+        critical_path.append(path[i][0])
+
+    print("Critical Path:", ' -> '.join(critical_path))
+    print("Critical Path Length:", length)
 
 
 #if __name__ == "__main__":

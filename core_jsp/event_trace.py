@@ -60,7 +60,6 @@ class Token(object):
             self._buffer.set_feature("queue", queue)
             self._buffer.set_feature("enabled_time", env.now)
 
-
             request_resource = resource.request(self._id)
             yield request_resource
             #single_resource = self._process._set_single_resource(resource._get_name())
@@ -85,7 +84,7 @@ class Token(object):
 
             #self._buffer.set_feature("wip_end", resource_trace.count)
             self._buffer.set_feature("end_time", env.now)
-            #self._buffer.print_values()
+            self._buffer.print_values()
             self._prefix.add_activity(next)
             resource.release(request_resource)
 

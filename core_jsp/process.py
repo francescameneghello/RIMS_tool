@@ -25,7 +25,10 @@ class SimulationProcess(object):
                     'hour_min': 0,
                     'hour_max': 23}
         for res in set_resource:
-            res_simpy = RoleSimulator(self._env, res, [1], calendar, self._params.SCHEDULE[res])
+            if self._params.SCHEDULE:
+                res_simpy = RoleSimulator(self._env, res, [1], calendar, self._params.SCHEDULE[res])
+            else:
+                res_simpy = RoleSimulator(self._env, res, [1], calendar)
             dict_role[res] = res_simpy
         return dict_role
 

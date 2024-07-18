@@ -84,7 +84,7 @@ class Buffer(object):
         return self.buffer[feature]
 
     def print_values(self):
-        print(*self.buffer.values())
+        #print(*self.buffer.values())
         self.writer.writerow(self.buffer.values())
 
     def get_buffer_keys(self):

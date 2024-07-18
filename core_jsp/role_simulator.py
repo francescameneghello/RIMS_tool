@@ -51,11 +51,12 @@ Finally, in the simulation parameters file, we have to indicate the role assigne
 '''
 from datetime import timedelta
 import simpy
+import random
 
 
 class RoleSimulator(object):
 
-    def __init__(self, env: simpy.Environment, name: str, capacity, calendar: dict, schedule):
+    def __init__(self, env: simpy.Environment, name: str, capacity, calendar: dict, schedule=None):
         self._env = env
         self._name = name
         self._resources_name = capacity
@@ -89,7 +90,11 @@ class RoleSimulator(object):
         Method to require a resource of the role needed to perform the activity.
         """
         self._queue.append(self._resource_simpy.queue)
-        return self._resource_simpy.request(self._schedule.index(job_id))
+        if self._schedule:
+            priority = self._schedule.index(job_id)
+        else:
+            priority = random.randint(0, 50)
+        return self._resource_simpy.request(priority)
 
     def _check_day_work(self, timestamp):
         return True if (timestamp.weekday() in self._calendar['days']) else False

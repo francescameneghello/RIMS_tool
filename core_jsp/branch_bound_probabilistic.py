@@ -34,13 +34,16 @@ MACHINES = ['machine_1', 'machine_2', 'machine_3', 'machine_4']
 
 
 def simulate_schedule(s, N, D_start=None):
-    schedule = pd.DataFrame(s)
-    #print('\nSchedule by Machine')
-    schedule = schedule.sort_values(by=['Machine', 'Start'])
-    schedule_sim = {m: [] for m in MACHINES}
-    for index, row in schedule.iterrows():
-        schedule_sim[row['Machine']].append(row['Job'])
-    #print(schedule_sim)
+    if s:
+        schedule = pd.DataFrame(s)
+        #print('\nSchedule by Machine')
+        schedule = schedule.sort_values(by=['Machine', 'Start'])
+        schedule_sim = {m: [] for m in MACHINES}
+        for index, row in schedule.iterrows():
+            schedule_sim[row['Machine']].append(row['Job'])
+        #print(schedule_sim)
+    else:
+        schedule_sim = None
     makespan_simulation = main(schedule_sim, N, D_start)
     return makespan_simulation
 
@@ -66,16 +69,24 @@ def CP_DQL():
         print('Q', Q, 'D_star', D_star, 's_start', s_star)
         Q = round(Q-q_dec, 3)
 
+
 def CP_BetterSolution(Q):
     Q = 0.3678
     N = 1000
     #### first iteration
     BB = BBdeterministic(TASKS)
     s_star, D_star = BB.jobshop(Q)
-    D_sim = simulate_schedule(s_star, N, D_star)
+    D_sim = simulate_schedule(s_star, 1, D_star)
     print('Makespan simulated', D_sim)
     print('Solution', s_star)
     print('Deterministic Makespan', D_star)
 
 
-CP_DQL()
+def define_Q3(n_activities):
+    critical_path = simulate_schedule(s=None, N=1)
+
+
+
+CP_BetterSolution(0)
+
+#simulate_schedule(s=None, N=1)
