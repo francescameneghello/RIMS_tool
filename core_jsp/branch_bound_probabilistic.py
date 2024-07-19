@@ -1,23 +1,14 @@
 from branch_bound_deterministic import BBdeterministic
 import pandas as pd
 from run_simulation import main
+import math
+import numpy as np
+
+import json
 
 ##### JOB SHOP SCHEDULING PROBLEM
 
 '''TASKS = {
-    ('job1', 'machine_1'): {'mean': 10, "std": 2, 'prec': None},
-    ('job1', 'machine_2'): {'mean': 8, "std": 1, 'prec': ('job1', 'machine_1')},
-    ('job1', 'machine_3'): {'mean': 4, "std": 1, 'prec': ('job1', 'machine_2')},
-    ('job2', 'machine_2'): {'mean': 8, "std": 3, 'prec': ('job2', None)},
-    ('job2', 'machine_1'): {'mean': 3, "std": 2, 'prec': ('job2', 'machine_2')},
-    ('job2', 'machine_4'): {'mean': 5, "std": 7, 'prec': ('job2', 'machine_1')},
-    ('job2', 'machine_3'): {'mean': 6, "std": 0, 'prec': ('job2', 'machine_4')},
-    ('job3', 'machine_1'): {'mean': 4, "std": 1, 'prec': None},
-    ('job3', 'machine_2'): {'mean': 7, "std": 2, 'prec': ('job3', 'machine_1')},
-    ('job3', 'machine_4'): {'mean': 3, "std": 3, 'prec': ('job3', 'machine_2')},
-}'''
-
-TASKS = {
     ('job1', 'machine_1'): {'mean': 50, "std": 4, 'prec': None},
     ('job1', 'machine_2'): {'mean': 60, "std": 10, 'prec': ('job1', 'machine_1')},
     ('job1', 'machine_3'): {'mean': 14, "std": 1, 'prec': ('job1', 'machine_2')},
@@ -28,12 +19,37 @@ TASKS = {
     ('job3', 'machine_1'): {'mean': 50, "std": 10, 'prec': None},
     ('job3', 'machine_2'): {'mean': 70, "std": 12, 'prec': ('job3', 'machine_1')},
     ('job3', 'machine_4'): {'mean': 20, "std": 3, 'prec': ('job3', 'machine_2')},
-}
+}'''
 
-MACHINES = ['machine_1', 'machine_2', 'machine_3', 'machine_4']
+#MACHINES = ['machine_1', 'machine_2', 'machine_3', 'machine_4']
 
+def define_job_problem():
+    TASKS = {}
+    MACHINES = []
+    path = '/Users/francescameneghello/Documents/GitHub/RIMS_tool/core_jsp/example/input_simple_example_distribution.json'
+    with open(path) as file:
+        data = json.load(file)
+        jobs = data['jobs']
+        MACHINES = data['machines']
+        for job, details in jobs.items():
+            machine_seq = details["machine_seq"]
+            times = details["times"]
 
-def simulate_schedule(s, N, D_start=None):
+            for i, machine in enumerate(machine_seq):
+                mean, std = times[i]
+                if i == 0:
+                    prec = None
+                else:
+                    prec = (job, machine_seq[i - 1])
+
+                TASKS[(job, machine)] = {
+                    "mean": mean,
+                    "std": std,
+                    "prec": prec
+                }
+        return TASKS, MACHINES
+
+def simulate_schedule(s, N, MACHINES, D_start=None):
     if s:
         schedule = pd.DataFrame(s)
         #print('\nSchedule by Machine')
@@ -41,7 +57,7 @@ def simulate_schedule(s, N, D_start=None):
         schedule_sim = {m: [] for m in MACHINES}
         for index, row in schedule.iterrows():
             schedule_sim[row['Machine']].append(row['Job'])
-        #print(schedule_sim)
+        print(schedule_sim)
     else:
         schedule_sim = None
     makespan_simulation = main(schedule_sim, N, D_start)
@@ -49,20 +65,21 @@ def simulate_schedule(s, N, D_start=None):
 
 
 def CP_DQL():
-    Q = 0
+    Q = 1.50
     q_dec = 0.05
     N = 1000
     #### first iteration
+    TASKS, MACHINES = define_job_problem()
     BB = BBdeterministic(TASKS)
     s_star, D_star = BB.jobshop(Q)
-    D_sim = simulate_schedule(s_star, N, D_star)
+    D_sim = simulate_schedule(s_star, N, MACHINES, D_star)
     print('######### FIRST ITERATION #########')
     print('D_star', D_star, 'D_simulate', D_sim)
-    Q = 1.25
     while Q >= 0:
         s, D = BB.jobshop(Q)
-        makespan_alpha = simulate_schedule(s, N, D_star)
+        makespan_alpha = simulate_schedule(s, N, MACHINES, D_star)
         if makespan_alpha:
+            print('new makespan_alpha', makespan_alpha)
             s_star = s
             D_star = D
         print('######### ITERATION #########')
@@ -71,22 +88,38 @@ def CP_DQL():
 
 
 def CP_BetterSolution(Q):
-    Q = 0.3678
     N = 1000
     #### first iteration
+    TASKS, MACHINES = define_job_problem()
     BB = BBdeterministic(TASKS)
     s_star, D_star = BB.jobshop(Q)
-    D_sim = simulate_schedule(s_star, 1, D_star)
+    D_sim = simulate_schedule(s_star, N, MACHINES, D_star)
     print('Makespan simulated', D_sim)
     print('Solution', s_star)
     print('Deterministic Makespan', D_star)
 
 
 def define_Q3(n_activities):
-    critical_path = simulate_schedule(s=None, N=1)
+    TASKS, MACHINES = define_job_problem()
+    length_path, stds_list = simulate_schedule(None, 1000, MACHINES)
+    stds_2 = [s*s for s in stds_list]
+    Q3 = (1.645/math.sqrt(n_activities))*(math.sqrt(np.mean(stds_2))/np.mean(stds_list))
+    return Q3
 
+'''n_activities = 13
+Q1 = 1.645/(math.sqrt(2*n_activities))
+print('---------------- Q1: ', Q1, ' ----------------------')
+CP_BetterSolution(Q1)
+#Q3 = define_Q3(n_activities)
+Q3 = 0.49725478658755135
+print('---------------- Q3: ', Q3, ' ----------------------')
+CP_BetterSolution(Q3)
+Q2 = (Q1 + Q3)/2
+print('---------------- Q2: ', Q2, ' ----------------------')
+CP_BetterSolution(Q2)
 
+#simulate_schedule(s=None, N=1)'''
 
-CP_BetterSolution(0)
+#define_Q3(10)
 
-#simulate_schedule(s=None, N=1)
+CP_DQL()

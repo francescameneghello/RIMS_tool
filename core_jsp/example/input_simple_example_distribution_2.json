@@ -3,15 +3,19 @@
     "jobs": {
         "job1": {
             "machine_seq":  ["machine_1", "machine_2", "machine_3"],
-            "times":  {"machine_1": [50, 4], "machine_2": [60, 10], "machine_3": [14, 1]}
+            "times":  [[50, 4], [60, 10],[14, 1]]
         },
         "job2": {
             "machine_seq":  ["machine_2", "machine_1", "machine_4", "machine_3"],
-            "times":  {"machine_2": [75, 20], "machine_1": [45, 6], "machine_4": [35, 17], "machine_3": [25, 9]}
+            "times":  [[75, 20], [45, 6], [35, 17], [25, 9]]
         },
         "job3":  {
             "machine_seq":  ["machine_1", "machine_2", "machine_4"],
-            "times":  {"machine_1": [50, 10], "machine_2": [70, 12], "machine_4": [20, 3]}
+            "times":  [[50, 10], [70, 12], [20, 3]]
+        },
+        "job4":  {
+            "machine_seq":  ["machine_4", "machine_2", "machine_3"],
+            "times":  [[20, 10], [10, 12], [80, 3]]
         }
     },
     "machines": [
@@ -19,11 +23,5 @@
         "machine_2",
         "machine_3",
         "machine_4"
-    ],
-    "schedule": {
-        "machine_1": ["job1", "job3", "job2"],
-        "machine_2": ["job2", "job1", "job3"],
-        "machine_3": ["job1", "job2"],
-        "machine_4": ["job2", "job3"]
-    }
+    ]
 }

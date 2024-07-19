@@ -85,7 +85,7 @@ class RoleSimulator(object):
         """
         self._resource_simpy.release(request)
 
-    def request(self, job_id):
+    '''def request(self, job_id):
         """
         Method to require a resource of the role needed to perform the activity.
         """
@@ -94,7 +94,16 @@ class RoleSimulator(object):
             priority = self._schedule.index(job_id)
         else:
             priority = random.randint(0, 50)
-        return self._resource_simpy.request(priority)
+        return self._resource_simpy.request(priority)'''
+
+    def request(self, job_id):
+        """
+        Method to require a resource of the role needed to perform the activity.
+        """
+        self._queue.append(self._resource_simpy.queue)
+        if self._schedule:
+            del self._schedule[0]
+        return self._resource_simpy.request(-1)
 
     def _check_day_work(self, timestamp):
         return True if (timestamp.weekday() in self._calendar['days']) else False
