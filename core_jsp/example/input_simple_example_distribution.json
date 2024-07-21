@@ -3,21 +3,20 @@
     "jobs": {
         "job1": {
             "machine_seq":  ["machine_1", "machine_2", "machine_3"],
-            "times":  [[10, 2], [8, 1], [4, 1]]
+            "times":  [[10, 2], [8, 3], [4, 2]]
         },
         "job2": {
-            "machine_seq":  ["machine_2", "machine_1", "machine_4", "machine_3"],
-            "times":  [[8, 3], [3, 2], [5, 7],[6, 0]]
+            "machine_seq":  ["machine_3", "machine_1", "machine_2"],
+            "times":  [[8, 3], [3, 2], [5, 7]]
         },
         "job3":  {
-            "machine_seq":  ["machine_1", "machine_2", "machine_4"],
-            "times":  [[4, 1], [7, 2], [3, 3]]
+            "machine_seq":  ["machine_2", "machine_3", "machine_1"],
+            "times":  [[4, 1.5], [7, 2], [3, 3]]
         }
     },
     "machines": [
         "machine_1",
         "machine_2",
-        "machine_3",
-        "machine_4"
+        "machine_3"
     ]
 }

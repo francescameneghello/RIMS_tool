@@ -61,7 +61,7 @@ class Token(object):
             self._buffer.set_feature("enabled_time", env.now)
 
             while resource._schedule and self._id != resource._schedule[0]:
-                yield env.timeout(0.1)
+                yield env.timeout(0.01)
             request_resource = resource.request(self._id)
             yield request_resource
             #single_resource = self._process._set_single_resource(resource._get_name())
@@ -93,11 +93,14 @@ class Token(object):
             trans = self.next_transition_jsp()
 
     def define_processing_time_jsp(self, operation):
-        operation = len(self._prefix.get_prefix())-1
-        duration = truncnorm.rvs(0, math.inf, self._times_operations[operation][0], self._times_operations[operation][1], size=1)[0]
+        operation = len(self._prefix.get_prefix())
+        #duration = truncnorm.rvs(0, math.inf, self._times_operations[operation][0], math.sqrt(self._times_operations[operation][1]), size=1)[0]
+        distribution = "normal"
+        parameters = {"loc": self._times_operations[operation][0], "scale": math.sqrt(self._times_operations[operation][1])}
+        duration = getattr(np.random, distribution)(**parameters, size=1)[0]
         self._buffer.set_feature("wip_start", self._times_operations[operation][1])
         if duration < 0:
-            print("WARNING: Negative processing time",  duration)
+            #print("WARNING: Negative processing time",  duration)
             duration = 0
         return duration
 

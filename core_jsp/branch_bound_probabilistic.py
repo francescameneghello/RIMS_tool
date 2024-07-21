@@ -44,7 +44,7 @@ def define_job_problem():
 
                 TASKS[(job, machine)] = {
                     "mean": mean,
-                    "std": std,
+                    "std": math.sqrt(std),
                     "prec": prec
                 }
         return TASKS, MACHINES
@@ -65,30 +65,35 @@ def simulate_schedule(s, N, MACHINES, D_start=None):
 
 
 def CP_DQL():
-    Q = 1.50
+    Q = 1.25
+    Q_star = 1.25
     q_dec = 0.05
-    N = 1000
+    N = 5000
     #### first iteration
     TASKS, MACHINES = define_job_problem()
     BB = BBdeterministic(TASKS)
     s_star, D_star = BB.jobshop(Q)
     D_sim = simulate_schedule(s_star, N, MACHINES, D_star)
-    print('######### FIRST ITERATION #########')
-    print('D_star', D_star, 'D_simulate', D_sim)
+    Q = round(Q - q_dec, 3)
+    #print('######### FIRST ITERATION #########')
+    #print('D_star', D_star, 'D_simulate', D_sim, 'Q', Q)
     while Q >= 0:
         s, D = BB.jobshop(Q)
         makespan_alpha = simulate_schedule(s, N, MACHINES, D_star)
         if makespan_alpha:
-            print('new makespan_alpha', makespan_alpha)
             s_star = s
             D_star = D
-        print('######### ITERATION #########')
-        print('Q', Q, 'D_star', D_star, 's_start', s_star)
+            Q_star = Q
+            print('new makespan_alpha', makespan_alpha, 'Q', Q_star)
+        #print('######### ITERATION #########')
+        #print('Q', Q, 'D_star', D_star)
         Q = round(Q-q_dec, 3)
+
+    print('BEST Q', Q_star)
 
 
 def CP_BetterSolution(Q):
-    N = 1000
+    N = 5000
     #### first iteration
     TASKS, MACHINES = define_job_problem()
     BB = BBdeterministic(TASKS)
@@ -106,11 +111,11 @@ def define_Q3(n_activities):
     Q3 = (1.645/math.sqrt(n_activities))*(math.sqrt(np.mean(stds_2))/np.mean(stds_list))
     return Q3
 
-'''n_activities = 13
-Q1 = 1.645/(math.sqrt(2*n_activities))
+n_activities = 3
+Q1 = 1.645/(math.sqrt(n_activities))
 print('---------------- Q1: ', Q1, ' ----------------------')
-CP_BetterSolution(Q1)
-#Q3 = define_Q3(n_activities)
+CP_BetterSolution(0)
+'''#Q3 = define_Q3(n_activities)
 Q3 = 0.49725478658755135
 print('---------------- Q3: ', Q3, ' ----------------------')
 CP_BetterSolution(Q3)
@@ -122,4 +127,4 @@ CP_BetterSolution(Q2)
 
 #define_Q3(10)
 
-CP_DQL()
+#CP_DQL()

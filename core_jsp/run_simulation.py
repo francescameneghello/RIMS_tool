@@ -62,15 +62,16 @@ def run_simulation(PATH_PARAMETERS, N_SIMULATION, schedule, D_start):
 
 def check_results(makespans, D_star):
     if D_star:
-        prob = [dur < D_star for dur in makespans]
-        print('Probability makespan Pr(make(s) <= ', D_star, ')= ', sum(prob) / len(prob))
-        print('Mean of makespans', np.mean(makespans), 'N_Trials ', len(makespans))
+        prob = [dur <= D_star for dur in makespans]
         if sum(prob)/len(prob) >= 0.95:
-            return True
+            res = True
         else:
-            return False
+            res = False
+        print('Result: ', res, 'Probability makespan Pr(make(s) <= ', D_star, ')= ', sum(prob) / len(prob))
+        print('Mean of makespans', np.mean(makespans), 'N_Trials ', len(makespans))
     else:
-        return True
+        res = True
+    return res
 
 
 def main(schedule, N, D_star=None):

@@ -79,9 +79,9 @@ class BBdeterministic(object):
                     'Finish': model.start[(j, m)]() + model.dur[j, m]}
                    for j, m in model.TASKS]
         schedule = pd.DataFrame(results)
-        #print('\nSchedule by Job')
-        #print(schedule.sort_values(by=['Job', 'Start']).set_index(['Job', 'Machine']))
-        #self.visualize(results)
+        print('\nSchedule by Job')
+        print(schedule.sort_values(by=['Job', 'Start']).set_index(['Job', 'Machine']))
+        self.visualize(results)
         return results, schedule['Finish'].max()
 
     def jobshop(self, Q):
