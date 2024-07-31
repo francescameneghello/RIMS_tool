@@ -19,6 +19,7 @@ import warnings
 import numpy as np
 import pandas as pd
 import networkx as nx
+import copy
 
 
 def setup(env: simpy.Environment, params, i, NAME, f):
@@ -43,21 +44,24 @@ def run_simulation(PATH_PARAMETERS, N_SIMULATION, schedule, D_start):
     makespans = []
     critical_star, stds_star = 0, []
     for i in range(0, N_SIMULATION):
+        schedule_sim = copy.deepcopy(schedule)
         path = "output/output_{}/simulated_log_{}".format(NAME, NAME) + ".csv"
         with open(path, 'w') as f:
-            params = Parameters(PATH_PARAMETERS, schedule)
+            params = Parameters(PATH_PARAMETERS, schedule_sim)
             env = simpy.Environment()
             env.process(setup(env, params, i, NAME, f))
             env.run()
         makespans.append(env.now)
+        print('Finished simulation ', i, 'makespan ', env.now)
         if not schedule:
             critical_star, stds_star = find_critical_path(path, critical_star, stds_star)
         #print('N_SIMULATION ', len(makespans), 'MAX makespan', max(makespans))
-    if not schedule:
-        print('CRITICAL_START', critical_star, 'STDS_STAR', stds_star)
-        return critical_star, stds_star
-    else:
-        return check_results(makespans, D_start)
+    #if not schedule:
+    #    print('CRITICAL_START', critical_star, 'STDS_STAR', stds_star)
+    #    return critical_star, stds_star
+    #else:
+    #    return check_results(makespans, D_start)
+    return makespans
 
 
 def check_results(makespans, D_star):
@@ -87,7 +91,7 @@ def main(schedule, N, D_star=None):
         elif opt == "-i":
             N_SIMULATION = int(arg)
     '''
-    PATH_PARAMETERS = '/Users/francescameneghello/Documents/GitHub/RIMS_tool/core_jsp/example/input_simple_example_distribution.json'
+    PATH_PARAMETERS = '/Users/francescameneghello/Documents/GitHub/RIMS_tool/core_jsp/example/simulation_settings.json'
     N_SIMULATION = N
     #print(PATH_PARAMETERS, N_SIMULATION)
     return run_simulation(PATH_PARAMETERS, N_SIMULATION, schedule, D_star)
@@ -126,7 +130,6 @@ def find_critical_path(simulated_path, critical_star, stds_star):
     length, path = nx.algorithms.dag.dag_longest_path_length(G, weight='weight'), nx.algorithms.dag.dag_longest_path(G,
                                                                                                                      weight='weight')
     if length > critical_star:
-        #print('CRITICAL_START', critical_star, 'LENGTH', length)
         # Extract the critical path and retrieve attributes
         critical_path = []
         critical_path_attributes = []

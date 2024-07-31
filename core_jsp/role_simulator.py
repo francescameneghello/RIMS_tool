@@ -62,7 +62,8 @@ class RoleSimulator(object):
         self._resources_name = capacity
         self._capacity = capacity if type(capacity) == float else len(capacity)
         self._calendar = calendar
-        self._resource_simpy = simpy.PriorityResource(env, self._capacity)
+        #self._resource_simpy = simpy.PriorityResource(env, self._capacity)
+        self._resource_simpy = simpy.Resource(env, self._capacity)
         self._queue = []
         self._queue_jobs = []
         self._schedule = schedule
@@ -103,7 +104,7 @@ class RoleSimulator(object):
         self._queue.append(self._resource_simpy.queue)
         if self._schedule:
             del self._schedule[0]
-        return self._resource_simpy.request(-1)
+        return self._resource_simpy.request()
 
     def _check_day_work(self, timestamp):
         return True if (timestamp.weekday() in self._calendar['days']) else False
