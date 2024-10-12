@@ -94,14 +94,17 @@ class Token(object):
 
     def define_processing_time_jsp(self, operation):
         operation = len(self._prefix.get_prefix())
-        #duration = truncnorm.rvs(0, math.inf, self._times_operations[operation][0], math.sqrt(self._times_operations[operation][1]), size=1)[0]
-        distribution = "normal"
-        parameters = {"loc": self._times_operations[operation][0], "scale": math.sqrt(self._times_operations[operation][1])}
-        duration = getattr(np.random, distribution)(**parameters, size=1)[0]
-        self._buffer.set_feature("wip_start", self._times_operations[operation][1])
-        if duration < 0:
-            #print("WARNING: Negative processing time",  duration)
-            duration = 0
+        mu = self._times_operations[operation][0]
+        sigma = self._times_operations[operation][1]
+        a, b = (0 - mu) / sigma, (math.inf - mu) / sigma
+        duration = truncnorm.rvs(a, b, self._times_operations[operation][0], self._times_operations[operation][1], size=1)[0]
+        #distribution = "normal"
+        #parameters = {"loc": self._times_operations[operation][0], "scale": self._times_operations[operation][1]}
+        #duration = getattr(np.random, distribution)(**parameters, size=1)[0]
+        self._buffer.set_feature("wip_start", sigma)
+        #if duration < 0:
+        #    #print("WARNING: Negative processing time",  duration)
+        #    duration = 0
         return duration
 
     def _get_resource_role(self, activity):

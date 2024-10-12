@@ -106,22 +106,22 @@ def CP_BetterSolution(Q):
 
 def define_Q3(n_activities):
     TASKS, MACHINES = define_job_problem()
-    length_path, stds_list = simulate_schedule(None, 1000, MACHINES)
+    length_path, stds_list = simulate_schedule(None, 1, MACHINES)
     stds_2 = [s*s for s in stds_list]
     Q3 = (1.645/math.sqrt(n_activities))*(math.sqrt(np.mean(stds_2))/np.mean(stds_list))
     return Q3
 
-n_activities = 3
-Q1 = 1.645/(math.sqrt(n_activities))
-print('---------------- Q1: ', Q1, ' ----------------------')
-CP_BetterSolution(0)
-'''#Q3 = define_Q3(n_activities)
-Q3 = 0.49725478658755135
+#n_activities = 3
+#Q1 = 1.645/(math.sqrt(n_activities))
+#print('---------------- Q1: ', Q1, ' ----------------------')
+#CP_BetterSolution(0)
+Q3 = define_Q3(n_activities)
+#Q3 = 0.49725478658755135
 print('---------------- Q3: ', Q3, ' ----------------------')
-CP_BetterSolution(Q3)
-Q2 = (Q1 + Q3)/2
-print('---------------- Q2: ', Q2, ' ----------------------')
-CP_BetterSolution(Q2)
+#CP_BetterSolution(Q3)
+#Q2 = (Q1 + Q3)/2
+#print('---------------- Q2: ', Q2, ' ----------------------')
+#CP_BetterSolution(Q2)
 
 #simulate_schedule(s=None, N=1)'''
 

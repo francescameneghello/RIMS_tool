@@ -52,16 +52,17 @@ def run_simulation(PATH_PARAMETERS, N_SIMULATION, schedule, D_start):
             env.process(setup(env, params, i, NAME, f))
             env.run()
         makespans.append(env.now)
-        print('Finished simulation ', i, 'makespan ', env.now)
+        if i % 50 == 0:
+            print('Finished simulation ', i, 'makespan ', env.now)
         if not schedule:
             critical_star, stds_star = find_critical_path(path, critical_star, stds_star)
         #print('N_SIMULATION ', len(makespans), 'MAX makespan', max(makespans))
-    #if not schedule:
-    #    print('CRITICAL_START', critical_star, 'STDS_STAR', stds_star)
-    #    return critical_star, stds_star
-    #else:
+    if not schedule:
+        print('CRITICAL_START', critical_star, 'STDS_STAR', stds_star)
+        return critical_star, stds_star
+    else:
     #    return check_results(makespans, D_start)
-    return makespans
+        return makespans
 
 
 def check_results(makespans, D_star):
@@ -78,7 +79,7 @@ def check_results(makespans, D_star):
     return res
 
 
-def main(schedule, N, D_star=None):
+def main(schedule, N, PATH_PARAMETERS, D_star=None):
     '''opts, args = getopt.getopt(argv, "h:j:i:")
     #main(argv)
     for opt, arg in opts:
@@ -91,9 +92,7 @@ def main(schedule, N, D_star=None):
         elif opt == "-i":
             N_SIMULATION = int(arg)
     '''
-    PATH_PARAMETERS = '/Users/francescameneghello/Documents/GitHub/RIMS_tool/core_jsp/example/simulation_settings.json'
     N_SIMULATION = N
-    #print(PATH_PARAMETERS, N_SIMULATION)
     return run_simulation(PATH_PARAMETERS, N_SIMULATION, schedule, D_star)
 
 
@@ -127,8 +126,7 @@ def find_critical_path(simulated_path, critical_star, stds_star):
                 G.add_edge(finish_node, other_start_node, weight=0)
 
     # Calculate the longest path
-    length, path = nx.algorithms.dag.dag_longest_path_length(G, weight='weight'), nx.algorithms.dag.dag_longest_path(G,
-                                                                                                                     weight='weight')
+    length, path = nx.algorithms.dag.dag_longest_path_length(G, weight='weight'), nx.algorithms.dag.dag_longest_path(G, weight='weight')
     if length > critical_star:
         # Extract the critical path and retrieve attributes
         critical_path = []

@@ -14,3 +14,5 @@ __pycache__/
 /core/output/output_employee
 /core_jsp/output
 homebrew-backup.tar.gz
+/core_jsp/example/new_experiments
+/core_jsp/example/results

@@ -23,7 +23,7 @@ ft06 = load_benchmark_instance("abz5")
 print(ft06.metadata)
 
 
-solver = ORToolsSolver(max_time_in_seconds=1)
+solver = ORToolsSolver(max_time_in_seconds=60)
 ft06_schedule = solver(ft06)
 print(ft06_schedule.schedule)
 print(f"Is complete?: {ft06_schedule.is_complete()}")
