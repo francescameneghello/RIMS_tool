@@ -61,7 +61,7 @@ class Token(object):
             self._buffer.set_feature("enabled_time", env.now)
 
             while resource._schedule and self._id != resource._schedule[0]:
-                yield env.timeout(0.01)
+                yield env.timeout(1)
             request_resource = resource.request(self._id)
             yield request_resource
             #single_resource = self._process._set_single_resource(resource._get_name())
@@ -79,6 +79,11 @@ class Token(object):
 
             #stop = resource.to_time_schedule(self._start_time + timedelta(seconds=env.now))
             #yield env.timeout(stop)
+
+            if self._params.CALENDARS:
+                waiting_time = self._process.get_waiting_time_calendar(trans, env.now)
+                yield env.timeout(waiting_time)
+
             self._buffer.set_feature("start_time", env.now)
             duration = self.define_processing_time_jsp(trans)
 

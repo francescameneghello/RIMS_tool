@@ -41,6 +41,7 @@ def simulate_schedule(s, N, MACHINES, path, D_start=None):
     makespan_simulation = main(s, N, path, D_start)
     return makespan_simulation
 
+
 def define_Q3(n_activities, path):
     TASK, MACHINES, SCHEDULES = define_job_problem(path, type)
     length_path, stds_list = simulate_schedule(None, 1000, MACHINES, path)
@@ -48,12 +49,17 @@ def define_Q3(n_activities, path):
     Q3 = (1.645/math.sqrt(n_activities))*(math.sqrt(np.mean(stds_2))/np.mean(stds_list))
     return Q3
 
+
 CRITICAL_PATH_DISCOVERY = False
 start_time = time.time()
 path = '/Users/francescameneghello/Documents/GitHub/RIMS_tool/core_jsp/example'
-NAME_EXP = 'abz6_cp_solver_1_q3'
+NAME_EXP = 'abz5_cp_solver_0.5_q3'
 final_path = path + '/new_experiments/simulation_settings_'+NAME_EXP+'.json'
-N = 1000
+
+########## CALENDAR ################
+#final_path = path + "/new_experiments/simulation_settings_abz6_cp_solver_0.1_q3_CAL.json"
+
+N = 1
 TASK, MACHINES, SCHEDULES = define_job_problem(final_path, type)  #### read the beanchmarks and define json file to find the solution with CP
 
 results_iteration = {}
@@ -93,7 +99,7 @@ if not CRITICAL_PATH_DISCOVERY:
         with open(write_path, 'w') as outfile:
             json.dump(results_iteration, outfile, indent=2)
 else:
-    Q3 = define_Q3(10, path)
+    Q3 = define_Q3(10, final_path)
     print('---------------- Q3: ', Q3, ' ----------------------')
 
 

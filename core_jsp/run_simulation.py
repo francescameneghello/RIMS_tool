@@ -52,8 +52,8 @@ def run_simulation(PATH_PARAMETERS, N_SIMULATION, schedule, D_start):
             env.process(setup(env, params, i, NAME, f))
             env.run()
         makespans.append(env.now)
-        if i % 50 == 0:
-            print('Finished simulation ', i, 'makespan ', env.now)
+        #if i % 50 == 0:
+        print('Finished simulation ', i, 'makespan ', env.now)
         if not schedule:
             critical_star, stds_star = find_critical_path(path, critical_star, stds_star)
         #print('N_SIMULATION ', len(makespans), 'MAX makespan', max(makespans))
