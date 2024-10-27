@@ -79,13 +79,13 @@ class Token(object):
 
             #stop = resource.to_time_schedule(self._start_time + timedelta(seconds=env.now))
             #yield env.timeout(stop)
+            duration = self.define_processing_time_jsp(trans)
 
             if self._params.CALENDARS:
-                waiting_time = self._process.get_waiting_time_calendar(trans, env.now)
+                waiting_time = self._process.get_waiting_time_calendar(trans, env.now, duration)
                 yield env.timeout(waiting_time)
 
             self._buffer.set_feature("start_time", env.now)
-            duration = self.define_processing_time_jsp(trans)
 
             yield env.timeout(duration)
 
@@ -97,6 +97,8 @@ class Token(object):
 
             trans = self.next_transition_jsp()
 
+        #print("Complete project", self._id)
+
     def define_processing_time_jsp(self, operation):
         operation = len(self._prefix.get_prefix())
         mu = self._times_operations[operation][0]
@@ -107,9 +109,6 @@ class Token(object):
         #parameters = {"loc": self._times_operations[operation][0], "scale": self._times_operations[operation][1]}
         #duration = getattr(np.random, distribution)(**parameters, size=1)[0]
         self._buffer.set_feature("wip_start", sigma)
-        #if duration < 0:
-        #    #print("WARNING: Negative processing time",  duration)
-        #    duration = 0
         return duration
 
     def _get_resource_role(self, activity):

@@ -16,7 +16,7 @@ class SimulationProcess(object):
         #self._resource_trace = simpy.Resource(env, math.inf)
         #self._am_parallel = []
 
-    def get_waiting_time_calendar(self, machine, time):
+    def get_waiting_time_calendar(self, machine, time, duration):
         intervals_m = self._intervals_resources[machine]
         calendar_time = False
         min_start = 0
@@ -25,7 +25,7 @@ class SimulationProcess(object):
                 calendar_time = True
             if time < start and min_start == 0:
                 min_start = start
-        wait = 0 if calendar_time or (min_start-time)<0 else (min_start-time)
+        wait = 0 if calendar_time or (min_start-time) < 0 else (min_start-time)
         return wait
 
     def define_single_machines(self):
@@ -38,7 +38,7 @@ class SimulationProcess(object):
                     'hour_min': 0,
                     'hour_max': 23}
         for res in set_resource:
-            if self._params.SCHEDULE:
+            if self._params.SCHEDULE and res in self._params.SCHEDULE:
                 res_simpy = RoleSimulator(self._env, res, [1], calendar, self._params.SCHEDULE[res])
             else:
                 res_simpy = RoleSimulator(self._env, res, [1], calendar)
