@@ -16,7 +16,7 @@ The demonstration video is in *docs/images/* folder or at the following link [vi
 
 ## Installation guide
 
-To execute this code, simply install the following main packages:
+To execute this code, use **Python 3.10** and install the following main packages:
 
 * scikit-learn==1.2.1
 * scipy==1.11.2
