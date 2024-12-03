@@ -44,7 +44,7 @@ def simulate_schedule(s, N, MACHINES, path, D_start=None):
 
 def define_Q3(n_activities, path):
     TASK, MACHINES, SCHEDULES = define_job_problem(path, type)
-    length_path, stds_list = simulate_schedule(None, 50, MACHINES, path)
+    length_path, stds_list = simulate_schedule(None, 25, MACHINES, path)
     stds_2 = [s*s for s in stds_list]
     Q3 = (1.645/math.sqrt(n_activities))*(math.sqrt(np.mean(stds_2))/np.mean(stds_list))
     return Q3
@@ -107,7 +107,7 @@ def define_k_solutions(results_path):
     start_point_research = -1
     while start_point_research < 0:
         try:
-            jump = next(i for i in reversed(search_list) if i >= 0.7)
+            jump = next(i for i in reversed(search_list) if i >= 0.15)
             index_jump = improvements.index(jump)
         except StopIteration:
             index_jump = 0
@@ -132,6 +132,7 @@ def final_simulation(final_path, results_iteration, top_k):
     s_star = None
     D_star = math.inf
     for s in top_k:
+    #for s in range(0, len(SCHEDULES)):
         schedule = SCHEDULES[str(s)]["solution"]
         makespans = simulate_schedule(schedule, N, MACHINES, final_path)  ## D'
         D_alpha = np.percentile(makespans, 95)
@@ -139,7 +140,7 @@ def final_simulation(final_path, results_iteration, top_k):
         print("Mean of makespans", np.mean(makespans), "Std of makespans", np.std(makespans))
         print("********************************************************************************")
         results_iteration["k_step"][s] = {"D_alpha": D_alpha, "mean": np.mean(makespans), "std": np.std(makespans),
-                                "DET_makespan": SCHEDULES[str(s)]["makespan"], "n_simulation": 1000}
+                                "DET_makespan": SCHEDULES[str(s)]["makespan"], "n_simulation": 1000, "all_makespan": makespans}
         if D_alpha < D_star:
             number_best = s
             s_star = SCHEDULES[str(number_best)]["solution"]
@@ -156,20 +157,21 @@ def final_simulation(final_path, results_iteration, top_k):
 CRITICAL_PATH_DISCOVERY = False
 start_time = time.time()
 path = '/Users/francescameneghello/Documents/GitHub/RIMS_tool/core_jsp/example/'
-NAME_EXP = 'cscmax_30_15_2_cp_solver_0.1_q3'
-final_path = path + 'new_experiments/cscmax_30_15_2/simulation_settings_' +NAME_EXP+ '.json'
+NAME_EXP = 'cscmax_50_20_3_cp_solver_0.1_q1'
+final_path = path + 'new_experiments/cscmax_50_20_3/simulation_settings_' +NAME_EXP+ '.json'
 
 if not CRITICAL_PATH_DISCOVERY:
 
     TASK, MACHINES, SCHEDULES = define_job_problem(final_path, type)  #### read the beanchmarks and define json file to find the solution with CP
 
     top_k_solutions = define_k_solutions(final_path)
+    #top_k_solutions = range(0, 1)
 
     results_iteration = {"top_k": list(top_k_solutions), "k_step": {}, "Best_solution": {}}
 
     results_iteration = final_simulation(final_path, results_iteration, top_k_solutions)
 
-    write_path = path + '/results/results_simulation_' + NAME_EXP + '.json'
+    write_path = path + '/results/results_simulation_' + NAME_EXP + 'prova.json'
     with open(write_path, 'w') as outfile:
         json.dump(results_iteration, outfile, indent=2)
 else:

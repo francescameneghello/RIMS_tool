@@ -62,11 +62,47 @@ class RoleSimulator(object):
         self._resources_name = capacity
         self._capacity = capacity if type(capacity) == float else len(capacity)
         self._calendar = calendar
-        #self._resource_simpy = simpy.PriorityResource(env, self._capacity)
-        self._resource_simpy = simpy.Resource(env, self._capacity)
+        #self._resource_simpy = simpy.Resource(env, self._capacity) ### old version
         self._queue = []
         self._queue_jobs = []
         self._schedule = schedule
+        self._define_dict_resource()
+
+    def _define_dict_resource(self):
+        self._dict_res = dict()
+        jobs = set(self._schedule)
+        for j in jobs:
+            if self._schedule[0] == j:
+                res = simpy.Container(self._env, init=1, capacity=100)
+            else:
+                res = simpy.Container(self._env, init=0, capacity=100)
+            self._dict_res[j] = res
+        del self._schedule[0]
+
+    def _release(self):
+        if self._schedule:
+            next_job = self._schedule[0]
+            del self._schedule[0]
+            yield self._dict_res[next_job].put(1)
+
+    def request(self, job_id):
+        return self._dict_res[job_id]
+
+    '''def release(self, request):
+        """
+        Method to release the role resource that was used to perform the activity.
+        """
+        self._resource_simpy.release(request)
+
+    def request(self, job_id):
+        """
+        Method to require a resource of the role needed to perform the activity.
+        """
+        self._queue.append(self._resource_simpy.queue)
+        if self._schedule:
+            del self._schedule[0]
+        return self._resource_simpy.request()'''
+
 
     def _get_name(self):
         return self._name
@@ -79,32 +115,6 @@ class RoleSimulator(object):
 
     def _get_calendar(self):
         return self._calendar
-
-    def release(self, request):
-        """
-        Method to release the role resource that was used to perform the activity.
-        """
-        self._resource_simpy.release(request)
-
-    '''def request(self, job_id):
-        """
-        Method to require a resource of the role needed to perform the activity.
-        """
-        self._queue.append(self._resource_simpy.queue)
-        if self._schedule:
-            priority = self._schedule.index(job_id)
-        else:
-            priority = random.randint(0, 50)
-        return self._resource_simpy.request(priority)'''
-
-    def request(self, job_id):
-        """
-        Method to require a resource of the role needed to perform the activity.
-        """
-        self._queue.append(self._resource_simpy.queue)
-        if self._schedule:
-            del self._schedule[0]
-        return self._resource_simpy.request()
 
     def _check_day_work(self, timestamp):
         return True if (timestamp.weekday() in self._calendar['days']) else False

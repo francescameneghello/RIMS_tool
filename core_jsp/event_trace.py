@@ -14,6 +14,7 @@ from utility import Buffer, ParallelObject
 from scipy.stats import truncnorm
 import math
 
+
 class Token(object):
 
     def __init__(self, id: int, params: Parameters, process: SimulationProcess, prefix: Prefix, writer: csv.writer):
@@ -60,10 +61,11 @@ class Token(object):
             self._buffer.set_feature("queue", queue)
             self._buffer.set_feature("enabled_time", env.now)
 
-            while resource._schedule and self._id != resource._schedule[0]:
-                yield env.timeout(1)
+            #while resource._schedule and self._id != resource._schedule[0]:
+            #    yield env.timeout(1)
             request_resource = resource.request(self._id)
-            yield request_resource
+            yield request_resource.get(1)
+
             #single_resource = self._process._set_single_resource(resource._get_name())
             self._buffer.set_feature("activity", str(self._id) + '_' + str(trans))
             self._buffer.set_feature("resource", trans)
@@ -93,7 +95,9 @@ class Token(object):
             self._buffer.set_feature("end_time", env.now)
             self._buffer.print_values()
             self._prefix.add_activity(next)
-            resource.release(request_resource)
+
+            #resource.release(request_resource)
+            env.process(resource._release())
 
             trans = self.next_transition_jsp()
 
