@@ -63,8 +63,13 @@ class Token(object):
 
             #while resource._schedule and self._id != resource._schedule[0]:
             #    yield env.timeout(1)
-            request_resource = resource.request(self._id)
-            yield request_resource.get(1)
+            if resource._schedule:
+                request_resource = resource.request(self._id)
+                yield request_resource.get(1)
+            else:
+                request_resource = resource.request_no_schedule()
+                yield request_resource
+
 
             #single_resource = self._process._set_single_resource(resource._get_name())
             self._buffer.set_feature("activity", str(self._id) + '_' + str(trans))
@@ -96,8 +101,10 @@ class Token(object):
             self._buffer.print_values()
             self._prefix.add_activity(next)
 
-            #resource.release(request_resource)
-            env.process(resource._release())
+            if resource._schedule:
+                env.process(resource._release())
+            else:
+                resource._release_no_schedule(request_resource)
 
             trans = self.next_transition_jsp()
 

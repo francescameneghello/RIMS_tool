@@ -52,11 +52,12 @@ Finally, in the simulation parameters file, we have to indicate the role assigne
 from datetime import timedelta
 import simpy
 import random
+from random import randint
 
 
 class RoleSimulator(object):
 
-    def __init__(self, env: simpy.Environment, name: str, capacity, calendar: dict, schedule=None):
+    def __init__(self, env: simpy.Environment, name: str, capacity, calendar: dict, schedule=None, n_jobs=None):
         self._env = env
         self._name = name
         self._resources_name = capacity
@@ -66,9 +67,20 @@ class RoleSimulator(object):
         self._queue = []
         self._queue_jobs = []
         self._schedule = schedule
-        self._define_dict_resource()
+        self._n_jobs = n_jobs
+        if self._schedule:
+            self._define_dict_resource_schedule()
+        else:
+            self._resource_simpy = simpy.PriorityResource(self._env, self._capacity)
 
-    def _define_dict_resource(self):
+    def request_no_schedule(self):
+        prio = randint(0, 50)
+        return self._resource_simpy.request(priority=prio)
+
+    def _release_no_schedule(self, request):
+        self._resource_simpy.release(request)
+
+    def _define_dict_resource_schedule(self):
         self._dict_res = dict()
         jobs = set(self._schedule)
         for j in jobs:

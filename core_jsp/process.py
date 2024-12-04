@@ -41,7 +41,7 @@ class SimulationProcess(object):
             if self._params.SCHEDULE and res in self._params.SCHEDULE:
                 res_simpy = RoleSimulator(self._env, res, [1], calendar, self._params.SCHEDULE[res])
             else:
-                res_simpy = RoleSimulator(self._env, res, [1], calendar)
+                res_simpy = RoleSimulator(self._env, res, [1], calendar, n_jobs=self._params.N_JOBS)
             dict_role[res] = res_simpy
         return dict_role
 

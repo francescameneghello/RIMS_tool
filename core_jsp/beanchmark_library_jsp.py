@@ -44,7 +44,7 @@ def simulate_schedule(s, N, MACHINES, path, D_start=None):
 
 def define_Q3(n_activities, path):
     TASK, MACHINES, SCHEDULES = define_job_problem(path, type)
-    length_path, stds_list = simulate_schedule(None, 25, MACHINES, path)
+    length_path, stds_list = simulate_schedule(None, 100, MACHINES, path)
     stds_2 = [s*s for s in stds_list]
     Q3 = (1.645/math.sqrt(n_activities))*(math.sqrt(np.mean(stds_2))/np.mean(stds_list))
     return Q3
@@ -154,11 +154,11 @@ def final_simulation(final_path, results_iteration, top_k):
     return results_iteration
 
 
-CRITICAL_PATH_DISCOVERY = False
+CRITICAL_PATH_DISCOVERY = True
 start_time = time.time()
 path = '/Users/francescameneghello/Documents/GitHub/RIMS_tool/core_jsp/example/'
-NAME_EXP = 'cscmax_50_20_3_cp_solver_0.1_q1'
-final_path = path + 'new_experiments/cscmax_50_20_3/simulation_settings_' +NAME_EXP+ '.json'
+NAME_EXP = 'cscmax_40_20_5_cp_solver_0.1_q1'
+final_path = path + 'new_experiments/cscmax_40_20_5/simulation_settings_' +NAME_EXP+ '.json'
 
 if not CRITICAL_PATH_DISCOVERY:
 
@@ -175,10 +175,10 @@ if not CRITICAL_PATH_DISCOVERY:
     with open(write_path, 'w') as outfile:
         json.dump(results_iteration, outfile, indent=2)
 else:
-    Q3 = define_Q3(10, final_path)
+    Q3 = define_Q3(40, final_path)
     print('---------------- Q3: ', Q3, ' ----------------------')
 
-
+print("--- Execution time %s seconds ---" % (time.time() - start_time))
 
 '''if not CRITICAL_PATH_DISCOVERY:
     makespans = []
