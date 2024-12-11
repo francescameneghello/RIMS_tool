@@ -32,3 +32,9 @@ class Parameters(object):
                     self.CALENDARS = data["calendars_res"]
                 else:
                     self.CALENDARS = {}
+
+                #### capacity
+                if "machines_capacity" in data:
+                    self.CAPACITY = data["machines_capacity"]
+                else:
+                    self.CAPACITY = {i: 1 for i in self.MACHINES}

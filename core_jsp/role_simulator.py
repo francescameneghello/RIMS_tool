@@ -61,7 +61,7 @@ class RoleSimulator(object):
         self._env = env
         self._name = name
         self._resources_name = capacity
-        self._capacity = capacity if type(capacity) == float else len(capacity)
+        self._capacity = capacity
         self._calendar = calendar
         #self._resource_simpy = simpy.Resource(env, self._capacity) ### old version
         self._queue = []
@@ -70,8 +70,10 @@ class RoleSimulator(object):
         self._n_jobs = n_jobs
         if self._schedule:
             self._define_dict_resource_schedule()
+            self._schedule_active = True
         else:
             self._resource_simpy = simpy.PriorityResource(self._env, self._capacity)
+            self._schedule_active = False
 
     def request_no_schedule(self):
         prio = randint(0, 50)
@@ -82,14 +84,26 @@ class RoleSimulator(object):
 
     def _define_dict_resource_schedule(self):
         self._dict_res = dict()
-        jobs = set(self._schedule)
+        jobs = list(self._schedule)
+        capacity = self._capacity
+        i = 0
         for j in jobs:
+            if self._schedule[i] == j and capacity > 0:
+                res = simpy.Container(self._env, init=1, capacity=100)
+                i += 1
+                capacity -= 1
+            else:
+                res = simpy.Container(self._env, init=0, capacity=100)
+            self._dict_res[j] = res
+        del self._schedule[0: self._capacity]
+
+        '''for j in jobs:
             if self._schedule[0] == j:
                 res = simpy.Container(self._env, init=1, capacity=100)
             else:
                 res = simpy.Container(self._env, init=0, capacity=100)
             self._dict_res[j] = res
-        del self._schedule[0]
+        del self._schedule[0]'''
 
     def _release(self):
         if self._schedule:

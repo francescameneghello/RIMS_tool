@@ -53,11 +53,12 @@ def run_simulation(PATH_PARAMETERS, N_SIMULATION, schedule, D_start):
             env.run()
         makespans.append(env.now)
         print('Finished simulation ', i, 'makespan ', env.now)
-        if not schedule:
-            critical_star, stds_star = find_critical_path(path, critical_star, stds_star)
+        #if not schedule:
+            #critical_star, stds_star = find_critical_path(path, critical_star, stds_star)
         #print('N_SIMULATION ', len(makespans), 'MAX makespan', max(makespans))
     if not schedule:
         print('CRITICAL_START', critical_star, 'STDS_STAR', stds_star)
+        print('Mean of MAKESPAN of simulations', np.mean(makespans), 'D_alpha', np.percentile(makespans, 95))
         return critical_star, stds_star
     else:
         return makespans

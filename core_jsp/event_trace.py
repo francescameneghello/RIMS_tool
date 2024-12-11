@@ -63,7 +63,7 @@ class Token(object):
 
             #while resource._schedule and self._id != resource._schedule[0]:
             #    yield env.timeout(1)
-            if resource._schedule:
+            if resource._schedule_active:
                 request_resource = resource.request(self._id)
                 yield request_resource.get(1)
             else:
@@ -101,7 +101,7 @@ class Token(object):
             self._buffer.print_values()
             self._prefix.add_activity(next)
 
-            if resource._schedule:
+            if resource._schedule_active:
                 env.process(resource._release())
             else:
                 resource._release_no_schedule(request_resource)
