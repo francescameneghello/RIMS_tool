@@ -25,6 +25,7 @@ class Token(object):
         self._params = params
         self._operations = self._params.JOBS[self._id]["machine_seq"] ## list of operations to perform
         self._times_operations = self._params.JOBS[self._id]["times"]
+        self._times_fixed = self._params.JOBS_FIXED[self._id]["times_fixed"]
         self._prefix = prefix
         self._writer = writer
         #self._parallel_object = parallel_object
@@ -116,6 +117,7 @@ class Token(object):
         sigma = self._times_operations[operation][1]
         a, b = (0 - mu) / sigma, (math.inf - mu) / sigma
         duration = truncnorm.rvs(a, b, self._times_operations[operation][0], self._times_operations[operation][1], size=1)[0]
+        #duration = self._times_fixed[operation]
         #distribution = "normal"
         #parameters = {"loc": self._times_operations[operation][0], "scale": self._times_operations[operation][1]}
         #duration = getattr(np.random, distribution)(**parameters, size=1)[0]

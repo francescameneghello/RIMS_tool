@@ -42,11 +42,16 @@ def simulate_schedule(s, N, MACHINES, path, D_start=None):
     return makespan_simulation
 
 
-def define_Q3(n_activities, path):
+def define_Q3(path, start_time):
     TASK, MACHINES, SCHEDULES = define_job_problem(path, type)
-    length_path, stds_list = simulate_schedule(None, 1000, MACHINES, path)
+    length_path, stds_list, n_activities = simulate_schedule(None, 5, MACHINES, path)
     stds_2 = [s*s for s in stds_list]
     Q3 = (1.645/math.sqrt(n_activities))*(math.sqrt(np.mean(stds_2))/np.mean(stds_list))
+
+    write_path_actual = '/Users/francescameneghello/Documents/GitHub/RIMS_tool/core_jsp/example/results/results_simulation_Q3_' + NAME_EXP + '.json'
+    with open(write_path_actual, 'w') as outfile:
+        results = {"name_instance": NAME_EXP, 'Q3': Q3, 'time': (time.time() - start_time)}
+        json.dump(results, outfile, indent=2)
     return Q3
 
 
@@ -165,15 +170,21 @@ def simulate_actual_scheduling(final_path):
         print("Mean of makespans", np.mean(makespans), "Std of makespans", np.std(makespans))
         print("********************************************************************************")
 
+    write_path_actual = path + '/results/results_simulation_actual_scheduling' + NAME_EXP + '.json'
+    with open(write_path_actual, 'w') as outfile:
+        results = {"name_instance": NAME_EXP, "D_alpha": D_alpha, "Mean": np.mean(makespans), "Std": np.std(makespans),
+                   "makespans": makespans}
+        json.dump(results, outfile, indent=2)
 
-CRITICAL_PATH_DISCOVERY = True
-ACTUAL_SCHEDULE = True
+
+CRITICAL_PATH_DISCOVERY = False
+ACTUAL_SCHEDULE = False
 start_time = time.time()
 path = '/Users/francescameneghello/Documents/GitHub/RIMS_tool/core_jsp/example/'
-NAME_EXP = 'simulation_settings_test_dfci_4_28_2022_cal_actual_q1'
+NAME_EXP = 'simulation_settings_test_dfci_0_18_2022_cal_actuq3_36'
 #final_path = path + 'new_experiments/cscmax_40_20_5/simulation_settings_' +NAME_EXP+ '.json'
 
-final_path = '/Users/francescameneghello/Documents/GitHub/RIMS_tool/core_jsp/example/new_experiments/real_data/simulation_settings_test_dfci_4_28_2022_cal_actual_q1.json'
+final_path = '/Users/francescameneghello/Documents/GitHub/RIMS_tool/core_jsp/example/new_experiments/real_data/' + NAME_EXP + '.json'
 
 if not CRITICAL_PATH_DISCOVERY:
     TASK, MACHINES, SCHEDULES = define_job_problem(final_path, type)  #### read the beanchmarks and define json file to find the solution with CP
@@ -184,6 +195,8 @@ if not CRITICAL_PATH_DISCOVERY:
 
     results_iteration = final_simulation(final_path, results_iteration, top_k_solutions)
 
+    results_iteration['total_time'] = (time.time() - start_time)
+
     write_path = path + '/results/results_simulation_' + NAME_EXP + '.json'
     with open(write_path, 'w') as outfile:
         json.dump(results_iteration, outfile, indent=2)
@@ -191,7 +204,7 @@ else:
     if ACTUAL_SCHEDULE:
         simulate_actual_scheduling(final_path)
     else:
-        Q3 = define_Q3(40, final_path)
+        Q3 = define_Q3(final_path, start_time)
         print('---------------- Q3: ', Q3, ' ----------------------')
 
 print("--- Execution time %s seconds ---" % (time.time() - start_time))

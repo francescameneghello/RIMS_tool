@@ -26,6 +26,7 @@ class Parameters(object):
                 self.MACHINES = data['machines']
                 self.N_JOBS = len(data["jobs"])
                 self.JOBS = data["jobs"]
+                self.JOBS_FIXED = data["fixed_duration"]
 
                 #### calendars
                 if "calendars_res" in data:
