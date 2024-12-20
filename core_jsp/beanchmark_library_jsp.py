@@ -44,7 +44,7 @@ def simulate_schedule(s, N, MACHINES, path, D_start=None):
 
 def define_Q3(path, start_time):
     TASK, MACHINES, SCHEDULES = define_job_problem(path, type)
-    length_path, stds_list, n_activities = simulate_schedule(None, 5, MACHINES, path)
+    length_path, stds_list, n_activities = simulate_schedule(None, 25, MACHINES, path)
     stds_2 = [s*s for s in stds_list]
     Q3 = (1.645/math.sqrt(n_activities))*(math.sqrt(np.mean(stds_2))/np.mean(stds_list))
 
@@ -150,7 +150,7 @@ def final_simulation(final_path, results_iteration, top_k):
             s_star = SCHEDULES[str(number_best)]["solution"]
             D_star = D_alpha
 
-        s -= 1
+        s += 1
 
     print('Best solution', D_star, number_best)
     results_iteration["Best_solution"] = {"solution": number_best, "D_alpha": D_star, "schedule": s_star}
@@ -178,10 +178,10 @@ def simulate_actual_scheduling(final_path):
 
 
 CRITICAL_PATH_DISCOVERY = False
-ACTUAL_SCHEDULE = False
+ACTUAL_SCHEDULE = True
 start_time = time.time()
 path = '/Users/francescameneghello/Documents/GitHub/RIMS_tool/core_jsp/example/'
-NAME_EXP = 'simulation_settings_test_dfci_0_18_2022_cal_actuq3_36'
+NAME_EXP = 'simulation_settings_test_dfci_2_9_2022_cal_actuq3_1'
 #final_path = path + 'new_experiments/cscmax_40_20_5/simulation_settings_' +NAME_EXP+ '.json'
 
 final_path = '/Users/francescameneghello/Documents/GitHub/RIMS_tool/core_jsp/example/new_experiments/real_data/' + NAME_EXP + '.json'

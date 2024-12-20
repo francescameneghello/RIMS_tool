@@ -89,12 +89,13 @@ class RoleSimulator(object):
         i = 0
         for j in jobs:
             if self._schedule[i] == j and capacity > 0:
-                res = simpy.Container(self._env, init=1, capacity=100)
+                res = simpy.Container(self._env, init=self._schedule.count(j), capacity=100)
                 i += 1
                 capacity -= 1
             else:
                 res = simpy.Container(self._env, init=0, capacity=100)
-            self._dict_res[j] = res
+            if j not in self._dict_res:
+                self._dict_res[j] = res
         del self._schedule[0: self._capacity]
 
         '''for j in jobs:

@@ -68,10 +68,10 @@ def check_same_elements(job):
 
     return duplicates
 
-names = ['test_dfci_1_22_2022', 'test_dfci_3_12_2022', 'test_dfci_2_1_2022','test_dfci_3_6_2022', 'test_dfci_2_15_2022',
-         'test_dfci_1_8_2022', 'test_dfci_4_10_2022', 'test_dfci_2_9_2022', 'test_dfci_2_22_2022', 'test_dfci_1_23_2022']
+names = ['test_dfci_4_25_2022', 'test_dfci_3_13_2022', 'test_dfci_2_2_2022','test_dfci_0_19_2022', 'test_dfci_3_26_2022'
+         ]
 
-for name in names:
+for name in ['test_dfci_3_5_2022']:
     NAME_DAY = name
     json_path = '/Users/francescameneghello/Downloads/JSON 2/' + NAME_DAY + '.json'
 
