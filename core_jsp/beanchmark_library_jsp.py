@@ -159,7 +159,7 @@ def final_simulation(final_path, results_iteration, top_k):
 
 
 def simulate_actual_scheduling(final_path):
-    N = 1000
+    N = 1
     with open(final_path) as file:
         data = json.load(file)
         schedule = data["actual_scheduling"]
@@ -170,81 +170,58 @@ def simulate_actual_scheduling(final_path):
         print("Mean of makespans", np.mean(makespans), "Std of makespans", np.std(makespans))
         print("********************************************************************************")
 
-    write_path_actual = path + '/results/results_simulation_actual_scheduling' + NAME_EXP + '.json'
+    #write_path_actual = path + '/results/results_simulation_actual_scheduling' + NAME_EXP + '.json'
+    write_path_actual = '/Users/francescameneghello/Documents/GitHub/RIMS_tool/core_jsp/example/results/results_simulation_actual_scheduling' + NAME_EXP + '.json'
     with open(write_path_actual, 'w') as outfile:
         results = {"name_instance": NAME_EXP, "D_alpha": D_alpha, "Mean": np.mean(makespans), "Std": np.std(makespans),
                    "makespans": makespans}
         json.dump(results, outfile, indent=2)
+    return D_alpha, np.mean(makespans), np.std(makespans)
 
+days = ['0_3']
+D_alpha = []
+MEAN = []
+STD = []
+Q_values = []
+for D in days:
+    CRITICAL_PATH_DISCOVERY = True
+    ACTUAL_SCHEDULE = True
+    start_time = time.time()
+    #path = '/Users/francescameneghello/Documents/GitHub/RIMS_tool/core_jsp/example/to_do_q3'
+    NAME_EXP = 'simulation_settings_test_dfci_' + D + '_2022_cal_actuq3_1'
+    #final_path = path + 'new_experiments/cscmax_40_20_5/simulation_settings_' +NAME_EXP+ '.json'
 
-CRITICAL_PATH_DISCOVERY = False
-ACTUAL_SCHEDULE = True
-start_time = time.time()
-path = '/Users/francescameneghello/Documents/GitHub/RIMS_tool/core_jsp/example/'
-NAME_EXP = 'simulation_settings_test_dfci_2_9_2022_cal_actuq3_1'
-#final_path = path + 'new_experiments/cscmax_40_20_5/simulation_settings_' +NAME_EXP+ '.json'
+    final_path = '/Users/francescameneghello/Documents/GitHub/RIMS_tool/core_jsp/example/new_experiments/real_LSTM/' + NAME_EXP + '.json'
+    print('---------------- ', NAME_EXP, ' ----------------')
+    if not CRITICAL_PATH_DISCOVERY:
+        TASK, MACHINES, SCHEDULES = define_job_problem(final_path, type)  #### read the beanchmarks and define json file to find the solution with CP
 
-final_path = '/Users/francescameneghello/Documents/GitHub/RIMS_tool/core_jsp/example/new_experiments/real_data/' + NAME_EXP + '.json'
+        top_k_solutions = define_k_solutions(final_path)
 
-if not CRITICAL_PATH_DISCOVERY:
-    TASK, MACHINES, SCHEDULES = define_job_problem(final_path, type)  #### read the beanchmarks and define json file to find the solution with CP
+        results_iteration = {"top_k": list(top_k_solutions), "k_step": {}, "Best_solution": {}}
 
-    top_k_solutions = define_k_solutions(final_path)
+        results_iteration = final_simulation(final_path, results_iteration, top_k_solutions)
 
-    results_iteration = {"top_k": list(top_k_solutions), "k_step": {}, "Best_solution": {}}
+        results_iteration['total_time'] = (time.time() - start_time)
 
-    results_iteration = final_simulation(final_path, results_iteration, top_k_solutions)
-
-    results_iteration['total_time'] = (time.time() - start_time)
-
-    write_path = path + '/results/results_simulation_' + NAME_EXP + '.json'
-    with open(write_path, 'w') as outfile:
-        json.dump(results_iteration, outfile, indent=2)
-else:
-    if ACTUAL_SCHEDULE:
-        simulate_actual_scheduling(final_path)
-    else:
-        Q3 = define_Q3(final_path, start_time)
-        print('---------------- Q3: ', Q3, ' ----------------------')
-
-print("--- Execution time %s seconds ---" % (time.time() - start_time))
-
-'''if not CRITICAL_PATH_DISCOVERY:
-    makespans = []
-    s = 44
-    number_best = 44
-    D_initial = SCHEDULES[str(s)]["makespan"]
-    s_star = SCHEDULES[str(s)]["solution"]
-    D_star = math.inf
-    search = True
-    while s < len(SCHEDULES):
-        schedule = SCHEDULES[str(s)]["solution"]
-        makespans = simulate_schedule(schedule, N, MACHINES, final_path)  ## D'
-        D_alpha = np.percentile(makespans, 95)
-        print('Solution n ', s, 'D_alpha', D_alpha)
-        print("Mean of makespans", np.mean(makespans), "Std of makespans", np.std(makespans))
-        print("********************************************************************************")
-        results_iteration[s] = {"D_alpha": D_alpha, "mean": np.mean(makespans), "std": np.std(makespans)}
-
-        if D_alpha < D_star:
-            number_best = s
-            s_star = SCHEDULES[str(s)]["solution"]
-            D_star = D_alpha
-
-        s += 1
-        if s < len(SCHEDULES):
-            schedule = SCHEDULES[str(s)]["solution"]
-
-        print('Best solution', D_star, number_best)
-        schedule = SCHEDULES[str(number_best)]["solution"]
-        print(schedule)
-
-        print(results_iteration)
-        write_path = path + '/results/results_simulation_' + NAME_EXP +'.json'
+        #write_path = path + '/results/results_simulation_' + NAME_EXP + '.json'
+        write_path = '/Users/francescameneghello/Documents/GitHub/RIMS_tool/core_jsp/example/results/results_simulation_' + NAME_EXP + '.json'
         with open(write_path, 'w') as outfile:
             json.dump(results_iteration, outfile, indent=2)
-else:
-    Q3 = define_Q3(10, final_path)
-    print('---------------- Q3: ', Q3, ' ----------------------')'''
+    else:
+        if ACTUAL_SCHEDULE:
+            d_alpha, mean, std = simulate_actual_scheduling(final_path)
+            D_alpha.append(d_alpha)
+            MEAN.append(mean)
+            STD.append(std)
+        else:
+            Q3 = define_Q3(final_path, start_time)
+            Q_values.append(Q3)
+            print('---------------- Q3: ', Q3, ' ----------------------')
 
+    print("--- Execution time %s seconds ---" % (time.time() - start_time))
 
+print(D_alpha)
+print(MEAN)
+print(STD)
+print(Q_values)

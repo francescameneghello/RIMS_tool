@@ -3,6 +3,7 @@ from role_simulator import RoleSimulator
 import math
 from parameters import Parameters
 from datetime import timedelta
+from call_LSTM import Predictor
 
 class SimulationProcess(object):
 
@@ -12,9 +13,15 @@ class SimulationProcess(object):
         #self._date_start = params.START_SIMULATION
         self._resources = self.define_single_machines()
         self._intervals_resources = self._params.CALENDARS
-        #self._resource_events = self._define_resource_events(env)
-        #self._resource_trace = simpy.Resource(env, math.inf)
+        self._resource_events = self._define_resource_events(env)
+        self._resource_trace = simpy.Resource(env, math.inf)
         #self._am_parallel = []
+
+        self.predictor = Predictor(self._params)
+        self.predictor.predict()
+
+    def define_dependent_processing_time_jsp(self, cid, transition, time, res):
+        return self.predictor.processing_time_distribution(cid, transition, time, res)
 
     def get_waiting_time_calendar(self, machine, time, duration):
         intervals_m = self._intervals_resources[machine]
@@ -68,14 +75,18 @@ class SimulationProcess(object):
         return self._resources[resource_label]
 
     def _get_resource_event(self, task):
-        return self._resource_events[task]
+        if str(task) in self._params.INDEX_AC:
+            resource_event = self._resource_events[str(task)]
+        else:
+            resource_event = self._resource_events['Start']
+        return resource_event
 
     def _get_resource_trace(self):
         return self._resource_trace
 
     def _define_resource_events(self, env):
         resources = dict()
-        for key in self._params.PROCESSING_TIME.keys():
+        for key in self._params.INDEX_AC:
             resources[key] = simpy.Resource(env, math.inf)
         return resources
 

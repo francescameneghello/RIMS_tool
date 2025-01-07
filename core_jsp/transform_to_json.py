@@ -68,12 +68,16 @@ def check_same_elements(job):
 
     return duplicates
 
-names = ['test_dfci_4_25_2022', 'test_dfci_3_13_2022', 'test_dfci_2_2_2022','test_dfci_0_19_2022', 'test_dfci_3_26_2022'
-         ]
+names = ['1_19','1_20','1_5','1_26','1_25','1_4','1_18','1_14','1_11','1_7','1_24','1_3']
+NAME_list = []
+JOBS = []
+MACHINE = []
+TASKS = []
+real_makespan = []
 
-for name in ['test_dfci_3_5_2022']:
+for name in names:
     NAME_DAY = name
-    json_path = '/Users/francescameneghello/Downloads/JSON 2/' + NAME_DAY + '.json'
+    json_path = '/Users/francescameneghello/Downloads/JSON 2/test_dfci_' + NAME_DAY + '_2022.json'
 
     with open(json_path, "r") as f:
         data = json.load(f)
@@ -85,6 +89,7 @@ for name in ['test_dfci_3_5_2022']:
 
     ###### makespan and dates #######
     start, end, actual_makespan = makespan_actual(data)
+    real_makespan.append(actual_makespan)
     data['actual_start']= str(start)
     data['actual_end']= str(end)
     data['actual_makespan'] = str(actual_makespan)
@@ -95,6 +100,9 @@ for name in ['test_dfci_3_5_2022']:
     for idx, m in enumerate(data['machines']):
         machine_key[m] = str(idx)
     data['machines'] = list(machine_key.values())
+    data['machines_to_n'] = machine_key
+    n_to_machines = {machine_key[key]: key for key in machine_key}
+    data['n_to_machines'] = n_to_machines
 
     data["jobs"]['0'] = data["jobs"].pop(str(len(data["jobs"])))
     last_key, last_value = list(data["jobs"].items())[-1]
@@ -163,12 +171,23 @@ for name in ['test_dfci_3_5_2022']:
     data["n_tasks"] = task
     print('TASK', task)
 
+    NAME_list.append(NAME_DAY)
+    JOBS.append(len(data['jobs']))
+    MACHINE.append(len(data['machines']))
+    #TASKS.append(task)
+
     #### actual scheduling #########
 
     data["actual_scheduling"] = retrieve_actual_schedule(data)
 
-    path = '/Users/francescameneghello/Documents/GitHub/Job_Shop_Scheduling_Benchmark_Environments_and_Instances/' + NAME_DAY + '_cal_actual.json'
+    path = '/Users/francescameneghello/Documents/GitHub/Job_Shop_Scheduling_Benchmark_Environments_and_Instances/LSTM/' + NAME_DAY + '_cal_actual.json'
     with open(path, 'w') as outfile:
         json.dump(data, outfile, indent=2)
 
     print('********************************************************************************************************')
+
+print(NAME_list)
+print(real_makespan)
+print(JOBS)
+print(MACHINE)
+print(TASKS)

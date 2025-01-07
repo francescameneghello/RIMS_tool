@@ -14,7 +14,6 @@ from utility import Buffer, ParallelObject
 from scipy.stats import truncnorm
 import math
 
-
 class Token(object):
 
     def __init__(self, id: int, params: Parameters, process: SimulationProcess, prefix: Prefix, writer: csv.writer):
@@ -30,13 +29,15 @@ class Token(object):
         self._writer = writer
         #self._parallel_object = parallel_object
         self._buffer = Buffer(writer, None)
+        self._DEP = True
+        if self._DEP:
+            self._activity_seq = self._params.JOBS[self._id]["activity_seq"]
         #self._buffer.set_feature("attribute_case", custom.case_function_attribute(self._id, time))
 
     def next_transition_jsp(self):
         next = None
         if self._pos < len(self._operations):
             next = self._operations[self._pos]
-            self._pos += 1
         return next
 
 
@@ -48,22 +49,20 @@ class Token(object):
         ### register trace in process ###
         request_resource = None
         #resource_trace = self._process._get_resource_trace()
-        #resource_trace_request = resource_trace.request() if self._type == 'sequential' else None
+        #resource_trace_request = resource_trace.request() #if self._type == 'sequential' else None
 
         while trans is not None:
 
             self._buffer.reset()
             self._buffer.set_feature("id_job", self._id)
             ### register event in process ###
-            #resource_task = self._process._get_resource_event(trans.label)
+            #resource_task = self._process._get_resource_event(self._activity_seq[self._pos][0])
             #self._buffer.set_feature("wip_activity", resource_task.count)
             resource = self._process._get_resource(trans)
             queue = 0 if len(resource._queue) == 0 else len(resource._queue[-1])
             self._buffer.set_feature("queue", queue)
             self._buffer.set_feature("enabled_time", env.now)
 
-            #while resource._schedule and self._id != resource._schedule[0]:
-            #    yield env.timeout(1)
             if resource._schedule_active:
                 request_resource = resource.request(self._id)
                 yield request_resource.get(1)
@@ -73,8 +72,11 @@ class Token(object):
 
 
             #single_resource = self._process._set_single_resource(resource._get_name())
-            self._buffer.set_feature("activity", str(self._id) + '_' + str(trans))
-            self._buffer.set_feature("resource", trans)
+            if self._DEP:
+                self._buffer.set_feature("activity", self._activity_seq[self._pos][0])
+            else:
+                self._buffer.set_feature("activity", str(self._id) + '_' + str(trans))
+            self._buffer.set_feature("resource", self._params.N_TO_MACHINES[str(trans)])
 
             #resource_task_request = resource_task.request()
             #yield resource_task_request
@@ -87,7 +89,22 @@ class Token(object):
 
             #stop = resource.to_time_schedule(self._start_time + timedelta(seconds=env.now))
             #yield env.timeout(stop)
-            duration = self.define_processing_time_jsp(trans)
+            if self._DEP:
+                name_machine = self._params.N_TO_MACHINES[str(trans)]
+
+                trans_1 = self._params.INDEX_USR[name_machine] if name_machine in self._params.INDEX_USR else self._params.INDEX_USR["Start"]
+                trans_0 = self._params.INDEX_AC[str(self._activity_seq[self._pos][0])] if str(self._activity_seq[self._pos][0]) in self._params.INDEX_AC else self._params.INDEX_AC["Start"]
+                #transition = (self._params.INDEX_AC[str(self._activity_seq[self._pos][0])], self._params.INDEX_USR[name_machine])
+                transition = (trans_0, trans_1)
+                duration = self._process.define_dependent_processing_time_jsp(str(self._id), transition,
+                                                                                  self._params.START + timedelta(
+                                                                                      seconds=env.now),
+                                                                                  trans_1)
+                #print('DURATION', duration)
+
+            else:
+                duration = self.define_processing_time_jsp(trans)
+
 
             if self._params.CALENDARS:
                 waiting_time = self._process.get_waiting_time_calendar(trans, env.now, duration)
@@ -107,15 +124,22 @@ class Token(object):
             else:
                 resource._release_no_schedule(request_resource)
 
+
+            self._pos += 1
             trans = self.next_transition_jsp()
 
         #print("Complete project", self._id)
+
+    def define_dependent_processing_time_jsp(self, operation):
+
+        return 0
 
     def define_processing_time_jsp(self, operation):
         operation = len(self._prefix.get_prefix())
         mu = self._times_operations[operation][0]
         sigma = self._times_operations[operation][1]
-        a, b = (0 - mu) / sigma, (math.inf - mu) / sigma
+        a = (0 - mu) / sigma if sigma > 0 else 0
+        b = (math.inf - mu) / sigma if sigma > 0 else (math.inf - mu)
         duration = truncnorm.rvs(a, b, self._times_operations[operation][0], self._times_operations[operation][1], size=1)[0]
         #duration = self._times_fixed[operation]
         #distribution = "normal"
