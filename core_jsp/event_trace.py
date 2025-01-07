@@ -14,6 +14,24 @@ from utility import Buffer, ParallelObject
 from scipy.stats import truncnorm
 import math
 
+
+
+from tensorflow.keras.models import Model
+from tensorflow.keras.layers import Input, Embedding, Concatenate
+from tensorflow.keras.layers import Dense, LSTM, BatchNormalization
+from tensorflow.keras.optimizers import Nadam, SGD, Adam, Adagrad
+from tensorflow.keras.callbacks import EarlyStopping, ModelCheckpoint, ReduceLROnPlateau, Callback, TensorBoard
+from tensorflow.python.ops.distributions import normal
+from tensorflow.python.ops import math_ops
+from tensorflow.python.ops import gen_nn_ops
+from tensorflow.python.keras.engine import data_adapter
+from tensorflow.python.eager.backprop import GradientTape
+from tensorflow.keras import backend
+from tensorflow.keras.models import load_model
+import tensorflow as tf
+import json
+
+
 class Token(object):
 
     def __init__(self, id: int, params: Parameters, process: SimulationProcess, prefix: Prefix, writer: csv.writer):
@@ -26,12 +44,14 @@ class Token(object):
         self._times_operations = self._params.JOBS[self._id]["times"]
         self._times_fixed = self._params.JOBS_FIXED[self._id]["times_fixed"]
         self._prefix = prefix
+        self._prefix_user = []
         self._writer = writer
         #self._parallel_object = parallel_object
         self._buffer = Buffer(writer, None)
         self._DEP = True
         if self._DEP:
             self._activity_seq = self._params.JOBS[self._id]["activity_seq"]
+            self.load_lstm()
         #self._buffer.set_feature("attribute_case", custom.case_function_attribute(self._id, time))
 
     def next_transition_jsp(self):
@@ -92,15 +112,18 @@ class Token(object):
             if self._DEP:
                 name_machine = self._params.N_TO_MACHINES[str(trans)]
 
-                trans_1 = self._params.INDEX_USR[name_machine] if name_machine in self._params.INDEX_USR else self._params.INDEX_USR["Start"]
-                trans_0 = self._params.INDEX_AC[str(self._activity_seq[self._pos][0])] if str(self._activity_seq[self._pos][0]) in self._params.INDEX_AC else self._params.INDEX_AC["Start"]
+                #trans_1 = self._params.INDEX_USR[name_machine] if name_machine in self._params.INDEX_USR else self._params.INDEX_USR["Start"]
+                #trans_0 = self._params.INDEX_AC[str(self._activity_seq[self._pos][0])] if str(self._activity_seq[self._pos][0]) in self._params.INDEX_AC else self._params.INDEX_AC["Start"]
                 #transition = (self._params.INDEX_AC[str(self._activity_seq[self._pos][0])], self._params.INDEX_USR[name_machine])
-                transition = (trans_0, trans_1)
-                duration = self._process.define_dependent_processing_time_jsp(str(self._id), transition,
-                                                                                  self._params.START + timedelta(
-                                                                                      seconds=env.now),
-                                                                                  trans_1)
+                #transition = (trans_0, trans_1)
+                #duration = self._process.define_dependent_processing_time_jsp(str(self._id), transition,
+                #                                                                  self._params.START + timedelta(
+                #                                                                      seconds=env.now),
+                #                                                                  trans_1)
                 #print('DURATION', duration)
+                duration = self.predict_my_lstm(name_machine, self._activity_seq[self._pos][0],
+                                        self._prefix.get_prefix(), self._prefix_user,
+                                        self._params.START + timedelta(seconds=env.now))
 
             else:
                 duration = self.define_processing_time_jsp(trans)
@@ -117,7 +140,8 @@ class Token(object):
             #self._buffer.set_feature("wip_end", resource_trace.count)
             self._buffer.set_feature("end_time", env.now)
             self._buffer.print_values()
-            self._prefix.add_activity(next)
+            self._prefix.add_activity(self._activity_seq[self._pos][0])
+            self._prefix_user.append(self._params.N_TO_MACHINES[str(trans)])
 
             if resource._schedule_active:
                 env.process(resource._release())
@@ -130,9 +154,91 @@ class Token(object):
 
         #print("Complete project", self._id)
 
-    def define_dependent_processing_time_jsp(self, operation):
+    def load_lstm(self):
+        def custom_sigma_activation(x):
+            return gen_nn_ops.elu(x) + 1
 
-        return 0
+        def custom_loss(gt, mu, sigma):
+            gt = tf.cast(gt, tf.float32)
+            sigma = backend.softplus(sigma)  # Ensure positive sigma
+            dist = normal.Normal(loc=mu, scale=sigma)
+            log_prob = dist.log_prob(gt)
+            return -backend.mean(log_prob)  # Negative log-likelihood
+
+        class CustomModel(Model):
+
+            def compile(self, optimizer, my_loss=None, loss=None,
+                        loss_weights=None,
+                        metrics=None,
+                        weighted_metrics=None,
+                        run_eagerly=False,
+                        steps_per_execution=1,
+                        jit_compile="auto",
+                        auto_scale_loss=True, **kwargs):
+                dummy_loss = lambda y_true, y_pred: 0.0
+                super().compile(optimizer=optimizer,
+                                loss=dummy_loss,
+                                metrics=metrics,
+                                loss_weights=loss_weights,
+                                weighted_metrics=weighted_metrics,
+                                run_eagerly=run_eagerly,
+                                **kwargs)
+                self.my_loss = my_loss
+
+            def train_step(self, data):
+                data = data_adapter.expand_1d(data)
+                input_data, gt, sample_weight = data_adapter.unpack_x_y_sample_weight(data)
+
+                with GradientTape() as tape:
+                    y_pred = self(input_data, training=True)
+                    loss_value = self.my_loss(gt[0], y_pred[0], y_pred[1])
+
+                grads = tape.gradient(loss_value, self.trainable_variables)
+                self.optimizer.apply_gradients(zip(grads, self.trainable_variables))
+
+                # Update metrics (including loss)
+                self.compiled_metrics.update_state(gt, y_pred, sample_weight)
+
+                return {"val_loss": loss_value}
+
+            def test_step(self, data):
+                # Unpack the data
+                data = data_adapter.expand_1d(data)
+                input_data, gt, sample_weight = data_adapter.unpack_x_y_sample_weight(data)
+
+                # Forward pass
+                y_pred = self(input_data, training=False)
+                loss_value = self.my_loss(gt[0], y_pred[0], y_pred[1])
+
+                # Update metrics
+                self.compiled_metrics.update_state(gt, y_pred, sample_weight)
+
+                return {"val_loss": loss_value}
+
+        path = '/Users/francescameneghello/Documents/GitHub/RIMS_tool/core_jsp/example/new_experiments/real_LSTM/my_LSTM/lstm_custom_model.h5'
+        meta_data_path = '/Users/francescameneghello/Documents/GitHub/RIMS_tool/core_jsp/example/new_experiments/real_LSTM/my_LSTM/metadata.json'
+        with open(meta_data_path, "r") as f:
+            self.meta_data = json.load(f)
+
+        self.loaded_model = load_model(path, custom_objects={
+            'custom_loss': custom_loss,
+            '<lambda>': custom_sigma_activation,
+            'CustomModel': CustomModel  # Ensure your custom model class is recognized
+        })
+
+    def predict_my_lstm(self, res, act, prefix, prefix_user, time):
+        #prefix + prefix_user + [processing_time, month, day, hour, act, res]
+        prefix_user = [self.meta_data["MACHINE_TO_N"][name] if name in self.meta_data["MACHINE_TO_N"] else 0 for name in
+                       prefix_user]
+        res = self.meta_data["MACHINE_TO_N"][res] if res in self.meta_data["MACHINE_TO_N"] else 0
+        prefix = prefix + [0] * (10 - (len(prefix)))
+        prefix_user = prefix_user + [0] * (10 - (len(prefix_user)))
+        input = [prefix + prefix_user + [time.month, time.weekday(), time.hour, act, res]]
+        sample_data = np.array(input).reshape((1, 1, 25))  # Example input data (must be reshaped)
+        predicted_mu, predicted_sigma = self.loaded_model.predict(sample_data)
+        time_pred = np.random.normal(predicted_mu[0][0], predicted_sigma[0][0], 1)[0]
+        return max(0, time_pred)
+
 
     def define_processing_time_jsp(self, operation):
         operation = len(self._prefix.get_prefix())

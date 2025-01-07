@@ -22,6 +22,7 @@ class SimulationProcess(object):
 
     def define_dependent_processing_time_jsp(self, cid, transition, time, res):
         return self.predictor.processing_time_distribution(cid, transition, time, res)
+        #return self.predictor.processing_time(cid, transition, time, res)
 
     def get_waiting_time_calendar(self, machine, time, duration):
         intervals_m = self._intervals_resources[machine]

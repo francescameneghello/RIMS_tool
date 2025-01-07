@@ -143,19 +143,14 @@ class Predictor(object):
                         {'ac_input': np.array([act_ngram]),
                          'features': feat_ngram})
         mu_pred, sigma_pred = preds
-        mu_pred = self.scaler.inverse_transform(np.concatenate((np.array([[mu_pred[0][0]]]), np.array([[0.000]])), axis=1))[0][0]/60
-        sigma_pred = self.scaler.inverse_transform(np.concatenate((np.array([[sigma_pred[0][0]]]), np.array([[0.000]])), axis=1))[0][0]/60
-        #print('MU_PRED', mu_pred, 'SIGMA', sigma_pred)
-        processing = np.random.normal(mu_pred, sigma_pred, 1)[0]
-        proc_t = processing/60 if processing > 0 else 0
-        self.active_instances[cid].update_proc(proc_t)
-        #ipred = self.scaler.inverse_transform(np.concatenate((np.array([[proc_t]]), np.array([[0.000]])), axis=1))
-        #iproc_t = ipred[0][0]/60
-        # resource assignment
-        #release_time = time + timedelta(seconds=int(round(iproc_t)))
-        #print('-------------- ', transition, ' --------------')
-        #print(mu_pred, sigma_pred, int(round(proc_t)))
-        return proc_t
+        processing = np.random.normal(mu_pred[0][0], sigma_pred[0][0], 1)[0]
+        self.active_instances[cid].update_proc(processing)
+        #mu_pred = self.scaler.inverse_transform(np.concatenate((np.array([[mu_pred[0][0]]]), np.array([[0.000]])), axis=1))[0][0]/60
+        #sigma_pred = self.scaler.inverse_transform(np.concatenate((np.array([[sigma_pred[0][0]]]), np.array([[0.000]])), axis=1))[0][0]/60
+        ipred = self.scaler.inverse_transform(np.concatenate((np.array([[processing]]), np.array([[0.000]])), axis=1))
+        iproc_t = ipred[0][0]/60
+
+        return abs(iproc_t)
 
     def predict_waiting_distribution(self, cid, pr_wip, next_act, rp_oc, time, queue):
         # initialize instance
@@ -221,21 +216,25 @@ class Predictor(object):
     def processing_time(self, cid, transition, time, res):
         # initialize instance
         if cid not in self.active_instances:
-            self.active_instances[cid] = en.ProcessInstance(cid, self.n_size, (self.n_feat_proc, self.n_feat_wait), dual=True, n_act=True)
+            self.active_instances[cid] = en.ProcessInstance(cid, self.n_size, self.n_feat_proc, dual=True, n_act=True)
         res_scal = self.inter_scaler.transform(np.array([res]).reshape(-1, 1))[0]
         self.active_instances[cid].update_proc_ngram(transition[0], time, res_scal)
         act_ngram, feat_ngram = self.active_instances[cid].get_proc_ngram()
         # predict
-        preds = self.proc_model_path.predict(
-            {'ac_input': np.array([act_ngram]),
-             'features': feat_ngram})
-        preds[preds < 0] = 0.000001
+        with warnings.catch_warnings():
+            warnings.filterwarnings('ignore')
+            with self.g1.as_default():
+                with self.first_session.as_default():
+                    preds = self.proc_model_path.predict(
+                        {'ac_input': np.array([act_ngram]),
+                         'features': feat_ngram})
+        #preds[preds < 0] = 0.000001
         proc = preds[0]
         self.active_instances[cid].update_proc(proc)
         ipred = self.scaler.inverse_transform(np.concatenate((np.array([[0.000]]), preds), axis=1))
-        proc= ipred[0][1]
+        proc = ipred[0][1]
 
-        return proc
+        return proc/60
 
     # pr_act_initial= 11, next_act = (7, 3), rp_oc = [0.0, 0.0, 0.0, 0.0, 0.0, 0.0], time = datetime(year=2012, month=3, day=13, hour=5, minute=28, second=26)
     def predict_waiting_queue(self, cid, pr_wip, next_act, rp_oc, time, queue):

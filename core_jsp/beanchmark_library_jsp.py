@@ -178,7 +178,7 @@ def simulate_actual_scheduling(final_path):
         json.dump(results, outfile, indent=2)
     return D_alpha, np.mean(makespans), np.std(makespans)
 
-days = ['0_3']
+days = ['1_4','1_18','1_14','1_11','1_7','1_24','1_3']
 D_alpha = []
 MEAN = []
 STD = []
