@@ -4,6 +4,53 @@ import math
 from parameters import Parameters
 from datetime import timedelta
 from call_LSTM import Predictor
+import torch
+import pickle
+import torch.nn as nn
+import torch.optim as optim
+from torch.utils.data import DataLoader, Dataset
+from keras_preprocessing.sequence import pad_sequences
+
+def custom_sigma_activation(x):
+    return torch.nn.functional.elu(x) + 1
+
+
+# Define the LSTM-based model
+class CustomModel(nn.Module):
+    def __init__(self, num_unique_act_res, embedding_size, window_size, feature_dim, lstm_size):
+        super(CustomModel, self).__init__()
+
+        self.embedding = nn.Embedding(num_embeddings=num_unique_act_res, embedding_dim=embedding_size)
+        self.lstm = nn.LSTM(input_size=embedding_size + feature_dim, hidden_size=lstm_size, batch_first=True,
+                            num_layers=2, dropout=0.2)
+        self.mu_layer = nn.Linear(lstm_size, 1)
+        self.sigma_layer = nn.Linear(lstm_size, 1)
+
+    def forward(self, act_res, numerical):
+        embedded = self.embedding(act_res)
+        concatenated = torch.cat((embedded, numerical), dim=2)
+        lstm_out, _ = self.lstm(concatenated)
+        lstm_out_last = lstm_out[:, -1, :]
+
+        mu = self.mu_layer(lstm_out_last)
+        sigma = custom_sigma_activation(self.sigma_layer(lstm_out_last))
+        return mu, sigma
+
+
+# Adjust CustomDataset to handle two targets: 'mu' and 'sigma'
+class CustomDataset(Dataset):
+    def __init__(self, act_res, numerical, mu_targets, sigma_targets, original_indices):
+        self.act_res = act_res
+        self.numerical = numerical
+        self.mu_targets = mu_targets
+        self.sigma_targets = sigma_targets
+        self.original_indices = original_indices
+
+    def __len__(self):
+        return len(self.mu_targets)
+
+    def __getitem__(self, idx):
+        return self.act_res[idx], self.numerical[idx], self.mu_targets[idx], self.sigma_targets[idx], self.original_indices[idx]
 
 class SimulationProcess(object):
 
@@ -17,8 +64,26 @@ class SimulationProcess(object):
         self._resource_trace = simpy.Resource(env, math.inf)
         #self._am_parallel = []
 
-        self.predictor = Predictor(self._params)
-        self.predictor.predict()
+        #self.predictor = Predictor(self._params)
+        #self.predictor.predict()
+        self.load_lstm()
+
+    def load_lstm(self):
+        with open("/Users/francescameneghello/Documents/GitHub/LSTM_clear/MY_MODEL/metadata_with_sigma_mu.pkl", "rb") as f:
+            metadata = pickle.load(f)
+
+        self.WINDOW_SIZE = metadata["WINDOW_SIZE"]
+        self.EMBEDDING_SIZE = metadata["EMBEDDING_SIZE"]
+        self.FEATURE_COLUMNS = metadata["FEATURE_COLUMNS"]
+        self.idx_to_act_res = metadata["idx_to_act_res"]
+        self.act_res_to_idx = metadata["act_res_to_idx"]
+
+        self.num_unique_act_res = len(self.act_res_to_idx)
+
+        # Load model
+        self.model = CustomModel(self.num_unique_act_res, self.EMBEDDING_SIZE, self.WINDOW_SIZE, len(self.FEATURE_COLUMNS), lstm_size=50)
+        self.model.load_state_dict(torch.load("/Users/francescameneghello/Documents/GitHub/LSTM_clear/MY_MODEL/lstm_mae_model_with_sigma_mu.pth"))
+        self.model.eval()
 
     def define_dependent_processing_time_jsp(self, cid, transition, time, res):
         return self.predictor.processing_time_distribution(cid, transition, time, res)

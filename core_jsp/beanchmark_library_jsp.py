@@ -131,7 +131,7 @@ def define_k_solutions(results_path):
 
 def final_simulation(final_path, results_iteration, top_k):
     print("TOP K solutions", top_k)
-    N = 1000
+    N = 100
     TASK, MACHINES, SCHEDULES = define_job_problem(final_path, type)
     number_best = 0
     s_star = None
@@ -178,7 +178,8 @@ def simulate_actual_scheduling(final_path):
         json.dump(results, outfile, indent=2)
     return D_alpha, np.mean(makespans), np.std(makespans)
 
-days = ['1_4','1_18','1_14','1_11','1_7','1_24','1_3']
+days = ['1_19','1_20','1_5','1_26','1_25','1_4','1_18','1_14','1_11','1_7','1_24']
+#days = ['1_5','1_26','1_25','1_14','1_11','1_7']
 D_alpha = []
 MEAN = []
 STD = []
