@@ -23,8 +23,8 @@ import copy
 import math
 
 
-def setup(env: simpy.Environment, params, i, NAME, f):
-    simulation_process = SimulationProcess(env, params)
+def setup(env: simpy.Environment, params, i, NAME, f, NAME_EXP= None):
+    simulation_process = SimulationProcess(env, params, NAME_EXP)
     utility.define_folder_output("output/output_{}".format(NAME))
     writer = csv.writer(f)
     writer.writerow(Buffer(writer).get_buffer_keys())
@@ -40,7 +40,7 @@ def setup(env: simpy.Environment, params, i, NAME, f):
         env.process(Token(machine_id, params, simulation_process, prefix, writer).simulation(env))
 
 
-def run_simulation(PATH_PARAMETERS, N_SIMULATION, schedule, D_start):
+def run_simulation(PATH_PARAMETERS, N_SIMULATION, schedule, D_start, NAME_EXP=None):
     NAME = 'simple_example'
     makespans = []
     critical_star, stds_star, n_activities = 0, [], 0
@@ -50,10 +50,10 @@ def run_simulation(PATH_PARAMETERS, N_SIMULATION, schedule, D_start):
         with open(path, 'w') as f:
             params = Parameters(PATH_PARAMETERS, schedule_sim)
             env = simpy.Environment()
-            env.process(setup(env, params, i, NAME, f))
+            env.process(setup(env, params, i, NAME, f, NAME_EXP))
             env.run()
         makespans.append(env.now)
-        print('Finished simulation ', i, 'makespan ', env.now)
+        #print('Finished simulation ', i, 'makespan ', env.now)
         if not schedule:
             critical_star, stds_star, n_activities = optimized_find_critical_path_duplicate(path, critical_star, stds_star, n_activities)
             print('N_SIMULATION ', len(makespans), critical_star, stds_star, n_activities)
@@ -82,7 +82,7 @@ def check_results(makespans, D_star):
     return res
 
 
-def main(schedule, N, PATH_PARAMETERS, D_star=None):
+def main(schedule, N, PATH_PARAMETERS, D_star=None, NAME_EXP= None):
     '''opts, args = getopt.getopt(argv, "h:j:i:")
     #main(argv)
     for opt, arg in opts:
@@ -96,7 +96,7 @@ def main(schedule, N, PATH_PARAMETERS, D_star=None):
             N_SIMULATION = int(arg)
     '''
     N_SIMULATION = N
-    return run_simulation(PATH_PARAMETERS, N_SIMULATION, schedule, D_star)
+    return run_simulation(PATH_PARAMETERS, N_SIMULATION, schedule, D_star, NAME_EXP)
 
 
 def find_critical_path(simulated_path, critical_star, stds_star):

@@ -1,11 +1,13 @@
 import simpy
 from role_simulator import RoleSimulator
 import math
+import json
 from parameters import Parameters
 from datetime import timedelta
 from call_LSTM import Predictor
 import torch
 import pickle
+import joblib
 import torch.nn as nn
 import torch.optim as optim
 from torch.utils.data import DataLoader, Dataset
@@ -54,7 +56,7 @@ class CustomDataset(Dataset):
 
 class SimulationProcess(object):
 
-    def __init__(self, env: simpy.Environment, params: Parameters):
+    def __init__(self, env: simpy.Environment, params: Parameters, NAME_EXP= None):
         self._env = env
         self._params = params
         #self._date_start = params.START_SIMULATION
@@ -66,10 +68,31 @@ class SimulationProcess(object):
 
         #self.predictor = Predictor(self._params)
         #self.predictor.predict()
-        self.load_lstm()
+        #self.load_lstm()
+        self.NAME_EXP = NAME_EXP
+        #self.load_simulation_setting()
+        #self.loaded_model_reg = joblib.load('/Users/francescameneghello/Desktop/multioutput_model_all.pkl')
+
+    def load_simulation_setting(self):
+        #json_path = '/Users/francescameneghello/Documents/GitHub/RIMS_tool/core_jsp/example/new_experiments/real_LSTM/simulation_settings_test_dfci_' + self.NAME_EXP + '_2022_cal_actuq3_1.json'
+        json_path = '/Users/francescameneghello/Documents/GitHub/Job_Shop_Scheduling_Benchmark_Environments_and_Instances/LSTM/original/' + self.NAME_EXP + '_cal_actual.json'
+        with open(json_path, "r") as f:
+            self._simulation_parameters = json.load(f)
+
+    def set_simulation_parameters(self, caseid, pos_seq, mean, sigma):
+        new_time = [mean, sigma]
+        self._simulation_parameters["jobs"][str(caseid)]["times"][pos_seq] = new_time
+        self.write_simulation_parameter()
+
+    def write_simulation_parameter(self):
+        path = '/Users/francescameneghello/Documents/GitHub/Job_Shop_Scheduling_Benchmark_Environments_and_Instances/LSTM/prediction/prediction_' + self.NAME_EXP + '_cal_actual.json'
+        with open(path, "w") as json_file:
+            json.dump(self._simulation_parameters, json_file, indent=2)
+        #print('Write file', path)
+
 
     def load_lstm(self):
-        with open("/Users/francescameneghello/Documents/GitHub/LSTM_clear/MY_MODEL/metadata_with_sigma_mu.pkl", "rb") as f:
+        with open("/Users/francescameneghello/Documents/GitHub/LSTM_clear/MY_MODEL/metadata_with_sigma_mu_all.pkl", "rb") as f:
             metadata = pickle.load(f)
 
         self.WINDOW_SIZE = metadata["WINDOW_SIZE"]
@@ -81,8 +104,8 @@ class SimulationProcess(object):
         self.num_unique_act_res = len(self.act_res_to_idx)
 
         # Load model
-        self.model = CustomModel(self.num_unique_act_res, self.EMBEDDING_SIZE, self.WINDOW_SIZE, len(self.FEATURE_COLUMNS), lstm_size=50)
-        self.model.load_state_dict(torch.load("/Users/francescameneghello/Documents/GitHub/LSTM_clear/MY_MODEL/lstm_mae_model_with_sigma_mu.pth"))
+        self.model = CustomModel(self.num_unique_act_res, self.EMBEDDING_SIZE, self.WINDOW_SIZE, len(self.FEATURE_COLUMNS), lstm_size=100)
+        self.model.load_state_dict(torch.load("/Users/francescameneghello/Documents/GitHub/LSTM_clear/MY_MODEL/lstm_mae_model_with_sigma_mu_all.pth"))
         self.model.eval()
 
     def define_dependent_processing_time_jsp(self, cid, transition, time, res):

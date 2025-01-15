@@ -37,8 +37,8 @@ def define_job_problem(path, type, calendar=False):
     return TASKS, MACHINES, SCHEDULES
 
 
-def simulate_schedule(s, N, MACHINES, path, D_start=None):
-    makespan_simulation = main(s, N, path, D_start)
+def simulate_schedule(s, N, MACHINES, path, D_start=None, NAME_EXP= None):
+    makespan_simulation = main(s, N, path, D_start, NAME_EXP)
     return makespan_simulation
 
 
@@ -131,7 +131,7 @@ def define_k_solutions(results_path):
 
 def final_simulation(final_path, results_iteration, top_k):
     print("TOP K solutions", top_k)
-    N = 100
+    N = 1000
     TASK, MACHINES, SCHEDULES = define_job_problem(final_path, type)
     number_best = 0
     s_star = None
@@ -158,41 +158,42 @@ def final_simulation(final_path, results_iteration, top_k):
     return results_iteration
 
 
-def simulate_actual_scheduling(final_path):
-    N = 1
+def simulate_actual_scheduling(final_path, NAME_EXP = None):
+    N = 1000
     with open(final_path) as file:
         data = json.load(file)
         schedule = data["actual_scheduling"]
         TASK, MACHINES, SCHEDULES = define_job_problem(final_path, type)
-        makespans = simulate_schedule(schedule, N, MACHINES, final_path)  ## D'
+        makespans = simulate_schedule(schedule, N, MACHINES, final_path, NAME_EXP=NAME_EXP)  ## D'
         D_alpha = np.percentile(makespans, 95)
         print('Actual scheduling D_alpha: ', D_alpha)
         print("Mean of makespans", np.mean(makespans), "Std of makespans", np.std(makespans))
         print("********************************************************************************")
 
     #write_path_actual = path + '/results/results_simulation_actual_scheduling' + NAME_EXP + '.json'
-    write_path_actual = '/Users/francescameneghello/Documents/GitHub/RIMS_tool/core_jsp/example/results/results_simulation_actual_scheduling' + NAME_EXP + '.json'
+    write_path_actual = '/Users/francescameneghello/Documents/GitHub/RIMS_tool/core_jsp/example/results/results_simulation_actual_scheduling' + NAME_EXP + '_prediction.json'
     with open(write_path_actual, 'w') as outfile:
         results = {"name_instance": NAME_EXP, "D_alpha": D_alpha, "Mean": np.mean(makespans), "Std": np.std(makespans),
                    "makespans": makespans}
         json.dump(results, outfile, indent=2)
     return D_alpha, np.mean(makespans), np.std(makespans)
 
-days = ['1_19','1_20','1_5','1_26','1_25','1_4','1_18','1_14','1_11','1_7','1_24']
-#days = ['1_5','1_26','1_25','1_14','1_11','1_7']
+#days = ['0_27', '0_4','0_5','0_6', '0_13','0_25','0_11','0_26','0_12','0_19','0_18']
+days = ['2_2']
 D_alpha = []
 MEAN = []
 STD = []
 Q_values = []
 for D in days:
-    CRITICAL_PATH_DISCOVERY = True
-    ACTUAL_SCHEDULE = True
+    CRITICAL_PATH_DISCOVERY = False
+    ACTUAL_SCHEDULE = False
     start_time = time.time()
     #path = '/Users/francescameneghello/Documents/GitHub/RIMS_tool/core_jsp/example/to_do_q3'
     NAME_EXP = 'simulation_settings_test_dfci_' + D + '_2022_cal_actuq3_1'
     #final_path = path + 'new_experiments/cscmax_40_20_5/simulation_settings_' +NAME_EXP+ '.json'
 
-    final_path = '/Users/francescameneghello/Documents/GitHub/RIMS_tool/core_jsp/example/new_experiments/real_LSTM/' + NAME_EXP + '.json'
+    final_path = '/Users/francescameneghello/Documents/GitHub/RIMS_tool/core_jsp/example/new_experiments/real_LSTM/predictive_simulation_settings/' + NAME_EXP + 'prediction_rq.json' ### to generate json
+    #final_path =  '/Users/francescameneghello/Documents/GitHub/RIMS_tool/core_jsp/example/new_experiments/real_LSTM/predictive_simulation_settings/' + NAME_EXP + 'prediction.json'
     print('---------------- ', NAME_EXP, ' ----------------')
     if not CRITICAL_PATH_DISCOVERY:
         TASK, MACHINES, SCHEDULES = define_job_problem(final_path, type)  #### read the beanchmarks and define json file to find the solution with CP
@@ -206,12 +207,12 @@ for D in days:
         results_iteration['total_time'] = (time.time() - start_time)
 
         #write_path = path + '/results/results_simulation_' + NAME_EXP + '.json'
-        write_path = '/Users/francescameneghello/Documents/GitHub/RIMS_tool/core_jsp/example/results/results_simulation_' + NAME_EXP + '.json'
+        write_path = '/Users/francescameneghello/Documents/GitHub/RIMS_tool/core_jsp/example/results/results_simulation_' + NAME_EXP + '_prediction.json'
         with open(write_path, 'w') as outfile:
             json.dump(results_iteration, outfile, indent=2)
     else:
         if ACTUAL_SCHEDULE:
-            d_alpha, mean, std = simulate_actual_scheduling(final_path)
+            d_alpha, mean, std = simulate_actual_scheduling(final_path, D)
             D_alpha.append(d_alpha)
             MEAN.append(mean)
             STD.append(std)
@@ -221,6 +222,7 @@ for D in days:
             print('---------------- Q3: ', Q3, ' ----------------------')
 
     print("--- Execution time %s seconds ---" % (time.time() - start_time))
+
 
 print(D_alpha)
 print(MEAN)

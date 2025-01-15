@@ -68,7 +68,7 @@ def check_same_elements(job):
 
     return duplicates
 
-names = ['1_19','1_20','1_5','1_26','1_25','1_4','1_18','1_14','1_11','1_7','1_24','1_3']
+names = ['1_13','1_12','1_27','1_6','1_19','1_20','1_5','1_26','1_25','1_4','1_18','1_14','1_11','1_7','1_24','1_10','1_3','1_1','1_17','1_9','1_2','1_16','1_8','1_23','1_15','1_22','2_27','2_20','2_13','2_6','2_19','2_12','2_5','2_26','2_25','2_11','2_18','2_24','2_21','2_4','2_28','2_14','2_17','2_10','2_29','2_3','2_7','2_30','2_8','2_23','2_2','2_22','2_9','2_16','2_15','2_1','3_17','3_3','3_24','3_23','3_9','3_16','3_10','3_2','3_22','3_18','3_29','3_8','3_1','3_15','3_21','3_11','3_7','3_14','3_4','3_25','3_19','3_28','3_27','3_20','3_26','3_13','3_5','3_6','3_12','4_15','4_22','4_1','4_8','4_21','4_29','4_14','4_7','4_28','4_27','4_13','4_6','4_20','4_19','4_12','4_24','4_9','4_26','4_16','4_2','4_23','4_5','4_18','4_11','4_4','4_25','4_17','4_10','4_3']
 NAME_list = []
 JOBS = []
 MACHINE = []
@@ -180,7 +180,7 @@ for name in names:
 
     data["actual_scheduling"] = retrieve_actual_schedule(data)
 
-    path = '/Users/francescameneghello/Documents/GitHub/Job_Shop_Scheduling_Benchmark_Environments_and_Instances/LSTM/' + NAME_DAY + '_cal_actual.json'
+    path = '/Users/francescameneghello/Documents/GitHub/Job_Shop_Scheduling_Benchmark_Environments_and_Instances/LSTM/original/' + NAME_DAY + '_cal_actual.json'
     with open(path, 'w') as outfile:
         json.dump(data, outfile, indent=2)
 
