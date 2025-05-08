@@ -36,14 +36,14 @@ class Token(object):
         self._params = params
         self._operations = self._params.JOBS[self._id]["machine_seq"] ## list of operations to perform
         self._times_operations = self._params.JOBS[self._id]["times"]
-        self._times_fixed = self._params.JOBS_FIXED[self._id]["times_fixed"]
+        self._times_fixed = self._params.JOBS_FIXED[self._id]["times_fixed"] if self._params.JOBS_FIXED else None
         self._prefix = prefix
         self._prefix_lstm = []
         self._writer = writer
         #self._parallel_object = parallel_object
         self._buffer = Buffer(writer, None)
         self._DEP = False
-        self._activity_seq = self._params.JOBS[self._id]["activity_seq"]
+        self._activity_seq = self._params.JOBS[self._id]["activity_seq"] if "activity_seq" in self._params.JOBS[self._id] else None
         #self._buffer.set_feature("attribute_case", custom.case_function_attribute(self._id, time))
 
     def next_transition_jsp(self):
@@ -79,7 +79,9 @@ class Token(object):
                 request_resource = resource.request(self._id)
                 yield request_resource.get(1)
             else:
-                request_resource = resource.request_no_schedule()
+                operation = len(self._prefix.get_prefix())
+                mean = self._times_operations[operation][0]
+                request_resource = resource.request_no_schedule(mean)
                 yield request_resource
 
 
@@ -88,7 +90,8 @@ class Token(object):
                 self._buffer.set_feature("activity", self._activity_seq[self._pos][0])
             else:
                 self._buffer.set_feature("activity", str(self._id) + '_' + str(trans))
-            self._buffer.set_feature("resource", self._params.N_TO_MACHINES[str(trans)])
+            if self._params.N_TO_MACHINES:
+                self._buffer.set_feature("resource", self._params.N_TO_MACHINES[str(trans)])
 
             #resource_task_request = resource_task.request()
             #yield resource_task_request
@@ -103,17 +106,6 @@ class Token(object):
             #yield env.timeout(stop)
             if self._DEP:
                 name_machine = self._params.N_TO_MACHINES[str(trans)]
-
-                #trans_1 = self._params.INDEX_USR[name_machine] if name_machine in self._params.INDEX_USR else self._params.INDEX_USR["Start"]
-                #trans_0 = self._params.INDEX_AC[str(self._activity_seq[self._pos][0])] if str(self._activity_seq[self._pos][0]) in self._params.INDEX_AC else self._params.INDEX_AC["Start"]
-                #transition = (self._params.INDEX_AC[str(self._activity_seq[self._pos][0])], self._params.INDEX_USR[name_machine])
-                #transition = (trans_0, trans_1)
-                #duration = self._process.define_dependent_processing_time_jsp(str(self._id), transition,
-                #                                                                  self._params.START + timedelta(
-                #                                                                      seconds=env.now),
-                #                                                                  trans_1)
-                #print('DURATION', duration)
-                #case_id, act, res, month, day, hour
                 time = self._params.START + timedelta(seconds=env.now)
                 res = RES_TO_N[name_machine] if name_machine in RES_TO_N else 'UNKNOWN'
                 self._prefix_lstm.append([self._id, self._activity_seq[self._pos][0], res, time.month, time.weekday(), time.hour])
@@ -135,7 +127,8 @@ class Token(object):
             #self._buffer.set_feature("wip_end", resource_trace.count)
             self._buffer.set_feature("end_time", env.now)
             self._buffer.print_values()
-            self._prefix.add_activity(self._activity_seq[self._pos][0])
+            if self._activity_seq:
+                self._prefix.add_activity(self._activity_seq[self._pos][0])
 
             if resource._schedule_active:
                 env.process(resource._release())

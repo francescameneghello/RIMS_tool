@@ -75,9 +75,9 @@ class RoleSimulator(object):
             self._resource_simpy = simpy.PriorityResource(self._env, self._capacity)
             self._schedule_active = False
 
-    def request_no_schedule(self):
+    def request_no_schedule(self, mean=None):
         prio = randint(0, 50)
-        return self._resource_simpy.request(priority=prio)
+        return self._resource_simpy.request(priority=-mean)
 
     def _release_no_schedule(self, request):
         self._resource_simpy.release(request)

@@ -44,15 +44,17 @@ def simulate_schedule(s, N, MACHINES, path, D_start=None, NAME_EXP= None):
 
 def define_Q3(path, start_time):
     TASK, MACHINES, SCHEDULES = define_job_problem(path, type)
-    length_path, stds_list, n_activities = simulate_schedule(None, 25, MACHINES, path)
-    stds_2 = [s*s for s in stds_list]
-    Q3 = (1.645/math.sqrt(n_activities))*(math.sqrt(np.mean(stds_2))/np.mean(stds_list))
+    #length_path, stds_list, n_activities = simulate_schedule(None, 25, MACHINES, path)
+    d_alpha, mean, std = simulate_schedule(None, 1000, MACHINES, path)
+    #stds_2 = [s*s for s in stds_list]
+    #Q3 = (1.645/math.sqrt(n_activities))*(math.sqrt(np.mean(stds_2))/np.mean(stds_list))
 
-    write_path_actual = '/Users/francescameneghello/Documents/GitHub/RIMS_tool/core_jsp/example/results/results_simulation_Q3_' + NAME_EXP + '.json'
-    with open(write_path_actual, 'w') as outfile:
-        results = {"name_instance": NAME_EXP, 'Q3': Q3, 'time': (time.time() - start_time)}
-        json.dump(results, outfile, indent=2)
-    return Q3
+    #write_path_actual = '/Users/francescameneghello/Documents/GitHub/RIMS_tool/core_jsp/example/results/results_simulation_Q3_' + NAME_EXP + '.json'
+    #with open(write_path_actual, 'w') as outfile:
+    #    results = {"name_instance": NAME_EXP, 'Q3': Q3, 'time': (time.time() - start_time)}
+    #    json.dump(results, outfile, indent=2)
+    #return Q3
+    return d_alpha, mean, std
 
 
 ########## CALENDAR ################
@@ -178,21 +180,53 @@ def simulate_actual_scheduling(final_path, NAME_EXP = None):
         json.dump(results, outfile, indent=2)
     return D_alpha, np.mean(makespans), np.std(makespans)
 
+
+##### call for beanchmarks #####
+
+'''CRITICAL_PATH_DISCOVERY = False
+start_time = time.time()
+#NAME_EXP = 'medium_20_20_1_q3_cal_1'
+NAME_EXP = 'cscmax_20_20_3_cp_solver_q3_0.5_cal_v2'
+#final_path = '/Users/francescameneghello/Documents/GitHub/RIMS_tool/core_jsp/example/new_experiments/syn_dep/simulation_settings_medium_20_20_1_q3_cal.json'
+final_path = '/Users/francescameneghello/Documents/GitHub/RIMS_tool/core_jsp/example/new_experiments/cscmax_20_20_2/simulation_settings_cscmax_20_20_2_cp_solver_0.5_q3_1_cal_v2.json'
+if not CRITICAL_PATH_DISCOVERY:
+    TASK, MACHINES, SCHEDULES = define_job_problem(final_path, type)  #### read the beanchmarks and define json file to find the solution with CP
+
+    top_k_solutions = define_k_solutions(final_path)
+    top_k_solutions = range(0, 1)
+
+    results_iteration = {"top_k": list(top_k_solutions), "k_step": {}, "Best_solution": {}}
+
+    results_iteration = final_simulation(final_path, results_iteration, top_k_solutions)
+
+    results_iteration['total_time'] = (time.time() - start_time)
+
+    #write_path = path + '/results/results_simulation_' + NAME_EXP + '.json'
+    write_path = '/Users/francescameneghello/Documents/GitHub/RIMS_tool/core_jsp/example/results/results_simulation_' + NAME_EXP + '.json'
+    with open(write_path, 'w') as outfile:
+        json.dump(results_iteration, outfile, indent=2)
+else:
+    Q3 = define_Q3(final_path, start_time)
+    print('---------------- Q3: ', Q3, ' ----------------------')
+
+print("--- Execution time %s seconds ---" % (time.time() - start_time))
+
+'''
 #days = ['0_27', '0_4','0_5','0_6', '0_13','0_25','0_11','0_26','0_12','0_19','0_18']
-days = ['2_2']
+days = ['4_23','4_16','4_20','4_2','4_10','4_13','4_26','4_12','4_9','4_24','4_19','4_4','4_17','4_18','4_25','4_27','4_6','4_3','4_8','4_14','4_11','4_15','4_21','4_28','4_7','4_29','4_1','4_22','4_5']
 D_alpha = []
 MEAN = []
 STD = []
 Q_values = []
 for D in days:
-    CRITICAL_PATH_DISCOVERY = False
+    CRITICAL_PATH_DISCOVERY = True
     ACTUAL_SCHEDULE = False
     start_time = time.time()
     #path = '/Users/francescameneghello/Documents/GitHub/RIMS_tool/core_jsp/example/to_do_q3'
     NAME_EXP = 'simulation_settings_test_dfci_' + D + '_2022_cal_actuq3_1'
     #final_path = path + 'new_experiments/cscmax_40_20_5/simulation_settings_' +NAME_EXP+ '.json'
 
-    final_path = '/Users/francescameneghello/Documents/GitHub/RIMS_tool/core_jsp/example/new_experiments/real_LSTM/predictive_simulation_settings/' + NAME_EXP + 'prediction_rq.json' ### to generate json
+    final_path = '/Users/francescameneghello/Documents/GitHub/RIMS_tool/core_jsp/example/new_experiments/real_data/' + NAME_EXP + '.json' ### to generate json
     #final_path =  '/Users/francescameneghello/Documents/GitHub/RIMS_tool/core_jsp/example/new_experiments/real_LSTM/predictive_simulation_settings/' + NAME_EXP + 'prediction.json'
     print('---------------- ', NAME_EXP, ' ----------------')
     if not CRITICAL_PATH_DISCOVERY:
@@ -217,9 +251,17 @@ for D in days:
             MEAN.append(mean)
             STD.append(std)
         else:
-            Q3 = define_Q3(final_path, start_time)
-            Q_values.append(Q3)
-            print('---------------- Q3: ', Q3, ' ----------------------')
+            #Q3 = define_Q3(final_path, start_time)
+            #Q_values.append(Q3)
+            d_alpha, mean, std = define_Q3(final_path, start_time)
+            D_alpha.append(d_alpha)
+            MEAN.append(mean)
+            STD.append(std)
+            print(D_alpha)
+            print(MEAN)
+            print(STD)
+            print(Q_values)
+            #print('---------------- Q3: ', Q3, ' ----------------------')
 
     print("--- Execution time %s seconds ---" % (time.time() - start_time))
 

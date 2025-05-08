@@ -33,9 +33,9 @@ class Parameters(object):
                 self.MACHINES = data['machines']
                 self.N_JOBS = len(data["jobs"])
                 self.JOBS = data["jobs"]
-                self.JOBS_FIXED = data["fixed_duration"]
-                self.N_TO_MACHINES = data["n_to_machines"]
-                self.MACHINES_TO_N = data["machines_to_n"]
+                self.JOBS_FIXED = data["fixed_duration"] if "fixed_duration" in data else None
+                self.N_TO_MACHINES = data["n_to_machines"] if "n_to_machine" in data else None
+                self.MACHINES_TO_N = data["machines_to_n"] if "machines_to_n" in data else None
                 self.START = datetime.strptime(data["start_timestamp"], '%Y-%m-%d %H:%M:%S')
 
                 #### calendars

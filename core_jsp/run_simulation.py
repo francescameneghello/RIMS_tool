@@ -53,17 +53,21 @@ def run_simulation(PATH_PARAMETERS, N_SIMULATION, schedule, D_start, NAME_EXP=No
             env.process(setup(env, params, i, NAME, f, NAME_EXP))
             env.run()
         makespans.append(env.now)
-        #print('Finished simulation ', i, 'makespan ', env.now)
-        if not schedule:
-            critical_star, stds_star, n_activities = optimized_find_critical_path_duplicate(path, critical_star, stds_star, n_activities)
-            print('N_SIMULATION ', len(makespans), critical_star, stds_star, n_activities)
-            stds_2 = [s * s for s in stds_star]
-            Q3 = (1.645 / math.sqrt(n_activities)) * (math.sqrt(np.mean(stds_2)) / np.mean(stds_star))
-            print('Temporary Q3 value ', Q3)
+        print('Finished simulation ', i, 'makespan ', env.now)
+        #if not schedule:
+        #    critical_star, stds_star, n_activities = optimized_find_critical_path_duplicate(path, critical_star, stds_star, n_activities)
+        #    print('N_SIMULATION ', len(makespans), critical_star, stds_star, n_activities)
+        #    stds_2 = [s * s for s in stds_star]
+        #    Q3 = (1.645 / math.sqrt(n_activities)) * (math.sqrt(np.mean(stds_2)) / np.mean(stds_star))
+        #    print('Temporary Q3 value ', Q3)
     if not schedule:
     #    print('CRITICAL_START', critical_star, 'STDS_STAR', stds_star)
     #    print('Mean of MAKESPAN of simulations', np.mean(makespans), 'D_alpha', np.percentile(makespans, 95))
-        return critical_star, stds_star, n_activities
+        mean = np.mean(makespans)
+        d_alpha = np.percentile(makespans, 95)
+        std = np.std(makespans)
+        return d_alpha, mean, std
+        #return critical_star, stds_star, n_activities
     else:
         return makespans
 
