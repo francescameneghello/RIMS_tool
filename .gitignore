@@ -15,3 +15,5 @@ __pycache__/
 /core_jsp/example/results
 /core_jsp/example
 /core_jsp/output
+/core/example
+/core/output
